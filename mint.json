@@ -1,13 +1,13 @@
 {
   "$schema": "https://mintlify.com/schema.json",
-  "name": "Starter Kit",
+  "name": "Converge Documentation",
   "logo": {
     "dark": "/logo/dark.svg",
     "light": "/logo/light.svg"
   },
   "favicon": "/favicon.png",
   "colors": {
-    "primary": "#12A7D3",
+    "primary": "#7C3AED",
     "light": "#81D7F7",
     "dark": "#004E7A"
   },
@@ -30,11 +30,57 @@
   "navigation": [
     {
       "group": "Get Started",
-      "pages": ["introduction", "quickstart", "development"]
+      "pages": ["introduction"]
     },
     {
-      "group": "Essentials",
-      "pages": ["essentials/markdown", "essentials/code", "essentials/images", "essentials/settings", "essentials/navigation"]
+      "group": "Install Tracking",
+      "pages": [
+        {
+          "group": "Hands-off Onboarding",
+          "pages": [
+            "setup/hands-off/shopify",
+            "setup/hands-off/bigcommerce",
+            "setup/hands-off/woocommerce"
+          ]
+        },
+        {
+          "group": "Self-onboarding",
+          "pages": [
+            "setup/self/shopify",
+            "setup/self/bigcommerce",
+            "setup/self/woocommerce"
+          ]
+        }
+      ]
+    },
+    {
+      "group": "Set up Connections",
+      "pages": [
+        "introduction",
+        {
+          "group": "Destinations",
+          "pages": [
+            "setup/self/shopify",
+            "setup/self/bigcommerce",
+            "setup/self/woocommerce"
+          ]
+        }
+      ]
+    },
+    {
+      "group": "Attribution Dashboard",
+      "pages": [
+        {
+          "group": "Setup",
+          "pages": ["connect Ad Platforms", "Set up UTM tags"]
+        },
+        "store-overview",
+        "campaign-breakdown"
+      ]
+    },
+    {
+      "group": "Manage your workspace",
+      "pages": ["Add members"]
     },
     {
       "group": "API Documentation",
