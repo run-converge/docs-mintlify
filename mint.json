@@ -2,14 +2,14 @@
   "$schema": "https://mintlify.com/schema.json",
   "name": "Converge Documentation",
   "logo": {
-    "dark": "/logo/dark.svg",
-    "light": "/logo/light.svg"
+    "dark": "/logo/logo.svg",
+    "light": "/logo/logo.svg"
   },
   "favicon": "/favicon.png",
   "colors": {
     "primary": "#7C3AED",
     "light": "#81D7F7",
-    "dark": "#004E7A"
+    "dark": "#7C3AED"
   },
   "topbarLinks": [
     {
@@ -19,87 +19,60 @@
   ],
   "topbarCtaButton": {
     "name": "Dashboard",
-    "url": "https://dashboard.mintlify.com"
+    "url": "https://app.runconverge.com/overview"
   },
-  "tabs": [
-    {
-      "name": "API Reference",
-      "url": "api-reference"
-    }
-  ],
+  "tabs": [],
   "navigation": [
     {
-      "group": "Get Started",
-      "pages": ["introduction"]
+      "pages": ["Home"]
     },
     {
-      "group": "Install Tracking",
+      "group": "Getting started",
       "pages": [
-        {
-          "group": "Hands-off Onboarding",
-          "pages": [
-            "setup/hands-off/shopify",
-            "setup/hands-off/bigcommerce",
-            "setup/hands-off/woocommerce"
-          ]
-        },
-        {
-          "group": "Self-onboarding",
-          "pages": [
-            "setup/self/shopify",
-            "setup/self/bigcommerce",
-            "setup/self/woocommerce"
-          ]
-        }
+        "getting-started/what-is-Converge",
+        "getting-started/quickstart"
       ]
     },
     {
-      "group": "Set up Connections",
+      "group": "Sources",
       "pages": [
-        "introduction",
+        "sources/source-concepts",
+        "sources/converge-spec",
         {
-          "group": "Destinations",
+          "group": "Integrations",
           "pages": [
-            "setup/self/shopify",
-            "setup/self/bigcommerce",
-            "setup/self/woocommerce"
+            {
+              "group": "Website Integrations",
+              "pages": [
+                "sources/website-integrations/converge-pixel",
+                "sources/website-integrations/shopify"
+              ]
+            },
+            {
+              "group": "Server Integrations",
+              "pages": [
+                "sources/server-integrations/shopify",
+                "sources/server-integrations/woocommerce"
+              ]
+            }
           ]
         }
       ]
     },
     {
-      "group": "Attribution Dashboard",
+      "group": "Connections",
       "pages": [
+        "Overview",
         {
-          "group": "Setup",
-          "pages": ["connect Ad Platforms", "Set up UTM tags"]
-        },
-        "store-overview",
-        "campaign-breakdown"
-      ]
-    },
-    {
-      "group": "Manage your workspace",
-      "pages": ["Add members"]
-    },
-    {
-      "group": "API Documentation",
-      "pages": ["api-reference/authentication"]
-    },
-    {
-      "group": "Endpoint Examples",
-      "pages": [
-        "api-reference/endpoint/get",
-        "api-reference/endpoint/create",
-        "api-reference/endpoint/update",
-        "api-reference/endpoint/delete"
+          "group": "Connection Integrations",
+          "pages": ["Facebook", "Google Ads"]
+        }
       ]
     }
   ],
   "footerSocials": {
-    "twitter": "https://twitter.com/mintlify",
-    "github": "https://github.com/mintlify",
-    "linkedin": "https://www.linkedin.com/company/mintsearch"
+    "twitter": "https://twitter.com/runConverge",
+    "linkedin": "https://www.linkedin.com/company/81685997"
   },
   "backgroundImage": "/background.png"
 }

@@ -1,0 +1,30 @@
+---
+title: "Shopify"
+description: "Connect your Shopify store backend to Converge"
+---
+
+## Event Spec
+
+This integration auto-tracks the following events on the server with all properties available according to the [Converge Event Spec](../sources/pixel#event-specification).
+
+| Event Name                       | Event Description                |
+| -------------------------------- | -------------------------------- |
+| [Placed Order](../converge-spec) | When a customer places an order. |
+
+&nbsp;
+
+## Installation Instructions
+
+1. In Converge, navigate to the Sources tab and click on **Create a new source**
+2. Name your datasource: e.g. `{store_name} Store`
+3. Enter the store name, this is the string before `myshopify.com` in the shopify url. E.g. For `convergestore.myshopify.com` the store name would be `convergestore`
+4. Navigate to the Shopify dashboard, click on **Settings**
+5. Click on **Apps and and sales channels** in the Settings modal
+6. Click on **Develop apps**, you might have to choose **allow custom app development** in a pop-up
+7. Click on **Create an app**, give the app the name `Converge` and choose your own email address as the developer
+8. Choose **Configure Admin API scopes** and mark the following 4 scopes (i) `read_products`, (ii) `read_customer_events`, (iii) `read_customers`, (iv) `read_orders`.
+9. Click on **Save** and then **Install app**. Reveal and copy the Admin API access token, paste the token in the Converge webapp under **Shopify API Password**. Do not fill in a starting date, just click on **Create source**
+
+> ℹ️ You should see the Shopify store syncing data, no need to wait before its fully synced to create connections -- we will automatically check which orders are historic and new and forward only the new ones in case a connection is active while historically syncing
+
+&nbsp;
