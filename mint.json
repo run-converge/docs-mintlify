@@ -37,7 +37,7 @@
         "sources/source-concepts",
         "sources/converge-spec",
         {
-          "group": "Integrations",
+          "group": "Source Integrations",
           "pages": [
             {
               "group": "Website Integrations",
@@ -63,7 +63,7 @@
         "Overview",
         {
           "group": "Connection Integrations",
-          "pages": ["Facebook", "Google Ads"]
+          "pages": ["/connections/facebook", "connections/google"]
         }
       ]
     }
