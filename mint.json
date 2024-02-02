@@ -21,17 +21,9 @@
     "name": "Dashboard",
     "url": "https://dashboard.mintlify.com"
   },
-  "tabs": [
-    {
-      "name": "API Reference",
-      "url": "api-reference"
-    }
-  ],
+  "tabs": [],
   "navigation": [
-    {
-      "group": "Get Started",
-      "pages": ["introduction"]
-    },
+    { "group": "Home", "pages": ["home"] },
     {
       "group": "Install Tracking",
       "pages": [
