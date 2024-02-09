@@ -1,32 +1,188 @@
 ---
-title: "The Converge Spec"
-description: "Introduction to the Converge Spec"
+title: "The Converge Event Spec"
 ---
 
-## Why H
+#### Why the Converge Spec?
 
-## The Converge Spec
+Most CDPs are not very strict about _which_ events you track, _where_ you track them (client or server) and with _which properties_.
+This usually leads to problems with destinations downstream as each destination does have very specific integration requirements to operate optimally.
 
-This integration auto-tracks the following events on the server with all properties available according to the [Converge Event Spec](../sources/pixel#event-specification).
+#### Advantages of a strict spec
 
-| Event Name                       | Event Description                |
-| -------------------------------- | -------------------------------- |
-| [Placed Order](../converge-spec) | When a customer places an order. |
+Converge, therefore works with a strict Converge Event Spec.
+Because we have a semantic understanding of what you are tracking, we can:
 
-&nbsp;
+1. Automagically map your source events to destinations in the optimal way through our [Connections]().
+2. Surface you meaningful analytics through our [Attribution]() product.
+3. Monitor and flag when you are wrongly tracking events or properties negatively affecting your destinations or analytics through [Source Monitoring]().
 
-## Installation Instructions
+Of course you can still extend the Converge Spec with your own events, properties, etc.
 
-1. In Converge, navigate to the Sources tab and click on **Create a new source**
-2. Name your datasource: e.g. `{store_name} Store`
-3. Enter the store name, this is the string before `myshopify.com` in the shopify url. E.g. For `convergestore.myshopify.com` the store name would be `convergestore`
-4. Navigate to the Shopify dashboard, click on **Settings**
-5. Click on **Apps and and sales channels** in the Settings modal
-6. Click on **Develop apps**, you might have to choose **allow custom app development** in a pop-up
-7. Click on **Create an app**, give the app the name `Converge` and choose your own email address as the developer
-8. Choose **Configure Admin API scopes** and mark the following 4 scopes (i) `read_products`, (ii) `read_customer_events`, (iii) `read_customers`, (iv) `read_orders`.
-9. Click on **Save** and then **Install app**. Reveal and copy the Admin API access token, paste the token in the Converge webapp under **Shopify API Password**. Do not fill in a starting date, just click on **Create source**
+## Funnel Events
 
-> ℹ️ You should see the Shopify store syncing data, no need to wait before its fully synced to create connections -- we will automatically check which orders are historic and new and forward only the new ones in case a connection is active while historically syncing
+### Viewed Product
 
-&nbsp;
+When a user views a product detail page.
+
+<AccordionGroup>
+
+<Accordion title="Where To Track" icon="map-pin">
+  This event should be tracked on the client.
+</Accordion>
+
+<Accordion title="Event Properties" icon="list">
+
+    <ParamField body="product_id" type="string" required>
+    Product ID of the item that is being viewed.
+    </ParamField>
+
+    <ParamField body="variant_id" type="string">
+    Variant ID of the product variant that is being viewed
+    </ParamField>
+
+    <ParamField body="sku" type="string">
+    SKU of the product and variant that is being viewed
+    </ParamField>
+
+    <ParamField body="name" type="string" required>
+    Product Name of the item that is being viewed
+    </ParamField>
+
+    <ParamField body="price" type="float" required>
+    Price of the item that is being viewed
+    </ParamField>
+
+    <ParamField body="currency" type="string" required>
+    Currency of the product that is being viewed,as per [ISO
+    4217](https://en.wikipedia.org/wiki/ISO_4217)
+    </ParamField>
+
+    <ParamField body="vendor" type="string">
+    Name of the vendor of the product that is being viewed.
+    </ParamField>
+
+</Accordion>
+
+<Accordion title="Code Example" icon="code">
+
+    <CodeGroup>
+
+```javascript JavaScript
+cvg({
+  method: "track",
+  eventName: "Viewed Product",
+  properties: {
+    product_id: "123456",
+    variant_id: "78910", // if available
+    sku: "MY_SKU",
+    name: "My Product",
+    variant_name: "Vanilla", // if available
+    price: 42,
+    currency: "USD",
+    vendor: "My Store",
+  },
+});
+```
+
+</CodeGroup>
+
+</Accordion>
+</AccordionGroup>
+
+### Viewed Collection
+
+When a user views a collection detail page that includes multiple products.
+
+<AccordionGroup>
+
+<Accordion title="Where To Track" icon="map-pin">
+  This event should be tracked on the client.
+</Accordion>
+
+<Accordion title="Event Properties" icon="list">
+
+    <ParamField body="id" type="string" required>
+    Collection ID of the collection that is being viewed.
+    </ParamField>
+
+    <ParamField body="name" type="string" required>
+    Name of the collection that is being viewed.
+    </ParamField>
+
+    <ParamField body="description" type="string">
+    Description of the collection that is being viewed.
+    </ParamField>
+
+    <ParamField body="items" type="list of Item">
+
+        <Expandable title="item">
+
+{" "}
+
+<ParamField body="product_id" type="string" required>
+  Product ID of the item that is being viewed.
+</ParamField>
+
+    <ParamField body="variant_id" type="string">
+    Variant ID of the product variant that is being viewed
+    </ParamField>
+
+    <ParamField body="sku" type="string">
+    SKU of the product and variant that is being viewed
+    </ParamField>
+
+    <ParamField body="name" type="string" required>
+    Product Name of the item that is being viewed
+    </ParamField>
+
+    <ParamField body="price" type="float" required>
+    Price of the item that is being viewed
+    </ParamField>
+
+    <ParamField body="currency" type="string" required>
+    Currency of the product that is being viewed,as per [ISO
+    4217](https://en.wikipedia.org/wiki/ISO_4217)
+    </ParamField>
+
+    <ParamField body="vendor" type="string">
+    Name of the vendor of the product that is being viewed.
+    </ParamField>
+
+  </Expandable>
+
+    </ParamField>
+
+</Accordion>
+
+<Accordion title="Code Example" icon="code">
+
+    <CodeGroup>
+
+```javascript JavaScript
+cvg({
+  method: "track",
+  eventName: "Viewed Collection",
+  properties: {
+    id: "123456", // Collection ID
+    name: "My Collection Name",
+    description: "My Collection Description",
+    items: [
+      {
+        product_id: "123456",
+        variant_id: "78910", // if available
+        sku: "MY_SKU",
+        name: "My Product",
+        variant_name: "Vanilla", // if available
+        price: 42,
+        currency: "USD",
+        vendor: "My Store",
+      },
+    ],
+  },
+});
+```
+
+</CodeGroup>
+
+</Accordion>
+</AccordionGroup>
