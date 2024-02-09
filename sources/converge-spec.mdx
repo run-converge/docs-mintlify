@@ -260,3 +260,258 @@ cvg({
 
 </Accordion>
 </AccordionGroup>
+
+### Started Checkout
+
+When a user starts the checkout process.
+
+<AccordionGroup>
+
+<Accordion title="Where To Track" icon="map-pin">
+  This event should be tracked on the client.
+</Accordion>
+
+<Accordion title="Event Properties" icon="list">
+
+    <ParamField body="total_price" type="float" required>
+    Total value of the cart at checkout without tax or shipping.
+    </ParamField>
+
+    <ParamField body="total_tax" type="float" required>
+    Total tax of the cart at checkout.
+    </ParamField>
+
+    <ParamField body="total_shipping" type="float" required>
+    Total shipping cost of the cart at checkout.
+    </ParamField>
+
+    <ParamField body="currency" type="string" required>
+    Currency of the cart that is being checked out,as per [ISO
+    4217](https://en.wikipedia.org/wiki/ISO_4217)
+    </ParamField>
+
+    <ParamField body="items" type="list of CheckoutItem">
+
+        <Expandable title="CheckoutItem">
+
+{" "}
+
+<ParamField body="product_id" type="string" required>
+  Product ID of the item that is being viewed.
+</ParamField>
+
+    <ParamField body="variant_id" type="string">
+    Variant ID of the product variant that is being viewed
+    </ParamField>
+
+    <ParamField body="sku" type="string">
+    SKU of the product and variant that is being viewed
+    </ParamField>
+
+    <ParamField body="name" type="string" required>
+    Product Name of the item that is being viewed
+    </ParamField>
+
+    <ParamField body="price" type="float" required>
+    Price of the item that is being viewed
+    </ParamField>
+
+    <ParamField body="currency" type="string" required>
+    Currency of the product that is being viewed,as per [ISO
+    4217](https://en.wikipedia.org/wiki/ISO_4217)
+    </ParamField>
+
+    <ParamField body="vendor" type="string">
+    Name of the vendor of the product that is being viewed.
+    </ParamField>
+
+        <ParamField body="quantity" type="int" required>
+    Amount of times the item is present in the cart at checkout.
+    </ParamField>
+
+  </Expandable>
+
+    </ParamField>
+
+</Accordion>
+
+<Accordion title="Code Example" icon="code">
+
+    <CodeGroup>
+
+```javascript JavaScript
+cvg({
+  method: "track",
+  eventName: "Started Checkout",
+  properties: {
+    total_price: 42,
+    total_tax: 3.5,
+    total_shipping: 2.4,
+    currency: "USD",
+    items: [
+      // Notice that this is a list of items
+      {
+        product_id: "123456",
+        variant_id: "78910",
+        sku: "MY_SKU",
+        name: "My Product",
+        variant_name: "Vanilla",
+        price: 42,
+        currency: "USD",
+        quantity: 1,
+        vendor: "My Store",
+      },
+    ],
+  },
+});
+```
+
+</CodeGroup>
+
+</Accordion>
+</AccordionGroup>
+
+### Added Payment Info
+
+When a user adds their payment info.
+
+<AccordionGroup>
+
+<Accordion title="Where To Track" icon="map-pin">
+  This event should be tracked on the client.
+</Accordion>
+
+<Accordion title="Event Properties" icon="list">
+
+    <ParamField body="total_price" type="float" required>
+    Total value of the cart at checkout without tax or shipping.
+    </ParamField>
+
+    <ParamField body="total_tax" type="float" required>
+    Total tax of the cart at checkout.
+    </ParamField>
+
+    <ParamField body="total_shipping" type="float" required>
+    Total shipping cost of the cart at checkout.
+    </ParamField>
+
+    <ParamField body="currency" type="string" required>
+    Currency of the cart that is being checked out,as per [ISO
+    4217](https://en.wikipedia.org/wiki/ISO_4217)
+    </ParamField>
+
+    <ParamField body="items" type="list of CheckoutItem">
+
+        <Expandable title="CheckoutItem">
+
+{" "}
+
+<ParamField body="product_id" type="string" required>
+  Product ID of the item that is being viewed.
+</ParamField>
+
+    <ParamField body="variant_id" type="string">
+    Variant ID of the product variant that is being viewed
+    </ParamField>
+
+    <ParamField body="sku" type="string">
+    SKU of the product and variant that is being viewed
+    </ParamField>
+
+    <ParamField body="name" type="string" required>
+    Product Name of the item that is being viewed
+    </ParamField>
+
+    <ParamField body="price" type="float" required>
+    Price of the item that is being viewed
+    </ParamField>
+
+    <ParamField body="currency" type="string" required>
+    Currency of the product that is being viewed,as per [ISO
+    4217](https://en.wikipedia.org/wiki/ISO_4217)
+    </ParamField>
+
+    <ParamField body="vendor" type="string">
+    Name of the vendor of the product that is being viewed.
+    </ParamField>
+
+        <ParamField body="quantity" type="int" required>
+    Amount of times the item is present in the cart at checkout.
+    </ParamField>
+
+  </Expandable>
+
+    </ParamField>
+
+</Accordion>
+
+<Accordion title="Profile Properties" icon="address-card">
+
+    <ParamField body="$email" type="string" required>
+    Email Address of the user.
+    </ParamField>
+
+    <ParamField body="$phone_number" type="string">
+    Phone Number of the user including the'+'-sign and country code. For example: `"+1 (917) 123-4567"` or `"+3295123456"`.
+    </ParamField>
+
+    <ParamField body="$city" type="string">
+    City of the user's address.
+    </ParamField>
+
+    <ParamField body="$country_code" type="string">
+    Country code of the user's address according to [ISO 3166](https://en.wikipedia.org/wiki/List_of_ISO_3166_country_codes).
+    </ParamField>
+
+     <ParamField body="$state" type="string">
+    State of the user's address.
+    </ParamField>
+
+    <ParamField body="$zip_code" type="string">
+    Zip code of the user's address.
+    </ParamField>
+
+</Accordion>
+
+<Accordion title="Code Example" icon="code">
+
+    <CodeGroup>
+
+```javascript JavaScript
+cvg({
+  method: "track",
+  eventName: "Added Payment Info",
+  properties: {
+    total_price: 42,
+    total_tax: 3.5,--
+    total_shipping: 2.4,
+    currency: "USD",
+    items: [
+      {
+        product_id: "123456",
+        sku: "MY_SKU",
+        name: "My Product",
+        price: 42,
+        currency: "USD",
+        quantity: 1,
+        vendor: "My Store",
+      },
+    ],
+  },
+  profileProperties: {
+    // Pass if available
+    $email: "john.smith@apple.com",
+    $phone_number: "+199999999",
+    $city: "San Francisco",
+    $country_code: "US",
+    $state: "California",
+    $zip_code: "94103",
+  },
+  aliases: ["urn:email:john.smith@apple.com"],
+});
+```
+
+</CodeGroup>
+
+</Accordion>
+</AccordionGroup>
