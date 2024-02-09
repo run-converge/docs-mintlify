@@ -638,7 +638,7 @@ When a user places an order.
 
     <CodeGroup>
 
-```javascript JavaScript
+```javascript JavaScript - Client-side
 cvg({
   method: "track",
   eventName: "Placed Order",
@@ -672,6 +672,58 @@ cvg({
   },
   aliases: ["urn:email:john.smith@apple.com"],
 });
+```
+
+```python Python - Server-side
+resp = requests.post(
+    "{YOUR_POSTBACK_ENDPOINT}",
+    json=
+        {
+        "event_name": "Placed Order",
+        "event_id": "order-1", # your order id, necessary for deduplication
+        "properties": {
+            "id" : "order-1", # will be shown in the UI
+            "total_price": 42,
+            "total_tax": 3.5,
+            "total_shipping": 2.4,
+            "currency": "USD",
+            "items": [
+                {
+                    "product_id": "123456",
+                    "variant_id": "654321", # important for Shopify stores
+                    "sku": "MY_SKU",
+                    "name": "My Product",
+                    "price": 42,
+                    "currency": "USD",
+                    "quantity": 1,
+                    "vendor": "My Store",
+                },
+            ],
+            "$first_name": "John",
+            "$last_name": "Smith",
+            "$email": "john.smith@apple.com",
+            "$phone_number": "+199999999",
+            "$city": "San Francisco",
+            "$country_code": "US",
+            "$state": "California",
+            "$zip_code": "94103",
+            "$is_new_customer": False, # important
+        },
+        "profile_properties": {
+            # Pass as many as possible
+            "$first_name": "John",
+            "$last_name": "Smith",
+            "$email": "john.smith@apple.com",
+            "$phone_number": "+199999999",
+            "$city": "San Francisco",
+            "$country_code": "US",
+            "$state": "California",
+            "$zip_code": "94103",
+        },
+        "aliases": ["urn:email:john.smith@apple.com"],
+    }
+)
+
 ```
 
 </CodeGroup>
