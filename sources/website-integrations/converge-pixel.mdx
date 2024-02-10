@@ -1,17 +1,165 @@
 ---
 title: "Converge JS Pixel"
-description: "Connect your Shopify store backend to Converge"
+description: "Connect your Website to Converge"
 ---
 
 ## Event Spec
 
-This integration auto-tracks the following events on the server with all properties available according to the [Converge Event Spec](../sources/pixel#event-specification).
+This integration auto-tracks the following events with all properties available according to the [Converge Event Spec](../converge-spec).
 
 | Event Name                       | Event Description                |
 | -------------------------------- | -------------------------------- |
-| [Placed Order](../converge-spec) | When a customer places an order. |
+| [$page_load](../converge-spec#page-load) | When a customer views a page. |
 
-&nbsp;
+--- 
 
 ## Installation Instructions
+
+1. Log in to the [Converge webapp](app.runconverge.com) and click on the **Sources** tab in the left side-bar.
+2. Click on **Create a new source** and pick _Client-side_ from the modal
+3. Name your pixel: e.g. `{Storename} Storefront`
+4. After creating the pixel, click on your pixel and from the modal pick _HTML_, it should look something like this.
+  
+   <Accordion icon="code" title="Code example"> 
+   ```html
+   <script
+     src="<https://static.runconverge.com/pixels/{YOUR_PUBLIC_TOKEN}.js>"
+     async
+   ></script>
+   <script>
+     window.cvg||(c=window.cvg=function(){c.process?c.process.apply(c,argum
+     ents):c.queue.push(arguments)},c.queue=[]);
+     cvg({method:"track",eventName:"$page_load"});
+   </script>
+   ```
+   </Accordion>
+5. Copy the HTML snippet and include it in the header of your website.
+6. Check that your pixel is working correctly by checking the `Source Log` and seeing events come in.
+
+
+### Note for Single-page applications
+
+<Warning>If you are using a single-page application, you should hook the `$page_load` tracking call above into your router to re-fire the event. </Warning>
+
+<Accordion icon="code" title="Single-page code example"> 
+
+```javascript NextJS
+import { useEffect } from "react";
+const MyApp = ({ Component, pageProps, router }) => {
+  useEffect(() => {
+    const handleRouteChange = (url) => {
+      cvg({ method: "track", eventName: "$page_load" });
+    };
+    router.events.on("routeChangeComplete", handleRouteChange);
+    return () => {
+      router.events.off("routeChangeComplete", handleRouteChange);
+    };
+  }, []);
+  return <Component {...pageProps} />;
+};
+export default MyApp;
+```
+
+</Accordion>
+
+---
+
+## Cross-domain tracking
+
+Converge supports cross-domain tracking out-of-the box. To enable cross-domain tracking from `myfirstdomain.com` to `myotherdomain.com`, include the following method together with the basic Converge pixel snippet.
+
+<Info> Note that you do **not** need this snippet for tracking across subdomains.
+i.e. if the pixel snippet is installed on `myfirstdomain.com` and on `checkout.myfirstdomain.com`, the sessions should be stitched across both domains automatically. </Info> 
+
+```js
+cvg({ method: "link_domain", domain: "myotherdomain.com" });
+```
+
+<Warning> If the redirect to `myotherdomain.com` does not happen directly through a link click, but for example through JS code, the parameter won't be added. So it is important to always test whether the `__cvg_uid` parameter is present on the new URL. </Warning>
+
+---
+
+## Manually instrument events
+
+If the pre-built website integrations does not cover the entire [Converge Event Spec](../converge-spec); or if you want to add custom events from your website then you will need to manually instrument these using the Converge Pixel.
+You can use the `track` method in the Converge Pixel for this purpose. 
+
+<Note> As a general rule, you should always **aim to pass as many `properties`, `profileProperties` and `aliases` as possible** </Note>
+
+The track method has the following parameters: 
+
+- `eventName`: The name of the event
+- `properties`: The event properties you want to pass, covering the Converge Spec and possible your own custom properties.
+- `profileProperties`: The [profile properties](../source-concepts#profile-properties)
+- `aliases`: Any [aliases](../source-concepts#aliases)
+
+
+<AccordionGroup>
+
+<Info> You can find Converge JS examples for the entire [Converge Spec here](../converge-spec) </Info>
+<Accordion title="Code Examples" icon="code">
+
+    <CodeGroup>
+
+```javascript Added To Cart
+cvg({
+  method: "track",
+  eventName: "Added To Cart",
+  properties: {
+    product_id: "123456",
+    variant_id: "78910",
+    sku: "MY_SKU",
+    name: "My Product",
+    variant_name: "Vanilla",
+    price: 42,
+    currency: "USD",
+    quantity: 1,
+    vendor: "My Store",
+  },
+});
+```
+
+```javascript Added Payment Info
+cvg({
+  method: "track",
+  eventName: "Added Payment Info",
+  properties: {
+    total_price: 42,
+    total_tax: 3.5,--
+    total_shipping: 2.4,
+    currency: "USD",
+    items: [
+      {
+        product_id: "123456",
+        sku: "MY_SKU",
+        name: "My Product",
+        price: 42,
+        currency: "USD",
+        quantity: 1,
+        vendor: "My Store",
+      },
+    ],
+  },
+  profileProperties: {
+    // Pass if available
+    $email: "john.smith@apple.com",
+    $phone_number: "+199999999",
+    $city: "San Francisco",
+    $country_code: "US",
+    $state: "California",
+    $zip_code: "94103",
+  },
+  aliases: ["urn:email:john.smith@apple.com"],
+});
+
+```
+
+
+</CodeGroup>
+
+</Accordion>
+
+</AccordionGroup>
+
+
 
