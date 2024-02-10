@@ -3,28 +3,156 @@ title: "Source Concepts"
 description: "Introduction to the Converge Source concepts"
 ---
 
-## Why
+## An introductory example
 
-This integration auto-tracks the following events on the server with all properties available according to the [Converge Event Spec](../sources/pixel#event-specification).
+Imagine an ecommerce store that has the following minimal customer journey:
 
-| Event Name                       | Event Description                |
-| -------------------------------- | -------------------------------- |
-| [Placed Order](../converge-spec) | When a customer places an order. |
+1. **PageView**: User visits the storefront
+2. **Added To Cart**: User adds an item to cart
+3. **Placed Order**: User places an order
 
-&nbsp;
+For the optimal setup, they will want to track `PageView` and `Added To Cart` on the browser, but `Placed Order` events on <Tooltip tip="Important to track 100% of conversions"> the server</Tooltip>.
 
-## Installation Instructions
+### Challenges with server-side tracking 
+There are three main challenges this store will need to deal with, all of which are important concepts in Converge.
+- [Profile properties](#profile-properties): to include browser-side information into the server-side order-event.
+- [Deduplication](#deduplication): to make sure that the same order does not get processed twice.
+- [Aliases](#aliases): to recognize which browser-side events and which server-side events come from the same user.
 
-1. In Converge, navigate to the Sources tab and click on **Create a new source**
-2. Name your datasource: e.g. `{store_name} Store`
-3. Enter the store nameou, this is the string before `myshopify.com` in the shopify url. E.g. For `convergestore.myshopify.com` the store name would be `convergestore`
-4. Navigate to the Shopify dashboard, click on **Settings**
-5. Click on **Apps and and sales channels** in the Settings modal
-6. Click on **Develop apps**, you might have to choose **allow custom app development** in a pop-up
-7. Click on **Create an app**, give the app the name `Converge` and choose your own email address as the developer
-8. Choose **Configure Admin API scopes** and mark the following 4 scopes (i) `read_products`, (ii) `read_customer_events`, (iii) `read_customers`, (iv) `read_orders`.
-9. Click on **Save** and then **Install app**. Reveal and copy the Admin API access token, paste the token in the Converge webapp under **Shopify API Password**. Do not fill in a starting date, just click on **Create source**
+---
 
-> ℹ️ You should see the Shopify store syncing data, no need to wait before its fully synced to create connections -- we will automatically check which orders are historic and new and forward only the new ones in case a connection is active while historically syncing
+## Profile properties
 
-&nbsp;
+It is possible to include **profile properties** in an event. These properties are characteristic of the user. These properties are **persisted across events**, whereas the event properties are only available and relevant to the event itself.
+
+Profile Properties allow you to store information on a user that you might need later. 
+For example, the Converge Pixel will [auto-track](./converge-spec#page-load) a bunch of browser session information so this is available for your server-side events (e.g. the `Placed Order` event in the [example](#an-introductory-example) above).
+
+However, profile properties are also useful for storing information across events *within* a single source. 
+Imagine a user that triggers a `Subscribed to Newsletter` event with an `$email` parameter. Afterwards that same user triggers an `Added To Cart`.
+Storing the `$email` as a profile property ensures that you have this information available at the moment of the `Added To Cart`-event without you as a developer having to pass this information again.
+
+
+<Accordion title="Code Examples" icon="code">
+ <CodeGroup>
+
+```javascript Converge Pixel - Javascript
+cvg({
+  method: "track",
+  eventName: "Subscribed To Newsletter",
+  properties: {
+    formId: "your-form-id",
+  },
+  profileProperties: {
+    $email: "john.smith@apple.com",
+    $first_name: "John",
+    $last_name: "Smith",
+    $phone_number: "+199999999",
+  },
+});
+```
+
+```python Converge Webhook - Python
+resp = requests.post(
+    "{YOUR_POSTBACK_ENDPOINT}",
+    json=
+        {
+        "event_name": "Subscribed To Newsletter",
+        "properties": {
+          "formId": "your-form-id",
+        },
+        "profile_properties": {
+            "$email": "john.smith@apple.com",
+            "$first_name": "John",
+            "$last_name": "Smith",
+            "$phone_number": "+199999999",
+
+        }
+    }
+)
+
+```
+
+</CodeGroup>
+</Accordion>
+
+
+---
+
+## Deduplication
+
+It is possible to include **profile properties** in an event. These properties are characteristic of the user. These properties are **persisted across events**, whereas the event properties are only available and relevant to the event itself.
+Converge supports deduplication natively. You can deduplicate events with an optional `eventID` parameter. This is especially important for events that are used as conversions.
+Converge will deduplicate events with the same `eventID` at ingestation time.
+
+<Accordion title="Code Examples" icon="code">
+ <CodeGroup>
+
+```javascript Converge Pixel - Javascript
+cvg({
+  method: "forward",
+  eventName: "Placed Order",
+  properties: {}, // your event properties
+  eventID: "X01",
+});
+```
+
+```python Converge Webhook - Python
+resp = requests.post(
+    "{YOUR_POSTBACK_ENDPOINT}",
+    json=
+        {
+        "event_name": "Placed Order",
+        "properties": {},
+        "profile_properties": {},
+        "event_id" : "XO1", # Note the different spelling of event_id
+    }
+)
+```
+
+
+</CodeGroup>
+</Accordion>
+
+
+---
+
+## Aliases
+
+Converge excels at matching events across browser sessions and your server-side data. This is all possible through aliases. Your customer is linked to multiple aliases, i.e. **multiple identifiers for the same customer**. Converge uses the customer's browser session cookie as the default alias.
+When you add something as an alias, you are telling Converge that this alias is a unique identifier for this profile **across datasources**. In the examples below, we add `email` as an alias. Thus, Converge can merge a profile of browser events (e.g. Pageviews) with a profile with backend events (e.g. Started Subscription) if they have the same `email`.
+
+In the examples below we add an `email` alias, other aliases that are useful:
+- `cart_token`
+- `checkout_token`: this is absolutely necessary if your checkout lives on a different domain than your storefront token.
+- `customer_id`
+
+<Accordion title="Code Examples" icon="code">
+ <CodeGroup>
+
+```javascript Converge Pixel - Javascript
+cvg({
+  method: "track",
+  eventName: "Subscribed To Newsletter",
+  properties: {},
+  profileProperties: {},
+  aliases: ["urn:email:john.smith@apple.com"],
+});
+```
+
+```python Converge Webhook - Python
+resp = requests.post(
+    "{YOUR_POSTBACK_ENDPOINT}",
+    json=
+        {
+        "event_name": "Subscribed To Newsletter",
+        "properties": {},
+        "profile_properties": {},
+        "aliases": ["urn:email:john.smith@apple.com"],
+    }
+)
+```
+
+
+</CodeGroup>
+</Accordion>
