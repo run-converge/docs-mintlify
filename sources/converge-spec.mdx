@@ -18,9 +18,85 @@ Because we have a semantic understanding of what you are tracking, we can:
 
 Of course you can still extend the Converge Spec with your own events, properties, etc.
 
-## Basic Events
+## Auto-tracking
 
-These events and properties will always be auto-tracked by the [Converge Pixel]().
+These events, event properties, profile properties and aliases will be auto-tracked by the [Converge Pixel]().
+
+### $page_load
+
+When a user views a page.
+
+<AccordionGroup>
+
+<Accordion title="Where To Track" icon="map-pin">
+  This event should be tracked on the client.
+</Accordion>
+
+<Accordion title="Code Example" icon="code">
+
+    <CodeGroup>
+
+```javascript JavaScript
+cvg({ method: "track", eventName: "$page_load" });
+```
+
+</CodeGroup>
+</Accordion>
+
+<Tip>
+  You do not need to manually implement any of the below properties, they will be automagically tracked for all client-side events. 
+</Tip>
+<Accordion title="Auto-tracked Event Properties" icon="list">
+
+    <ParamField body="$ip" type="string">
+    IP address of the user.
+    </ParamField>
+
+    <ParamField body="$url" type="string">
+    URL of the pageview.
+    </ParamField>
+
+    <ParamField body="referrer" type="string">
+    URL referrer of the pageview.
+    </ParamField>
+
+    <ParamField body="timezone" type="string">
+    Browser timezone.
+    </ParamField>
+
+    <ParamField body="viewport" type="string">
+    Viewport size of the pageview.
+    </ParamField>
+
+</Accordion>
+
+<Accordion title="Auto-tracked Profile Properties" icon="address-card">
+
+    <ParamField body="$ip" type="string">
+    IP address of the user.
+    </ParamField>
+
+    <ParamField body="cookie_id" type="string">
+    Converge cookie id.
+    </ParamField>
+
+    <ParamField body="$user_agent" type="string">
+    User Agent of the last browser session of the user.
+    </ParamField>
+
+</Accordion>
+
+<Accordion title="Auto-tracked Aliases" icon="passport">
+
+    <ParamField body="urn:cookie:{cookie_id}" >
+    Alias based on the Converge cookie id.
+    </ParamField>
+
+</Accordion>
+
+</AccordionGroup>
+
+[//]: # "This list of event properties and profile properties is WIP"
 
 ## Ecommerce Events
 
