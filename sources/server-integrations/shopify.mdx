@@ -3,23 +3,47 @@ title: "Shopify"
 description: "Connect your Shopify store backend to Converge"
 ---
 
-
-
-&nbsp;
-
 ## Installation Instructions
 
-1. In Converge, navigate to the Sources tab and click on **Create a new source**
-2. Name your datasource: e.g. `{store_name} Store`
-3. Enter the store name, this is the string before `myshopify.com` in the shopify url. E.g. For `convergestore.myshopify.com` the store name would be `convergestore`
-4. Navigate to the Shopify dashboard, click on **Settings**
-5. Click on **Apps and and sales channels** in the Settings modal
-6. Click on **Develop apps**, you might have to choose **allow custom app development** in a pop-up
-7. Click on **Create an app**, give the app the name `Converge` and choose your own email address as the developer
-8. Choose **Configure Admin API scopes** and mark the following 4 scopes (i) `read_products`, (ii) `read_customer_events`, (iii) `read_customers`, (iv) `read_orders`.
-9. Click on **Save** and then **Install app**. Reveal and copy the Admin API access token, paste the token in the Converge webapp under **Shopify API Password**. Do not fill in a starting date, just click on **Create source**
+<AccordionGroup>
+    <Accordion title="Retrieve a Shopify Access Token" icon="key">
+    <Steps>
+       <Step title="Create a custom Shopify app">
+        1. Navigate to the Shopify Admin dashboard, click on **Settings**
+        2. Click on **Apps and and sales channels** in the Settings modal.
+        3.. Click on **Develop apps**, you might have to choose **allow custom app development** in a pop-up
+        4. Click on **Create an app**, give the app the name `Converge` and choose your own email address as the developer.
+    </Step>
+    <Step title="Configure the correct scopes">
+        5. Choose **Configure Admin API scopes** and mark the following 4 scopes (i) `read_products`, (ii) `read_customer_events`, (iii) `read_customers`, (iv) `read_orders`.
+    </Step>
 
-> ℹ️ You should see the Shopify store syncing data, no need to wait before its fully synced to create connections -- we will automatically check which orders are historic and new and forward only the new ones in case a connection is active while historically syncing
+    <Step title="Install the custom app to get the token"> 
+    6. Click on **Save** and then **Install app**. Reveal and copy the **Admin API access token**
+    </Step>
+
+</Steps>
+   </Accordion >
+
+    <Accordion title="Connect Converge Shopify Server integration" icon="plug" >
+
+  <Steps>
+    <Step title="Create a new Server-side source in Converge">
+      1. In Converge, click on **Create a new source**
+        2. Pick _Server-side_ from the modal
+        3. Name your pixel: e.g. `{Storename} Store Backend`
+    </Step>
+    <Step title="Connect the Source">
+        4. Enter the store name, this is the string before `myshopify.com` in the shopify url. E.g. For `convergestore.myshopify.com` the store name would be `convergestore`
+        5. Paste the Shopify Access Token in the Converge webapp under **Shopify API Password**. Do not fill in a starting date, just click on **Create source**
+        6. Click on **Create Source**.
+    </Step>
+    </Steps>
+
+    <Note> You should see the Source syncing all historical order data, no need to wait before its fully synced to create connections -- we will automatically check which orders are historic and new and forward only the new ones in case a connection is active while historically syncing </Note>
+    </Accordion> 
+
+   </AccordionGroup>
 
 ---
 
