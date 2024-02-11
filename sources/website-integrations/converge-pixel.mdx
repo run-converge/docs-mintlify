@@ -3,24 +3,21 @@ title: "Converge JS Pixel"
 description: "Connect your Website to Converge"
 ---
 
-## Event Spec
-
-This integration auto-tracks the following events with all properties available according to the [Converge Event Spec](../converge-spec).
-
-| Event Name                       | Event Description                |
-| -------------------------------- | -------------------------------- |
-| [$page_load](../converge-spec#page-load) | When a customer views a page. |
-
---- 
-
 ## Installation Instructions
 
-1. Log in to the [Converge webapp](app.runconverge.com) and click on the **Sources** tab in the left side-bar.
-2. Click on **Create a new source** and pick _Client-side_ from the modal
-3. Name your pixel: e.g. `{Storename} Storefront`
-4. After creating the pixel, click on your pixel and from the modal pick _HTML_, it should look something like this.
-  
-   <Accordion icon="code" title="Code example"> 
+<AccordionGroup>
+
+    <Accordion title="Installing the Converge JS Pixel" icon="wand-magic-sparkles" >
+
+  <Steps>
+    <Step title="Create a new Client Source in Converge">
+      1. In Converge, click on **Create a new source**
+        2. Pick _Client-side_ from the modal
+        3. Name your pixel: e.g. `{Storename} Storefront`
+    </Step>
+    <Step title="Install the Converge HMTL snippet in your storefront">
+        4. Click on your created newly created Source and from the modal pick `HTML`, copy that snippet.
+        <Accordion icon="code" title="Code example"> 
    ```html
    <script
      src="<https://static.runconverge.com/pixels/{YOUR_PUBLIC_TOKEN}.js>"
@@ -33,9 +30,14 @@ This integration auto-tracks the following events with all properties available 
    </script>
    ```
    </Accordion>
-5. Copy the HTML snippet and include it in the header of your website.
-6. Check that your pixel is working correctly by checking the `Source Log` and seeing events come in.
-
+        5. Copy the HTML snippet and include it in the header of your website, right above the closing `</head>` tag.
+    </Step>
+    <Step title="Verify that the integration is working correctly">
+        6. Check that your pixel is working correctly by generating some `$page_load`-events through visiting the website and seeing that these events arrive in the Source Log.
+    </Step>
+</Steps>
+   </Accordion >
+   </AccordionGroup>
 
 ### Note for Single-page applications
 
@@ -79,7 +81,7 @@ cvg({ method: "link_domain", domain: "myotherdomain.com" });
 
 ---
 
-## Manually instrument events
+## Manually instrumenting events
 
 If the pre-built website integrations does not cover the entire [Converge Event Spec](../converge-spec); or if you want to add custom events from your website then you will need to manually instrument these using the Converge Pixel.
 You can use the `track` method in the Converge Pixel for this purpose. 
@@ -161,5 +163,12 @@ cvg({
 
 </AccordionGroup>
 
+---
 
+## Event Spec
 
+This integration auto-tracks the following events with all properties available according to the [Converge Event Spec](../converge-spec).
+
+| Event Name                       | Event Description                |
+| -------------------------------- | -------------------------------- |
+| [$page_load](../converge-spec#page-load) | When a customer views a page. |
