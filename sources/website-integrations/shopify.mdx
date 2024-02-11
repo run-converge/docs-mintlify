@@ -7,6 +7,8 @@ The Shopify Website Integration consists of two integrations covering the full t
 1. The Shopify Storefront Integration
 2. The Shopify Checkout Integration
 
+---
+
 ## Event Spec
 
 This integration auto-tracks the following events on the browser with all properties available according to the [Converge Event Spec](../sources/pixel#event-specification).
@@ -22,7 +24,7 @@ This integration auto-tracks the following events on the browser with all proper
 | [Subscribed To Newsletter](../converge-spec) | When a customer subscribes to your newsletter.           | Checkout  | 
 | [Placed Order](../converge-spec)             | When a customer places an order.                         | Checkout  | 
 
-&nbsp;
+---
 
 ## Installation Instruction
 
@@ -87,7 +89,7 @@ Click on Save Pixel and Connect Pixel
 
   <AccordionGroup>
 
-  <Accordion title="Install Converge JS on your storefront" icon="store" >
+  <Accordion title="Installing Converge JS on your storefront" icon="store" >
 
   <Steps>
 
@@ -128,23 +130,28 @@ Click on Save Pixel and Connect Pixel
 </Steps>
    </Accordion >
 
-      <Accordion title="Track the missing events using Converge JS" icon="store" >
+      <Accordion title="Tracking supplementary events and properties using Converge JS" icon="code" >
 
-  <Steps>
+        <Steps>
+    <Step title="Track the remaining Converge Spec">
+The Converge JS pixel only picks up [$page_load](../converge-spec#page-load)-events by default for a headless store.
+        You will typically have to supplement the following events using Converge JS for all Connections to work optimally.
+        - [Viewed Product](../converge-spec#viewed-product)
+        - [Viewed Collection](../converge-spec#viewed-collection)
+        - [Added To Cart](../converge-spec#added-to-cart)
 
-    <Step title="Create a new Client Source in Converge">
-      1. In Converge, click on **Create a new source**
-        2. Pick _Client-side_ from the modal
-        3. Name your pixel: e.g. `{Storename} Storefront`
+        For more information on manually instrumenting events, read [here](./converge-pixel#manually-instrument-events). 
     </Step>
-    <Step title="Install the Converge JS Base Snippet">
-    4. Install the Converge JS Base Snippet in your storefront following the steps [here](./converge-pixel#installation-instructions)
-        
+    <Step title="Add approppriate aliases to stitch the session across all sources ">
+        At this point, you should be tracking the entire Converge Ecommerce Spec. 
+        However, for a Headless setup, it is paramount that you set the `checkout_token` as an alias **before** redirecting the user to the Shopify Checkout to make sure that the storefront session and the checkout session can be linked to the same user.
+        You can read more about aliases [here](../source-concepts/aliases).
     </Step>
     <Step title="Verify that the integration is working correctly">
-        5. Double-check that `$page_load`-events are coming in correctly in the Source Logs.
+        Check that your setup is working by doing an entire user journey from `$page_load` to `Placed Order` and verifying that all events are properly tracked without any [Source Warnings]().
     </Step>
 </Steps>
+        
    </Accordion >
 
    
