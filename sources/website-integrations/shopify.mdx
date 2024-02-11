@@ -26,19 +26,74 @@ This integration auto-tracks the following events on the browser with all proper
 
 ## Installation Instruction
 
-The Converge Shopify Pixel consists of installing the (i) storefront pixel and the (ii) checkout pixel.
-Both are necessary to capture the entire [Event Spec](#event-spec).
+The installation process of Converge is slightly different based on whether you have a **Shopify Liquid** storefront; or whether you are running a **Shopify Headless** Storefront.
 
-### Storefront Integration
+<Tabs>
+  <Tab title="Shopify Liquid">
 
-1. In Converge, click on **Create a new source**
-2. Pick _Client-side_ from the modal
-3. Name your pixel: e.g. `{Storename} Storefront`
-4. Copy the _Shopify Liquid_ snippet
-5. In the Shopify dashboard, navigate to **Sales Channels** > **Online Store** > **Themes**
-6. Click on "**...**" next to the _Customize_ button, and click **Edit code**.
-7. Go to the _theme.liquid_ file and insert the snippet right above the closing `</head>` tag in the theme.liquid file. Click **Save**
-8. Always doublecheck that you did not break anything on the site after inserting the snippet It's good practice to **add the snippet to other themes in development as well**, so a theme switch does not kill website tracking
-9. Check that your pixel is working correctly by generating some page_load events through visiting the store and seeing that these events arrive in Converge.
+  The Converge Website installation for a Shopify Liquid store consists of:
+
+  <AccordionGroup>
+
+    <Accordion title="Installing the Shopify Storefront Integration" icon="store" >
+
+  <Steps>
+    <Step title="Create a new Client Source in Converge">
+      1. In Converge, click on **Create a new source**
+        2. Pick _Client-side_ from the modal
+        3. Name your pixel: e.g. `{Storename} Storefront`
+    </Step>
+    <Step title="Install the Converge Liquid snippet in your storefront">
+        4. Click on your created newly created Source and from the modal pick `Shopify Liquid`, copy that snippet.
+        5. In the Shopify admin dashboard, navigate to **Sales Channels** > **Online Store** > **Themes**
+        6. Click on "**...**" next to the _Customize_ button, and click **Edit code**.
+        7. Go to the _theme.liquid_ file and insert the snippet right above the closing `</head>` tag in the theme.liquid file. Click **Save**
+    </Step>
+    <Step title="Verify that the integration is working correctly">
+        8. Always doublecheck that you did not break anything on the site after inserting the snippet. 
+        <Info>   It's good practice to **add the snippet to other themes in development as well** and to add this snippet to your version control, so a theme switch does not kill website tracking </Info>
+        9. Check that your pixel is working correctly by generating some `$page_load`, `Viewed Product` and `Viewed Collection` events through visiting the store and seeing that these events arrive in Converge.
+    </Step>
+</Steps>
+   </Accordion >
+
+    <Accordion title="Installing the Shopify Checkout Integration" icon="credit-card" >
+
+  <Steps>
+    <Step title="Create a new Client Source in Converge">
+      1. In Converge, click on **Create a new source**
+        2. Pick _Client-side_ from the modal
+        3. Name your pixel: e.g. `{Storename} Checkout`
+    </Step>
+    <Step title="Install the Converge Checkout as an extension in Shopify Customer Events">
+        4. Click on your created newly created Source and from the modal pick `Shopify Custom Pixel`, copy that snippet.
+        5. In the Shopify Admin dashboard, navigate to **Settings** > **Customer Events**
+        6. Click on **Add custom pixel**.
+        7. Name your pixel, e.g. `Converge Pixel`
+        8. Paste the script from the webapp here, make sure to modify the `__SHOP_NAME__`string with the actual store name e.g. `convergestore`. You can find your storename in the URL of your Shopify Admin Dashboard.
+Click on Save Pixel and Connect Pixel
+    </Step>
+    <Step title="Verify that the integration is working correctly">
+        8. Always doublecheck that you did not break anything on the site after inserting the snippet. 
+        <Info>   It's good practice to **add the snippet to other themes in development as well** and to add this snippet to your version control, so a theme switch does not kill website tracking </Info>
+        9. Check that your pixel is working correctly by generating some `$page_load`, `Viewed Product` and `Viewed Collection` events through visiting the store and seeing that these events arrive in Converge.
+    </Step>
+</Steps>
+   </Accordion >
+   </AccordionGroup>
+    
+    
+  </Tab>
+  <Tab title="Shopify Headless">
+    ✌️ Here's content that's only inside the second Tab.
+  </Tab>
+</Tabs>
+
+
+
+
+
+
+
 
 
