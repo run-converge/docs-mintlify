@@ -52,7 +52,7 @@ The installation process of Converge is slightly different based on whether you 
     <Step title="Verify that the integration is working correctly">
         8. Always doublecheck that you did not break anything on the site after inserting the snippet. 
         <Info>   It's good practice to **add the snippet to other themes in development as well** and to add this snippet to your version control, so a theme switch does not kill website tracking </Info>
-        9. Check that your pixel is working correctly by generating some `$page_load`, `Viewed Product` and `Viewed Collection` events through visiting the store and seeing that these events arrive in Converge.
+        9. Check that your pixel is working correctly by generating some `$page_load`, `Viewed Product` and `Viewed Collection` events through visiting the store and seeing that these events arrive in the Source Log.
     </Step>
 </Steps>
    </Accordion >
@@ -74,9 +74,7 @@ The installation process of Converge is slightly different based on whether you 
 Click on Save Pixel and Connect Pixel
     </Step>
     <Step title="Verify that the integration is working correctly">
-        8. Always doublecheck that you did not break anything on the site after inserting the snippet. 
-        <Info>   It's good practice to **add the snippet to other themes in development as well** and to add this snippet to your version control, so a theme switch does not kill website tracking </Info>
-        9. Check that your pixel is working correctly by generating some `$page_load`, `Viewed Product` and `Viewed Collection` events through visiting the store and seeing that these events arrive in Converge.
+        8. Check that your pixel is working correctly by generating some `Added To Cart`, `Started Checkout` and `Added Payment Info` events through visiting the store and seeing that these events arrive in the Source Log.
     </Step>
 </Steps>
    </Accordion >
@@ -85,7 +83,73 @@ Click on Save Pixel and Connect Pixel
     
   </Tab>
   <Tab title="Shopify Headless">
-    ✌️ Here's content that's only inside the second Tab.
+    The Converge Website installation for a Shopify Headless store consists of:
+
+  <AccordionGroup>
+
+  <Accordion title="Install Converge JS on your storefront" icon="store" >
+
+  <Steps>
+
+    <Step title="Create a new Client Source in Converge">
+      1. In Converge, click on **Create a new source**
+        2. Pick _Client-side_ from the modal
+        3. Name your pixel: e.g. `{Storename} Storefront`
+    </Step>
+    <Step title="Install the Converge JS Base Snippet">
+    4. Install the Converge JS Base Snippet in your storefront following the steps [here](./converge-pixel#installation-instructions)
+        
+    </Step>
+    <Step title="Verify that the integration is working correctly">
+        5. Double-check that `$page_load`-events are coming in correctly in the Source Logs.
+    </Step>
+</Steps>
+   </Accordion >
+
+    <Accordion title="Installing the Shopify Checkout Integration" icon="credit-card" >
+
+  <Steps>
+    <Step title="Create a new Client Source in Converge">
+      1. In Converge, click on **Create a new source**
+        2. Pick _Client-side_ from the modal
+        3. Name your pixel: e.g. `{Storename} Checkout`
+    </Step>
+    <Step title="Install the Converge Checkout as an extension in Shopify Customer Events">
+        4. Click on your created newly created Source and from the modal pick `Shopify Custom Pixel`, copy that snippet.
+        5. In the Shopify Admin dashboard, navigate to **Settings** > **Customer Events**
+        6. Click on **Add custom pixel**.
+        7. Name your pixel, e.g. `Converge Pixel`
+        8. Paste the script from the webapp here, make sure to modify the `__SHOP_NAME__`string with the actual store name e.g. `convergestore`. You can find your storename in the URL of your Shopify Admin Dashboard.
+Click on Save Pixel and Connect Pixel
+    </Step>
+    <Step title="Verify that the integration is working correctly">
+        8. Check that your pixel is working correctly by generating some `Added To Cart`, `Started Checkout` and `Added Payment Info` events through visiting the store and seeing that these events arrive in the Source Log.
+    </Step>
+</Steps>
+   </Accordion >
+
+      <Accordion title="Track the missing events using Converge JS" icon="store" >
+
+  <Steps>
+
+    <Step title="Create a new Client Source in Converge">
+      1. In Converge, click on **Create a new source**
+        2. Pick _Client-side_ from the modal
+        3. Name your pixel: e.g. `{Storename} Storefront`
+    </Step>
+    <Step title="Install the Converge JS Base Snippet">
+    4. Install the Converge JS Base Snippet in your storefront following the steps [here](./converge-pixel#installation-instructions)
+        
+    </Step>
+    <Step title="Verify that the integration is working correctly">
+        5. Double-check that `$page_load`-events are coming in correctly in the Source Logs.
+    </Step>
+</Steps>
+   </Accordion >
+
+   
+
+   </AccordionGroup>
   </Tab>
 </Tabs>
 
