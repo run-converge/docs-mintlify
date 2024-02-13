@@ -37,17 +37,17 @@
         "sources/source-concepts",
         "sources/converge-spec",
         {
-          "group": "Source Integrations",
+          "group": "Integrations",
           "pages": [
             {
-              "group": "Website Integrations",
+              "group": "Website",
               "pages": [
                 "sources/website-integrations/converge-pixel",
                 "sources/website-integrations/shopify"
               ]
             },
             {
-              "group": "Server Integrations",
+              "group": "Server",
               "pages": [
                 "sources/server-integrations/shopify",
                 "sources/server-integrations/woocommerce"
@@ -62,7 +62,7 @@
       "pages": [
         "Overview",
         {
-          "group": "Connection Integrations",
+          "group": "Integrations",
           "pages": ["/connections/facebook", "connections/google"]
         }
       ]
