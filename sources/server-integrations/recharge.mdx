@@ -1,0 +1,58 @@
+---
+title: "Recharge"
+description: "Connect your Recharge subscription events to Converge"
+---
+
+## Installation Instructions
+
+<AccordionGroup>
+    <Accordion title="Create a Recharge API Token" icon="key">
+    <Steps>
+       <Step title="Navigate to the Recharge Admin Dashboard">
+        1. In your Shopify Admin Dashboard, navigate to `Apps` > `Recharge`.
+        2. Verify in the menu bar that you have access to the **API Tokens** submenu.
+        <Note>If you do not have a **API Tokens** option, you will need to Contact Recharge Support to activate this for you. </Note>
+    </Step>
+    <Step title="Create your token">
+        3. Click on **Create an API Token**.
+        4. For each of the scopes, provide `Read access`.
+        5. Click on **Save** and copy your token.
+    </Step>
+
+</Steps>
+   </Accordion >
+
+    <Accordion title="Connect the Recharge Integration in Converge" icon="plug" >
+
+  <Steps>
+    <Step title="Create a new Server-side source in Converge">
+      1. In Converge, click on **Create a new source**
+        2. Pick _Server-side_ from the modal
+        3. Name your source: e.g. `{Storename} Subscriptions`
+    </Step>
+    <Step title="Connect the Source">
+        4. Enter the Recharge API Token.
+        5. Click on **Create Source**.
+
+    </Step>
+    </Steps>
+
+
+    </Accordion> 
+            <Note> This source is webhook-based, meaning that historical data will not be synced in. </Note>
+
+   </AccordionGroup>
+
+
+---
+
+## Event Spec
+
+This integration auto-tracks the following events on the server with all properties available according to the [Converge Event Spec](../converge-event-spec).
+
+| Event Name                       | Event Description                |
+| -------------------------------- | -------------------------------- |
+| [Started Subscription](../converge-spec#started-subscription) | When a customer starts a subscription. |
+| [Cancelled Subscription](../converge-spec#cancelled-subscription) | When a customer cancels their subscription. |
+
+[//]: # "TODO: The RecurringSubscriptionPayment event and Skipped Subscription should be included"
