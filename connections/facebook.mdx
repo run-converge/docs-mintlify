@@ -1,31 +1,70 @@
 ---
-title: "Meta Destination"
-description: "An introduction to the Meta Destination"
+title: "Meta"
+description: "An introduction to the Meta/Facebook Ads Destination"
 ---
-
-## Event Spec
-
-This integration auto-tracks the following events on the server with all properties available according to the [Converge Event Spec](../sources/pixel#event-specification).
-
-| Event Name                       | Event Description                |
-| -------------------------------- | -------------------------------- |
-| [Placed Order](../converge-spec) | When a customer places an order. |
-
-&nbsp;
 
 ## Installation Instructions
 
-1. In Converge, navigate to the Sources tab and click on **Create a new source**
-2. Name your datasource: e.g. `{store_name} Store`
-3. Enter the store name, this is the string before `myshopify.com` in the shopify url. E.g. For `convergestore.myshopify.com` the store name would be `convergestore`
-4. Navigate to the Shopify dashboard, click on **Settings**
-5. Click on **Apps and and sales channels** in the Settings modal
-6. Click on **Develop apps**, you might have to choose **allow custom app development** in a pop-up
-7. Click on **Create an app**, give the app the name `Converge` and choose your own email address as the developer
-8. Choose **Configure Admin API scopes** and mark the following 4 scopes (i) `read_products`, (ii) `read_customer_events`, (iii) `read_customers`, (iv) `read_orders`.
-9. Click on **Save** and then **Install app**. Reveal and copy the Admin API access token, paste the token in the Converge webapp under **Shopify API Password**. Do not fill in a starting date, just click on **Create source**
+<AccordionGroup >
+<Accordion icon="list" title="Installation Instructions">
 
-> ℹ️ You should see the Shopify store syncing data, no need to wait before its fully synced to create connections -- we will automatically check which orders are historic and new and forward only the new ones in case a connection is active while historically syncing
+1. Navigate to your [Facebook Events Manager](https://business.facebook.com/events_manager2).
+
+2. From your Events Manager, **click on the Facebook Pixel** you would like to connect.
+
+3. In the Facebook Pixel menu, choose the **Settings** subtab.
+
+4. From this subtab, you can find your **Pixel ID**, copy it -- you will need it in a later step.
+
+5. Scroll down in the Settings subtab until you find **Generate access token**, click on it. Copy this token as well.
+
+6. In your Converge dashboard, under Connections, click **Create New Connection**.
+
+7. Give your connection an approppriate name (e.g. `Facebook Connection | {YOUR_PIXEL_ID}`) and **choose the Facebook App**.
+
+8. Paste in the Pixel ID you acquired in the earlier step in the **Pixel ID** field. Paste in the access token you acquired earlier in the **Access Token** field.
+
+9. Fill in your homepage domain name in the **Your Domain name** field, it does not need to include `https://`.
+
+10. Click on **Create Connection**
+</Accordion>
+<Warning> Once you have installed your Converge Connection, you should **pause or remove all existing Facebook tracking**. Leaving these on will lead to duplicate tracking.  </Warning>
+</AccordionGroup> 
+---
+
+## Integration details
+- Includes support for the [Facebook Conversions API](https://www.facebook.com/business/help/2041148702652965)
+
+---
+
+## Converge functionality
+
+This integration supports the following Converge connection functionality.
+
+| Converge Feature   &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp;  &nbsp;  &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp;  &nbsp;                            | Supported                                       |  
+| -------------------------------------------- | -------------------------------------------------------- |  
+| Custom Events          | ✅                       | 
+| Filters         | ✅         |  
+| Server-side Conversions | ✅  |
+
+
+--- 
+
+## Event Mapping
+
+Converge automatically maps the following events from the [Converge Event Spec](../sources/converge-spec) to the Google Analytics 4 spec.
+
+| Converge Event Name   &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp;  &nbsp;  &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp;  &nbsp;                            | Google Ads Event Name                                      |  
+| -------------------------------------------- | -------------------------------------------------------- |  
+| [$page_load](../converge-spec#page-load)          | `PageView`                        | 
+| [Viewed Product](../converge-spec#viewed-product)          | `ViewContent`                        | 
+| [Viewed Collection](../converge-spec#viewed-collection)        | `ViewContent`         |  
+| [Added To Cart](../converge-spec#added-to-cart)            | `AddToCart`                   |
+| [Started Checkout](../converge-spec#started-checkout)         | `InitiateCheckout`          | 
+| [Added Payment Info](../converge-spec#added-payment-info)       | `AddPaymentInfo` | 
+| [Placed Order](../converge-spec#placed-order)             | `Purchase`                         | 
+| [Started Subscription](../converge-spec#started-subscription)             | `Subscribe`                         | 
+| [Placed Recurring Subscription Order](../converge-spec#placed-recurring-subscription-order)             | `RecurringSubscriptionPaymentSucceeded`                         | 
+| [Cancelled Subscription](../converge-spec#cancelled-subscription)             | `CancelSubscription`                         | 
 
 &nbsp;
-oogle
