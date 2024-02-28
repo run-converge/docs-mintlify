@@ -3,14 +3,54 @@ title: "WooCommerce"
 description: "Connect your WooCommerce store backend to Converge"
 ---
 
+## Installation Instructions
+
+<AccordionGroup>
+    <Accordion title="Retrieve your WooCommerce Access Tokens" icon="key">
+    <Steps>
+       <Step title="Navigate to your WooCommerce REST API Settings">
+        1. Navigate to your Wordpress Admin Dashboard.
+        2. From the Menu Sidebar, navigate to the **WooCommerce** > **Settings** submenu.
+        3. On the WooCommerce Settings Page, click on the **Advanced** tab in the topbar.
+        4. In the **Advanced Tab**, click on the **REST API** link on the top of the page.
+    </Step>
+    <Step title="Generate your WooCommerce Consumer Key and Consumer Secret">
+        5. On the **REST API**-page, click on the **Add key** button, this will open a menu to create a new key.
+        6. Choose `Converge` for the **Decription**-form field, your own account as the **User**, and choose `Read` as the **Permissions**.
+        7. Click on **Generate API Key**.
+        8. Copy the **Consumer key** and **Consumer secret**, you will need them to set up the Converge Source.
+    </Step>
+
+</Steps>
+   </Accordion >
+
+    <Accordion title="Connect Converge WooCommerce Server integration" icon="plug" >
+
+  <Steps>
+    <Step title="Create a new Server-side source in Converge">
+      1. In Converge, click on **Create a new source**
+      2. Pick _Server-side_ from the modal
+      3. Name your source: e.g. `{Storename} Store Backend`
+      4. Choose the **WooCommerce** app from the dropdown menu.
+    </Step>
+    <Step title="Connect the Source to WooCommerce">
+        5. Enter your Store URL in the **URL of your WooCommerce store**-field, including `https://`, e.g. `https://myshop.com`
+        6. Paste the **Consumer key** and **Consumer secret** from your previous step.
+        7. Click on **Create Source**.
+    </Step>
+    </Steps>
+
+    <Note> You should see the Source syncing all historical order data, you should wait until its fully synced to create connections </Note>
+    </Accordion> 
+
+   </AccordionGroup>
+
+---
+
 ## Event Spec
 
-This integration auto-tracks the following events on the server with all properties available according to the [Converge Event Spec](../sources/pixel#event-specification).
+This integration auto-tracks the following events on the server with all properties available according to the [Converge Event Spec](../converge-event-spec).
 
 | Event Name                       | Event Description                |
 | -------------------------------- | -------------------------------- |
-| [Placed Order](../converge-spec) | When a customer places an order. |
-
-&nbsp;
-
-## Installation Instructions
+| [Placed Order](../converge-spec#placed-order) | When a customer places an order. |
