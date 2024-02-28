@@ -21,7 +21,7 @@ description: "Connect your Server-side data to Converge"
        
         5. Verify that your Webhook Source is working by sending a dummy [Placed Order](../converge-spec#placed-order)-event request. 
          <Accordion icon="code" title="Code example"> 
-         <Note> You should fill in your own webhook endpoint from the Converge UI below</Note>
+         <Note> You should fill in your own webhook endpoint from the Converge UI in the code example below</Note>
    <CodeGroup>
    
    ```cURL cURL
@@ -93,7 +93,7 @@ description: "Connect your Server-side data to Converge"
 If the pre-built server integrations does not cover the the applicable conversions from the [Converge Event Spec](../converge-spec); or if you want to add custom events from your website then you will need to manually instrument these using the Converge Pixel.
 You can use the Webhook source to manually instrument these events.
 
-<Note> As a general rule, you should always **aim to pass as many `properties`, `profileProperties` and `aliases` as possible** </Note>
+<Info> As a general rule, you should always **aim to pass as many `properties`, `profileProperties` and `aliases` as possible** </Info>
 
 The webhook body has the following parameters: 
 
@@ -101,75 +101,8 @@ The webhook body has the following parameters:
 - `event_id`: The ID of the event, used for [deduplication](../source-concepts#deduplication)
 - `properties`: The event properties you want to pass, covering the Converge Spec and possible your own custom properties.
 - `profile_properties`: The [profile properties](../source-concepts#profile-properties)
-- `aliases`: Any b[aliurases](../source-concepts#aliases)
+- `aliases`: Any [aliurases](../source-concepts#aliases)
 
-
-<AccordionGroup>
-
-<Info> You can find Converge Python examples for the entire [Converge Spec here](../converge-spec) </Info>
-<Accordion title="Code Examples" icon="code">
-
-    <CodeGroup>
-
-```javascript Added To Cart
-cvg({
-  method: "track",
-  eventName: "Added To Cart",
-  properties: {
-    product_id: "123456",
-    variant_id: "78910",
-    sku: "MY_SKU",
-    name: "My Product",
-    variant_name: "Vanilla",
-    price: 42,
-    currency: "USD",
-    quantity: 1,
-    vendor: "My Store",
-  },
-});
-```
-
-```javascript Added Payment Info
-cvg({
-  method: "track",
-  eventName: "Added Payment Info",
-  properties: {
-    total_price: 42,
-    total_tax: 3.5,--
-    total_shipping: 2.4,
-    currency: "USD",
-    items: [
-      {
-        product_id: "123456",
-        sku: "MY_SKU",
-        name: "My Product",
-        price: 42,
-        currency: "USD",
-        quantity: 1,
-        vendor: "My Store",
-      },
-    ],
-  },
-  profileProperties: {
-    // Pass if available
-    $email: "john.smith@apple.com",
-    $phone_number: "+199999999",
-    $city: "San Francisco",
-    $country_code: "US",
-    $state: "California",
-    $zip_code: "94103",
-  },
-  aliases: ["urn:email:john.smith@apple.com"],
-});
-
-```
-
-
-</CodeGroup>
-
-</Accordion>
-
-</AccordionGroup>
 
 ---
 
@@ -179,3 +112,4 @@ This integration does not auto-track any events by default.
 All events should be instrumented manually according to the Converge Event Spec.
 
 
+<Note> You should typically implement [Placed Order](../converge-spec#placed-order) and [Started Subscription](../converge-spec#started-subscription) events server-side. You can find a full list in the [Converge Spec here](../converge-spec) </Note>
