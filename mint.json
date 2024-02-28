@@ -64,7 +64,7 @@
         "Overview",
         {
           "group": "Integrations",
-          "pages": ["/connections/facebook", "connections/google"]
+          "pages": ["connections/facebook", "connections/ga4"]
         }
       ]
     }

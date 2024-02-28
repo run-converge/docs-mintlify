@@ -3,22 +3,66 @@ title: "Quickstart"
 description: "Getting started with Converge"
 ---
 
+
+
+
+### 1. Get your Customer Data in Converge
+
 To get started with Converge, you need to track the [Converge Event Spec](../sources/converge-spec).
 Converge has pre-built integrations with most Shopping Platforms, simply pick your platform below and follow the steps.
 
+<Note> Most Converge installations only involve a Storefront and Store Backend setup. If you leverage custom checkouts, subscriptions or landing page builders, you will want to connect these as well. </Note>
+
+<AccordionGroup>
+<Accordion icon="globe" title="Connect your Storefront">
 <Tabs>
 <Tab title="Shopify"> 
-<Steps> 
-<Step title="Install the Shopify Website Integration">
-  Follow the step-by-step tutorial [here](../sources/website-integrations/shopify#installation-instruction) to track all important storefront and checkout events.
-</Step>
-<Step title="Install the Shopify Server Integration">
-Follow the step-by-step tutorial [here](../sources/server-integrations/shopify#installation-instructions) to track all server-side orders.
-</Step>
-</Steps>
 
+  Install our prebuilt [Shopify Storefront integration](../sources/website-integrations/shopify#installation-instruction) to track all important storefront and checkout events.
+ 
+  <Info> We support headless Shopify stores natively. You can find more information on that in the Shopify Storefront integration docs [here](../sources/website-integrations/shopify#installation-instruction) </Info>
 </Tab>
 
-<Tab title="WooCommerce"> 
+<Tab title="Custom"> 
+  <Steps>
+   <Step title="Install the Converge JS Pixel">
+     You can find detailed instructions on installing the Converge JS Pixel on your storefront [here](../sources/website-integrations/converge-pixel#installation-instructions)
+    </Step>
+    
+    <Step title="Instrument Ecommerce Lifecycle events">
+    Once installed, you should instrument your storefront with all [Ecommerce Lifecycle Events](../sources/converge-spec).
+    </Step>
+  </Steps>
 </Tab>
 </Tabs>
+</Accordion>
+
+<Accordion icon="store" title="Connect your Store Backend">
+ <Tabs>
+<Tab title="Shopify"> 
+
+  Install our prebuilt [Shopify Store Backend integration](../sources/server-integrations/shopify#installation-instruction) to track all important storefront and checkout events.
+
+</Tab>
+
+<Tab title="Custom"> 
+</Tab>
+</Tabs>
+</Accordion>
+
+<Accordion icon="database" title="Connect other Datasources">
+ <Tabs>
+<Tab title="Subscriptions"> 
+
+  Use one of our pre-built connectors to get Subscription Lifecycle events in Converge.
+  - [Recharge](../sources/server-integrations/recharge#installation-instruction)
+
+</Tab>
+
+<Tab title="Landing Page Builders"> 
+</Tab>
+</Tabs>
+</Accordion>
+</AccordionGroup>
+
+### 2. Set up your Connections.
