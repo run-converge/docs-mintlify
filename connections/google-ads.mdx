@@ -1,0 +1,82 @@
+---
+title: "Google Ads"
+description: "An introduction to the Google Ads Destination"
+---
+
+## Installation Instructions
+
+<Accordion icon="list" title="Expand Instructions">
+
+1. Navigate to your Google Ads Dashboards and choose **Tools and settings > Conversions**.
+   ![gads-1](/images/connections/google-ads/google-ads-connection-1.png)
+
+2. Choose **New conversion action** and then choose **Website**.
+   &nbsp;
+
+3. Fill in your URL and choose **Scan**.
+   &nbsp;
+
+4. Choose **Add a conversion manually**.
+   &nbsp;
+
+5. Choose **Purchase** as conversion type, choose different values for each conversions and track **Every**.
+   &nbsp;
+
+   ![gads-2](/images/connections/google-ads/google-ads-connection-2.png)
+
+6. Press **Save and continue**.
+   &nbsp;
+
+7. Click on **See event snippet**.
+   &nbsp;
+
+   ![gads-3](/images/connections/google-ads/google-ads-connection-3.png)
+
+8. Copy the **Conversion ID**, in this example the Tag ID is `AW-11288325266`; the Conversion ID is `5CTkCNPJvIcZEJLZ2IYq`. You will need both for the Converge connection.
+   &nbsp;
+
+   ![gads-4](/images/connections/google-ads/google-ads-connection-4.png)
+
+9. In your Converge dashboard, under Connections, click **Create New Connection** and fill in your Tag ID and Conversion ID. After that click **Create Connection**.
+   &nbsp;
+
+   ![gads-5](/images/connections/google-ads/google-ads-connection-5.png)
+
+10. If you only need the Purchase conversion, then you are done 🎉. If you'd like to add other conversions you can follow the steps above to add more conversions to the connection.
+
+</Accordion>
+---
+
+## Integration details
+- Includes support for [Google Enhanced Conversions](https://support.google.com/google-ads/answer/9888656)
+- Includes support for the [Google Dynamic Remarketing](https://support.google.com/tagmanager/answer/6106009)
+- Includes support for [Consent Mode V2](https://developers.google.com/tag-platform/security/guides/consent?sjid=5329592855679349930-EU&consentmode=advanced#upgrade-consent-v2)
+
+---
+
+## Converge functionality
+
+This integration supports the following Converge connection functionality.
+
+| Converge Feature   &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp;  &nbsp;  &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp;  &nbsp;                            | Supported                                       |  
+| -------------------------------------------- | -------------------------------------------------------- |  
+| Custom Events          | ✅                       | 
+| Filters         | ✅         |  
+| Server-side Conversions | ❌ |
+
+
+--- 
+
+## Event Mapping
+
+Converge automatically maps the following events from the [Converge Event Spec](../sources/converge-spec) to the Google Analytics 4 spec.
+
+| Converge Event Name   &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp;  &nbsp;  &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp;  &nbsp;                            | Google Ads Event Name                                      |  
+| -------------------------------------------- | -------------------------------------------------------- |  
+| [Viewed Product](../converge-spec#viewed-product)          | `view_item`                        | 
+| [Viewed Collection](../converge-spec#viewed-collection)        | `view_item_list`         |  
+| [Added To Cart](../converge-spec#added-to-cart)            | `add_to_cart`                   |
+| [Started Checkout](../converge-spec#started-checkout)         | `begin_checkout`          | 
+| [Added Payment Info](../converge-spec#added-payment-info)       | `add_payment_info` | 
+| [Placed Order](../converge-spec#placed-order)             | `purchase`                         | 
+&nbsp;
