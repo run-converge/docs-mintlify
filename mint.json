@@ -49,6 +49,7 @@
             {
               "group": "Server",
               "pages": [
+                "sources/server-integrations/webhook",
                 "sources/server-integrations/shopify",
                 "sources/server-integrations/woocommerce",
                 "sources/server-integrations/recharge"
