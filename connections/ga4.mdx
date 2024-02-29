@@ -3,15 +3,71 @@ title: "Google Analytics 4"
 description: "Setting up a connection with GA4"
 ---
 
+
 ## Installation Instructions
 
+<AccordionGroup >  
+<Accordion icon="list" title="Installation Instructions">
+
+1. Navigate to your GA4 Property and choose **Admin > Data collection and modification > Data streams**.
+
+2. If you do not have a data stream yet, you should click **Add stream** > **Web**. If you do have a data stream already, you should click on the datastream.
+   &nbsp;
+
+3. Copy the **Measurement ID** from the top right corner. You will need it later.
+   &nbsp;
+
+4. Click on **Measurement Protocol API secrets** on the same page.
+   &nbsp;
+
+5. Click on **Create** to generate a new secret, and give it the name Converge. After creating, copy the **Secret value**.
+   &nbsp;
+
+
+6. In your Converge dashboard, under Connections, click **Create New Connection** and fill in your **Measurement ID** and **API Secret**. After that click **Create Connection**.
+   &nbsp;
+
+
+</Accordion> 
+<Warning> Once you have installed your Converge Connection, you should **pause or remove all existing Google Analytics 4 tracking**. Leaving these on will lead to duplicate tracking.  </Warning>
+</AccordionGroup>
+---
+
+## Integration details
+- Includes support for [Server-side GTM](https://support.google.com/tagmanager/answer/6106009)
+- Includes support for [Consent Mode V2](https://devtioelopers.google.com/tag-platform/security/guides/consent?sjid=5329592855679349930-EU&consentmode=advanced#upgrade-consent-v2)
+
+---
+
+## Configuration Options
+
+The following options can be configured in the Connection Configuration.
+
+### Connection Type
+
+How Converge forwards events to Google Analytics 4. 
+Options include:
+- **Client-side**: loads the `gtag` and sends every Converge event client-side.
+- **Server-side**: loads the `gtag` and sends every Converge event (except for `$page_load`) server-side through the Measurement Protocol. 
+- **Server-side GTM (Recommended)**: loads the `gtag` in a server-side GTM container, sends server-side conversions through the Measurement Protocol. 
+---
+
+## Converge functionality
+
+This integration supports the following Converge connection functionality.
+
+| Converge Feature   &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp;  &nbsp;  &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp;  &nbsp;                            | Supported                                       |  
+| -------------------------------------------- | -------------------------------------------------------- |  
+| Custom Events          | ✅                       | 
+| Filters         | ✅         |  
+| Server-side Conversions | ✅  |
 
 
 ## Event Mapping
 
 Converge automatically maps the following events from the [Converge Event Spec](../sources/converge-spec) to the Google Analytics 4 spec.
 
-| Converge Event Name                                   | GA4 Event Name                                      |  
+| Converge Event Name  &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp;  &nbsp;  &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp;  &nbsp;                                                            | GA4 Event Name                                      |  
 | -------------------------------------------- | -------------------------------------------------------- |  
 | [Viewed Product](../converge-spec#viewed-product)           | `view_item`                        | 
 | [Viewed Collection](../converge-spec#viewed-collection)        | `view_item_list`         |  
@@ -21,4 +77,5 @@ Converge automatically maps the following events from the [Converge Event Spec](
 | [Placed Order](../converge-spec#placed-order)             | `purchase`                         | 
 | [Started Subscription](../converge-spec#start-subscription)             | `start_subscription`                         | 
 | [Received Refund ](../converge-spec#received-refund)             | `refund`                         | 
-&nbsp;
+
+
