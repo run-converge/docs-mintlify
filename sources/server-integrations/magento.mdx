@@ -1,0 +1,76 @@
+---
+title: "Magento v2"
+description: "Connect your Magento v2 store backend to Converge"
+---
+
+## Installation Instructions
+
+<AccordionGroup>
+    
+    <Accordion title="Enable integration as a bearer token" icon="gears">
+    <Steps>
+       <Step title="Set the Configuration">
+        1. Open your terminal or command prompt and navigate to the root directory of your Magento 2 installation.
+        2. Execute the following command to set the `oauth/consumer/enable_integration_as_bearer` configuration option to `1`.
+        
+ 
+            ```bash bash
+            bin/magento config:set oauth/consumer/enable_integration_as_bearer 1
+            ```
+
+        </Step>
+
+    <Step title="Verify the Configuration">
+        3. To ensure that the configuration has been set correctly, you can check the value using the following command:
+        ```bash bash
+        bin/magento config:show oauth/consumer/enable_integration_as_bearer
+        ```
+        4. The output should confirm that the value is set to `1`.
+    </Step>
+    </Steps>
+    </Accordion>
+    <Accordion title="Retrieve your Magento Admin Access Token" icon="key">
+    <Steps>
+       <Step title="Navigate to your Magento Integration Settings">
+        1. Navigate to your Magento Admin Dashboard.
+        2. From the Menu Sidebar, navigate to the **System** > **Extensions** > **Integrations** submenu.
+    </Step>
+    <Step title="Generate your Magento Admin Access Token">
+        3. Choose to generate a new key, and choose `Sales/Operations/Orders/Actions/View` as your scope.
+        4. Copy the generated access token, you will need it in the next step.
+    </Step>
+
+</Steps>
+   </Accordion >
+
+    <Accordion title="Connect the server integration" icon="plug" >
+
+  <Steps>
+    <Step title="Create a new Server-side source in Converge">
+      1. In Converge, click on **Create a new source**
+      2. Pick _Server-side_ from the modal
+      3. Name your source: e.g. `{Storename} Store Backend`
+      4. Choose the **Magento v2** app from the dropdown menu.
+    </Step>
+    <Step title="Connect the Source to Magento">
+        5. Enter the full URL of the REST API of your Magento 2 store in the  **API URL**-field, including `https://`, e.g. `https://myshop.com/rest`
+        6. If your storefront is hosted on a different domain than your API, please provide the domain in the **Storefront domain**. Feel free to leave this blank if your store is hosted on the same domain.
+        7. Paste in the Admin Access Token you retrieved in the previous section in the **Admin Access Token**.
+        8. Optionally, filter out orders by store view or modify the start date. You should leave these fields blank if you do not have a good reason to use them.
+    </Step>
+    </Steps>
+
+    <Note> You should see the Source syncing all historical order data, you should wait until its fully synced to create connections </Note>
+    </Accordion> 
+
+   </AccordionGroup>
+ 
+---
+
+## Event Spec
+
+This integration auto-tracks the following events on the server with all properties available according to the [Converge Event Spec](../converge-event-spec).
+
+| Event Name                       | Event Description                |
+| -------------------------------- | -------------------------------- |
+| [Placed Order](../converge-spec#placed-order) | When a customer places an order. |
