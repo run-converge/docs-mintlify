@@ -1,0 +1,61 @@
+---
+title: "WooCommerce Web"
+description: "Install the WooCommerce Storefront Plugin"
+---
+
+The WooCommerce Website Integration consists of a WooCommerce plugin that tracks your storefront and checkout events.
+
+---
+
+## Installation Instructions
+
+The Converge Website installation for a WooCommerce store consists of:
+
+  
+  <AccordionGroup>
+
+    <Accordion title="Installing the WooCommerce Plugin" icon="download" >
+
+  <Steps>
+    <Step title="Create a new Client Source in Converge">
+      1. In Converge, click on **Create a new source**
+        2. Pick _Client-side_ from the modal
+        3. Name your pixel: e.g. `{Storename} Storefront`
+    </Step>
+    <Step title="Install the WooCommerce Plugin">
+        4. Click on your created newly created Source and from the modal pick `WooCommerce Plugin`, download that zip file.
+        5. In the Wordpress admin dashboard, navigate to **Plugins** in the sidebar and click on **Upload Plugin**.
+        6. Choose the .zip file that you just downloaded as the file to upload.
+        7. Click on **Install Plugin** and after that on **Activate Plugin** 
+    </Step>
+     <Step title="Verify that the integration is working correctly">
+        8. Check that the plugin is working correctly by generating some `$page_load`, `Added To Cart`, `Started Checkout` events through visiting the store and seeing that these events arrive in the Source Log.
+    </Step>
+</Steps>
+   </Accordion >
+   </AccordionGroup>
+    
+    
+  
+
+---
+
+## Event Spec
+
+This integration auto-tracks the following events on the browser with all properties available according to the [Converge Event Spec](../sources/pixel#event-specification).
+
+| Event Name                                   | Event Description                                        | Integration | 
+| -------------------------------------------- | -------------------------------------------------------- | --- | 
+| [PageView](../converge-spec#page-view)                 | When a customer views a page.                            | Storefront  |
+| [Viewed Product](../converge-spec#viewed-product)           | When a customer views a product.                         | Storefront |
+| [Added To Cart](../converge-spec#added-to-cart)            | When a customer adds an item to cart                     | Checkout | 
+| [Started Checkout](../converge-spec#started-checkout)         | When a customer initiates the checkout process.          | Checkout | 
+
+
+
+
+
+
+
+
+
