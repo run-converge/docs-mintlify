@@ -43,7 +43,8 @@
               "group": "Website",
               "pages": [
                 "sources/website-integrations/converge-pixel",
-                "sources/website-integrations/shopify"
+                "sources/website-integrations/shopify",
+                "sources/website-integrations/woocommerce"
               ]
             },
             {
