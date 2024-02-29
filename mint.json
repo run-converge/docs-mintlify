@@ -23,7 +23,6 @@
   },
   "tabs": [],
   "navigation": [
-    { "group": "Home", "pages": ["home"] },
     {
       "group": "Getting started",
       "pages": [
@@ -68,7 +67,7 @@
         "Overview",
         {
           "group": "Integrations",
-          "pages": ["connections/facebook", "connections/google-ads", "connections/ga4"]
+          "pages": ["connections/facebook", "connections/google-ads", "connections/ga4", "connections/tiktok"]
         }
       ]
     }
