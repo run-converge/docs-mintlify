@@ -1,0 +1,70 @@
+---
+title: "TikTok Ads"
+description: "An introduction to the TikTok Ads Destination"
+---
+
+## Installation Instructions
+
+<AccordionGroup >
+<Accordion icon="list" title="Installation Instructions">
+
+1. Navigate to your [TikTok Events Manager](https://ads.tiktok.com/i18n/events_manager/). If the direct link does not open your Events Manager, you can acces it from the TikTok Ads Manager dashboard under **Tools** > **Events**.
+
+2. From your Events Manager, **click on "Manage"** under **Web Events**.
+
+3. Click on your pixel, you might have to go through 2FA.
+
+4. From the TikTok Pixel menu, copy your **Pixel ID**, you will need it later. The Pixel ID looks as follows: `CJQBODJC77UB4MRTGFRF`
+
+5. Navigate to the **Settings** subtab and scroll down until you find the **Generate Access Token**-button. Click on it to generate your token and keep it around for next steps.
+
+6. In your Converge dashboard, under Connections, click **Create New Connection**.
+
+7. Give your connection an approppriate name (e.g. `TikTok Connection | {YOUR_PIXEL_ID}`) and **choose the TikTok App**.
+
+8. Paste in the Pixel ID you acquired in the earlier step in the **Pixel ID** field. Paste in the access token you acquired earlier in the **Access Token** field.
+
+9. Fill in your homepage domain name in the **Your Domain name** field, it does not need to include `https://`.
+
+10. Click on **Create Connection**
+</Accordion>
+<Warning> Once you have installed your Converge Connection, you should **pause or remove all existing TikTok tracking**. Leaving these on will lead to duplicate tracking.  </Warning>
+</AccordionGroup>  th
+---
+
+## Integration details
+- Includes support for the [TikTok Events API](https://ads.tiktok.com/help/article/events-api?redirected=1)
+
+---
+
+## Converge functionality
+
+This integration supports the following Converge connection functionality.
+
+| Converge Feature   &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp;  &nbsp;  &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp;  &nbsp;                            | Supported                                       |  
+| -------------------------------------------- | -------------------------------------------------------- |  
+| Custom Events          | ✅                       | 
+| Filters         | ✅         |  
+| Server-side Conversions | ✅  |
+
+
+--- 
+
+## Event Mapping
+
+Converge automatically maps the following events from the [Converge Event Spec](../sources/converge-spec) to the Google Analytics 4 spec.
+
+| Converge Event Name   &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp;  &nbsp;  &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp;  &nbsp;                            | Google Ads Event Name                                      |  
+| -------------------------------------------- | -------------------------------------------------------- |  
+| [$page_load](../converge-spec#page-load)          | `PageView`                        | 
+| [Viewed Product](../converge-spec#viewed-product)          | `ViewContent`                        | 
+| [Viewed Collection](../converge-spec#viewed-collection)        | `ViewContent`         |  
+| [Added To Cart](../converge-spec#added-to-cart)            | `AddToCart`                   |
+| [Started Checkout](../converge-spec#started-checkout)         | `InitiateCheckout`          | 
+| [Added Payment Info](../converge-spec#added-payment-info)       | `AddPaymentInfo` | 
+| [Placed Order](../converge-spec#placed-order)             | `Purchase`                         | 
+| [Started Subscription](../converge-spec#started-subscription)             | `Subscribe`                         | 
+| [Placed Recurring Subscription Order](../converge-spec#placed-recurring-subscription-order)             | `RecurringSubscriptionPaymentSucceeded`                         | 
+| [Cancelled Subscription](../converge-spec#cancelled-subscription)             | `CancelSubscription`                         | 
+
+&nbsp;
