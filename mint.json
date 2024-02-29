@@ -44,7 +44,8 @@
               "pages": [
                 "sources/website-integrations/converge-pixel",
                 "sources/website-integrations/shopify",
-                "sources/website-integrations/woocommerce"
+                "sources/website-integrations/woocommerce",
+                "sources/website-integrations/magento"
               ]
             },
             {
@@ -53,6 +54,7 @@
                 "sources/server-integrations/webhook",
                 "sources/server-integrations/shopify",
                 "sources/server-integrations/woocommerce",
+                "sources/server-integrations/magento",
                 "sources/server-integrations/recharge"
               ]
             }

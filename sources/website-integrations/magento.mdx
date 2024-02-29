@@ -1,0 +1,80 @@
+---
+title: "Magento Web"
+description: "Install the Magento Storefront Module"
+---
+
+The Magento Website Integration consists of a Magento module that tracks your storefront and checkout events.
+
+---
+
+## Installation Instructions
+
+The Converge Website installation for a Magento store consists of:
+
+  
+  <AccordionGroup>
+
+    <Accordion title="Installing the Magento Module" icon="download" >
+
+  <Steps>
+    <Step title="Create a new Client Source in Converge">
+      1. In Converge, click on **Create a new source**
+        2. Pick _Client-side_ from the modal
+        3. Name your pixel: e.g. `{Storename} Storefront`
+    </Step>
+    <Step title="Install the Magento Plugin">
+        4. Add the Converge repository to your Magento 2 project's `composer.json` file:
+
+            ```bash bash
+            composer config repositories.repo-name vcs https://github.com/run-converge/converge-magento2
+            ```
+        5. Run the following command to install the Converge Magento 2 module:
+            ```bash bash
+            composer require run-converge/converge-magento2:0.1.4
+            ```
+        6. Enable the Converge module using the Magento CLI:
+            ```bash bash
+            bin/magento module:enable Converge_Converge
+            ```
+        7. Upgrade your Magento setup to ensure the Converge module is integrated properly:
+           ```bash bash
+           bin/magento setup:upgrade
+           ```
+        8. Deploy static content to your Magento store for the Converge module:
+           ```bash bash
+           bin/magento setup:static-content:deploy
+           ```
+    </Step>
+    <Step title="Configure the Converge Magento Plugin with your public token">
+        9. In the Converge Webapp, click on the source you created in Step 1 and copy the **Public Token**. The code consists of 6 characters and can be retrieved from the HTML snippet. If your script `src` is `https://static.runconverge.com/pixels/AYU51m.js`, then your public token is `AYU51m`.
+        10. Go to `Stores` > `Settings` > `Configuration` > `Converge` > `Converge` and add your public token you just retrieved.  
+    </Step>
+     <Step title="Verify that the integration is working correctly">
+       11. Check that the plugin is working correctly by generating some `$page_load`, `Added To Cart`, `Started Checkout` events through visiting the store and seeing that these events arrive in the Source Log.
+    </Step>
+</Steps>
+   </Accordion >
+   </AccordionGroup>
+    
+    
+---
+
+## Event Spec
+
+This integration auto-tracks the following events on the browser with all properties available according to the [Converge Event Spec](../sources/pixel#event-specification).
+
+| Event Name                                   | Event Description                                        | Integration | 
+| -------------------------------------------- | -------------------------------------------------------- | --- | 
+| [PageView](../converge-spec#page-view)                 | When a customer views a page.                            | Storefront  |
+| [Viewed Product](../converge-spec#viewed-product)           | When a customer views a product.                         | Storefront |
+| [Added To Cart](../converge-spec#added-to-cart)            | When a customer adds an item to cart                     | Checkout | 
+| [Started Checkout](../converge-spec#started-checkout)         | When a customer initiates the checkout process.          | Checkout | 
+
+
+
+
+
+
+
+
+
