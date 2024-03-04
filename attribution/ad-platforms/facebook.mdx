@@ -1,0 +1,77 @@
+---
+title: "Meta Ads"
+description: "An introduction to the Meta/Facebook Ad Platform Datasource"
+---
+
+<Note> The Meta Ads Ad Platform integrations allows you to see platform-specific metrics (e.g. Ad Spend) in Converge. 
+To send data from Converge to Meta, check out the [Meta Ads Connection](../../connections/facebook) instead.</Note>
+
+## Installation Instructions
+
+<AccordionGroup >
+<Accordion icon="list" title="Installation Instructions">
+1. Navigate to your Google Ads Dashboards and choose **Tools and settings > Conversions**.
+   ![gads-1](/images/connections/google-ads/google-ads-connection-1.png)
+
+2. Choose **New conversion action** and then choose **Website**.
+   &nbsp;
+
+3. Fill in your URL and choose **Scan**.
+   &nbsp;
+
+4. Choose **Add a conversion manually**.
+   &nbsp;
+
+5. Choose **Purchase** as conversion type, choose different values for each conversions and track **Every**.
+   &nbsp;
+
+   ![gads-2](/images/connections/google-ads/google-ads-connection-2.png)
+
+6. Press **Save and continue**.
+   &nbsp;
+
+7. Click on **See event snippet**.
+   &nbsp;
+
+   ![gads-3](/images/connections/google-ads/google-ads-connection-3.png)
+
+8. Copy the **Conversion ID**, in this example the Tag ID is `AW-11288325266`; the Conversion ID is `5CTkCNPJvIcZEJLZ2IYq`. You will need both for the Converge connection.
+   &nbsp;
+
+   ![gads-4](/images/connections/google-ads/google-ads-connection-4.png)
+
+9. In your Converge dashboard, under Connections, click **Create New Connection** and fill in your Tag ID and Conversion ID. After that click **Create Connection**.
+   &nbsp;
+
+   ![gads-5](/images/connections/google-ads/google-ads-connection-5.png)
+
+10. If you only need the Purchase conversion, then you are done 🎉. If you'd like to add other conversions you can follow the steps above to add more conversions to the connection.
+
+</Accordion>
+</AccordionGroup> 
+
+---
+
+## Supported metrics
+
+#### Overview Report
+
+- Ad Spend
+- ROAS
+- CTR
+- CPA
+- CPC
+- CPM
+- Conversions
+- Clicks
+- Impressions
+
+#### Channels Report
+
+- Purchases
+- Revenue
+- ROAS
+- Cost Per action
+- Ad Spend
+
+---

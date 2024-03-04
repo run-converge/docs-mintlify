@@ -64,10 +64,18 @@
     {
       "group": "Connections",
       "pages": [
-        "Overview",
         {
           "group": "Integrations",
           "pages": ["connections/facebook", "connections/google-ads", "connections/ga4", "connections/tiktok"]
+        }
+      ]
+    },
+    {
+      "group": "Attribution",
+      "pages": [
+        {
+          "group": "Ad Platforms",
+          "pages": ["attribution/ad-platforms/facebook", "attribution/ad-platforms/google-ads", "attribution/ad-platforms/pinterest", "attribution/ad-platforms/tiktok"]
         }
       ]
     }
