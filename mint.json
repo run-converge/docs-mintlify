@@ -64,13 +64,18 @@
     {
       "group": "Connections",
       "pages": [
-        "Overview",
         {
           "group": "Integrations",
           "pages": ["connections/facebook", "connections/google-ads", "connections/ga4", "connections/tiktok"]
         }
       ]
+    },
+    {
+      "group": "Settings",
+      "pages" : ["settings/workspace"]
+
     }
+
   ],
   "footerSocials": {
     "twitter": "https://twitter.com/runConverge",
