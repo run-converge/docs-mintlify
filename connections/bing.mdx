@@ -1,0 +1,64 @@
+---
+title: "Bing Ads"
+description: "An introduction to the Bing Ads Destination"
+---
+
+## Installation Instructions
+
+<AccordionGroup >
+<Accordion icon="list" title="Installation Instructions">
+
+1. Navigate to your Microsoft Advertising Dashboards and choose **Tools > UET Tag**.
+
+2. If you already have a UET Tag, copy the **Tag ID** and go to Step 6, otherwise go to Step 3
+   &nbsp;
+
+3. Click on **Create**
+   &nbsp;
+
+4. Choose a UET tag name, and UET Tag Description and click on **Save and next**.
+   &nbsp;
+
+5. Choose `Install the tag yourself` and click on **Next**. From the code snippet, copy your Tag ID (marked in pink in the screenshot below) and click on **Next**. After that click on **Done**
+    ![bing-1](/images/connections/bing-ads/bing-ads-connection-0.png)
+
+6. In your Converge dashboard, under Connections, click **Create New Connection** and fill in your Tag ID. After that click **Create Connection**.
+   &nbsp;
+
+</Accordion>
+<Warning> Once you have installed your Converge Connection, you should **pause or remove all existing Bing Ads tracking**. Leaving these on will lead to duplicate tracking.  </Warning>
+</AccordionGroup>
+---
+
+## Integration details
+- Includes support for [Bing Enhanced Conversions](https://help.ads.microsoft.com/apex/index/3/en/60178)
+- Includes support for the [Bing Dynamic Remarketing](https://about.ads.microsoft.com/en-gb/solutions/audience-targeting/dynamic-remarketing)
+
+---
+
+## Converge functionality
+
+This integration supports the following Converge connection functionality.
+
+| Converge Feature   &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp;  &nbsp;  &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp;  &nbsp;                            | Supported                                       |  
+| -------------------------------------------- | -------------------------------------------------------- |  
+| Custom Events          | ✅                       | 
+| Filters         | ❌         |  
+| Server-side Conversions | ❌ |
+
+
+--- 
+
+## Event Mapping
+
+Converge automatically maps the following events from the [Converge Event Spec](../sources/converge-spec) to the Google Analytics 4 spec.
+
+| Converge Event Name   &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp;  &nbsp;  &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp;  &nbsp;                            | Google Ads Event Name                                      |  
+| -------------------------------------------- | -------------------------------------------------------- |  
+| [Viewed Product](../converge-spec#viewed-product)          | `view_item`                        | 
+| [Viewed Collection](../converge-spec#viewed-collection)        | `view_item_list`         |  
+| [Added To Cart](../converge-spec#added-to-cart)            | `add_to_cart`                   |
+| [Started Checkout](../converge-spec#started-checkout)         | `begin_checkout`          | 
+| [Added Payment Info](../converge-spec#added-payment-info)       | `add_payment_info` | 
+| [Placed Order](../converge-spec#placed-order)             | `purchase`                         | 
+&nbsp;
