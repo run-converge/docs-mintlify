@@ -10,68 +10,57 @@ To send data from Converge to Meta, check out the [Meta Ads Connection](../../co
 
 <AccordionGroup >
 <Accordion icon="list" title="Installation Instructions">
-1. Navigate to your Google Ads Dashboards and choose **Tools and settings > Conversions**.
-   ![gads-1](/images/connections/google-ads/google-ads-connection-1.png)
 
-2. Choose **New conversion action** and then choose **Website**.
+1. Navigate to the Converge attribution dashboard and choose **Ad Platforms** 
    &nbsp;
 
-3. Fill in your URL and choose **Scan**.
+2. Click on **Connect a new ad platform** and then choose **Facebook**.
    &nbsp;
 
-4. Choose **Add a conversion manually**.
+3. Name your connection: e.g `Facebook Ads Connection | {Business Manager ID}` and then press **continue with Facebook**.
    &nbsp;
 
-5. Choose **Purchase** as conversion type, choose different values for each conversions and track **Every**.
+4. Once the Facebook account has been linked, you can **select your Facebook Ads account**. 
+
+5. After pressing **create** your Facebook metrics will stream into Converge.
    &nbsp;
 
-   ![gads-2](/images/connections/google-ads/google-ads-connection-2.png)
-
-6. Press **Save and continue**.
-   &nbsp;
-
-7. Click on **See event snippet**.
-   &nbsp;
-
-   ![gads-3](/images/connections/google-ads/google-ads-connection-3.png)
-
-8. Copy the **Conversion ID**, in this example the Tag ID is `AW-11288325266`; the Conversion ID is `5CTkCNPJvIcZEJLZ2IYq`. You will need both for the Converge connection.
-   &nbsp;
-
-   ![gads-4](/images/connections/google-ads/google-ads-connection-4.png)
-
-9. In your Converge dashboard, under Connections, click **Create New Connection** and fill in your Tag ID and Conversion ID. After that click **Create Connection**.
-   &nbsp;
-
-   ![gads-5](/images/connections/google-ads/google-ads-connection-5.png)
-
-10. If you only need the Purchase conversion, then you are done 🎉. If you'd like to add other conversions you can follow the steps above to add more conversions to the connection.
 
 </Accordion>
 </AccordionGroup> 
 
 ---
+## Supported Metrics
 
-## Supported metrics
+We support a variety of metrics to help you analyze your ad performance on Meta Ads. Click on each category to expand and see the specific metrics available.
+<AccordionGroup>
+<Accordion icon="chart-column" title="Overview Report">
+The Attribution Overview Report provides a high-level snapshot of your ad performance, including efficiency and engagement metrics.
 
-#### Overview Report
+| Metric        | Description                                                     |
+|---------------|-----------------------------------------------------------------|
+| **Ad Spend**  | The total amount of money spent on your ads.                    |
+| **ROAS**      | The revenue generated for every unit of currency spent on ads.  |
+| **CTR**       | The average percentage of people who clicked on your ad after seeing it.       |
+| **CPA**       | The average cost associated with actions from your ads.         |
+| **CPC**       | The average cost per click on your ads.                         |
+| **CPM**       | The average cost per thousand impressions of your ads.          |
+| **Conversions** | The number of purchases that happened because of your ads.    |
+| **Clicks**    | The total number of clicks on your ads.                         |
+| **Impressions**| The number of times your ads were on screen.                   |
 
-- Ad Spend
-- ROAS
-- CTR
-- CPA
-- CPC
-- CPM
-- Conversions
-- Clicks
-- Impressions
+</Accordion>
 
-#### Channels Report
+<Accordion icon="network-wired" title="Channels Report">
+The Channels Report tab provides a detailed comparison of performance metrics across advertising channels, campaigns, ad sets, and ads, helping you understand the most effective elements.
 
-- Purchases
-- Revenue
-- ROAS
-- Cost Per action
-- Ad Spend
+| Metric        | Description                                                  |
+|---------------|--------------------------------------------------------------|
+| **Purchases** | The total number of purchases made as a result of your ads.  |
+| **Revenue**   | The total revenue generated from purchases through your ads. |
+| **ROAS**      | The return on ad spend for your ads.                         |
+| **CPA**       | The cost of acquiring a conversion from each channel.        |
+| **Ad Spend**  | The total expenditure on ads.                                |
 
----
+</Accordion>
+</AccordionGroup>
