@@ -1,0 +1,626 @@
+---
+title: "BigQuery"
+description: "Setting up a connection with BigQuery"
+---
+
+
+## Installation Instructions
+
+<AccordionGroup >  
+<Accordion icon="table" title="Create a BigQuery Table for your Converge Data">
+
+1. Log into your Google Cloud console at `console.cloud.google.com`
+2. Choose your relevant Google Cloud Project from the top bar. If you do not have a Google Cloud Project yet, you can create one following the instructions [here](https://developers.google.com/workspace/guides/create-project).
+3. From the top search bar, search for `bigquery` and pick the **BigQuery** service.
+   &nbsp;
+
+   ![bq-1](/images/connections/bigquery/create_bigq_table_1.png)
+
+4. In the BigQuery Explorer, click on **Add**.
+   &nbsp;
+
+   ![bq-2](/images/connections/bigquery/create_bigq_table_2.png)
+
+5. From the side-pane, choose **Google Cloud Storage**, this will open the _Create table_ modal.
+   &nbsp;
+
+   ![bq-3](/images/connections/bigquery/create_bigq_table_3.png)
+
+6. In the _Create table_ modal, choose `Empty table` as a Source. Create a new _Data set_ and call it `converge_data`, in the _Table_-field choose a name for your table, e.g. `events`.
+   &nbsp;
+
+   ![bq-4](/images/connections/bigquery/create_bigq_table_4.png)
+
+7. In the Schema section, flip the switch to **Edit as text** and paste the schema below. Click on **Create Table** after.
+
+   ![bq-5](/images/connections/bigquery/create_bigq_table_5.png)
+
+   <Accordion icon="code" title="Schema" >
+
+   ```json JSON
+   [
+     {
+       "name": "id",
+       "type": "STRING",
+       "mode": "REQUIRED",
+       "description": "Event ID"
+     },
+     {
+       "name": "timestamp",
+       "type": "DATETIME",
+       "mode": "REQUIRED",
+       "description": "Timestamp when the event occurred"
+     },
+     {
+       "name": "event_name",
+       "type": "STRING",
+       "mode": "REQUIRED"
+     },
+     {
+       "name": "profile_id",
+       "type": "INTEGER",
+       "mode": "REQUIRED",
+       "description": "Profile ID"
+     },
+     {
+       "name": "event_properties",
+       "type": "JSON",
+       "mode": "NULLABLE",
+       "description": "Properties of the event"
+     },
+     {
+       "name": "profile_properties",
+       "type": "JSON",
+       "mode": "NULLABLE",
+       "description": "Properties of the profile this event belongs to"
+     },
+     {
+       "name": "session_id",
+       "type": "STRING",
+       "mode": "NULLABLE",
+       "description": "Session Id of the session this event belongs to"
+     },
+     {
+       "name": "session_properties",
+       "type": "JSON",
+       "mode": "NULLABLE",
+       "description": "Properties of the session this event belongs to"
+     },
+     {
+       "name": "first_touch_session_id",
+       "type": "STRING",
+       "mode": "NULLABLE",
+       "description": "Session Id of the first touch as per a first touch attribution model"
+     },
+     {
+       "name": "first_touch_properties",
+       "type": "JSON",
+       "mode": "NULLABLE",
+       "description": "Properties of the first touch as per a first touch attribution model"
+     },
+     {
+       "name": "last_touch_session_id",
+       "type": "STRING",
+       "mode": "NULLABLE",
+       "description": "Session Id of the last touch as per a last touch attribution model"
+     },
+     {
+       "name": "last_touch_properties",
+       "type": "JSON",
+       "mode": "NULLABLE",
+       "description": "Properties of the last touch as per a last touch attribution model"
+     },
+     {
+       "name": "first_touch_paid_session_id",
+       "type": "STRING",
+       "mode": "NULLABLE",
+       "description": "Session Id of the first paid touch as per a first paid touch attribution model"
+     },
+     {
+       "name": "first_touch_paid_properties",
+       "type": "JSON",
+       "mode": "NULLABLE",
+       "description": "Properties of the first paid touch as per a first paid touch attribution model"
+     },
+     {
+       "name": "last_touch_paid_session_id",
+       "type": "STRING",
+       "mode": "NULLABLE",
+       "description": "Session Id of the last paid touch as per a last paid touch attribution model"
+     },
+     {
+       "name": "last_touch_paid_properties",
+       "type": "JSON",
+       "mode": "NULLABLE",
+       "description": "Properties of the last paid touch as per a last paid touch attribution model"
+     }
+   ]
+   ```
+    </Accordion >
+
+Great, now you have a table for your Converge Events, follow the guide below to set up a connection that streams Converge events into this BigQuery Table
+
+
+</Accordion> 
+
+<Accordion icon="bars-staggered" title="Stream Converge Data into your BigQuery table">
+
+1. First thing we need to do in Google Cloud is setting up a service account. Start by going to the sidebar menu and choosing _IAM and admin_ > _Service accounts_.
+   &nbsp;
+
+   ![bq-s-1](/images/connections/bigquery/bigq_service_1.png)
+
+2. Click on **Create Service Account**.
+   &nbsp;
+
+   ![bq-s-2](/images/connections/bigquery/bigq_service_2.png)
+
+3. Fill in service account name, e.g. `converge-bigq-account` and click on **Create and continue**.
+   &nbsp;
+
+   ![bq-s-3](/images/connections/bigquery/bigq_service_3.png)
+
+4. Under _Grant this service account access to the project_, choose the **BigQuery Data Owner** scope and click on **Done**.
+   &nbsp;
+
+   ![bq-s-4](/images/connections/bigquery/bigq_service_4.png)
+
+5. Pick your newly created service account from the list of Service Accounts and choose **Manage keys**.
+   &nbsp;
+
+   ![bq-s-5](/images/connections/bigquery/bigq_service_5.png)
+
+6. Click on **Add Key** and **Create new key**. In the popup choose **JSON** and click on **Create**. This will download a file that ends with `.json`.
+   &nbsp;
+
+   ![bq-s-6](/images/connections/bigquery/bigq_service_6.png)
+
+7. Open your Converge Dashboard at [app.runconverge.com](https://app.runconverge.com) and navigate to the _Connections_ Tab. Click on **Create New Connection**.
+   &nbsp;
+
+   ![bq-s-7](/images/connections/bigquery/bigq_service_7.png)
+
+8. Give your connection a name, choose _BigQuery_ from the app list. Drop your `.json` key file in here and fill in the `Dataset ID` and `Table ID` you created as per above. Then click on "Create Connection".
+   &nbsp;
+
+   ![bq-s-8](/images/connections/bigquery/bigq_service_8.png)
+
+9. Done 🎉.
+</Accordion> 
+</AccordionGroup>
+---
+
+## Multi-touch attribution support 
+
+Converge preprocesses all events and enriches them with all available **profile**, **session** and **attribution** information to make your attribution data warehouse queries as simple as possible.
+
+### Profile Information
+
+Every event that is forwarded includes all available information Converge has on that profile until that moment, ranging from `$ip_address` all the way until `$email`. 
+
+Events that typically do not have an `$email` property associated with them (e.g. `$page_load`) will _still_ contain this property if we were able to identify this profile before the `$page_load` happened.
+
+   <Accordion title="Profile Information Overview" icon="address-card"> 
+       <ParamField body="profile_id" type="int" required>
+   A unique profile id 
+      </ParamField>
+
+   <ParamField body="profile_properties" type="Profile Properties Object" required>
+  Properties related to the profile of the forwarded event.
+
+    <Expandable title="properties">
+       <ParamField body="$ip" type="string">
+    IP address of the user.
+    </ParamField>
+
+    <ParamField body="cookie_id" type="string">
+    Converge cookie id.
+    </ParamField>
+
+    <ParamField body="$user_agent" type="string">
+    User Agent of the last browser session of the user.
+    </ParamField>
+
+      
+       <ParamField body="$email" type="string">
+    Email Address of the subscriber.
+    </ParamField>
+
+    <ParamField body="$phone_number" type="string">
+    Phone Number of the subscriber including the'+'-sign and country code. For example: `"+1 (917) 123-4567"` or `"+3295123456"`.
+    </ParamField>
+
+    <ParamField body="$city" type="string">
+    City of the subscriber's address.
+    </ParamField>
+
+    <ParamField body="$country_code" type="string">
+    Country code of the subscriber's address according to [ISO 3166](https://en.wikipedia.org/wiki/List_of_ISO_3166_country_codes).
+    </ParamField>
+
+     <ParamField body="$state" type="string">
+    State of the subscriber's address.
+    </ParamField>
+
+    <ParamField body="$zip_code" type="string">
+    Zip code of the subscriber's address.
+    </ParamField>
+
+    </Expandable>
+  </ParamField>
+
+   
+   </Accordion>
+
+### Pre-processed Attribution
+
+Converge **automatically attributes all events** (e.g. `Placed Order`, `Add To Cart`, etc.) based on the most popular attribution models.
+
+- **First Touch**: Attributes full credit for conversion to the initial touchpoint in the customer journey.
+- **First Touch Paid Only**: Credits only the first paid interaction for the conversion; exclusive to paid channels.
+- **Last Touch**: Assigns full credit for conversion to the final touchpoint in the customer journey.
+- **Last Touch Paid Only**: Attributes conversion solely to the last paid interaction; focuses on the final touchpoint within paid channels.
+
+
+ <Accordion title="Pre-processed Attribution Overview" icon="fingerprint"> 
+
+   <AccordionGroup>
+
+    <Accordion title="First Touch Attribution" icon="backward-fast">
+
+    <ParamField body="session_id" type="string" required>
+   The first touch session id
+   </ParamField>
+
+  <ParamField body="session_properties" type="Session Properties Object" required>
+  Properties related to the first session of the forwarded event.
+
+   <Expandable title="properties">
+
+  <ParamField body="channel" type="string">
+    The channel through which the session occurred (e.g., "facebook").
+  </ParamField>
+
+  <ParamField body="is_paid" type="boolean">
+    A boolean indicating whether the session is paid or not (e.g., true).
+  </ParamField>
+
+  <ParamField body="is_direct" type="boolean" >
+    A boolean indicating whether the session is direct or not (e.g., false).
+  </ParamField>
+
+  <ParamField body="landing_url" type="string">
+    The landing URL of the session.
+  </ParamField>
+
+  <ParamField body="referrer" type="string">
+    Referrer information for the session.
+  </ParamField>
+
+  <ParamField body="utm_source" type="string">
+    UTM source information for the session.
+  </ParamField>
+
+  <ParamField body="utm_medium" type="string">
+    UTM medium information for the session.
+  </ParamField>
+
+  <ParamField body="utm_campaign" type="string">
+    UTM campaign information for the session.
+  </ParamField>
+
+  <ParamField body="utm_content" type="string">
+    UTM content information for the session.
+  </ParamField>
+
+  <ParamField body="utm_term" type="string">
+    UTM term information for the session.
+  </ParamField>
+
+  <ParamField body="first_timestamp" type="string" required>
+    The timestamp of the first interaction in ISO 8601 format.
+  </ParamField>
+
+   </Expandable>
+
+</ParamField>
+ </Accordion>
+
+    <Accordion title="First Paid Touch Attribution" icon="backward">
+
+    <ParamField body="session_id" type="string" required>
+   The session id of the first session started through a paid acquisition channel
+   </ParamField>
+
+  <ParamField body="session_properties" type="Session Properties Object" required>
+  Properties related to the first paid session of the forwarded event.
+
+   <Expandable title="properties">
+
+  <ParamField body="channel" type="string">
+    The channel through which the session occurred (e.g., "facebook").
+  </ParamField>
+
+  <ParamField body="is_paid" type="boolean">
+    A boolean indicating whether the session is paid or not (e.g., true).
+  </ParamField>
+
+  <ParamField body="is_direct" type="boolean" >
+    A boolean indicating whether the session is direct or not (e.g., false).
+  </ParamField>
+
+  <ParamField body="landing_url" type="string">
+    The landing URL of the session.
+  </ParamField>
+
+  <ParamField body="referrer" type="string">
+    Referrer information for the session.
+  </ParamField>
+
+  <ParamField body="utm_source" type="string">
+    UTM source information for the session.
+  </ParamField>
+
+  <ParamField body="utm_medium" type="string">
+    UTM medium information for the session.
+  </ParamField>
+
+  <ParamField body="utm_campaign" type="string">
+    UTM campaign information for the session.
+  </ParamField>
+
+  <ParamField body="utm_content" type="string">
+    UTM content information for the session.
+  </ParamField>
+
+  <ParamField body="utm_term" type="string">
+    UTM term information for the session.
+  </ParamField>
+
+  <ParamField body="first_timestamp" type="string" required>
+    The timestamp of the first interaction in ISO 8601 format.
+  </ParamField>
+
+   </Expandable>
+
+</ParamField>
+ </Accordion>
+
+ <Accordion title="Last Paid Touch Attribution" icon="forward">
+
+    <ParamField body="session_id" type="string" required>
+   The session id of the last session started through a paid acquisition channel
+   </ParamField>
+
+  <ParamField body="session_properties" type="Session Properties Object" required>
+  Properties related to the last paid session of the forwarded event.
+
+   <Expandable title="properties">
+
+  <ParamField body="channel" type="string">
+    The channel through which the session occurred (e.g., "facebook").
+  </ParamField>
+
+  <ParamField body="is_paid" type="boolean">
+    A boolean indicating whether the session is paid or not (e.g., true).
+  </ParamField>
+
+  <ParamField body="is_direct" type="boolean" >
+    A boolean indicating whether the session is direct or not (e.g., false).
+  </ParamField>
+
+  <ParamField body="landing_url" type="string">
+    The landing URL of the session.
+  </ParamField>
+
+  <ParamField body="referrer" type="string">
+    Referrer information for the session.
+  </ParamField>
+
+  <ParamField body="utm_source" type="string">
+    UTM source information for the session.
+  </ParamField>
+
+  <ParamField body="utm_medium" type="string">
+    UTM medium information for the session.
+  </ParamField>
+
+  <ParamField body="utm_campaign" type="string">
+    UTM campaign information for the session.
+  </ParamField>
+
+  <ParamField body="utm_content" type="string">
+    UTM content information for the session.
+  </ParamField>
+
+  <ParamField body="utm_term" type="string">
+    UTM term information for the session.
+  </ParamField>
+
+  <ParamField body="first_timestamp" type="string" required>
+    The timestamp of the first interaction in ISO 8601 format.
+  </ParamField>
+
+   </Expandable>
+
+</ParamField>
+
+ </Accordion>
+
+    <Accordion title="Last Touch Attribution" icon="forward-fast">
+
+    <ParamField body="session_id" type="string" required>
+   The last touch session id
+   </ParamField>
+
+  <ParamField body="session_properties" type="Session Properties Object" required>
+  Properties related to the last session of the forwarded event.
+
+   <Expandable title="properties">
+
+  <ParamField body="channel" type="string">
+    The channel through which the session occurred (e.g., "facebook").
+  </ParamField>
+
+  <ParamField body="is_paid" type="boolean">
+    A boolean indicating whether the session is paid or not (e.g., true).
+  </ParamField>
+
+  <ParamField body="is_direct" type="boolean" >
+    A boolean indicating whether the session is direct or not (e.g., false).
+  </ParamField>
+
+  <ParamField body="landing_url" type="string">
+    The landing URL of the session.
+  </ParamField>
+
+  <ParamField body="referrer" type="string">
+    Referrer information for the session.
+  </ParamField>
+
+  <ParamField body="utm_source" type="string">
+    UTM source information for the session.
+  </ParamField>
+
+  <ParamField body="utm_medium" type="string">
+    UTM medium information for the session.
+  </ParamField>
+
+  <ParamField body="utm_campaign" type="string">
+    UTM campaign information for the session.
+  </ParamField>
+
+  <ParamField body="utm_content" type="string">
+    UTM content information for the session.
+  </ParamField>
+
+  <ParamField body="utm_term" type="string">
+    UTM term information for the session.
+  </ParamField>
+
+  <ParamField body="first_timestamp" type="string" required>
+    The timestamp of the first interaction in ISO 8601 format.
+  </ParamField>
+
+   </Expandable>
+
+</ParamField>
+ </Accordion>
+    </AccordionGroup>
+</Accordion>
+
+### Session Information for custom multi-touch attribution models
+
+Converge sends over all sessions with their attribution information (e.g. `utm_source`, `utm_campaign`, etc.) so you can assign custom credit to each of these touchpoints -- **allowing you to create your fully custom multi-touch attribution model**.
+
+<Accordion title="Session Information" icon="clock"> 
+
+  <ParamField body="session_id" type="string" required>
+   A unique session id
+   </ParamField>
+
+  <ParamField body="session_properties" type="Session Properties Object" required>
+  Properties related to the session of the forwarded event.
+
+   <Expandable title="properties">
+
+  <ParamField body="channel" type="string">
+    The channel through which the session occurred (e.g., "facebook").
+  </ParamField>
+
+  <ParamField body="is_paid" type="boolean">
+    A boolean indicating whether the session is paid or not (e.g., true).
+  </ParamField>
+
+  <ParamField body="is_direct" type="boolean" >
+    A boolean indicating whether the session is direct or not (e.g., false).
+  </ParamField>
+
+  <ParamField body="landing_url" type="string">
+    The landing URL of the session.
+  </ParamField>
+
+  <ParamField body="referrer" type="string">
+    Referrer information for the session.
+  </ParamField>
+
+  <ParamField body="utm_source" type="string">
+    UTM source information for the session.
+  </ParamField>
+
+  <ParamField body="utm_medium" type="string">
+    UTM medium information for the session.
+  </ParamField>
+
+  <ParamField body="utm_campaign" type="string">
+    UTM campaign information for the session.
+  </ParamField>
+
+  <ParamField body="utm_content" type="string">
+    UTM content information for the session.
+  </ParamField>
+
+  <ParamField body="utm_term" type="string">
+    UTM term information for the session.
+  </ParamField>
+
+  <ParamField body="first_timestamp" type="string" required>
+    The timestamp of the first interaction in ISO 8601 format.
+  </ParamField>
+
+   </Expandable>
+
+</ParamField>
+</Accordion>
+
+---
+
+## An example query
+
+As an example, the following query on top of the Converge Table gives you the number of times an SKU was ordered:
+ 
+```sql SQL
+SELECT
+  string(item.sku) sku, count(*) order_count
+FROM `your-project-name.your-dataset-name.your-table-name`
+LEFT JOIN unnest(json_extract_array(event_properties.items,'$')) item
+WHERE event_name = 'Placed Order'
+GROUP BY sku
+ORDER BY order_count DESC
+```
+
+<Note> Make sure you replace `your-project-name`, `your-dataset-name` and `your-table-name` with your approppriate values. </Note>
+
+
+
+---
+
+## Converge functionality
+
+This integration supports the following Converge connection functionality.
+
+| Converge Feature   &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp;  &nbsp;  &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp;  &nbsp;                            | Supported                                       |  
+| -------------------------------------------- | -------------------------------------------------------- |  
+| Custom Events          | ✅                       | 
+| Filters         | ✅         |  
+| Server-side Conversions | ✅  |
+
+---
+
+## Event Mapping
+
+Converge automatically sends all implemented events from the [Converge Spec](/sources/converge-spec) and any custom events to BigQuery.
+
+| Converge Event Name  &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp;  &nbsp;  &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp;  &nbsp;                                                            | BigQuery Name                                      |  
+| -------------------------------------------- | -------------------------------------------------------- |  
+| [$page_load](../converge-spec#page-load)          | `$page-load`                        | 
+| [Viewed Product](../converge-spec#viewed-product)           | `Viewed Product`                        | 
+| [Viewed Collection](../converge-spec#viewed-collection)        | `Viewed Collection`         |  
+| [Added To Cart](../converge-spec#added-to-cart)            | `Added To Cart`                   |
+| [Started Checkout](../converge-spec#started-checkout)         | `Started Checkout`          | 
+| [Added Payment Info](../converge-spec#added-payment-info)       | `Added Payment Info` | 
+| [Placed Order](../converge-spec#placed-order)             | `Placed Order`                         | 
+| [Started Subscription](../converge-spec#start-subscription)             | `Started Subscription`                         | 
+| [Received Refund ](../converge-spec#received-refund)             | `Received Refund`                         | 
+
+
