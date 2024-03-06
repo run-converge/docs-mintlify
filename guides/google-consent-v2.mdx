@@ -1,0 +1,88 @@
+---
+title: "Transitioning to Google Consent V2"
+description: "How to navigate the transition to the new Google consent mode"
+---
+
+<Accordion title="Key takeaways" icon="lightbulb" iconType="duotone">
+  - With the DMA going into effect, Google introduced two changes impacting advertisers on Google Ads.
+  
+    1. Publishers are required to collect the user's consent and pass it on to Google.
+    2. The user's consent is broken down into two subcategories (Consent Mode V2): advertising purposes and personlized advertising purposes.
+
+  - The Converge connections are compatible with any consent implementation, either through a CMP platform, a custom implementation, or default setup.
+  - It is still unclear how and whether data without consent will be processed.
+  - Consent limits the data collection to GA4 and Google Ads. Google will try to fill the gap by modelling missing data. This will lead to less accurate reporting. 
+</Accordion>
+
+## Introduction
+Over the past months, Google has updated their policies to ensure compliance with the European Digital Markets Act (DMA). Two major changes impact advertisers on Google Ads. -- Publishers on Google Ads are required to collect user consent on their website
+
+Google now requires web owners advertising on Google Ads to collect explicit visitor consent for sharing data with Google. User consent should be passed to the tags installed on the website.
+
+Google introduced two additional parameters to specify this consent. This is often referred to as 'Consent Mode V2'. The visitor's permission to share data with Google is now broken down into two subcategories:
+1. Consent for using the user's data for advertising purposes
+2. Consent for personalizing ads based on the user's data
+
+## Ensuring compatibility
+
+-- TODO: use a wait_for_consent in Converge as well
+
+
+The Converge Google Ads and GA4 connections are fully compatible with any consent mode implementation. We ensure that the consent configuration is passed accurately to Google, both through the browser and server connections.
+As such, when your website has been instrumented with a Google consent implementation, either through a CMP or custom setup, the Converge connections will pick this up, and ensure that the data shared with Google contains the consent parameters.
+
+-- TODO: make this parameter inspectable for client-side logging
+<Accordion title="Inspecting the consent parameters">
+    You can inspect the consent parameters forwarded to Google in Converge in your connection logs. The `x-ga-mp2-gcd` parameter in the `$sgtm_sst` field contains the Google consent parameters.
+</Accordion>
+
+### I am not collecting consent
+When you are not collecting consent information, it is still unclear how Google will continue to process your data. In the EEA, you may be in violation with Google's policies and certain Google Ads features may become unavailable.
+
+In its current behaviour, Google will still process, attribute, and optimize for the collected data. Over the coming months, it is uncertain whether Google will gradually discontinue *consent-less* events for EU visitors.
+
+<AccordionGroup>
+    <Accordion title="Installing a CMP">
+        You can start tracking user consent by installing a cookie banner.
+        You can find a list of Google certified CMPs in the Google documentation [here](https://support.google.com/admanager/answer/13554116?sjid=7015691553786205462-EU#google-cmps&zippy=%2Cgoogle-certified-cmps).
+        To get started, you can have a look at the CMPs discussed in the section [below](/guides/google-consent-v2/#i-already-send-consent-data-to-google).
+        
+        If you already have a cookie banner installed, please refer to the section [below](/guides/google-consent-v2/#i-already-send-consent-data-to-google) to make sure it is configured correctly for Google Consent V2.
+    </Accordion>
+    <Accordion title="Configuring your own CMP">
+        You can also implement and configure your own cookie banner.
+        The Converge connections will support any implementation, whether through a CMP platform, or through your own implementation.
+        Please refer to [Google's documentation for implementing consent mode](https://developers.google.com/tag-platform/security/guides/consent?consentmode=advanced).
+    </Accordion>
+    <Accordion title="Default to granting consent">
+        If you have no CMP set up right now, Google defaults to process all data. If you want to ensure backwards compatibility with this behaviour, you should explicitely pass this on to Google.
+        You can accomplish this by pasting the following snippet onto your website `head`.
+
+        ```html 
+            <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag() { dataLayer.push(arguments) };
+                gtag('consent', 'default', {
+                    'ad_storage': 'granted',
+                    'ad_user_data': 'granted',
+                    'ad_personalization': 'granted',
+                    'analytics_storage': 'granted'
+                });
+            </script>
+        ```
+    </Accordion>
+</AccordionGroup>
+
+### I already send consent data to Google
+
+-- TODO: References to enable Consent V2 for popular CMPs
+
+-- TODO: Pointers to ensure a smooth implementation. 
+
+## Impact of consent mode on my data
+-- TODO
+#### GA4
+#### Google Ads
+
+---
+*Disclaimer: This guide provides general information. It is not intended as legal advice, and readers should consult with qualified council for advice regarding their specific circumstances. Converge disclaims any liability for actions taken based on the information provided in this post.*
