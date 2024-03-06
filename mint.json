@@ -66,7 +66,7 @@
       "pages": [
         {
           "group": "Integrations",
-          "pages": ["connections/facebook", "connections/google-ads", "connections/ga4", "connections/tiktok"]
+          "pages": ["connections/facebook", "connections/google-ads", "connections/ga4", "connections/tiktok", "connections/bing", "connections/bigquery"]
         }
       ]
     },
@@ -78,7 +78,12 @@
           "pages": ["attribution/ad-platforms/facebook", "attribution/ad-platforms/google-ads", "attribution/ad-platforms/pinterest", "attribution/ad-platforms/tiktok"]
         }
       ]
+    },
+    {
+      "group": "Settings",
+      "pages" : ["settings/workspace"]
     }
+
   ],
   "footerSocials": {
     "twitter": "https://twitter.com/runConverge",
