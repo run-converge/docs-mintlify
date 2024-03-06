@@ -71,9 +71,17 @@
       ]
     },
     {
+      "group": "Attribution",
+      "pages": [
+        {
+          "group": "Ad Platforms",
+          "pages": ["attribution/ad-platforms/facebook", "attribution/ad-platforms/google-ads", "attribution/ad-platforms/pinterest", "attribution/ad-platforms/tiktok"]
+        }
+      ]
+    },
+    {
       "group": "Settings",
       "pages" : ["settings/workspace"]
-
     }
 
   ],
