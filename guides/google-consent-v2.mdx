@@ -3,16 +3,34 @@ title: "Navigating Google Consent V2"
 description: "How to navigate the transition to the new Google consent mode"
 ---
 
-<Accordion title="Key takeaways" icon="lightbulb" iconType="duotone">
+## FAQ
+
+<AccordionGroup>
+<Accordion title="What is happening with Consent Mode v2?" icon="lightbulb" iconType="duotone">
   - With the DMA going into effect, Google introduced two changes impacting advertisers on Google Ads.
   
     1. Publishers are required to collect the user's consent and pass it on to Google.
     2. The user's consent is broken down into two subcategories (Consent Mode V2): advertising purposes and personlized advertising purposes.
-
-  - The Converge connections are compatible with any consent implementation, either through a CMP platform, a custom implementation, or default setup.
-  - As of early March, it is still unclear how and whether data without consent will be processed.
   - Implementing consent management reduces the amount of data that can be collected by GA4 and Google Ads. Google will try to fill the gap by modelling missing data. This will lead to less accurate reporting. 
 </Accordion>
+
+<Accordion title="How will this impact my Google Ads Performance and Google Analytics Data?">
+  As of early March, it is still unclear how and whether data without consent will be processed.
+</Accordion>
+
+<Accordion title="How can I check whether I am ready for Consent Mode v2?">
+<Accordion title="Is Converge compatible with Consent Mode v2?">
+Yes, the Converge connections are compatible with any consent implementation, either through a CMP platform, a custom implementation, or default setup.
+</Accordion>
+
+</Accordion>
+
+<Accordion title="I am not ready for Consent Mode v2, what should I do?">
+</Accordion>
+
+</AccordionGroup>
+
+---
 
 ## Introduction
 Over the past months, Google has updated their policies to ensure compliance with the European Digital Markets Act (DMA). Two major changes impact advertisers on Google Ads. -- Publishers on Google Ads are required to collect user consent on their website
