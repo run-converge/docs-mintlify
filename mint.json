@@ -21,7 +21,12 @@
     "name": "Dashboard",
     "url": "https://app.runconverge.com/overview"
   },
-  "tabs": [],
+  "tabs": [
+    {
+      "name": "Guides",
+      "url": "guides"
+    }
+  ],
   "navigation": [
     {
       "group": "Getting started",
@@ -83,8 +88,13 @@
     {
       "group": "Settings",
       "pages" : ["settings/workspace"]
+    },
+    {
+      "group": "Guides",
+      "pages": [
+        "guides/google-consent-v2"
+      ]
     }
-
   ],
   "footerSocials": {
     "twitter": "https://twitter.com/runConverge",

@@ -1,0 +1,179 @@
+---
+title: "Navigating Google Consent V2"
+description: "How to navigate the transition to the new Google consent mode"
+---
+
+## FAQ
+
+<AccordionGroup>
+<Accordion title="What is happening with Consent Mode v2?" icon="lightbulb" iconType="duotone">
+  With the DMA going into effect, Google introduced two changes impacting advertisers on Google Ads.
+  
+    1. **Publishers are required to collect the user's consent** and pass it on to Google.
+    2. **Google now requires explicit consent for personalised advertising** (dynamic remarketing campaigns).
+
+In practice, this means that Google now asks all advertisers in the EU to have (i) **correctly implemented cookiebanners** and (ii) **infrastructure to send consent signals to GA4 and Google Ads** (e.g. through Converge).
+
+</Accordion>
+
+<Accordion title="Is Converge compatible with Consent Mode v2?" icon="check-double">
+**Yes**, the Converge connections are compatible with any consent implementation, either through a CMP platform, a custom implementation, or default setup.
+
+In short: **the cookie banner captures consent**, and Converge makes sure that consent parameters get passed to the relevant destinations.
+</Accordion>
+
+<Accordion title="What happens if I don't take action?" icon="pause" iconType="duotone">
+ - If you do **not** have a cookie banner that is compliant with Consent Mode v2, your [dynamic remarketing](https://support.google.com/google-ads/answer/3124536?hl=en-GB) **campaign performance will be affected**. 
+ - If you do have a cookie banner that is compliant with Consent Mode v2, **you will not be affected by Consent Mode v2**. All of your Converge Connections are compliant with Consent Mode v2.
+</Accordion>
+
+<Accordion title="How can I check whether I am compliant with Consent Mode v2?" icon="shield-halved" iconType="duotone">
+  1. Go to your installed [Google Analytics Dashboard](https://analytics.google.com/analytics/web/) and navigate to **Admin** > **Property** >  **Data streams**
+  2. Choose the datastream of a website you want to verify.
+  3. Check whether both Ads measurement consent signals as well as Ads personalization consent signals are detected
+    ![consentv2](/images/guides/consentv2/consentv2-0.jpeg)
+
+</Accordion>
+
+<Accordion title="I am not ready for Consent Mode v2, what should I do?" icon="circle-exclamation" >
+If you are not compliant at the moment, and you do not want to be affected, you have two options: 
+
+1. **Get a cookiebanner**: you will need a Google-verified CMP (Consent Management Platform). See Option 1 [here](#i-am-not-collecting-consent) and the section on [enabling consent mode V2](#enabling-google-consent-mode-v2) for more information.
+
+2. **Set up your cookiebanner**: See Option 2 [here](#i-am-not-collecting-consent)
+
+3. **Pass the default parameters**: See Option 3 [here](#i-am-not-collecting-consent)
+</Accordion>
+
+</AccordionGroup>
+
+---
+
+## In-depth for developers and technical marketers
+
+### Introduction
+Over the past months, Google has updated their policies to ensure compliance with the European Digital Markets Act (DMA). Two major changes impact advertisers on Google Ads. -- Publishers on Google Ads are required to collect user consent on their website
+
+Google now requires businesses advertising on Google Ads to collect explicit visitor consent for sharing data with Google. User consent should be passed to the tags installed on the website.
+
+Google introduced two additional parameters to specify this consent. This is often referred to as 'Consent Mode V2'. The visitor's permission to share data with Google is now broken down into two subcategories:
+1. Consent for using the user's data for advertising purposes
+2. Consent for personalizing ads based on the user's data
+
+### What steps should I take?
+
+The Converge Google Ads and GA4 connections are fully compatible with any consent mode implementation. We ensure that the consent configuration is passed accurately to Google, both through the browser and server connections.
+As such, when your website has been instrumented with a Google consent implementation, either through a CMP or custom setup, the Converge connections will pick this up, and ensure that the data shared with Google contains the consent parameters.
+
+#### I am not collecting consent
+When you are not collecting consent information, it is still unclear how Google will continue to process your data. In the EEA, you may be in violation with Google's policies and certain Google Ads features may become unavailable.
+
+In its current behaviour, Google will still process, attribute, and optimize for the collected data. Over the coming months, it is uncertain whether Google will gradually discontinue *consent-less* events for EU visitors.
+
+<AccordionGroup>
+    <Accordion title="Option 1: installing a CMP">
+        You can start tracking user consent by installing a cookie banner.
+        You can find a list of Google certified CMPs in the Google documentation [here](https://support.google.com/admanager/answer/13554116?sjid=7015691553786205462-EU#google-cmps&zippy=%2Cgoogle-certified-cmps).
+        To get started, you can have a look at the CMPs discussed in the section [below](/guides/google-consent-v2/#i-already-send-consent-data-to-google).
+        
+        If you already have a cookie banner installed, please refer to the section [below](/guides/google-consent-v2/#i-already-send-consent-data-to-google) to make sure it is configured correctly for Google Consent V2.
+    </Accordion>
+    <Accordion title="Option 2: implementing your own CMP">
+        You can also implement and configure your own cookie banner.
+        The Converge connections will support any implementation, whether through a CMP platform, or through your own implementation.
+        Please refer to [Google's documentation for implementing consent mode](https://developers.google.com/tag-platform/security/guides/consent?consentmode=advanced).
+    </Accordion>
+    <Accordion title="Option 3: default to granting consent">
+        If you have no CMP set up right now, Google defaults to process all data. If you want to ensure backwards compatibility with this behaviour, you should explicitely pass this on to Google.
+        You can accomplish this by pasting the following snippet onto your website `head`.
+
+        ```html 
+            <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag() { dataLayer.push(arguments) };
+                gtag('consent', 'default', {
+                    'ad_storage': 'granted',
+                    'ad_user_data': 'granted',
+                    'ad_personalization': 'granted',
+                    'analytics_storage': 'granted'
+                });
+            </script>
+        ```
+    </Accordion>
+</AccordionGroup>
+
+#### I already send consent data to Google
+
+When you already have a cookie banner and consent solution in place, you should ensure that your CMP correctly implements Google consent mode.
+Below you can find out how to enable the integration for popular CMPs as well as how to verify the implementation.
+
+##### Enabling Google consent mode V2
+Most CMP platforms offer an integration with Google consent mode. For the below popular CMPs, you can enable it as follows:
+
+- [Cookie Script](https://help.cookie-script.com/en/google-analytics/google-consent-mode-implementation-instructions) Go to your banner settings > Behavior tab > Frameworks section > Enable Google Consent Mode V2.
+- [Cookie Bot](https://support.cookiebot.com/hc/en-us/articles/360016047000-Cookiebot-and-Google-Consent-Mode) The Google consent mode integration is enabled by default. You should, however, ensure that a default consent state is explicitely added to your website. Please follow the instructions in the implementation section [here](https://support.cookiebot.com/hc/en-us/articles/360016047000-Cookiebot-and-Google-Consent-Mode).
+- [OneTrust](https://my.onetrust.com/s/article/UUID-d81787f6-685c-2262-36c3-5f1f3369e2a7?language=en_US#UUID-d81787f6-685c-2262-36c3-5f1f3369e2a7_section-idm231981224490148) On the cookie consent menu, go to Geolocation Rules, select a rule group and click edit on a rule to configure. From there, enable the Google Consent mode setting.
+- [Pandectes Shopify App](https://help.pandectes.io/en/article/using-google-consent-mode-integration-1xkfv6o/) In the Shopify app, under settings > integrations, enable the Google consent mode checkbox. Please select the 'I have already installed Google Tag Manager and/or Google Analytics' option.
+- [Consentmo Shopify App](https://support.consentmo.com/en/article/google-consent-mode-v2-integration-1olxp4x/) Include the `{% render 'gcm-integration-script' %}` snippet in the `head` part of the `theme.liquid` and copy paste the [snippet provided in the help center](https://gdprstorage.b-cdn.net/faq/files/gcm-integration-script.zip) in a new `gcm-integration-script` theme file under the snippets section.
+
+##### Verifying the integration
+You can verify the installation through the [Google Tag Assistant](https://tagassistant.google.com).
+Google offers a guide to verify the implementation [here](https://support.google.com/tagmanager/answer/14218557?hl=en).
+
+<Steps>
+    <Step>
+        Open the tag assistant [tool](https://tagassistant.google.com).
+    </Step>
+    <Step>
+        Click 'Add domain' and enter your website's URL. A new browser tab will open with your website.
+    </Step>
+    <Step>
+        Go back to the debugging tool.
+    </Step>
+    <Step>
+        Select the Google tag you want to inspect.
+    </Step>
+    <Step>
+        After selecting an event in the left Summary pane, you can navigate to the 'Consent' tab and inspect the consent parameters of the event.
+    </Step>
+</Steps>
+
+You can run the following checks on your GA4 (`G-XXXXXX`) and Google Ads tags (`AW-XXXXXX`).
+
+<AccordionGroup>
+    <Accordion title="A Consent event is fired">
+        In the Summary pane, look for the `Consent` events. These events indicate that consent state is communicated to the Google tags.
+    </Accordion>
+    <Accordion title="A default Consent is set">
+        On the first `Consent` event of the page, the parameters in the 'On-page default' column in the Event Consent State table should show either Denied or Granted for all parameters.
+    </Accordion>
+    <Accordion title="Consent updates are propagated">
+        On your website, accept the cookie banner. Now go back to the debug overview and look for a new `Consent` event.
+        A new `Consent` event should be present and reflect the updated consent state.
+    </Accordion>
+    <Accordion title="The consent V2 parameters are specified ">
+        Double-check that the `ad_user_data` and `ad_personalization` parameters are set both in the default consent column and when updating consent.
+    </Accordion>
+</AccordionGroup>
+
+### Impact of consent mode on my data
+
+Implementing consent mode inevitably limits your data collection and reporting accuracy.
+No data is collected for users for which consent was denied, whether by default or through a explicit deny.
+
+#### Google Analytics 4
+In GA4, no data is reported for visitors who denied the `analytics_storage` consent.
+By default, Google does attempt to bridge this gap through behioural modeling.
+This means that your GA4 data will no longer be 100% accurate, but rather an estimate under the constraints of consent mode.
+The modeling can be enabled/disabled under your property settings > Data display, by setting the Reporting identity to Blended.
+You can read more about this [here](https://support.google.com/analytics/answer/11161109?hl=en).
+
+#### Google Ads
+The same holds for Google Ads. Google cannot directly attribute conversions when consent was denied.
+Again, Google applies conversion modelling to try to compensate for the signal loss.
+The conversions reported in Google Ads include these [modelled conversions](https://support.google.com/google-ads/answer/10548233?hl=en-GB).
+
+Moreover, due to the Google consent V2 change, when the `ad_personalization` parameter was not granted, they cannot use the conversion for dynamic remarketing.
+
+---
+*Disclaimer: This guide provides general information. It is not intended as legal advice, and readers should consult with qualified council for advice regarding their specific circumstances. Converge disclaims any liability for actions taken based on the information provided in this post.*
