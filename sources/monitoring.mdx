@@ -1,0 +1,54 @@
+---
+title: "Monitoring"
+description: "Test and monitor your Converge Integration "
+---
+
+## Overview
+
+Converge provides the following tools to monitor and debug whether your Sources are working correctly:
+- [Source Logs](#source-logs)
+- [Source Warnings](#source-warnings) 
+
+---
+
+## Source Logs
+
+Converge keeps detailed logs of every event that gets sent to Converge including [event properties](/sources/converge-spec), [profile properties](/sources/source-concepts#profile-properties) and [aliases](/sources/source-concepts#aliases).
+
+<AccordionGroup>
+<Accordion icon="location-dot" title="Where to find Source Logs">
+1. Navigate to the [Sources Tab](app.runconverge.com/sources) in your Converge dashboard
+2. Click on the Source you want to debug
+   ![pick a source](/images/sources/monitoring/source-monitoring-0.png)
+3. Click on the **Logs** tab to see the logs
+  ![pick logs](/images/sources/monitoring/source-monitoring-1.png)
+4. Click on any of the Log Lines to inspect the **event properties**, **profile properties**, **aliases**, etc.
+</Accordion>
+
+<Accordion icon="filter" title="Filter through the logs">
+- **By Event Name**: You can select a subset of events to show in the log by clicking on **Select events** and then ticking the relevant events.
+- **By Date**: You can use the datepicker in the right top corner to select log lines from a particular daterange.
+</Accordion>
+
+<Accordion icon="download" title="Exporting logs">
+You can export your log selection to CSV using the **Export to .csv** button in the right top corner. 
+Log entries are limited to 10,000 lines.
+</Accordion>
+</AccordionGroup>
+
+---
+
+## Source Warnings
+
+Converge will automatically flag when events are not conform the [Converge Event Spec](/sources/converge-spec) and give you pointers as to how to modify your events to be compliant with the spec.
+
+
+<AccordionGroup>
+<Accordion icon="location-dot" title="Where to find Source Warnings">
+1. Navigate to the [Sources Tab](app.runconverge.com/sources) in your Converge dashboard
+2. Click on the Source you want to debug
+   ![pick a source](/images/sources/monitoring/source-monitoring-0.png)
+3. Click on the **Warnings** tab to see the approppriate warnings. Each warning includes information as to what `property` is malformed, as well as detailed log lines to inspect.
+  ![see warning info](/images/sources/monitoring/source-monitoring-2.png)
+</Accordion>
+</AccordionGroup>
