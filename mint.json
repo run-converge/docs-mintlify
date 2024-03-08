@@ -72,8 +72,9 @@
       "pages": [
         {
           "group": "Integrations",
-          "pages": ["connections/facebook", "connections/google-ads", "connections/ga4", "connections/tiktok", "connections/bing", "connections/bigquery"]
-        }
+          "pages": ["connections/integrations/facebook", "connections/integrations/google-ads", "connections/integrations/ga4", "connections/integrations/tiktok", "connections/integrations/bing", "connections/integrations/bigquery"]
+        },
+        "connections/filters"
       ]
     },
     {
