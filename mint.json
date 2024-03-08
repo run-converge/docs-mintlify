@@ -100,5 +100,10 @@
     "twitter": "https://twitter.com/runConverge",
     "linkedin": "https://www.linkedin.com/company/81685997"
   },
-  "backgroundImage": "/background.png"
+  "backgroundImage": "/background.png",
+  "analytics": {
+    "posthog": {
+        "apiKey": "phc_eQDyJsYMRYuLPotuDdoJAdWvhIue0rQEDl7fVGd5uEU"
+    }
+}
 }
