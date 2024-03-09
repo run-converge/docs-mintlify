@@ -1,0 +1,32 @@
+---
+title: "Custom Events"
+description: "Send custom events with your Connections"
+---
+
+## Set up custom events for your Connections
+
+Converge allows you to leverage custom events in all of your Connections.
+
+<Accordion icon="location-dot" title="How to set up custom events for your Connection">
+1. Navigate to the [Connections Tab](app.runconverge.com/connections) in your Converge dashboard
+2. Click on the Connection for which you want to send a custom event.
+3. Click on the **Configuration** tab and on the **Advanced**-subtab and scroll down to **Custom Events**.
+4. Click on **Edit configuration** to add a custom event mapping.
+5. Pick the Custom Event you want to forward and then fill in the name you want to forward it as. 
+    <Info> E.g. in the screenshot below, we are forwarding a `Lead`-event, every time a `Subscribed To List`-event triggers in Converge </Info>
+    ![set up custom event](/images/connections/custom-events/custom-events-0.png)
+6. Press **Save** once you are happy with the configuration.
+7. Use the [Connection Log](/connections/monitoring#connection-logs) to monitor that your event is being forwarded correctly.
+    
+</Accordion>
+
+
+---
+
+## Limitations
+
+Some destinations do not accept server-side events, so you should always verify this in the specific Connection Integration documentation.
+
+If you want to forward a particular custom event to these destinations, you should set up your custom event client-side instead.
+
+
