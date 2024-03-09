@@ -3,7 +3,8 @@
   "name": "Converge Documentation",
   "logo": {
     "dark": "/logo/logo.svg",
-    "light": "/logo/logo.svg"
+    "light": "/logo/logo.svg",
+    "href":"https://runconverge.com"
   },
   "favicon": "/favicon.png",
   "colors": {
@@ -107,5 +108,6 @@
     "posthog": {
         "apiKey": "phc_eQDyJsYMRYuLPotuDdoJAdWvhIue0rQEDl7fVGd5uEU"
     }
-}
+},
+"anchors" : [{"name": "Community", "url": "https://join.slack.com/t/convergecommunity/shared_invite/zt-1xugmvapc-o8mNvCE1wuKRAu8wCA~EwQ", "icon": "slack", "iconType": "solid" }]
 }
