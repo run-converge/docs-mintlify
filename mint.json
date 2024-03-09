@@ -76,7 +76,8 @@
           "pages": ["connections/integrations/facebook", "connections/integrations/google-ads", "connections/integrations/ga4", "connections/integrations/tiktok", "connections/integrations/bing", "connections/integrations/bigquery"]
         },
         "connections/filters",
-        "connections/monitoring"
+        "connections/monitoring",
+        "connections/custom-events"
       ]
     },
     {
