@@ -8,8 +8,10 @@ To send data from Converge to Meta, check out the [Meta Ads Connection](../../co
 
 ## Installation Instructions
 
+
+
 <AccordionGroup >
-<Accordion icon="list" title="Installation Instructions">
+<Accordion icon="list" title="Connect your Ads Data Source">
 
 1. Navigate to the Converge attribution dashboard and choose **Ad Platforms** 
    &nbsp;
@@ -27,9 +29,43 @@ To send data from Converge to Meta, check out the [Meta Ads Connection](../../co
 
 
 </Accordion>
+
+<Accordion icon="crosshairs" title="Set up your UTM Tracking Parameters">
+
+You will to add the following parameters to the URL of **every** ad you are running (including new ones you will set up in the future). This will make sure your UTMs are correctly tracked for both Converge and GA4.
+
+```
+cvg_source={{site_source_name}}&cvg_adid={{ad.id}}&cvg_cid={{campaign.id}}
+```
+
+
+1. Move to the ad for which you will set up tracking. Click on `Edit`.
+
+2. In this section, there's a field URL parameters where you can paste the above snippet.
+
+3. Done 🎉
+
+<Info> 
+If you want your UTMs to be compatible with **both** the Converge and [Google Analytics 4](/connections/integrations/ga4) attribution report, use the following template instead
+
+```
+utm_source=facebook&utm_medium=paid&utm_campaign={{campaign.name}}&utm_content={{ad.name}}&cvg_source={{site_source_name}}&cvg_adid={{ad.id}}&cvg_cid={{campaign.id\}}`
+```
+</Info>
+
+<Note> 
+ You need to do this for **every ad you run**, but **you can also bulk edit all your ads at once**.
+</Note>
+
+<Warning>
+ Changing the URL parameters will put the ad back into a processing state which may last up to an hour. In rare cases, the social proof of the ad could be reset and the ad be sent back into the learning phase.
+</Warning>
+
+</Accordion>
 </AccordionGroup> 
 
 ---
+
 ## Supported Metrics
 
 We support a variety of metrics to help you analyze your ad performance on Meta Ads. Click on each category to expand and see the specific metrics available.
