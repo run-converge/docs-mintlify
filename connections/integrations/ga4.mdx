@@ -64,10 +64,25 @@ This integration supports the following Converge connection functionality.
 | Filters         | ✅         |  
 | Server-side Conversions | ✅  |
 
+--- 
+
+## FAQ
+
+<AccordionGroup>
+<Accordion title="Why do I see a lot of events with a Skipped status in the Connection Log?">
+  Google Analytics 4 does not natively deduplicate events that are being sent from **both** the server and the browser. 
+  
+  As such, the Converge connection will automatically not forward the **server** copy of the event and only send the browser copy of the event.
+  
+  These server-side copies will show up with a `Skipped` status in the Connection Log. However, the event will still arrive in GA4 through the browser-side copy.
+</Accordion>
+</AccordionGroup>
+
+---
 
 ## Event Mapping
 
-Converge automatically maps the following events from the [Converge Event Spec](../sources/converge-spec) to the Google Analytics 4 spec.
+Converge automatically maps the following events from the [Converge Event Spec](/sources/converge-spec) to the Google Analytics 4 spec.
 
 | Converge Event Name  &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp;  &nbsp;  &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp;  &nbsp;                                                            | GA4 Event Name                                      |  
 | -------------------------------------------- | -------------------------------------------------------- |  
