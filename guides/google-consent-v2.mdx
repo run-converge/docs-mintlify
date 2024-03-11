@@ -10,7 +10,7 @@ description: "How to navigate the transition to the new Google consent mode"
   With the DMA going into effect, Google introduced two changes impacting advertisers on Google Ads.
   
     1. **Publishers are required to collect the user's consent** and pass it on to Google.
-    2. **Google now requires explicit consent for personalised advertising** (dynamic remarketing campaigns).
+    2. **Google now requires explicit consent for personalized advertising** (dynamic remarketing campaigns).
 
 In practice, this means that Google now asks all advertisers in the EU to have (i) **correctly implemented cookiebanners** and (ii) **infrastructure to send consent signals to GA4 and Google Ads** (e.g. through Converge).
 
@@ -68,7 +68,7 @@ As such, when your website has been instrumented with a Google consent implement
 #### I am not collecting consent
 When you are not collecting consent information, it is still unclear how Google will continue to process your data. In the EEA, you may be in violation with Google's policies and certain Google Ads features may become unavailable.
 
-In its current behaviour, Google will still process, attribute, and optimize for the collected data. Over the coming months, it is uncertain whether Google will gradually discontinue *consent-less* events for EU visitors.
+In its current behavior, Google will still process, attribute, and optimize for the collected data. Over the coming months, it is uncertain whether Google will gradually discontinue *consent-less* events for EU visitors.
 
 <AccordionGroup>
     <Accordion title="Option 1: installing a CMP">
@@ -84,7 +84,7 @@ In its current behaviour, Google will still process, attribute, and optimize for
         Please refer to [Google's documentation for implementing consent mode](https://developers.google.com/tag-platform/security/guides/consent?consentmode=advanced).
     </Accordion>
     <Accordion title="Option 3: default to granting consent">
-        If you have no CMP set up right now, Google defaults to process all data. If you want to ensure backwards compatibility with this behaviour, you should explicitely pass this on to Google.
+        If you have no CMP set up right now, Google defaults to process all data. If you want to ensure backwards compatibility with this behavior, you should explicitly pass this on to Google.
         You can accomplish this by pasting the following snippet onto your website `head`.
 
         ```html 
@@ -111,7 +111,7 @@ Below you can find out how to enable the integration for popular CMPs as well as
 Most CMP platforms offer an integration with Google consent mode. For the below popular CMPs, you can enable it as follows:
 
 - [Cookie Script](https://help.cookie-script.com/en/google-analytics/google-consent-mode-implementation-instructions) Go to your banner settings > Behavior tab > Frameworks section > Enable Google Consent Mode V2.
-- [Cookie Bot](https://support.cookiebot.com/hc/en-us/articles/360016047000-Cookiebot-and-Google-Consent-Mode) The Google consent mode integration is enabled by default. You should, however, ensure that a default consent state is explicitely added to your website. Please follow the instructions in the implementation section [here](https://support.cookiebot.com/hc/en-us/articles/360016047000-Cookiebot-and-Google-Consent-Mode).
+- [Cookie Bot](https://support.cookiebot.com/hc/en-us/articles/360016047000-Cookiebot-and-Google-Consent-Mode) The Google consent mode integration is enabled by default. You should, however, ensure that a default consent state is explicitly added to your website. Please follow the instructions in the implementation section [here](https://support.cookiebot.com/hc/en-us/articles/360016047000-Cookiebot-and-Google-Consent-Mode).
 - [OneTrust](https://my.onetrust.com/s/article/UUID-d81787f6-685c-2262-36c3-5f1f3369e2a7?language=en_US#UUID-d81787f6-685c-2262-36c3-5f1f3369e2a7_section-idm231981224490148) On the cookie consent menu, go to Geolocation Rules, select a rule group and click edit on a rule to configure. From there, enable the Google Consent mode setting.
 - [Pandectes Shopify App](https://help.pandectes.io/en/article/using-google-consent-mode-integration-1xkfv6o/) In the Shopify app, under settings > integrations, enable the Google consent mode checkbox. Please select the 'I have already installed Google Tag Manager and/or Google Analytics' option.
 - [Consentmo Shopify App](https://support.consentmo.com/en/article/google-consent-mode-v2-integration-1olxp4x/) Include the `{% render 'gcm-integration-script' %}` snippet in the `head` part of the `theme.liquid` and copy paste the [snippet provided in the help center](https://gdprstorage.b-cdn.net/faq/files/gcm-integration-script.zip) in a new `gcm-integration-script` theme file under the snippets section.
@@ -163,7 +163,7 @@ No data is collected for users for which consent was denied, whether by default 
 
 #### Google Analytics 4
 In GA4, no data is reported for visitors who denied the `analytics_storage` consent.
-By default, Google does attempt to bridge this gap through behioural modeling.
+By default, Google does attempt to bridge this gap through behavioral modeling.
 This means that your GA4 data will no longer be 100% accurate, but rather an estimate under the constraints of consent mode.
 The modeling can be enabled/disabled under your property settings > Data display, by setting the Reporting identity to Blended.
 You can read more about this [here](https://support.google.com/analytics/answer/11161109?hl=en).

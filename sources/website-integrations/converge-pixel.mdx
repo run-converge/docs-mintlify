@@ -15,7 +15,7 @@ description: "Connect your Website to Converge"
         2. Pick _Client-side_ from the modal
         3. Name your pixel: e.g. `{Storename} Storefront`
     </Step>
-    <Step title="Install the Converge HMTL snippet in your storefront">
+    <Step title="Install the Converge HTML snippet in your storefront">
         4. Click on your created newly created Source and from the modal pick `HTML`, copy that snippet.
         <Accordion icon="code" title="Code example"> 
    ```html
@@ -24,8 +24,7 @@ description: "Connect your Website to Converge"
      async
    ></script>
    <script>
-     window.cvg||(c=window.cvg=function(){c.process?c.process.apply(c,argum
-     ents):c.queue.push(arguments)},c.queue=[]);
+     window.cvg||(c=window.cvg=function(){c.process?c.process.apply(c,arguments):c.queue.push(arguments)},c.queue=[]);
      cvg({method:"track",eventName:"$page_load"});
    </script>
    ```
