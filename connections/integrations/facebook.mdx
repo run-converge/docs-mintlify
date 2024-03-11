@@ -50,6 +50,22 @@ This integration supports the following Converge connection functionality.
 
 --- 
 
+## FAQ
+
+<AccordionGroup>
+<Accordion title="Why do I see a Duplicate Pixel ID warning in my console?">
+  If you are a Shopify store, Converge needs to load both a `theme.liquid` pixel and a Shopify Custom Pixel to track reliably. 
+  See the [FAQ in the Shopify Integration](/sources/website-integrations/shopify#faq) for more detailed information.
+
+  Converge makes sure that no duplicate events get sent, even though the Facebook Pixel needs to be loaded in two separate places for complete event coverage. 
+
+  <Note> If you are not using the Shopify Web integration, you might have an old pixel installed using a different tracking method and you should turn this one off.</Note>
+</Accordion>
+</AccordionGroup>
+
+
+---
+
 ## Event Mapping
 
 Converge automatically maps the following events from the [Converge Event Spec](../sources/converge-spec) to the Google Analytics 4 spec.
