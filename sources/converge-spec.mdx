@@ -12,7 +12,7 @@ This usually leads to problems with destinations downstream as each destination 
 Converge, therefore works with a strict Converge Event Spec.
 Because we have a semantic understanding of what you are tracking, we can:
 
-1. Automagically map your source events to destinations in the optimal way through our [Connections]().
+1. Automatically map your source events to destinations in the optimal way through our [Connections]().
 2. Surface you meaningful analytics through our [Attribution]() product.
 3. Monitor and flag when you are wrongly tracking events or properties negatively affecting your destinations or analytics through [Source Monitoring]().
 
@@ -46,7 +46,7 @@ cvg({ method: "track", eventName: "$page_load" });
 </Accordion>
 
 <Tip>
-  You do not need to manually implement any of the below properties, they will be automagically tracked for all client-side events. 
+  You do not need to manually implement any of the below properties, they will be automatically tracked for all client-side events. 
 </Tip>
 <Accordion title="Auto-tracked Event Properties" icon="list">
 
@@ -923,7 +923,7 @@ When a user starts a subscription.
     </ParamField>
 
     <ParamField body="vendor" type="string">
-    Name of the vendor of the item in the subscriptio.
+    Name of the vendor of the item in the subscription.
     </ParamField>
 
         <ParamField body="quantity" type="int" required>
@@ -947,11 +947,11 @@ When a user starts a subscription.
     </ParamField>
 
     <ParamField body="$country_code" type="string">
-    Country code of the subsciber's address according to [ISO 3166](https://en.wikipedia.org/wiki/List_of_ISO_3166_country_codes).
+    Country code of the subscriber's address according to [ISO 3166](https://en.wikipedia.org/wiki/List_of_ISO_3166_country_codes).
     </ParamField>
 
      <ParamField body="$state" type="string">
-    State of the subsciber's address.
+    State of the subscriber's address.
     </ParamField>
 
     <ParamField body="$zip_code" type="string">
@@ -1112,7 +1112,7 @@ When a user cancels a subscription.
     </ParamField>
 
     <ParamField body="vendor" type="string">
-    Name of the vendor of the item in the subscriptio.
+    Name of the vendor of the item in the subscription.
     </ParamField>
 
         <ParamField body="quantity" type="int" required>
@@ -1136,11 +1136,11 @@ When a user cancels a subscription.
     </ParamField>
 
     <ParamField body="$country_code" type="string">
-    Country code of the subsciber's address according to [ISO 3166](https://en.wikipedia.org/wiki/List_of_ISO_3166_country_codes).
+    Country code of the subscriber's address according to [ISO 3166](https://en.wikipedia.org/wiki/List_of_ISO_3166_country_codes).
     </ParamField>
 
      <ParamField body="$state" type="string">
-    State of the subsciber's address.
+    State of the subscriber's address.
     </ParamField>
 
     <ParamField body="$zip_code" type="string">
@@ -1301,7 +1301,7 @@ When a user places a recurring subscription order.
     </ParamField>
 
     <ParamField body="vendor" type="string">
-    Name of the vendor of the item in the subscriptio.
+    Name of the vendor of the item in the subscription.
     </ParamField>
 
         <ParamField body="quantity" type="int" required>
@@ -1325,11 +1325,11 @@ When a user places a recurring subscription order.
     </ParamField>
 
     <ParamField body="$country_code" type="string">
-    Country code of the subsciber's address according to [ISO 3166](https://en.wikipedia.org/wiki/List_of_ISO_3166_country_codes).
+    Country code of the subscriber's address according to [ISO 3166](https://en.wikipedia.org/wiki/List_of_ISO_3166_country_codes).
     </ParamField>
 
      <ParamField body="$state" type="string">
-    State of the subsciber's address.
+    State of the subscriber's address.
     </ParamField>
 
     <ParamField body="$zip_code" type="string">

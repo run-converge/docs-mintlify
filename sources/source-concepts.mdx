@@ -83,7 +83,7 @@ resp = requests.post(
 
 It is possible to include **profile properties** in an event. These properties are characteristic of the user. These properties are **persisted across events**, whereas the event properties are only available and relevant to the event itself.
 Converge supports deduplication natively. You can deduplicate events with an optional `eventID` parameter. This is especially important for events that are used as conversions.
-Converge will deduplicate events with the same `eventID` at ingestation time.
+Converge will deduplicate events with the same `eventID` at ingestion time.
 
 <Accordion title="Code Examples" icon="code">
  <CodeGroup>

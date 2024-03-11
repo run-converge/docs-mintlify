@@ -36,7 +36,7 @@ The installation process of Converge is slightly different based on whether you 
         7. Go to the _theme.liquid_ file and insert the snippet right above the closing `</head>` tag in the theme.liquid file. Click **Save**
     </Step>
     <Step title="Verify that the integration is working correctly">
-        8. Always doublecheck that you did not break anything on the site after inserting the snippet. 
+        8. Always double-check that you did not break anything on the site after inserting the snippet. 
         <Info>   It's good practice to **add the snippet to other themes in development as well** and to add this snippet to your version control, so a theme switch does not kill website tracking </Info>
         9. Check that your pixel is working correctly by generating some `$page_load`, `Viewed Product` and `Viewed Collection` events through visiting the store and seeing that these events arrive in the Source Log.
     </Step>
@@ -129,7 +129,7 @@ The Converge JS pixel only picks up [$page_load](../converge-spec#page-load)-eve
 
         For more information on manually instrumenting events, read [here](./converge-pixel#manually-instrument-events). 
     </Step>
-    <Step title="Add approppriate aliases to stitch the session across all sources ">
+    <Step title="Add appropriate aliases to stitch the session across all sources ">
         At this point, you should be tracking the entire Converge Ecommerce Spec. 
         However, for a Headless setup, it is paramount that you set the `checkout_token` as an alias **before** redirecting the user to the Shopify Checkout to make sure that the storefront session and the checkout session can be linked to the same user.
         You can read more about aliases [here](../source-concepts/aliases).
