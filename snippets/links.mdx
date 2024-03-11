@@ -1,0 +1,18 @@
+export const OutboundLink = ({ linkText, linkTarget }) => {
+
+  return (
+    <a target="_blank" href={linkTarget} > {linkText} 
+    <div className="inline h-3 w-3 fill-gray-500 dark:fill-gray-100 text-gray-500 dark:text-gray-300 ml-1 mr-1">
+      <svg
+        className="inline w-2.5 h-2.5 bg-gray-500 dark:bg-gray-300"
+        style={{
+          maskImage: `url('https://mintlify.b-cdn.net/v6.5.1/solid/up-right-from-square.svg')`,
+          maskRepeat: "no-repeat",
+          maskPosition: "center center"
+        }}
+      ></svg> 
+    </div>
+    </a>
+  );
+
+};
