@@ -3,7 +3,7 @@ title: "Google Analytics 4"
 description: "Setting up a connection with GA4"
 ---
 
-import { IsSupportedIcon } from '/snippets/icons.mdx';
+import { Icon } from '/snippets/icons.mdx';
 import { OutboundLink } from '/snippets/links.mdx';
 
 ## Installation Instructions
@@ -60,11 +60,11 @@ Options include:
 
 This integration supports the following Converge connection functionality.
 
-| Converge Feature   &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp;  &nbsp;  &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp;  &nbsp;                            | Supported                                       |  
-| -------------------------------------------- | -------------------------------------------------------- |  
-| Custom Events          | <IsSupportedIcon isSupported={true}/>                       | 
-| Filters         | <IsSupportedIcon isSupported={true}/>         |  
-| Server-side Conversions | <IsSupportedIcon isSupported={true}/>  |
+| Converge Feature        |       Supported       |
+| ----------------------- | :-------------------: |
+| Custom Events           | <Icon name="check" /> |
+| Filters                 | <Icon name="check" /> |
+| Server-side Conversions | <Icon name="check" /> |
 
 --- 
 
@@ -86,15 +86,15 @@ This integration supports the following Converge connection functionality.
 
 Converge automatically maps the following events from the [Converge Event Spec](/sources/converge-spec) to the Google Analytics 4 spec.
 
-| Converge Event Name  &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp;  &nbsp;  &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp;  &nbsp;                                                            | GA4 Event Name                                      |  
-| -------------------------------------------- | -------------------------------------------------------- |  
-| [Viewed Product](../converge-spec#viewed-product)           | `view_item`                        | 
-| [Viewed Collection](../converge-spec#viewed-collection)        | `view_item_list`         |  
-| [Added To Cart](../converge-spec#added-to-cart)            | `add_to_cart`                   |
-| [Started Checkout](../converge-spec#started-checkout)         | `begin_checkout`          | 
-| [Added Payment Info](../converge-spec#added-payment-info)       | `add_payment_info` | 
-| [Placed Order](../converge-spec#placed-order)             | `purchase`                         | 
-| [Started Subscription](../converge-spec#start-subscription)             | `start_subscription`                         | 
-| [Received Refund ](../converge-spec#received-refund)             | `refund`                         | 
+| Converge Event Name                                               | GA4 Event Name       |
+| ----------------------------------------------------------------- | -------------------- |
+| [Viewed Product](/sources/converge-spec#viewed-product)           | `view_item`          |
+| [Viewed Collection](/sources/converge-spec#viewed-collection)     | `view_item_list`     |
+| [Added To Cart](/sources/converge-spec#added-to-cart)             | `add_to_cart`        |
+| [Started Checkout](/sources/converge-spec#started-checkout)       | `begin_checkout`     |
+| [Added Payment Info](/sources/converge-spec#added-payment-info)   | `add_payment_info`   |
+| [Placed Order](/sources/converge-spec#placed-order)               | `purchase`           |
+| [Started Subscription](/sources/converge-spec#start-subscription) | `start_subscription` |
+| [Received Refund ](/sources/converge-spec#received-refund)        | `refund`             |
 
 

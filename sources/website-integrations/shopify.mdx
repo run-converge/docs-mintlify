@@ -84,7 +84,7 @@ Click on Save Pixel and Connect Pixel
         3. Name your pixel: e.g. `{Storename} Storefront`
     </Step>
     <Step title="Install the Converge JS Base Snippet">
-    4. Install the Converge JS Base Snippet in your storefront following the steps [here](./converge-pixel#installation-instructions)
+    4. Install the Converge JS Base Snippet in your storefront following the steps [here](/sources/website-integrations/converge-pixel#installation-instructions)
         
     </Step>
     <Step title="Verify that the integration is working correctly">
@@ -121,18 +121,18 @@ Click on Save Pixel and Connect Pixel
 
         <Steps>
     <Step title="Track the remaining Converge Spec">
-The Converge JS pixel only picks up [$page_load](../converge-spec#page-load)-events by default for a headless store.
+The Converge JS pixel only picks up [$page_load](/sources/converge-spec#page-load)-events by default for a headless store.
         You will typically have to supplement the following events using Converge JS for all Connections to work optimally.
-        - [Viewed Product](../converge-spec#viewed-product)
-        - [Viewed Collection](../converge-spec#viewed-collection)
-        - [Added To Cart](../converge-spec#added-to-cart)
+        - [Viewed Product](/sources/converge-spec#viewed-product)
+        - [Viewed Collection](/sources/converge-spec#viewed-collection)
+        - [Added To Cart](/sources/converge-spec#added-to-cart)
 
-        For more information on manually instrumenting events, read [here](./converge-pixel#manually-instrument-events). 
+        For more information on manually instrumenting events, read [here](/sources/website-integrations/converge-pixel#manually-instrumenting-events). 
     </Step>
     <Step title="Add appropriate aliases to stitch the session across all sources ">
         At this point, you should be tracking the entire Converge Ecommerce Spec. 
         However, for a Headless setup, it is paramount that you set the `checkout_token` as an alias **before** redirecting the user to the Shopify Checkout to make sure that the storefront session and the checkout session can be linked to the same user.
-        You can read more about aliases [here](../source-concepts/aliases).
+        You can read more about aliases [here](/sources/source-concepts#aliases).
     </Step>
     <Step title="Verify that the integration is working correctly">
         Check that your setup is working by doing an entire user journey from `$page_load` to `Placed Order` and verifying that all events are properly tracked without any [Source Warnings]().
@@ -167,18 +167,18 @@ The Converge JS pixel only picks up [$page_load](../converge-spec#page-load)-eve
 
 ## Event Spec
 
-This integration auto-tracks the following events on the browser with all properties available according to the [Converge Event Spec](../sources/pixel#event-specification).
+This integration auto-tracks the following events on the browser with all properties available according to the [Converge Event Spec](/sources/converge-spec).
 
-| Event Name                                   | Event Description                                        | Integration | 
-| -------------------------------------------- | -------------------------------------------------------- | --- | 
-| [PageView](../converge-spec#page-load)                 | When a customer views a page.                            | Storefront  |
-| [Viewed Product](../converge-spec#viewed-product)           | When a customer views a product.                         | Storefront |
-| [Viewed Collection](../converge-spec#viewed-collection)        | When a customer views a collection of products.          | Storefront  | 
-| [Added To Cart](../converge-spec#added-to-cart)            | When a customer adds an item to cart                     | Checkout | 
-| [Started Checkout](../converge-spec#started-checkout)         | When a customer initiates the checkout process.          | Checkout | 
-| [Added Payment Info](../converge-spec#added-payment-info)       | When a customer adds their payment info on the checkout. | Checkout  | 
-| [Subscribed To Newsletter](../converge-spec#subscribed-to-newsletter) | When a customer subscribes to your newsletter.           | Checkout  | 
-| [Placed Order](../converge-spec#placed-order)             | When a customer places an order.                         | Checkout  | 
+| Event Name                                                                  | Event Description                                        | Integration |
+| --------------------------------------------------------------------------- | -------------------------------------------------------- | ----------- |
+| [PageView](/sources/converge-spec#page-load)                                | When a customer views a page.                            | Storefront  |
+| [Viewed Product](/sources/converge-spec#viewed-product)                     | When a customer views a product.                         | Storefront  |
+| [Viewed Collection](/sources/converge-spec#viewed-collection)               | When a customer views a collection of products.          | Storefront  |
+| [Added To Cart](/sources/converge-spec#added-to-cart)                       | When a customer adds an item to cart                     | Checkout    |
+| [Started Checkout](/sources/converge-spec#started-checkout)                 | When a customer initiates the checkout process.          | Checkout    |
+| [Added Payment Info](/sources/converge-spec#added-payment-info)             | When a customer adds their payment info on the checkout. | Checkout    |
+| [Subscribed To Newsletter](/sources/converge-spec#subscribed-to-newsletter) | When a customer subscribes to your newsletter.           | Checkout    |
+| [Placed Order](/sources/converge-spec#placed-order)                         | When a customer places an order.                         | Checkout    |
 
 ---
 

@@ -82,7 +82,7 @@ cvg({ method: "link_domain", domain: "myotherdomain.com" });
 
 ## Manually instrumenting events
 
-If the pre-built website integrations does not cover the entire [Converge Event Spec](../converge-spec); or if you want to add custom events from your website then you will need to manually instrument these using the Converge Pixel.
+If the pre-built website integrations does not cover the entire [Converge Event Spec](/sources/converge-spec); or if you want to add custom events from your website then you will need to manually instrument these using the Converge Pixel.
 You can use the `track` method in the Converge Pixel for this purpose. 
 
 <Note> As a general rule, you should always **aim to pass as many `properties`, `profileProperties` and `aliases` as possible** </Note>
@@ -91,13 +91,13 @@ The track method has the following parameters:
 
 - `eventName`: The name of the event
 - `properties`: The event properties you want to pass, covering the Converge Spec and possible your own custom properties.
-- `profileProperties`: The [profile properties](../source-concepts#profile-properties)
-- `aliases`: Any [aliases](../source-concepts#aliases)
+- `profileProperties`: The [profile properties](/sources/source-concepts#profile-properties)
+- `aliases`: Any [aliases](/sources/source-concepts#aliases)
 
 
 <AccordionGroup>
 
-<Info> You can find Converge JS examples for the entire [Converge Spec here](../converge-spec) </Info>
+<Info> You can find Converge JS examples for the entire [Converge Spec here](/sources/converge-spec) </Info>
 <Accordion title="Code Examples" icon="code">
 
     <CodeGroup>
@@ -166,8 +166,8 @@ cvg({
 
 ## Event Spec
 
-This integration auto-tracks the following events with all properties available according to the [Converge Event Spec](../converge-spec).
+This integration auto-tracks the following events with all properties available according to the [Converge Event Spec](/sources/converge-spec).
 
-| Event Name                       | Event Description                |
-| -------------------------------- | -------------------------------- |
-| [$page_load](../converge-spec#page-load) | When a customer views a page. |
+| Event Name                                     | Event Description             |
+| ---------------------------------------------- | ----------------------------- |
+| [$page_load](/sources/converge-spec#page-load) | When a customer views a page. |
