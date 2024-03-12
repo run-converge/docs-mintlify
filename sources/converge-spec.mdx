@@ -758,7 +758,7 @@ Order ID.
 
 ```javascript JavaScript - Client-side
 cvg({
-  method: "track",
+  method: "forward",
   eventName: "Placed Order",
   eventID: "order-1", // used for deduplicating, should be unique
   properties: {
@@ -770,6 +770,7 @@ cvg({
     items: [
       {
         product_id: "123456",
+        variant_id: "654321",
         sku: "MY_SKU",
         name: "My Product",
         price: 42,
