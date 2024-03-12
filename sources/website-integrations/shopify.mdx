@@ -190,6 +190,250 @@ This integration also auto-tracks some additional events that are not part of th
 
 ---
 
+## Utility Object
+
+Converge exposes a utility object called `__cvg_shopify_info` that picks up useful event properties and profile properties automagically. 
+
+We give an example below of requesting this object and what it looks like in the code example below.
+
+<Accordion icon="code" title="Example of the utility object on a Product Page">
+```js 
+window['__cvg_shopify_info']
+
+>>> {
+    "product": {
+        "id": 7104622526660,
+        "title": "ADIDAS | CLASSIC BACKPACK",
+        "handle": "adidas-classic-backpack",
+        "description": "This women's backpack has a glam look, thanks to a faux-leather build with an allover fur print. The front zip pocket keeps small things within reach, while an interior divider reins in potential chaos.",
+        "published_at": "2022-04-05T12:53:37+02:00",
+        "created_at": "2022-04-05T12:53:37+02:00",
+        "vendor": "ADIDAS",
+        "type": "ACCESSORIES",
+        "tags": [
+            "adidas",
+            "backpack",
+            "egnition-sample-data"
+        ],
+        "price": 7000,
+        "price_min": 7000,
+        "price_max": 7000,
+        "available": false,
+        "price_varies": false,
+        "compare_at_price": null,
+        "compare_at_price_min": 0,
+        "compare_at_price_max": 0,
+        "compare_at_price_varies": false,
+        "variants": [
+            {
+                "id": 41374006870212,
+                "title": "OS / black",
+                "option1": "OS",
+                "option2": "black",
+                "option3": null,
+                "sku": "AD-03-black-OS",
+                "requires_shipping": true,
+                "taxable": true,
+                "featured_image": null,
+                "available": false,
+                "name": "ADIDAS | CLASSIC BACKPACK - OS / black",
+                "public_title": "OS / black",
+                "options": [
+                    "OS",
+                    "black"
+                ],
+                "price": 7000,
+                "weight": 0,
+                "compare_at_price": null,
+                "inventory_management": "shopify",
+                "barcode": null,
+                "requires_selling_plan": false,
+                "selling_plan_allocations": [
+                    {
+                        "price_adjustments": [
+                            {
+                                "position": 1,
+                                "price": 7000
+                            }
+                        ],
+                        "price": 7000,
+                        "compare_at_price": 7000,
+                        "per_delivery_price": 7000,
+                        "selling_plan_id": 1961754820,
+                        "selling_plan_group_id": "adc3b0fe7ea2b6a111dff9a6fb88114ceab61eec"
+                    }
+                ],
+                "quantity_rule": {
+                    "min": 1,
+                    "max": null,
+                    "increment": 1
+                }
+            }
+        ],
+        "images": [
+            "//converge-dev.myshopify.com/cdn/shop/products/85cc58608bf138a50036bcfe86a3a362.jpg?v=1649156017",
+            "//converge-dev.myshopify.com/cdn/shop/products/8a029d2035bfb80e473361dfc08449be.jpg?v=1649156017",
+            "//converge-dev.myshopify.com/cdn/shop/products/ad50775123e20f3d1af2bd07046b777d.jpg?v=1649156017"
+        ],
+        "featured_image": "//converge-dev.myshopify.com/cdn/shop/products/85cc58608bf138a50036bcfe86a3a362.jpg?v=1649156017",
+        "options": [
+            "Size",
+            "Color"
+        ],
+        "media": [
+            {
+                "alt": null,
+                "id": 23867923562692,
+                "position": 1,
+                "preview_image": {
+                    "aspect_ratio": 1.134,
+                    "height": 560,
+                    "width": 635,
+                    "src": "//converge-dev.myshopify.com/cdn/shop/products/85cc58608bf138a50036bcfe86a3a362.jpg?v=1649156017"
+                },
+                "aspect_ratio": 1.134,
+                "height": 560,
+                "media_type": "image",
+                "src": "//converge-dev.myshopify.com/cdn/shop/products/85cc58608bf138a50036bcfe86a3a362.jpg?v=1649156017",
+                "width": 635
+            },
+            {
+                "alt": null,
+                "id": 23867923595460,
+                "position": 2,
+                "preview_image": {
+                    "aspect_ratio": 1.134,
+                    "height": 560,
+                    "width": 635,
+                    "src": "//converge-dev.myshopify.com/cdn/shop/products/8a029d2035bfb80e473361dfc08449be.jpg?v=1649156017"
+                },
+                "aspect_ratio": 1.134,
+                "height": 560,
+                "media_type": "image",
+                "src": "//converge-dev.myshopify.com/cdn/shop/products/8a029d2035bfb80e473361dfc08449be.jpg?v=1649156017",
+                "width": 635
+            },
+            {
+                "alt": null,
+                "id": 23867923628228,
+                "position": 3,
+                "preview_image": {
+                    "aspect_ratio": 1.134,
+                    "height": 560,
+                    "width": 635,
+                    "src": "//converge-dev.myshopify.com/cdn/shop/products/ad50775123e20f3d1af2bd07046b777d.jpg?v=1649156017"
+                },
+                "aspect_ratio": 1.134,
+                "height": 560,
+                "media_type": "image",
+                "src": "//converge-dev.myshopify.com/cdn/shop/products/ad50775123e20f3d1af2bd07046b777d.jpg?v=1649156017",
+                "width": 635
+            }
+        ],
+        "requires_selling_plan": false,
+        "selling_plan_groups": [
+            {
+                "id": "adc3b0fe7ea2b6a111dff9a6fb88114ceab61eec",
+                "name": "Test Plan",
+                "options": [
+                    {
+                        "name": "Frequency",
+                        "position": 1,
+                        "values": [
+                            "Deliver every month"
+                        ]
+                    }
+                ],
+                "selling_plans": [
+                    {
+                        "id": 1961754820,
+                        "name": "Deliver every month",
+                        "description": "",
+                        "options": [
+                            {
+                                "name": "Frequency",
+                                "position": 1,
+                                "value": "Deliver every month"
+                            }
+                        ],
+                        "recurring_deliveries": true,
+                        "price_adjustments": [
+                            {
+                                "order_count": null,
+                                "position": 1,
+                                "value_type": "fixed_amount",
+                                "value": 0
+                            }
+                        ],
+                        "checkout_charge": {
+                            "value_type": "percentage",
+                            "value": 100
+                        }
+                    }
+                ],
+                "app_id": "5284869"
+            }
+        ],
+        "content": "This women's backpack has a glam look, thanks to a faux-leather build with an allover fur print. The front zip pocket keeps small things within reach, while an interior divider reins in potential chaos."
+    },
+    "variant": {
+        "id": 41374006870212,
+        "title": "OS / black",
+        "option1": "OS",
+        "option2": "black",
+        "option3": null,
+        "sku": "AD-03-black-OS",
+        "requires_shipping": true,
+        "taxable": true,
+        "featured_image": null,
+        "available": false,
+        "name": "ADIDAS | CLASSIC BACKPACK - OS / black",
+        "public_title": "OS / black",
+        "options": [
+            "OS",
+            "black"
+        ],
+        "price": 7000,
+        "weight": 0,
+        "compare_at_price": null,
+        "inventory_management": "shopify",
+        "barcode": null,
+        "requires_selling_plan": false,
+        "selling_plan_allocations": [
+            {
+                "price_adjustments": [
+                    {
+                        "position": 1,
+                        "price": 7000
+                    }
+                ],
+                "price": 7000,
+                "compare_at_price": 7000,
+                "per_delivery_price": 7000,
+                "selling_plan_id": 1961754820,
+                "selling_plan_group_id": "adc3b0fe7ea2b6a111dff9a6fb88114ceab61eec"
+            }
+        ],
+        "quantity_rule": {
+            "min": 1,
+            "max": null,
+            "increment": 1
+        }
+    },
+    "currency": "GBP",
+    "collection": {
+        "products": null
+    },
+    "customer_id": null,
+    "email": null,
+    "address": null,
+    "phone": null,
+    "search": null
+}
+```
+</Accordion>
+
+
 
 
 
