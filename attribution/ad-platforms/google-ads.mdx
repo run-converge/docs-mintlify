@@ -27,6 +27,36 @@ To send data from Converge to Google, check out the [Google Ads Connection](/con
 
 
 </Accordion>
+<Accordion icon="crosshairs" title="Set up your UTM Tracking Parameters">
+
+#### Instructions 
+
+1. In your Google Ads Manager, click `Settings` on the left-hand side, and then select **Account settings**.
+
+2. Paste the following tracking parameters into the **Tracking Template** text field:
+   ```
+   {lpurl}?cvg_source=google&cvg_adid={creative}&cvg_cid={campaignid}
+   ```
+   ![Google Ads Example with Tracking Template Filled In](/images/ad-platforms/google/google-url-params-0.png)
+
+
+---
+
+<Note> 
+ **We recommend to centralize the tracking template into the account level settings and remove all tracking templates from your specific ads, ad groups and campaigns.** 
+  
+  Importantly, if you also configured these parameters on the ad, ad group, or campaign level, these will be preferred. 
+ 
+ If you still wish to use your existing ad, ad group or campaign-level tracking templates, then you need to follow the following instructions: 
+  
+  <Accordion title="Set up campaign-level UTM Tracking Parameters"> Go to `Settings` > `Campaign settings` > `Select a campaign` > `Edit` > `Change tracking template`. </Accordion>
+   <Accordion title="Set up ad or ad group level UTM Tracking Parameters">  Go to `Ad groups/Ads` and `assets` > `Select an ad group/ad `> `Edit` > `Change tracking template`. </Accordion>
+ 
+
+</Note>
+
+</Accordion>
+
 </AccordionGroup> 
 
 ---
