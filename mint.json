@@ -41,6 +41,7 @@
       "pages": [
         "sources/source-concepts",
         "sources/converge-spec",
+        "sources/extending-the-spec",
         {
           "group": "Integrations",
           "pages": [

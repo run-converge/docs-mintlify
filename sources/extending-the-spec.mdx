@@ -1,0 +1,29 @@
+---
+title: "Extending the Spec"
+description: "Add custom properties and events to the spec"
+---
+
+## Overview
+Converge allows you to extend each part of the Converge Spec. 
+You can track custom events, event properties, profile properties, and aliases easily using [Converge JS](/sources/website-integrations/converge-pixel) or the [Webhook](/sources/server-integrations/webhook) integration.
+
+
+### Tracking custom event properties for auto-tracked events
+
+If you are using one our prebuilt source integrations and you want to include custom properties (or modify existing properties) on these events; then you can do so using the `set`-method.
+
+Imagine for example that I want to send a custom property with my `Added To Cart`-event. 
+I would then call the following function  _before_ the `Added To Cart`-event is fired.
+
+```js
+cvg({method: "set", eventProperties: {hello:"world"}})
+```
+
+When my `Added To Cart`-event fires, it will now include the custom `hello -> world` property mapping.
+
+You can modify profile properties in the same way, a full example of the function would be:
+
+```js
+cvg({method: "set", properties: {...profileProperties}, eventProperties: {...eventProperties}})
+```
+
