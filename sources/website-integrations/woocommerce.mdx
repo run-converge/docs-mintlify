@@ -29,8 +29,14 @@ The Converge Website installation for a WooCommerce store consists of:
         6. Choose the .zip file that you just downloaded as the file to upload.
         7. Click on **Install Plugin** and after that on **Activate Plugin** 
     </Step>
+    <Step title="Configure the WooCommerce Plugin">
+        8. In the Converge Webapp, click on the source you created in Step 1 and copy the **Public Token**. 
+          <Info> The code consists of 6 characters and can be retrieved from the HTML snippet. If your script `src` is looks like `https://static.runconverge.com/pixels/AYU51m.js`, then your public token is `AYU51m`. </Info>
+        9. Navigate to **Tools** > **Converge** in the WooCommerce dashboard.
+        10. Fill in the **Public Token** and save the configuration.
+    </Step>
      <Step title="Verify that the integration is working correctly">
-        8. Check that the plugin is working correctly by generating some `$page_load`, `Added To Cart`, `Started Checkout` events through visiting the store and seeing that these events arrive in the Source Log.
+        11. Check that the plugin is working correctly by generating some `$page_load`, `Added To Cart`, `Started Checkout` events through visiting the store and seeing that these events arrive in the Source Log.
     </Step>
 </Steps>
    </Accordion >
