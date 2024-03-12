@@ -16,7 +16,7 @@ Converge keeps detailed logs of every event that gets sent to Converge including
 
 <AccordionGroup>
 <Accordion icon="location-dot" title="Where to find Connection Logs">
-1. Navigate to the [Connections Tab](app.runconverge.com/connection) in your Converge dashboard
+1. Navigate to the [Connections Tab](https://app.runconverge.com/connection) in your Converge dashboard
 2. Click on the Connection you want to debug
 3. Click on the **Logs** tab to see the logs
 4. Click on any of the Log Lines to inspect a Log instance
@@ -36,12 +36,12 @@ Converge keeps detailed logs of every event that gets sent to Converge including
 Every event that gets processed by the Connection gets a forwarding status. 
 This status give you insight as to _how_ the Connection processed this data. 
 
-| Status | Definition | 
-| --- | --- | 
-| `Success` | The event was correctly received by the destination |
-| `Failure` | The event failed to be delivered, read the log detail for more information |
-| `Retry` | The event is being retried (until `Success` or `Failure`) | 
-| `Filtered` | The event was processed by the Connection and filtered out (i.e. it has **not** been sent to the destination) based on one of the [Connection Filters](/connections/filters) |
-| `External`|  An event was fired to this destination that was **not triggered by Converge**  <Note> If you see a bunch of events with an `External` status, this means that another tracking source is still active and should likely be turned off </Note>|
-| `Skipped`| An event was processed by the Connection and skipped by the Connection to adhere to the Destination Specification <Info> This status usually occurs when Converge processes both browser-side and server-side events but the Destination does not accept server-side events or cannot effectively deduplicate events from two sources.   </Info>  |
+| Status     | Definition                                                                                                                                                                                                                                                                                                                                       |
+| ---------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `Success`  | The event was correctly received by the destination                                                                                                                                                                                                                                                                                              |
+| `Failure`  | The event failed to be delivered, read the log detail for more information                                                                                                                                                                                                                                                                       |
+| `Retry`    | The event is being retried (until `Success` or `Failure`)                                                                                                                                                                                                                                                                                        |
+| `Filtered` | The event was processed by the Connection and filtered out (i.e. it has **not** been sent to the destination) based on one of the [Connection Filters](/connections/filters)                                                                                                                                                                     |
+| `External` | An event was fired to this destination that was **not triggered by Converge**  <Note> If you see a bunch of events with an `External` status, this means that another tracking source is still active and should likely be turned off </Note>                                                                                                    |
+| `Skipped`  | An event was processed by the Connection and skipped by the Connection to adhere to the Destination Specification <Info> This status usually occurs when Converge processes both browser-side and server-side events but the Destination does not accept server-side events or cannot effectively deduplicate events from two sources.   </Info> |
 

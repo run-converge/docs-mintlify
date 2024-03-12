@@ -3,7 +3,7 @@ title: "BigQuery"
 description: "Setting up a connection with BigQuery"
 ---
 
-import { IsSupportedIcon } from '/snippets/icons.mdx';
+import { Icon } from '/snippets/icons.mdx';
 
 ## Installation Instructions
 
@@ -600,11 +600,11 @@ ORDER BY order_count DESC
 
 This integration supports the following Converge connection functionality.
 
-| Converge Feature   &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp;  &nbsp;  &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp;  &nbsp;                            | Supported                                       |  
-| -------------------------------------------- | -------------------------------------------------------- |  
-| Custom Events          | <IsSupportedIcon isSupported={true}/>                       | 
-| Filters         | <IsSupportedIcon isSupported={true}/>         |  
-| Server-side Conversions | <IsSupportedIcon isSupported={true}/>  |
+| Converge Feature        |       Supported       |
+| ----------------------- | :-------------------: |
+| Custom Events           | <Icon name="check" /> |
+| Filters                 | <Icon name="check" /> |
+| Server-side Conversions | <Icon name="check" /> |
 
 ---
 
@@ -612,16 +612,16 @@ This integration supports the following Converge connection functionality.
 
 Converge automatically sends all implemented events from the [Converge Spec](/sources/converge-spec) and any custom events to BigQuery.
 
-| Converge Event Name  &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp;  &nbsp;  &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp;  &nbsp;                                                            | BigQuery Name                                      |  
-| -------------------------------------------- | -------------------------------------------------------- |  
-| [$page_load](../converge-spec#page-load)          | `$page-load`                        | 
-| [Viewed Product](../converge-spec#viewed-product)           | `Viewed Product`                        | 
-| [Viewed Collection](../converge-spec#viewed-collection)        | `Viewed Collection`         |  
-| [Added To Cart](../converge-spec#added-to-cart)            | `Added To Cart`                   |
-| [Started Checkout](../converge-spec#started-checkout)         | `Started Checkout`          | 
-| [Added Payment Info](../converge-spec#added-payment-info)       | `Added Payment Info` | 
-| [Placed Order](../converge-spec#placed-order)             | `Placed Order`                         | 
-| [Started Subscription](../converge-spec#start-subscription)             | `Started Subscription`                         | 
-| [Received Refund ](../converge-spec#received-refund)             | `Received Refund`                         | 
+| Converge Event Name                                               | BigQuery Name          |
+| ----------------------------------------------------------------- | ---------------------- |
+| [$page_load](/sources/converge-spec#page-load)                    | `$page-load`           |
+| [Viewed Product](/sources/converge-spec#viewed-product)           | `Viewed Product`       |
+| [Viewed Collection](/sources/converge-spec#viewed-collection)     | `Viewed Collection`    |
+| [Added To Cart](/sources/converge-spec#added-to-cart)             | `Added To Cart`        |
+| [Started Checkout](/sources/converge-spec#started-checkout)       | `Started Checkout`     |
+| [Added Payment Info](/sources/converge-spec#added-payment-info)   | `Added Payment Info`   |
+| [Placed Order](/sources/converge-spec#placed-order)               | `Placed Order`         |
+| [Started Subscription](/sources/converge-spec#start-subscription) | `Started Subscription` |
+| [Received Refund ](/sources/converge-spec#received-refund)        | `Received Refund`      |
 
 

@@ -3,7 +3,7 @@ title: "TikTok Ads"
 description: "An introduction to the TikTok Ads Destination"
 ---
 
-import { IsSupportedIcon } from '/snippets/icons.mdx';
+import { Icon } from '/snippets/icons.mdx';
 import { OutboundLink } from '/snippets/links.mdx';
 
 ## Installation Instructions
@@ -45,30 +45,28 @@ import { OutboundLink } from '/snippets/links.mdx';
 
 This integration supports the following Converge connection functionality.
 
-| Converge Feature   &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp;  &nbsp;  &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp;  &nbsp;                            | Supported                                       |  
-| -------------------------------------------- | -------------------------------------------------------- |  
-| Custom Events          | <IsSupportedIcon isSupported={true}/>                       | 
-| Filters         | <IsSupportedIcon isSupported={true}/>         |  
-| Server-side Conversions | <IsSupportedIcon isSupported={true}/>  |
+| Converge Feature        |       Supported       |
+| ----------------------- | :-------------------: |
+| Custom Events           | <Icon name="check" /> |
+| Filters                 | <Icon name="check" /> |
+| Server-side Conversions | <Icon name="check" /> |
 
 
 --- 
 
 ## Event Mapping
 
-Converge automatically maps the following events from the [Converge Event Spec](../sources/converge-spec) to the Google Analytics 4 spec.
+Converge automatically maps the following events from the [Converge Event Spec](/sources/converge-spec) to the Google Analytics 4 spec.
 
-| Converge Event Name   &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp;  &nbsp;  &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp;  &nbsp;                            | Google Ads Event Name                                      |  
-| -------------------------------------------- | -------------------------------------------------------- |  
-| [$page_load](../converge-spec#page-load)          | `PageView`                        | 
-| [Viewed Product](../converge-spec#viewed-product)          | `ViewContent`                        | 
-| [Viewed Collection](../converge-spec#viewed-collection)        | `ViewContent`         |  
-| [Added To Cart](../converge-spec#added-to-cart)            | `AddToCart`                   |
-| [Started Checkout](../converge-spec#started-checkout)         | `InitiateCheckout`          | 
-| [Added Payment Info](../converge-spec#added-payment-info)       | `AddPaymentInfo` | 
-| [Placed Order](../converge-spec#placed-order)             | `Purchase`                         | 
-| [Started Subscription](../converge-spec#started-subscription)             | `Subscribe`                         | 
-| [Placed Recurring Subscription Order](../converge-spec#placed-recurring-subscription-order)             | `RecurringSubscriptionPaymentSucceeded`                         | 
-| [Cancelled Subscription](../converge-spec#cancelled-subscription)             | `CancelSubscription`                         | 
-
-&nbsp;
+| Converge Event Name                                                                               | Google Ads Event Name                   |
+| ------------------------------------------------------------------------------------------------- | --------------------------------------- |
+| [$page_load](/sources/converge-spec#page-load)                                                    | `PageView`                              |
+| [Viewed Product](/sources/converge-spec#viewed-product)                                           | `ViewContent`                           |
+| [Viewed Collection](/sources/converge-spec#viewed-collection)                                     | `ViewContent`                           |
+| [Added To Cart](/sources/converge-spec#added-to-cart)                                             | `AddToCart`                             |
+| [Started Checkout](/sources/converge-spec#started-checkout)                                       | `InitiateCheckout`                      |
+| [Added Payment Info](/sources/converge-spec#added-payment-info)                                   | `AddPaymentInfo`                        |
+| [Placed Order](/sources/converge-spec#placed-order)                                               | `Purchase`                              |
+| [Started Subscription](/sources/converge-spec#started-subscription)                               | `Subscribe`                             |
+| [Placed Recurring Subscription Order](/sources/converge-spec#placed-recurring-subscription-order) | `RecurringSubscriptionPaymentSucceeded` |
+| [Cancelled Subscription](/sources/converge-spec#cancelled-subscription)                           | `CancelSubscription`                    |
