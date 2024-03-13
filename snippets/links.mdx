@@ -1,5 +1,4 @@
 export const OutboundLink = ({ linkText, linkTarget }) => {
-
   return (
     <a target="_blank" href={linkTarget} > {linkText} 
     <div className="inline h-3 w-3 fill-gray-500 dark:fill-gray-100 text-gray-500 dark:text-gray-300 ml-1 mr-1">
@@ -14,5 +13,22 @@ export const OutboundLink = ({ linkText, linkTarget }) => {
     </div>
     </a>
   );
-
 };
+
+export const DownloadLink = ({ linkText, linkTarget }) => {
+  return (
+    <a target="_blank" href={linkTarget} download> {linkText} 
+    <div className="inline h-3 w-3 fill-gray-500 dark:fill-gray-100 text-gray-500 dark:text-gray-300 ml-1 mr-1">
+      <svg
+        className="inline w-3 h-3 bg-gray-500 dark:bg-gray-300 -mt-1"
+        style={{
+          maskImage: `url('https://mintlify.b-cdn.net/v6.5.1/solid/download.svg')`,
+          maskRepeat: "no-repeat",
+          maskPosition: "center center"
+        }}
+      ></svg> 
+    </div>
+    </a>
+  );
+};
+
