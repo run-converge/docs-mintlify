@@ -14,28 +14,31 @@ import { Icon } from '/snippets/icons.mdx';
 2. Choose your relevant Google Cloud Project from the top bar. If you do not have a Google Cloud Project yet, you can create one following the instructions [here](https://developers.google.com/workspace/guides/create-project).
 3. From the top search bar, search for `bigquery` and pick the **BigQuery** service.
    &nbsp;
-
+   <Frame>
    ![bq-1](/images/connections/bigquery/create_bigq_table_1.png)
+   </Frame>
 
 4. In the BigQuery Explorer, click on **Add**.
    &nbsp;
-
+   <Frame>
    ![bq-2](/images/connections/bigquery/create_bigq_table_2.png)
+   </Frame>
 
 5. From the side-pane, choose **Google Cloud Storage**, this will open the _Create table_ modal.
    &nbsp;
-
+   <Frame>
    ![bq-3](/images/connections/bigquery/create_bigq_table_3.png)
+   </Frame>
 
 6. In the _Create table_ modal, choose `Empty table` as a Source. Create a new _Data set_ and call it `converge_data`, in the _Table_-field choose a name for your table, e.g. `events`.
    &nbsp;
-
+   <Frame>
    ![bq-4](/images/connections/bigquery/create_bigq_table_4.png)
-
+    </Frame>
 7. In the Schema section, flip the switch to **Edit as text** and paste the schema below. Click on **Create Table** after.
-
+   <Frame>
    ![bq-5](/images/connections/bigquery/create_bigq_table_5.png)
-
+    </Frame>
    <Accordion icon="code" title="Schema" >
 
    ```json JSON
@@ -148,43 +151,51 @@ Great, now you have a table for your Converge Events, follow the guide below to 
 
 1. First thing we need to do in Google Cloud is setting up a service account. Start by going to the sidebar menu and choosing _IAM and admin_ > _Service accounts_.
    &nbsp;
-
+   <Frame>
    ![bq-s-1](/images/connections/bigquery/bigq_service_1.png)
+   </Frame>
 
 2. Click on **Create Service Account**.
    &nbsp;
-
+   <Frame>
    ![bq-s-2](/images/connections/bigquery/bigq_service_2.png)
+   </Frame>
 
 3. Fill in service account name, e.g. `converge-bigq-account` and click on **Create and continue**.
    &nbsp;
-
+   <Frame>
    ![bq-s-3](/images/connections/bigquery/bigq_service_3.png)
+   </Frame>
 
 4. Under _Grant this service account access to the project_, choose the **BigQuery Data Owner** scope and click on **Done**.
    &nbsp;
-
+   <Frame>
    ![bq-s-4](/images/connections/bigquery/bigq_service_4.png)
+   </Frame>
 
 5. Pick your newly created service account from the list of Service Accounts and choose **Manage keys**.
    &nbsp;
-
+   <Frame>
    ![bq-s-5](/images/connections/bigquery/bigq_service_5.png)
+   </Frame>
 
 6. Click on **Add Key** and **Create new key**. In the popup choose **JSON** and click on **Create**. This will download a file that ends with `.json`.
    &nbsp;
-
+   <Frame>
    ![bq-s-6](/images/connections/bigquery/bigq_service_6.png)
+   </Frame>
 
 7. Open your Converge Dashboard at [app.runconverge.com](https://app.runconverge.com) and navigate to the _Connections_ Tab. Click on **Create New Connection**.
    &nbsp;
-
+   <Frame>
    ![bq-s-7](/images/connections/bigquery/bigq_service_7.png)
+   </Frame>
 
 8. Give your connection a name, choose _BigQuery_ from the app list. Drop your `.json` key file in here and fill in the `Dataset ID` and `Table ID` you created as per above. Then click on "Create Connection".
    &nbsp;
-
+   <Frame>
    ![bq-s-8](/images/connections/bigquery/bigq_service_8.png)
+   </Frame>
 
 9. Done 🎉.
 </Accordion> 
