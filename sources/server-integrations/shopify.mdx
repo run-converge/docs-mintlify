@@ -3,6 +3,8 @@ title: "Shopify"
 description: "Connect your Shopify store backend to Converge"
 ---
 
+import { OutboundLink } from "/snippets/links.mdx"
+
 ## Installation Instructions
 
 <AccordionGroup>
@@ -47,6 +49,27 @@ description: "Connect your Shopify store backend to Converge"
 
 ---
 
+## Post-Purchase Upsells
+
+Many Shopify stores use post-purchase upsells such as <OutboundLink linkText="Zipify" linkUrl="https://zipify.com/apps/ocu/"/>.
+After placing an order, the customer will be prompted to add a new item to the order. 
+
+If the customer accepts the upsell, **the original order will be modified by the upsell app**.
+For this reason, the only way to track these post-purchase upsells reliably is server-side (as the order is modified server-side).
+
+The Shopify Server Integration supports upsell tracking by introducing an optional delay in the integration settings. 
+If you turn on this delay, Converge will wait 10 minutes for the upsell to come in before forwarding it to destinations. 
+
+You can turn this option on in the configuration of the integration:
+
+<Frame>
+![upsell app intro](/images/sources/shopify/shopify-upsell-0.png)
+</Frame>
+
+<Note> This will only work with Connections that support server-side events. Client-side connections will not track the upsell. </Note>
+
+---
+
 ## Event Spec
 
 This integration auto-tracks the following events on the server with all properties available according to the [Converge Event Spec](/sources/converge-spec).
@@ -54,3 +77,5 @@ This integration auto-tracks the following events on the server with all propert
 | Event Name                                          | Event Description                |
 | --------------------------------------------------- | -------------------------------- |
 | [Placed Order](/sources/converge-spec#placed-order) | When a customer places an order. |
+
+
