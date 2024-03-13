@@ -2,6 +2,7 @@
 title: "Filters"
 description: "Filter out events in your Connections"
 ---
+import { OutboundLink } from "/snippets/links.mdx"
 
 ## Overview
 
@@ -24,6 +25,35 @@ Converge allows you to filter out events granularly based on their event propert
 6. Click on **Select Property** and choose the property on which you want to filter.
 7. Once you are happy with your rule, click **Save**.
     ![pick filters](/images/connections/filters/filters-0.png)
+</Accordion>
+
+#### Examples
+
+<Accordion title="Filtering out subscription orders" icon="calendar-circle-minus">
+Subscription brands typically want to filter out recurring purchases when forwarding to ad platforms.
+
+To achieve this, you can set up a Filter on the `Placed Order`-event on a per-connection basis. 
+
+<Steps>
+<Step title="Find a property and property value that defines a recurring subscription order">
+ 1. Navigate to the <OutboundLink linkText="Source Log" linkTarget="https://learn.runconverge.com/sources/monitoring#source-logs"/> and filter on the `Placed Order`-event. 
+ 
+ 2. Check a few `Placed Order`-events by clicking on them to see all of their properties, **find a property and property value that uniquely define a subscription purchase**.
+
+    <Note> 
+    If you are using the [Shopify Server Integration](/sources/server-integrations/shopify.mdx) in a standard setup, then the following property and property value pair defines a recurring purchase: 
+
+    `source_name` -> `subscription_contract`
+    
+    </Note>
+</Step>
+<Step title="Set up your filter accordingly">
+3. Set up a filter for the `Placed Order` event as follows. Replace the property and property value by the ones you identified in Step 2.
+    ![subscription filters](/images/connections/filters/filters-2.png)
+
+
+</Step>
+</Steps>
 </Accordion>
 
 
@@ -51,3 +81,5 @@ You might want to set up different GA4 Connections for each store for example.
 You can use Source Filters to filter out the appropriate Sources per Connection.
 
 As an example, if you have a US and CA store and you are creating a GA4 Connection for the US Store -- you will want to configure your US Sources to be the only ones streaming into this Connection.
+
+
