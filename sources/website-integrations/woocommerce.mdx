@@ -7,6 +7,8 @@ The WooCommerce Website Integration consists of a WooCommerce plugin that tracks
 
 ---
 
+import { DownloadLink } from "/snippets/links.mdx";
+
 ## Installation Instructions
 
 The Converge Website installation for a WooCommerce store consists of:
@@ -23,8 +25,8 @@ The Converge Website installation for a WooCommerce store consists of:
         3. Name your pixel: e.g. `{Storename} Storefront`
     </Step>
     <Step title="Install the WooCommerce Plugin">
-        4. Download the WooCommerce Plugin by clicking on the folllowing link.
-          <a href="https://static.runconverge.com/converge_woocommerce.zip" download>Download Plugin</a>
+        4. Download the WooCommerce Plugin by clicking on the folllowing link: <DownloadLink linkTarget="https://static.runconverge.com/converge_woocommerce.zip" linkText="Download Plugin"/>
+          
         5. In the Wordpress admin dashboard, navigate to **Plugins** in the sidebar and click on **Upload Plugin**.
         6. Choose the .zip file that you just downloaded as the file to upload.
         7. Click on **Install Plugin** and after that on **Activate Plugin** 
@@ -57,12 +59,4 @@ This integration auto-tracks the following events on the browser with all proper
 | [Viewed Product](/sources/converge-spec#viewed-product)     | When a customer views a product.                | Storefront  |
 | [Added To Cart](/sources/converge-spec#added-to-cart)       | When a customer adds an item to cart            | Checkout    |
 | [Started Checkout](/sources/converge-spec#started-checkout) | When a customer initiates the checkout process. | Checkout    |
-
-
-
-
-
-
-
-
 
