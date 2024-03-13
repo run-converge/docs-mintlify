@@ -27,7 +27,30 @@ To send data from Converge to TikTok, check out the [TikTok Ads Connection](/con
 
 
 </Accordion>
+
+<Accordion icon="crosshairs" title="Set up your UTM Tracking Parameters">
+
+
+#### Instructions 
+
+1. Navigate to your TikTok Ads Manager.
+
+2. **Navigate to the ad** which you will set up tracking as follows: `Campaign` > `Ad` > `Select an Ad` > `Destination page` > `URL`.
+
+3. The following snippet should be appended at the end of the URL of your ad:
+   ```
+   ?cvg_source=tiktok&cvg_adid=__CID__&cvg_cid=__CAMPAIGN_ID__
+   ```
+   
+   ![TikTok URL Params](/images/ad-platforms/tiktok/tiktok-url-params-0.png)
+
+
+4. Repeat Step 1-3 for **every ad you run** (including new ads that you will run in the future).
+
+
+</Accordion>
 </AccordionGroup> 
+
 
 ---
 ## Supported Metrics
