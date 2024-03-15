@@ -11,7 +11,7 @@ import { OutboundLink } from '/snippets/links.mdx';
 <AccordionGroup >  
 <Accordion icon="list" title="Installation Instructions">
 
-1. Navigate to your GA4 Property and choose **Admin > Data collection and modification > Data streams**.
+1. Navigate to your GA4 Property and choose <IconText name="gear" text="Admin"/> > **Data collection and modification** > **Data streams**.
 
 2. If you do not have a data stream yet, you should click **Add stream** > **Web**. If you do have a data stream already, you should click on the datastream.
    &nbsp;
@@ -47,7 +47,7 @@ import { OutboundLink } from '/snippets/links.mdx';
 
 The following options can be configured in the Connection Configuration.
 
-### Connection Type
+#### Connection Type
 
 How Converge forwards events to Google Analytics 4. 
 Options include:
@@ -55,11 +55,13 @@ Options include:
 - **Server-side**: loads the `gtag` and sends every Converge event (except for `$page_load`) server-side through the Measurement Protocol. 
 - **Server-side GTM (Recommended)**: loads the `gtag` in a server-side GTM container, sends server-side conversions through the Measurement Protocol. 
 
-### Custom Events
+#### Custom Events
 
 See a deep-dive explanation as to how you can set up Custom Events for GA4 [here](/connections/custom-events#set-up-custom-events-for-your-connections).
 
-### Custom Event Properties
+#### Custom Event Properties
+
+Converge allows you to map properties that were tracked on a source from Converge into a custom property in Google Analytics 4.
 
 <AccordionGroup>
 <Accordion title="Forward a custom event property to GA4">
@@ -67,10 +69,22 @@ See a deep-dive explanation as to how you can set up Custom Events for GA4 [here
  <Step title="Set up the forwarding rule in Converge">
     1. Navigate to the <OutboundLink linkText="Connections Tab in Converge" linkTarget="https://app.runconverge.com/connections" />, and click on the GA4 Connection.
     2. Navigate to the **Configuration** > **Advanced** sub-tab, and click on **Edit Configuration**.
-    3. Click on  <IconText name="plus" text="Add Event Property" iconLocation="before"/ > 
+    3. Click on  <IconText name="plus" text="Add Event Property" /> 
+    4. Choose the mapping from the Converge property to the desired GA4 property.
+
+       <Frame>
+       ![custom event property map](/images/connections/ga4/custom-event-props-0.png)
+       </Frame>
  </Step>
- <Step title="Set up custom dimension in GA4">
-   ipsum
+ <Step title="Set up a custom definition in GA4">
+   5. Navigate to your Google Analytics Property and click on <IconText name="gear" text="Admin" /> > <br/> <IconText name="shapes" text="Custom definitions" iconType="regular"/>
+   6. Click on **Create custom dimension**.
+   7. Fill in your desired **Dimension name** (this is how your dimension/property will show up in GA4), choose **Event** as your Scope. Optionally add a description and choose the mapped property that you set up in step 4 to fill in **Event parameter**.
+
+       <Frame>
+       ![custom event property map](/images/connections/ga4/custom-event-props-1.png)
+       </Frame>
+   8. Press **Save**
  </Step>
 </Steps>
 </Accordion>
