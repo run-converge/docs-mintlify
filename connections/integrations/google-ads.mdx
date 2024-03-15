@@ -6,6 +6,16 @@ description: "An introduction to the Google Ads Destination"
 import { Icon, IconText } from '/snippets/icons.mdx';
 import { OutboundLink } from '/snippets/links.mdx';
 
+
+## Overview
+Connection Type: <IconText text="Client-side" name="browser" iconType="duotone" iconLocation="after"/> 
+
+- Includes support for <OutboundLink linkText="Google Enhanced Conversions" linkTarget="https://support.google.com/google-ads/answer/9888656"/> 
+- Includes support for the <OutboundLink linkText="Google Dynamic Remarketing" linkTarget="https://support.google.com/tagmanager/answer/6106009"/>
+- Includes support for <OutboundLink linkText="Consent Mode V2" linkTarget="https://developers.google.com/tag-platform/security/guides/consent?sjid=5329592855679349930-EU&consentmode=advanced#upgrade-consent-v2"/>
+
+---
+
 ## Installation Instructions
 
 <AccordionGroup >
@@ -55,6 +65,7 @@ import { OutboundLink } from '/snippets/links.mdx';
 
 10. If you only need the Purchase conversion, then you are done 🎉. If you'd like to add other conversions you can follow the steps below to add more conversions.
 </Accordion>
+<Note> This is a client-side connection, meaning that you will need to be tracking all events client-side (including `Placed Order`) for this connection to work properly. </Note>
 
 <Accordion title="Set up additional conversions" icon="circle-plus">
 
@@ -109,17 +120,9 @@ You can set up conversions for each of the Google Ads events in the [Event Mappi
 10. Click **Save**.
  
 </Accordion>
+
 <Warning> Once you have installed your Converge Connection, you should **pause or remove all existing Google Ads tracking**. Leaving these on will lead to duplicate tracking.  </Warning>
 </AccordionGroup>
-
-
----
-
-
-## Integration details
-- Includes support for <OutboundLink linkText="Google Enhanced Conversions" linkTarget="https://support.google.com/google-ads/answer/9888656"/> 
-- Includes support for the <OutboundLink linkText="Google Dynamic Remarketing" linkTarget="https://support.google.com/tagmanager/answer/6106009"/>
-- Includes support for <OutboundLink linkText="Consent Mode V2" linkTarget="https://developers.google.com/tag-platform/security/guides/consent?sjid=5329592855679349930-EU&consentmode=advanced#upgrade-consent-v2"/>
 
 ---
 
