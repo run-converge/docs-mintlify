@@ -3,7 +3,7 @@ title: "Google Analytics 4"
 description: "Setting up a connection with GA4"
 ---
 
-import { Icon } from '/snippets/icons.mdx';
+import { Icon, IconText } from '/snippets/icons.mdx';
 import { OutboundLink } from '/snippets/links.mdx';
 
 ## Installation Instructions
@@ -28,7 +28,7 @@ import { OutboundLink } from '/snippets/links.mdx';
    &nbsp;
 
 
-6. In your Converge dashboard, under Connections, click **Create New Connection** and fill in your **Measurement ID** and **API Secret**. After that click **Create Connection**.
+6. In your Converge dashboard, under Connections, click <IconText name="circle-plus" text="Create New Connection" iconLocation="before" iconType="regular"/ >  and fill in your **Measurement ID** and **API Secret**. After that click **Create Connection**.
    &nbsp;
 
 
@@ -54,6 +54,27 @@ Options include:
 - **Client-side**: loads the `gtag` and sends every Converge event client-side.
 - **Server-side**: loads the `gtag` and sends every Converge event (except for `$page_load`) server-side through the Measurement Protocol. 
 - **Server-side GTM (Recommended)**: loads the `gtag` in a server-side GTM container, sends server-side conversions through the Measurement Protocol. 
+
+### Custom Events
+
+See a deep-dive explanation as to how you can set up Custom Events for GA4 [here](/connections/custom-events#set-up-custom-events-for-your-connections).
+
+### Custom Event Properties
+
+<AccordionGroup>
+<Accordion title="Forward a custom event property to GA4">
+<Steps>
+ <Step title="Set up the forwarding rule in Converge">
+    1. Navigate to the <OutboundLink linkText="Connections Tab in Converge" linkTarget="https://app.runconverge.com/connections" />, and click on the GA4 Connection.
+    2. Navigate to the **Configuration** > **Advanced** sub-tab, and click on **Edit Configuration**.
+    3. Click on  <IconText name="plus" text="Add Event Property" iconLocation="before"/ > 
+ </Step>
+ <Step title="Set up custom dimension in GA4">
+   ipsum
+ </Step>
+</Steps>
+</Accordion>
+</AccordionGroup>
 ---
 
 ## Converge functionality
@@ -96,5 +117,4 @@ Converge automatically maps the following events from the [Converge Event Spec](
 | [Placed Order](/sources/converge-spec#placed-order)               | `purchase`           |
 | [Started Subscription](/sources/converge-spec#start-subscription) | `start_subscription` |
 | [Received Refund ](/sources/converge-spec#received-refund)        | `refund`             |
-
 
