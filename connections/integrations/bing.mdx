@@ -6,9 +6,20 @@ description: "An introduction to the Bing Ads Destination"
 import { Icon, IconText } from '/snippets/icons.mdx';
 import { OutboundLink } from '/snippets/links.mdx';
 
+
+## Overview
+
+Connection Type: <IconText text="Client-side" name="browser" iconType="duotone" iconLocation="after"/> 
+
+- Includes support for <OutboundLink linkText="Bing Enhanced Conversions" linkTarget="https://help.ads.microsoft.com/apex/index/3/en/60178"/>
+- Includes support for  <OutboundLink linkText="Bing Dynamic Remarketing" linkTarget="https://about.ads.microsoft.com/en-gb/solutions/audience-targeting/dynamic-remarketing"/> 
+
+---
+
 ## Installation Instructions
 
 <AccordionGroup >
+
 <Accordion icon="list" title="Installation Instructions">
 
 1. Navigate to your Microsoft Advertising Dashboards and choose **Tools > UET Tag**.
@@ -31,6 +42,8 @@ import { OutboundLink } from '/snippets/links.mdx';
    &nbsp;
 
 </Accordion>
+
+<Note> This is a client-side only connection, meaning that you will need to be tracking all events client-side (including `Placed Order`) for this connection to work properly. </Note>
 
 <Accordion icon="circle-dollar-to-slot" title="Create your Conversion goals">
 
@@ -76,12 +89,6 @@ import { OutboundLink } from '/snippets/links.mdx';
 </Accordion>
 <Warning> Once you have installed your Converge Connection, you should **pause or remove all existing Bing Ads tracking**. Leaving these on will lead to duplicate tracking.  </Warning>
 </AccordionGroup>
----
-
-## Integration details
-- Includes support for <OutboundLink linkText="Bing Enhanced Conversions" linkTarget="https://help.ads.microsoft.com/apex/index/3/en/60178"/>
-- Includes support for  <OutboundLink linkText="Bing Dynamic Remarketing" linkTarget="https://about.ads.microsoft.com/en-gb/solutions/audience-targeting/dynamic-remarketing"/> 
-
 ---
 
 ## Converge functionality
