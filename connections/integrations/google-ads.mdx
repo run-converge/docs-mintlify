@@ -41,7 +41,7 @@ import { OutboundLink } from '/snippets/links.mdx';
    </Frame>
 
 [//]: # (cspell:disable-next-line)
-8. Copy the **Conversion ID**, in this example the Tag ID is `AW-11288325266`; the Conversion ID is `5CTkCNPJvIcZEJLZ2IYq`. You will need both for the Converge connection.
+8. Copy the **Tag ID** and the **Conversion ID**, in this example the Tag ID is `AW-11288325266`; the Conversion ID is `5CTkCNPJvIcZEJLZ2IYq`. You will need both for the Converge connection.
    &nbsp;
    <Frame>
    ![gads-4](/images/connections/google-ads/google-ads-connection-4.png)
@@ -53,11 +53,68 @@ import { OutboundLink } from '/snippets/links.mdx';
    ![gads-5](/images/connections/google-ads/google-ads-connection-5.png)
    </Frame>
 
-10. If you only need the Purchase conversion, then you are done 🎉. If you'd like to add other conversions you can follow the steps above to add more conversions to the connection.
+10. If you only need the Purchase conversion, then you are done 🎉. If you'd like to add other conversions you can follow the steps below to add more conversions.
+</Accordion>
+
+<Accordion title="Set up additional conversions" icon="circle-plus">
+
+
+<Info> 
+This section is only relevant if you want conversions beyond the `Purchase`-conversion you set up under Installation Instructions. 
+
+You can set up conversions for each of the Google Ads events in the [Event Mapping](#event-mapping)
+</Info>
+1. Navigate to your Google Ads Dashboards and choose **Tools and settings > Conversions**.
+   <Frame>
+   ![gads-1](/images/connections/google-ads/google-ads-connection-1.png)
+   </Frame>
+
+2. Choose **New conversion action** and then choose **Website**.
+   &nbsp;
+
+3. Fill in your URL and choose **Scan**.
+   &nbsp;
+
+4. Choose **Add a conversion manually**.
+   &nbsp;
+
+5. Choose the specific conversion type for the conversion you'd like to add, choose different values for each conversions and track **Every**.
+   &nbsp;
+   <Frame>
+   ![gads-2](/images/connections/google-ads/google-ads-connection-2.png)
+   </Frame>
+
+6. Press **Save and continue**.
+   &nbsp;
+
+7. Click on **See event snippet**.
+   &nbsp;
+   <Frame>
+   ![gads-3](/images/connections/google-ads/google-ads-connection-3.png)
+   </Frame>
+
+[//]: # (cspell:disable-next-line)
+8. Copy the Conversion ID, in this example it is `5CTkCNPJvIcZEJLZ2IYq`. 
+   &nbsp;
+   <Frame>
+   ![gads-4](/images/connections/google-ads/google-ads-connection-4.png)
+   </Frame>
+
+9. In your Converge dashboard, under Connections, click on **Configuration** > **Basic** > **Edit Configuration** . After that add the event you want to send to Google Ads and fill in the **Conversion ID**.
+   &nbsp;
+   <Frame>
+   ![gads-5](/images/connections/google-ads/google-ads-connection-5.png)
+   </Frame>
+
+10. Click **Save**.
+ 
 </Accordion>
 <Warning> Once you have installed your Converge Connection, you should **pause or remove all existing Google Ads tracking**. Leaving these on will lead to duplicate tracking.  </Warning>
 </AccordionGroup>
+
+
 ---
+
 
 ## Integration details
 - Includes support for <OutboundLink linkText="Google Enhanced Conversions" linkTarget="https://support.google.com/google-ads/answer/9888656"/> 
