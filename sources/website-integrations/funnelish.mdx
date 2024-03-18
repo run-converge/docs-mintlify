@@ -1,0 +1,212 @@
+---
+title: "Funnelish"
+description: "Install the Converge Pixel on your Funnelish funnels"
+---
+
+Converge supports tracking Storefront and Checkout events on Funnelish natively.
+
+---
+
+import { IconText } from '/snippets/icons.mdx';
+
+## Installation Instructions
+
+The Converge Website installation for a Funnelish storefront consists of:
+
+  
+  <AccordionGroup>
+
+    <Accordion title="Install the Funnelish Webhook Connection" icon="server" >
+
+    The Funnelish webhook connection allows Converge to stitch the Funnelish orders to the browser sessions.
+
+
+  <Steps>
+    <Step title="Create a new Webhook Source in Converge">
+        1. In Converge, navigate to **Sources** and click on <IconText name="circle-plus" text="Create New Source" iconLocation="before" iconType="regular"/ >
+        2. Pick _Server-side_ from the modal
+        3. Name your source: e.g. `{Storename} Funnelish Storefront` and pick the **Funnelish**-app from the dropdown.
+            <Frame>
+            ![funnelish-2](/images/sources/funnelish/funnelish-2.png)
+            </Frame>
+        4. If you already have a Shopify Source and Funnelish syncs all of the orders to Shopify, then you should **not** turn on the _Track Funnelish orders as Placed Order conversions_. If you will be using Funnelish as your order backend instead, then you should turn on the switch.
+        5. Click on **Create Source**.
+        6. Copy the link that is displayed under _Postback Endpoint_, you will need it later.
+            <Frame>
+            ![funnelish-4](/images/sources/funnelish/funnelish-3.png)
+            </Frame>
+        </Step>
+        <Step title="Create a Funnelish Automation to send events to the webhook">
+
+        7. Open your Funnelish dashboard, and click on **Automations** in the top bar and then **Create a new automation**.
+            <Frame>
+            ![funnelish-4](/images/sources/funnelish/funnelish-4.png)
+            </Frame>
+
+        8. Choose **Start from scratch** in the modal that pops up and click **Create**.
+            <Frame>
+            ![funnelish-5](/images/sources/funnelish/funnelish-5.png)
+            </Frame>
+
+        9. Give your automation the name _Converge_ and click on **New trigger**.
+            <Frame>
+            ![funnelish-6](/images/sources/funnelish/funnelish-6.png)
+            </Frame>
+        10. Choose **On purchase** under triggers and click on **Create**.
+            <Frame>
+            ![funnelish-7](/images/sources/funnelish/funnelish-7.png)
+            </Frame>
+        11. Choose **Add an action**.
+            <Frame>
+             ![funnelish-8](/images/sources/funnelish/funnelish-8.png)
+             </Frame>
+        12. Choose **Add new webhook** and fill in the webhook from step 3.
+            <Frame>
+            ![funnelish-9](/images/sources/funnelish/funnelish-9.png)
+            </Frame>
+        13. Activate the Funnel in the top right corner.
+            <Frame>
+            ![funnelish-11](/images/sources/funnelish/funnelish-11.png)
+            </Frame>
+        
+    </Step>
+</Steps>
+   </Accordion >
+   <Warning> Make sure the Facebook App in Funnelish is turned off completely, as you will suffer from duplicate tracking if this is not the case. Make sure the Facebook app is turned off both on a general level, **and** on a per-funnel basis. </Warning>
+<Accordion title="Install the Converge Pixel on your Funnelish Funnel" icon="browser">
+    <Note> You need to do this for **every new and existing funnel you set up**. </Note>
+    
+    1. Navigate to your new funnel in **Funnels** and click on the Funnel you want to install Converge tracking for. When in the funnel, click on **Funnel settings**.
+        <Frame>
+        ![funnelish-12](/images/sources/funnelish/funnelish-12.png)
+        </Frame>
+
+    2. Navigate to **Custom codes** and click on **New tracking code**.
+
+    3. Give the new tracking code a name you can remember and turn _Lazy load_ **off**.
+        <Frame>
+        ![funnelish-13](/images/sources/funnelish/funnelish-13.png)
+        </Frame>
+
+    4. Now you will want to copy paste the script below.
+
+       
+
+        <Accordion title="Click to see tracking script" icon="code"> 
+            ```html
+        <script
+            src="https://static.runconverge.com/pixels/YOUR-TRACKING-TOKEN.js"
+            async
+        ></script>
+        <script>
+            window.cvg ||
+            ((c = window.cvg =
+                function () {
+                c.process ? c.process.apply(c, arguments) : c.queue.push(arguments);
+                }),
+            (c.queue = []));
+            cvg({ method: "track", eventName: "$page_load" });
+        </script>
+
+        <script>
+            let ViewContentURLIdentifier = "YOUR-VIEWCONTENT-IDENTIFIER";
+            let AddToCartURLIdentifier = "YOUR-ADDTOCART-IDENTIFIER";
+            let InitiateCheckoutURLIdentifier = "YOUR-CHECKOUT-IDENTIFIER";
+
+            if (window.location.href.includes(AddToCartURLIdentifier)) {
+            cvg({
+                method: "track",
+                eventName: "Added To Cart",
+                properties: {
+                product_id: "1",
+                variant_id: "1",
+                name: "Product Name",
+                variant_name: "Variant Name",
+                price: 0,
+                currency: "EUR",
+                quantity: 1,
+                },
+            });
+            }
+
+            if (window.location.href.includes(ViewContentURLIdentifier)) {
+            cvg({
+                method: "track",
+                eventName: "Added To Cart",
+                properties: {
+                product_id: "1",
+                variant_id: "1",
+                name: "Product Name",
+                variant_name: "Variant Name",
+                price: 0,
+                currency: "EUR",
+                },
+            });
+            }
+
+            // InitiateCheckout and Added To Cart can be on same URL
+            if (window.location.href.includes(InitiateCheckoutURLIdentifier)) {
+            cvg({ method: "track", eventName: "Started Checkout" });
+            }
+        </script>
+        ```
+
+        </Accordion>
+         <Note> You will need to do a few modifications described in step 5-7 to the script. </Note>
+
+        
+
+        5. Navigate to your Converge dashboard and find the pixel you are using for Funnelish. Click on the pixel and copy the tracking token as per the screenshot below.
+        <Frame>
+        ![funnelish-14](/images/sources/funnelish/funnelish-14.png)
+        </Frame>
+
+        6. Replace the `YOUR-TRACKING-TOKEN` field in the script pasted with your personal Converge token.
+        <Frame>
+        ![funnelish-15](/images/sources/funnelish/funnelish-15.png)
+        </Frame>
+
+        7. Replace the `YOUR-ADDTOCART-IDENTIFIER` and `YOUR-CHECKOUT-IDENTIFIER` values with values that uniquely identify a URL in the funnel where you want to trigger this event.
+        
+            <Info> As an example, if you want to trigger an AddToCart event on the `myfunnelishstore.com/cart` page, then you will want to replace `YOUR-ADDTOCART-IDENTIFIER` with `cart`. **These identifiers might be different values for different funnels**, so doublecheck when implementing a new funnel.</Info>
+
+
+        8. Click on **Create code** and on **Save changes**.
+        <Frame>
+        ![funnelish-16](/images/sources/funnelish/funnelish-17.png)
+        </Frame>
+
+   </Accordion>
+   </AccordionGroup>
+    
+    
+---
+
+## Event Spec
+
+This integration auto-tracks the following events on the browser with all properties available according to the [Converge Event Spec](/sources/converge-spec).
+
+| Event Name                                                  | Event Description                               | Integration |
+| ----------------------------------------------------------- | ----------------------------------------------- | ----------- |
+| [PageView](/sources/converge-spec#page-view)                | When a customer views a page.                   | Pixel       |
+| [Viewed Product](/sources/converge-spec#viewed-product)     | When a customer views a product.                | Pixel       |
+| [Added To Cart](/sources/converge-spec#added-to-cart)       | When a customer adds an item to cart            | Pixel       |
+| [Started Checkout](/sources/converge-spec#started-checkout) | When a customer initiates the checkout process. | Pixel       |
+| [Placed Order](/sources/converge-spec#placed-order)         | When a customer places an order                 | Webhook     |
+
+This integration also auto-tracks some additional events that are not part of the Converge Event Spec.
+
+| Event Name             | Event Description                                                          | Integration |
+| ---------------------- | -------------------------------------------------------------------------- | ----------- |
+| Placed Funnelish Order | Event that stitches Funnelish website sessions with Shopify backend orders. | Webhook     |
+
+
+
+
+
+
+
+
+
+
+

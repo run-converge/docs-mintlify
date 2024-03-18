@@ -30,16 +30,31 @@
   ],
   "navigation": [
     {
-      "group": "Getting started",
+      "group": "Overview",
       "pages": [
-        "getting-started/what-is-Converge",
+        "getting-started/introduction",
         "getting-started/quickstart"
+      ]
+    },
+    {
+      "group": "Core Concepts",
+      "pages": [
+        "core-concepts/overview",
+        "core-concepts/serverside-tracking",
+        "core-concepts/reidentification"
       ]
     },
     {
       "group": "Sources",
       "pages": [
-        "sources/source-concepts",
+        {
+          "group": "Concepts",
+          "pages": [
+            "sources/source-concepts/profile-properties",
+            "sources/source-concepts/aliases",
+            "sources/source-concepts/deduplication"
+          ]
+        },
         "sources/converge-spec",
         "sources/extending-the-spec",
         {
@@ -51,7 +66,8 @@
                 "sources/website-integrations/converge-pixel",
                 "sources/website-integrations/shopify",
                 "sources/website-integrations/woocommerce",
-                "sources/website-integrations/magento"
+                "sources/website-integrations/magento",
+                "sources/website-integrations/funnelish"
               ]
             },
             {
