@@ -30,31 +30,16 @@
   ],
   "navigation": [
     {
-      "group": "Overview",
+      "group": "Getting started",
       "pages": [
-        "getting-started/introduction",
+        "getting-started/what-is-Converge",
         "getting-started/quickstart"
-      ]
-    },
-    {
-      "group": "Core Concepts",
-      "pages": [
-        "core-concepts/overview",
-        "core-concepts/serverside-tracking",
-        "core-concepts/reidentification"
       ]
     },
     {
       "group": "Sources",
       "pages": [
-        {
-          "group": "Concepts",
-          "pages": [
-            "sources/source-concepts/profile-properties",
-            "sources/source-concepts/aliases",
-            "sources/source-concepts/deduplication"
-          ]
-        },
+        "sources/source-concepts",
         "sources/converge-spec",
         "sources/extending-the-spec",
         {
