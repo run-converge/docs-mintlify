@@ -5,7 +5,7 @@ description: "Trigger custom events from your Website"
 
 ## Overview
 
-Although Converge will automatically track the essential events in your Website, there are sometimes user actions that you may want to track that are not tracked by default. Custom events allow you to track arbitrary events based on user actions with code changes.
+Although Converge will automatically track the essential events in your Website, there are sometimes user actions that you may want to track that are not tracked by default. Custom events allow you to track arbitrary events based on user actions with no code changes.
 
 ### Set up custom events for a source
 
@@ -28,11 +28,11 @@ Converge allows you to configure custom events for client-side sources.
 
 ### Definitions
 
-- Custom event
+#### Custom event
 
 A custom event is any event you may want to track in the browser that is triggered by a particular user action. For example, you may want to track a `Joined wait list` event when the user clicked a link on your website, or a `Watched welcome video` when the user started watching an embedded video.
 
-- Trigger
+#### Trigger
 
 Triggers are used to define which user actions will fire the events. When a trigger is defined, the Converge pixel will start listening to the specific events. Once a corresponding event has occurred, the custom event will be fired.
 
@@ -44,7 +44,9 @@ A custom event can have one or more triggers configured. If multiple triggers ar
 For example, you may want to fire the same `Subscribed to Newsletter` when another link is pressed. A possible implementation would be to have two separated triggers (one for each link). As soon as any of the links is pressed, the event will be fired. There is no need for the user to perform both actions.
 </Info>
 
-- Conditions
+All the supported triggers are listed in [Trigger types](#trigger-types).
+
+#### Conditions
 
 Conditions are used to limit the effect of individual trigger. When an event corresponding to a trigger is detected, the conditions linked to the trigger will be checked prior to firing the associated custom event.
 
@@ -55,6 +57,14 @@ A trigger can have zero or more conditions configured. If no conditions are pres
 
 For example, you may want to fire a `Subscribed to Newsletter` event when a link containing the text `Subscribed` in the homepage of your website is clicked. A possible implementation would be to have a `All Elements Click` trigger containing two conditions. One for the `Click Text` and another for `Page URL`.
 </Info>
+
+A condition consists of three parts:
+
+- **Condition variable**: a variable to be compared, it can either be globally available (e.g. `Page URL`, `Referrer`, etc) or trigger specific (e.g. `Click Element`, `Video Duration`, etc). All supported values are listed in [Condition variables](#condition-variables).
+
+- **Condition operator**: a condition to be applied to the variable.
+
+- **Condition value**: the value to be compared against the variable.
 
 ## Trigger types
 
@@ -100,7 +110,7 @@ The video trigger can be configured to capture one or multiple events:
 
 - **Ended**: triggers when the video has ended
 
-## Condition variable
+## Condition variables
 
 ### Click conditions
 
@@ -129,7 +139,7 @@ The video trigger can be configured to capture one or multiple events:
 
 ## Condition operators
 
-In addition to common numeric (e.g. **lower than**, **greater than or equal to**, etc) and string operators (**contains**, **starts with**, etc), some condition variables also support some more advanced operators: 
+In addition to common numeric (e.g. **lower than**, **greater than or equal to**, etc) and string operators (e.g. **contains**, **starts with**, etc), some condition variables also support additional more advanced operators: 
 
 - **matches RegEx**, **matches RegEx (ignore case)**, **does not match RegEx**, **does not match RegEx (ignore case)**
 
