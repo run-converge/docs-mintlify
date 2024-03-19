@@ -1,0 +1,146 @@
+---
+title: "Custom Events"
+description: "Trigger custom events from your Website"
+---
+
+## Overview
+
+Although Converge will automatically track the essential events in your Website, there are sometimes user actions that you may want to track that are not tracked by default. Custom events allow you to track arbitrary events based on user actions with code changes.
+
+### Set up custom events for a source
+
+Converge allows you to configure custom events for client-side sources.
+
+<Accordion icon="location-dot" title="How to set up custom events for your Source">
+1. Navigate to the [Sources Tab](https://app.runconverge.com/sources) in your Converge dashboard
+2. Click on the client-side Source for which you want to configure a custom event.
+3. Click on the **Custom events** tab.
+4. Click on **Add custom event** to start configuring a new custom event.
+5. Fill in the **Event name**.
+6. Click on **Add trigger** to start configuring a trigger.
+7. Select the **Trigger type**.
+8. Click on **Add condition** to start configuring a condition.
+9. Select the **Condition variable**, **Condition operation** and **Condition value**.
+10. Repeat the above for every custom event, trigger and condition as needed.
+13. Click on **Save** to persist the custom events.
+    
+</Accordion>
+
+### Definitions
+
+- Custom event
+
+A custom event is any event you may want to track in the browser that is triggered by a particular user action. For example, you may want to track a `Joined wait list` event when the user clicked a link on your website, or a `Watched welcome video` when the user started watching an embedded video.
+
+- Trigger
+
+Triggers are used to define which user actions will fire the events. When a trigger is defined, the Converge pixel will start listening to the specific events. Once a corresponding event has occurred, the custom event will be fired.
+
+For example, you may want to fire a `Subscribed to Newsletter` event when a particular link is clicked. A **All Links Click** trigger may be used to fire the event.
+
+<Info>
+A custom event can have one or more triggers configured. If multiple triggers are present, the custom event will be triggered when **ANY** of the triggers is fired.
+
+For example, you may want to fire the same `Subscribed to Newsletter` when another link is pressed. A possible implementation would be to have two separated triggers (one for each link). As soon as any of the links is pressed, the event will be fired. There is no need for the user to perform both actions.
+</Info>
+
+- Conditions
+
+Conditions are used to limit the effect of individual trigger. When an event corresponding to a trigger is detected, the conditions linked to the trigger will be checked prior to firing the associated custom event.
+
+For example, you may want to fire a `Subscribed to Newsletter` event when a link containing the text `Subscribe` is clicked. If the `All Elements Click` trigger is used without any conditions, the event will be fired as soon as any link is clicked. A condition may be added to limit the trigger to only fire if the clicked text contains the text `Subscribe` for example.
+
+<Info>
+A trigger can have zero or more conditions configured. If no conditions are present, the trigger will fire for any events. If multiple conditions are present, the trigger will only fire when **ALL** conditions are met.
+
+For example, you may want to fire a `Subscribed to Newsletter` event when a link containing the text `Subscribed` in the homepage of your website is clicked. A possible implementation would be to have a `All Elements Click` trigger containing two conditions. One for the `Click Text` and another for `Page URL`.
+</Info>
+
+## Trigger types
+
+### All Elements Click
+
+Tracks clicks on any element (e.g. links, images, buttons, etc) in the page.
+
+<Info>
+If no conditions are applied to this trigger, it will fire for every time a user clicks anything. Make sure to limit the scope of this trigger by being as specific as possible with its conditions, for example by applying filters on `Page URL`, `Click Element`, etc.
+</Info>
+
+### All Links Click
+
+Tracks clicks only on HTML links `<a>` and its descendants. 
+
+<Info>
+If no conditions are applied to this trigger, it will fire every time a user clicks any link. Make sure to limit the scope of this trigger by being as specific as possible with its conditions, for example by applying filters on `Page URL`, `Click Element`, etc.
+</Info>
+
+### Page View
+
+Tracks page view. It's triggered immediately upon page load.
+
+### Timer
+
+Tracks the elapsed time. It can be used to trigger events at regular intervals (e.g. every 5 seconds) or after a delay (e.g. after the user stays in the page for more than 10 seconds).
+
+The timer trigger can be configured with the following settings:
+
+- **Interval**: The interval (in milliseconds) between each trigger.
+
+- **Limit**: The maximum number of times the trigger will fire.
+
+### Video
+
+Tracks interactions with HTML `<video>` elements.
+
+The video trigger can be configured to capture one or multiple events:
+
+- **Play**: triggers when the video begins to play
+
+- **Paused**: triggers when the video is paused
+
+- **Ended**: triggers when the video has ended
+
+## Condition variable
+
+### Click conditions
+
+- **Click Element**: a reference to the DOM element that was clicked.
+- **Click Classes**: the classes attribute of the clicked element as a string.
+- **Click ID**: the id attribute of the clicked element.
+- **Click Target**: the target attribute of the clicked link.
+- **Click URL**: the href attribute of the clicked link.
+- **Click Text**: the text content of the clicked element.
+
+### Pages conditions
+
+- **Page URL**: the full URL of the current page.
+- **Page Hostname**: the hostname part of the URL of the current page.
+- **Page Path**: the path part of the URL of the current page.
+- **Referrer:** the full referrer URL for the current page.
+
+### Video conditions
+
+- **Video Element**: a reference to the DOM `<video>` element that was triggered.
+- **Video URL**: the full URL of the video.
+- **Video Duration**: the duration (in seconds) of the video.
+- **Video Current** Time: the current time (in seconds) of the video when the event occurred.
+- **Video Percent**: the percentage (as an integer between 0 and 100) of the video when the event occurred.
+- **Video Status**: the video status (`playing`, `paused`, `ended` or `seeking`) of the video when the event occurred.
+
+## Condition operators
+
+In addition to common numeric (e.g. **lower than**, **greater than or equal to**, etc) and string operators (**contains**, **starts with**, etc), some condition variables also support some more advanced operators: 
+
+- **matches RegEx**, **matches RegEx (ignore case)**, **does not match RegEx**, **does not match RegEx (ignore case)**
+
+The **matches RegEx** and its related operators allow you to use [regular expressions](https://en.wikipedia.org/wiki/Regular_expression) for matching text patterns.
+
+- **matches CSS selector**, **does not match CSS selector**
+
+The **matches CSS selector** and its related operator allows you to use [css selectors](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Selectors) to filter HTML elements in the page. When used in combination with supported variables (e.g. **Click Element**, **Video Element**) it enables you to target specific HTML elements.
+
+For example, if you want to target a particular `<a>` element that has a particular class that is an immediate child of an element with a known id, you could use:
+
+```
+#some-known-id > a.some-class
+```

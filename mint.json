@@ -67,7 +67,8 @@
             }
           ]
         },
-        "sources/monitoring"
+        "sources/monitoring",
+        "sources/custom-events"
       ]
     },
     {
