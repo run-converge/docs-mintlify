@@ -1,0 +1,68 @@
+---
+title: Overview Report
+description: "Build your own custom executive dashboard"
+---
+
+import {IconText, Icon} from '/snippets/icons.mdx'
+
+<Frame>
+![overview tab](/images/attribution/overview-1.png)
+</Frame>
+
+## Using the Overview Dashboard
+
+You can access the Overview dashboard by clicking on <IconText text="Attribution" name="piggy-bank" iconType="duotone"/> and navigating to the **Overview** sub-tab.
+
+#### Customizing the Overview
+
+You can customize the overview by clicking on <IconText name="pencil" text="Edit overview" iconType="solid"/> in the top-right corner.
+
+<Accordion title="Add or remove metrics" icon="circle-plus">
+You can choose to hide an entire section (e.g. all Facebook Metrics) or specific metrics within a section.
+
+**Hide an entire section**
+1. Click on <IconText name="pencil" text="Edit overview" iconType="solid"/> in the top-right corner of the Overview dashboard
+2. Click on the <Icon name="eye"/>-icon next to the category you want to hide so it appears in a disabled state.
+3. Click **Save**.
+
+**Hide a metric within a section**
+1. Click on <IconText name="pencil" text="Edit overview" iconType="solid"/> in the top-right corner of the Overview dashboard
+2. Click on the <Icon name="pencil"/>-icon next to the category of which you want to remove or add a card. 
+3. In the list of metrics of the section, click on the <Icon name="eye"/>-icon next to the metric you want to hide so it appears in a disabled state.
+4. Click **Save**.
+</Accordion>
+
+<Accordion title="Change the order of the metrics" icon="sort">
+You can change the order of an entire section (e.g. all Facebook Metrics or specific metrics within a section).
+
+**Re-order an entire section**
+1. Click on <IconText name="pencil" text="Edit overview" iconType="solid"/> in the top-right corner of the Overview dashboard
+2. Drag and re-order the section by grabbing onto the <Icon name="grip-vertical"/>-icon and moving it above or under other sections.
+3. Click **Save**.
+
+**Re-order metrics within a section**
+1. Click on <IconText name="pencil" text="Edit overview" iconType="solid"/> in the top-right corner of the Overview dashboard
+2. Click on the <Icon name="pencil"/>-icon next to the category of which you want to reorganize cards. 
+3. Drag and re-order the metric by grabbing onto the <Icon name="grip-vertical"/>-icon and moving it above or under other sections.
+4. Click **Save**.
+</Accordion>
+
+
+
+---
+
+## FAQ
+
+<Accordion title="Why are my Shopify Sales and Converge Revenues misaligned?" >
+
+The Converge Revenues card and the Shopify Sales card show slightly different metrics. 
+
+Specifically, Converge includes Gift Card revenue in your total revenue number and it will not subtract refunds. 
+Shopify, however, will show a sales number of which refunds are already subtracted and without gift card revenue. 
+
+**In short**: 
+
+- **Shopify Sales** = `Gross Revenue` - `Refunds` - `Gift Card Revenue`
+- **Converge Revenue** = `Gross Revenue`
+
+</Accordion>
