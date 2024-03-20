@@ -41,7 +41,14 @@
       "pages": [
         "sources/source-concepts",
         "sources/converge-spec",
-        "sources/extending-the-spec",
+        {
+          "group": "Extending the Spec",
+          "pages": [
+            "sources/extending-the-spec/overview",
+            "sources/extending-the-spec/custom-events",
+            "sources/extending-the-spec/custom-event-properties"
+          ]
+        },
         {
           "group": "Integrations",
           "pages": [
@@ -67,8 +74,7 @@
             }
           ]
         },
-        "sources/monitoring",
-        "sources/custom-events"
+        "sources/monitoring"
       ]
     },
     {
