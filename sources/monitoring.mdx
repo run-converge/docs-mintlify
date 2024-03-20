@@ -3,6 +3,8 @@ title: "Monitoring"
 description: "Test and monitor your Converge Integration "
 ---
 
+import {IconText} from '/snippets/icons.mdx'
+
 ## Overview
 
 Converge provides the following tools to monitor and debug whether your Sources are working correctly:
@@ -35,8 +37,20 @@ Converge keeps detailed logs of every event that gets sent to Converge including
 </Accordion>
 
 <Accordion icon="download" title="Exporting logs">
-You can export your log selection to CSV using the **Export to .csv** button in the right top corner. 
+1. Navigate to the [Sources Tab](https://app.runconverge.com/sources) in your Converge dashboard
+2. Click on the Source you want to debug
+  <Frame>
+   ![pick a source](/images/sources/monitoring/source-monitoring-0.png)
+   </Frame>
+3. Click on the **Logs** tab to see the logs
+  <Frame>
+  ![pick logs](/images/sources/monitoring/source-monitoring-1.png)
+  </Frame>
+4. You can export your log selection to CSV using the <IconText text="Export to .csv" name="arrow-up-from-bracket" />-button in the right top corner. 
+
+<Note>
 Log entries are limited to 10,000 lines.
+</Note>
 </Accordion>
 </AccordionGroup>
 
@@ -50,7 +64,7 @@ Converge will automatically flag when events are not conform the [Converge Event
 <AccordionGroup>
 <Accordion icon="location-dot" title="Where to find Source Warnings">
 1. Navigate to the [Sources Tab](https://app.runconverge.com/sources) in your Converge dashboard
-2. Click on the Source you want to debug
+2. Click on the Source you want to see logs from
    ![pick a source](/images/sources/monitoring/source-monitoring-0.png)
 3. Click on the **Warnings** tab to see the appropriate warnings. Each warning includes information as to what `property` is malformed, as well as detailed log lines to inspect.
   ![see warning info](/images/sources/monitoring/source-monitoring-2.png)
