@@ -137,6 +137,54 @@ This integration supports the following Converge connection functionality.
 | Server-side Conversions | <Icon name="xmark" /> |
 
 
+---
+
+## Import server-side conversions through Google Ads
+
+Our Google Ads Connection does not support forwarding server-side conversions natively. 
+
+However, you can still get a Converge server-side event in Google Ads through the **GA4 import** functionality. 
+The process consists of:
+
+1. Set up your <OutboundLink linkText="Custom Event" linkTarget="https://learn.runconverge.com/connections/custom-events"/> in the GA4 Connection 
+2. <Accordion title="Import your GA4 event in Google Ads as a conversion">
+      <Info> The steps below demonstrate importing the `new_customer_purchase`-event. But you should import the custom event you set up above. </Info>
+   
+      1. Navigate to your GA4 dashboard and click on the settings icon in the bottom left corner.
+         <Frame> ![ga-2](/images/connections/google-ads/google-nc-purchase-1.png) </Frame>
+
+      2. In the submenu, navigate to **Events**.
+         <Frame> ![ga-3](/images/connections/google-ads/google-nc-purchase-2.png) </Frame>
+
+      3. Under the Events submenu, mark `new_customer_purchase` as a conversion, if you'd like to import any other conversions, then mark these too.
+         <Frame> ![ga-4](/images/connections/google-ads/google-nc-purchase-3.png) </Frame>
+
+      4. The custom conversion is now created in GA4, time to import it into Google Ads. Navigate to Google Ads Manager, go to the **Tools and Settings > Conversions** submenu in the top bar and click on **New conversion action**.
+         <Frame> ![ga-5](/images/connections/google-ads/google-nc-purchase-4.png) </Frame>
+
+      5. Choose the **Import** as your means of setting up the conversion and choose **Google Analytics 4 properties > Web** as your source of import. After that, hit **Continue**.
+         <Frame> ![ga-4](/images/connections/google-ads/google-nc-purchase-5.png) </Frame>
+
+      6. Choose the `new_customer_purchase` event (and optionally other events) and click on **Import and continue**.
+         <Frame> ![ga-5](/images/connections/google-ads/google-nc-purchase-6.png) </Frame>
+
+      7. Choose your newly created conversion from the conversions list to change its properties.
+         <Frame> ![ga-6](/images/connections/google-ads/google-nc-purchase-7.png) </Frame>
+
+      8. Click on **Edit Settings**.
+         <Frame> ![ga-7](/images/connections/google-ads/google-nc-purchase-8.png) </Frame>
+
+      9. Mark the conversion as _Secondary_ and hit **Save** if you want to use it exclusively for reporting purposes.
+         <Frame> ![ga-8](/images/connections/google-ads/google-nc-purchase-10.png) </Frame>
+
+      10. Change the conversion goal to _Purchase_ and hit **Save** and **Done**.
+         <Frame> ![ga-9](/images/connections/google-ads/google-nc-purchase-9.png) </Frame>
+
+   </Accordion>
+
+
+
+
 --- 
 
 ## Event Mapping
