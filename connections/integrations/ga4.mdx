@@ -60,7 +60,17 @@ Options include:
 
 #### Custom Events
 
-See a deep-dive explanation as to how you can set up Custom Events for GA4 [here](/connections/custom-events#set-up-custom-events-for-your-connections).
+The GA4 connection supports setting up custom events, see [here](/connections/custom-events#set-up-custom-events-for-your-connections) for a deep-dive.
+
+When the (recommended) sGTM mode is selected, there are two additional configuration options for each custom event:
+- **Client** or **Server**.
+   Configure where the custom event is sent from.
+   By default, custom events are triggered from the browser.
+   In some cases, you may want to trigger the event from the server instead.
+   This is useful for events which are exclusively sent server-side to Converge.
+- **Event** or **Conversion**.
+   Choose whether the custom event should be marked as a conversion in GA4.
+
 
 #### Custom Event Properties
 
