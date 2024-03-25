@@ -88,6 +88,7 @@
             "connections/integrations/ga4",
             "connections/integrations/tiktok",
             "connections/integrations/bing",
+            "connections/integrations/twitter",
             "connections/integrations/bigquery"
           ]
         },

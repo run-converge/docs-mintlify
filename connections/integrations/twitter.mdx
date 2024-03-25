@@ -1,0 +1,83 @@
+---
+title: "Twitter Ads"
+description: "An introduction to the Twitter Ads Destination"
+---
+
+import { Icon, IconText } from '/snippets/icons.mdx';
+import { OutboundLink } from '/snippets/links.mdx';
+
+
+## Overview
+
+Connection Type: <IconText text="Client-side" name="browser" iconType="duotone" iconLocation="after"/> 
+
+- Includes support for passing <OutboundLink linkText="User Parameters (email and phone number)" linkTarget="https://business.x.com/en/help/campaign-measurement-and-analytics/conversion-tracking-for-websites.html"/>
+- Includes support for  <OutboundLink linkText="Dynamic Product Ads Campaigns" linkTarget="https://business.x.com/en/help/campaign-setup/create-a-dynamic-product-ads-campaign.html"/> 
+
+---
+
+## Installation Instructions
+
+<AccordionGroup >
+
+<Accordion icon="list" title="Installation Instructions">
+
+1. Navigate to your Twitter Ads account and choose **Tools > Events Manager**.
+
+2. Copy your Twitter Pixel ID
+   1. If you already have an events source, at the top of the page, find the 'Twitter pixel' section and copy the ID. (e.g. `obarl`)
+   2. If not, you will be prompted to create a new event source, follow the instructions and copy the ID when you are done.
+
+3. In the Converge dashboard, under Connections, click <IconText name="circle-plus" text="Create New Connection" iconLocation="before" iconType="regular"/ > and fill in your Pixel ID.
+4. See below for instructions on how to configure your conversion events.
+
+</Accordion>
+
+
+<Accordion icon="circle-dollar-to-slot" title="Create your conversion events">
+
+<Note> This is a client-side only connection, meaning that you will need to be tracking all events client-side (including `Placed Order`) for this connection to work properly. </Note>
+
+
+1. In the Twitter Ads > Tools > Events Manager, click on the **Create Event** button. 
+2. Give your event a name, e.g. 'Placed Order' when you are setting up a purchase conversion.
+3. Pick a Twitter event type, e.g. 'Purchase'. You can find a suggested mapping of Converge to Twitter Ads event types [below](#event-mapping).
+4. Configure your attribution settings and click on **Next**.
+5. Choose the 'Define event with code' setup method and click on **Next**.
+6. Click 'Save' to finish the setup.
+7. You can now find the event in the Events table in the Twitter Ads Events manager.
+   Under the event, the ID is composed as `tw-{pixelID}-{eventID}`.
+   Copy the `eventID` into the 'Twitter Event IDs' section of the Converge connection configuration.
+
+<Note> Repeat the steps above for all the events you want to report on in Twitter Ads </Note>
+</Accordion>
+<Warning> Once you have installed your Converge Connection, you should **pause or remove all existing Twitter Ads tracking**. Leaving these on will lead to duplicate tracking.  </Warning>
+</AccordionGroup>
+---
+
+## Converge functionality
+
+This integration supports the following Converge connection functionality.
+
+| Converge Feature        |       Supported       |
+| ----------------------- | :-------------------: |
+| Custom Events           | <Icon name="xmark" /> |
+| Filters                 | <Icon name="xmark" /> |
+| Server-side Conversions | <Icon name="xmark" /> |
+
+
+--- 
+
+## Event Mapping
+
+Events are not automatically mapped, you need to configure the mapping of the [Converge Event Spec](/sources/converge-spec) to your Twitter events manually.
+We recommend the following mapping to the Event Type:
+
+| Converge Event Name                                             | Twitter Event Type    |
+| --------------------------------------------------------------- | --------------------- |
+| [$page_load](/sources/converge-spec#page-load)                  | `Page view`           |
+| [Viewed Product](/sources/converge-spec#viewed-product)         | `Content view`        |
+| [Added To Cart](/sources/converge-spec#added-to-cart)           | `Add to cart`         |
+| [Started Checkout](/sources/converge-spec#started-checkout)     | `Checkout initiated`  |
+| [Added Payment Info](/sources/converge-spec#added-payment-info) | `Added payment info`  |
+| [Placed Order](/sources/converge-spec#placed-order)             | `Purchase`            |
