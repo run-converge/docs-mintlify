@@ -100,15 +100,20 @@
     {
       "group": "Attribution",
       "pages": [
-        "attribution/overview",
+        "attribution/overview"
+      ]
+    },
+    {
+      "group": "Ad Platforms",
+      "pages": [
         {
-          "group": "Ad Platforms",
+          "group": "Integrations",
           "pages": [
-            "attribution/ad-platforms/facebook",
-            "attribution/ad-platforms/google-ads",
-            "attribution/ad-platforms/pinterest",
-            "attribution/ad-platforms/tiktok",
-            "attribution/ad-platforms/bing"
+            "ad-platforms/integrations/facebook",
+            "ad-platforms/integrations/google-ads",
+            "ad-platforms/integrations/pinterest",
+            "ad-platforms/integrations/tiktok",
+            "ad-platforms/integrations/bing"
           ]
         }
       ]
