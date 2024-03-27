@@ -100,7 +100,8 @@
     {
       "group": "Attribution",
       "pages": [
-        "attribution/overview"
+        "attribution/overview",
+        "attribution/channels"
       ]
     },
     {

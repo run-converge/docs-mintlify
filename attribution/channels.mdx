@@ -1,0 +1,50 @@
+---
+title: Channels
+description: "Analyze the sources of conversions on your website"
+---
+
+import {IconText, Icon} from '/snippets/icons.mdx'
+import { OutboundLink } from "/snippets/links.mdx";
+
+
+## Using the Channels attribution page
+
+You can access the Channels attribution page by clicking on <IconText text="Attribution" name="piggy-bank" iconType="duotone"/> and navigating to the **Channels** sub-tab. Or by navigating directly to the <OutboundLink linkText="Channels" linkTarget="https://app.runconverge.com/-/attribution/channels"/> attribution page.
+
+#### Customizing the table
+
+You can customize the table columns by clicking on the <Icon name="ellipsis" />-icon in the top-right corner and then <IconText name="pencil" text="Edit columns" iconType="solid"/>
+
+<Accordion title="Show or hide columns" icon="eye">
+1. Click on the <Icon name="eye"/>-icon next to the column you want to show/hide to toggle its visibility.
+2. Click **Save**.
+</Accordion>
+
+<Accordion title="Change the order of the columns" icon="sort">
+1. Drag and re-order the columns by grabbing onto the <Icon name="grip-vertical"/>-icon and moving it above or under other columns.
+4. Click **Save**.
+</Accordion>
+
+<Accordion title="Add custom columns" icon="circle-plus">
+1. Click on <IconText name="plus" text="Add columns" iconType="solid" iconLocation="after" />
+2. Choose whether you want to add a column related to a **UTM** or **Ad Platforms** conversion event.
+3. Select the conversion event.
+4. Select which columns to be added
+    - Count: the total count of conversion events
+    - Cost per Event: ad spend divided by the number of conversions
+    - Revenue: the total revenue for the conversion events
+    - ROAS: revenue divided by the ad spend
+5. Click **Save**.
+</Accordion>
+
+### LTV
+
+The Channels attribution table allows you to visualize the **LTV** for each source, campaign, adset or ad. These values correspond to the *Average Revenue Per Paying User* (**ARPPU**) for each cohort.
+
+The value is calculate by identifying the profiles linked to purchase events ([Placed Order](/sources/converge-spec#placed-order)) attributed to each source, campaign, adset or ad (i.e. the same profiles linked in **UTM Purchases**).
+The cumulative revenue (considering **Placed Order** events) for each of these profiles is calculated within the following time frames: 30, 60, 90 days and lifetime.
+The revenue for all the profiles is averaged out for each cohort.
+
+The values are available as four separated columns: **LTV**, **LTV (30d)**, **LTV (60d)** and **LTV (90d)** that may be included to the table as needed.
+
+<Note>These columns are hidden by default. See [Customizing the table](#customizing-the-table) for details on how to add them to the table.</Note>
