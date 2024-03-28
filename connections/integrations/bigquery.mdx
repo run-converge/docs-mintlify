@@ -154,7 +154,7 @@ Great, now you have a table for your Converge Events, follow the guide below to 
 
 <Accordion icon="bars-staggered" title="Stream Converge Data into your BigQuery table">
 
-1. First thing we need to do in Google Cloud is setting up a service account. Start by going to the sidebar menu and choosing _IAM and admin_ > _Service accounts_.
+1. The first thing we need to do in Google Cloud is set up a service account. Start by going to the sidebar menu and choosing _IAM and admin_ > _Service accounts_.
    &nbsp;
    <Frame>
    ![bq-s-1](/images/connections/bigquery/bigq_service_1.png)
@@ -213,7 +213,7 @@ Converge preprocesses all events and enriches them with all available **profile*
 
 ### Profile Information
 
-Every event that is forwarded includes all available information Converge has on that profile until that moment, ranging from `$ip_address` all the way until `$email`. 
+Every event that is forwarded includes all available information Converge has on that profile until that moment, ranging from `$ip_address` all the way to `$email`. 
 
 Events that typically do not have an `$email` property associated with them (e.g. `$page_load`) will _still_ contain this property if we were able to identify this profile before the `$page_load` happened.
 
@@ -274,8 +274,8 @@ Events that typically do not have an `$email` property associated with them (e.g
 Converge **automatically attributes all events** (e.g. `Placed Order`, `Add To Cart`, etc.) based on the most popular attribution models.
 
 - **First Touch**: Attributes full credit for conversion to the initial touchpoint in the customer journey.
-- **First Touch Paid Only**: Credits only the first paid interaction for the conversion; exclusive to paid channels.
-- **Last Touch**: Assigns full credit for conversion to the final touchpoint in the customer journey.
+- **First Touch Paid Only**: Credits only to the first paid interaction for the conversion; exclusive to paid channels.
+- **Last Touch**: Assigns full credit for the conversion to the final touchpoint in the customer journey.
 - **Last Touch Paid Only**: Attributes conversion solely to the last paid interaction; focuses on the final touchpoint within paid channels.
 
 

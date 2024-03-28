@@ -7,7 +7,7 @@ import {OutboundLink} from '/snippets/links.mdx'
 
 ## Overview
 
-Although Converge will automatically track the essential events in your Website, there are sometimes user actions that you may want to track that are not tracked by default.
+Although Converge will automatically track the essential events on your Website, there are sometimes user actions that you may want to track that are not tracked by default.
 Converge allows you to do this either [with code](#track-custom-events-with-code) or [no-code](#track-custom-events-no-code)
 
 --- 
@@ -49,7 +49,7 @@ Converge allows you to configure custom events for client-side sources.
 
 #### Custom event
 
-A custom event is any event you may want to track in the browser that is triggered by a particular user action. For example, you may want to track a `Joined wait list` event when the user clicked a link on your website, or a `Watched welcome video` when the user started watching an embedded video.
+A custom event is any event you may want to track in the browser that is triggered by a particular user action. For example, you may want to track a `Joined wait list` event when the user clicks a link on your website, or a `Watched welcome video` when the user started watching an embedded video.
 
 #### Trigger
 
@@ -60,21 +60,21 @@ For example, you may want to fire a `Subscribed to Newsletter` event when a part
 <Info>
 A custom event can have one or more triggers configured. If multiple triggers are present, the custom event will be triggered when **ANY** of the triggers is fired.
 
-For example, you may want to fire the same `Subscribed to Newsletter` when another link is pressed. A possible implementation would be to have two separated triggers (one for each link). As soon as any of the links is pressed, the event will be fired. There is no need for the user to perform both actions.
+For example, you may want to fire the same `Subscribed to Newsletter` when another link is pressed. A possible implementation would be to have two separate triggers (one for each link). As soon as any of the links are pressed, the event will be fired. There is no need for the user to perform both actions.
 </Info>
 
 All the supported triggers are listed in [Trigger types](#trigger-types).
 
 #### Conditions
 
-Conditions are used to limit the effect of individual trigger. When an event corresponding to a trigger is detected, the conditions linked to the trigger will be checked prior to firing the associated custom event.
+Conditions are used to limit the effect of individual triggers. When an event corresponding to a trigger is detected, the conditions linked to the trigger will be checked before firing the associated custom event.
 
 For example, you may want to fire a `Subscribed to Newsletter` event when a link containing the text `Subscribe` is clicked. If the `All Elements Click` trigger is used without any conditions, the event will be fired as soon as any link is clicked. A condition may be added to limit the trigger to only fire if the clicked text contains the text `Subscribe` for example.
 
 <Info>
 A trigger can have zero or more conditions configured. If no conditions are present, the trigger will fire for any events. If multiple conditions are present, the trigger will only fire when **ALL** conditions are met.
 
-For example, you may want to fire a `Subscribed to Newsletter` event when a link containing the text `Subscribed` in the homepage of your website is clicked. A possible implementation would be to have a `All Elements Click` trigger containing two conditions. One for the `Click Text` and another for `Page URL`.
+For example, you may want to fire a `Subscribed to Newsletter` event when a link containing the text `Subscribed` on the homepage of your website is clicked. A possible implementation would be to have an `All Elements Click` trigger containing two conditions. One for the `Click Text` and another for the `Page URL`.
 </Info>
 
 A condition consists of three parts:
@@ -92,7 +92,7 @@ A condition consists of three parts:
 Tracks clicks on any element (e.g. links, images, buttons, etc) in the page.
 
 <Info>
-If no conditions are applied to this trigger, it will fire for every time a user clicks anything. Make sure to limit the scope of this trigger by being as specific as possible with its conditions, for example by applying filters on `Page URL`, `Click Element`, etc.
+If no conditions are applied to this trigger, it will fire every time a user clicks anything. Make sure to limit the scope of this trigger by being as specific as possible with its conditions, for example by applying filters on `Page URL`, `Click Element`, etc.
 </Info>
 
 ### All Links Click

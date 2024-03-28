@@ -29,7 +29,7 @@ Profile Properties allow you to store information on a user that you might need 
 For example, the Converge Pixel will [auto-track](/sources/converge-spec#page-load) a bunch of browser session information so this is available for your server-side events (e.g. the `Placed Order` event in the [example](#an-introductory-example) above).
 
 However, profile properties are also useful for storing information across events *within* a single source. 
-Imagine a user that triggers a `Subscribed to Newsletter` event with an `$email` parameter. Afterwards that same user triggers an `Added To Cart`.
+Imagine a user that triggers a `Subscribed to Newsletter` event with an `$email` parameter. Afterward, that same user triggers an `Added To Cart`.
 Storing the `$email` as a profile property ensures that you have this information available at the moment of the `Added To Cart`-event without you as a developer having to pass this information again.
 
 
@@ -122,7 +122,7 @@ resp = requests.post(
 Converge excels at matching events across browser sessions and your server-side data. This is all possible through aliases. Your customer is linked to multiple aliases, i.e. **multiple identifiers for the same customer**. Converge uses the customer's browser session cookie as the default alias.
 When you add something as an alias, you are telling Converge that this alias is a unique identifier for this profile **across datasources**. In the examples below, we add `email` as an alias. Thus, Converge can merge a profile of browser events (e.g. Pageviews) with a profile with backend events (e.g. Started Subscription) if they have the same `email`.
 
-In the examples below we add an `email` alias, other aliases that are useful:
+In the examples below we add an `email` alias. Other aliases that are useful:
 - `cart_token`
 - `checkout_token`: this is absolutely necessary if your checkout lives on a different domain than your storefront token.
 - `customer_id`
