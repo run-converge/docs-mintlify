@@ -17,7 +17,7 @@ In practice, this means that Google now asks all advertisers in the EU to have (
 </Accordion>
 
 <Accordion title="Is Converge compatible with Consent Mode v2?" icon="check-double">
-**Yes**, the Converge connections are compatible with any consent implementation, either through a CMP platform, a custom implementation, or default setup.
+**Yes**, the Converge connections are compatible with any consent implementation, either through a CMP platform, a custom implementation, or the default setup.
 
 In short: **the cookie banner captures consent**, and Converge makes sure that consent parameters get passed to the relevant destinations.
 </Accordion>
@@ -30,7 +30,7 @@ In short: **the cookie banner captures consent**, and Converge makes sure that c
 <Accordion title="How can I check whether I am compliant with Consent Mode v2?" icon="shield-halved" iconType="duotone">
   1. Go to your installed [Google Analytics Dashboard](https://analytics.google.com/analytics/web/) and navigate to **Admin** > **Property** >  **Data streams**
   2. Choose the datastream of a website you want to verify.
-  3. Check whether both Ads measurement consent signals as well as Ads personalization consent signals are detected
+  3. Check whether both Ads measurement consent signals, as well as Ads personalization consent signals are detected
     <Frame>
     ![consentv2](/images/guides/consentv2/consentv2-0.jpeg)
     </Frame>
@@ -54,7 +54,7 @@ If you are not compliant at the moment, and you do not want to be affected, you 
 ## In-depth for developers and technical marketers
 
 ### Introduction
-Over the past months, Google has updated their policies to ensure compliance with the European Digital Markets Act (DMA). Two major changes impact advertisers on Google Ads. -- Publishers on Google Ads are required to collect user consent on their website
+Over the past months, Google has updated its policies to ensure compliance with the European Digital Markets Act (DMA). Two major changes impact advertisers on Google Ads. -- Publishers on Google Ads are required to collect user consent on their website
 
 Google now requires businesses advertising on Google Ads to collect explicit visitor consent for sharing data with Google. User consent should be passed to the tags installed on the website.
 
@@ -68,25 +68,25 @@ The Converge Google Ads and GA4 connections are fully compatible with any consen
 As such, when your website has been instrumented with a Google consent implementation, either through a CMP or custom setup, the Converge connections will pick this up, and ensure that the data shared with Google contains the consent parameters.
 
 #### I am not collecting consent
-When you are not collecting consent information, it is still unclear how Google will continue to process your data. In the EEA, you may be in violation with Google's policies and certain Google Ads features may become unavailable.
+When you are not collecting consent information, it is still unclear how Google will continue to process your data. In the EEA, you may be in violation of Google's policies and certain Google Ads features may become unavailable.
 
 In its current behavior, Google will still process, attribute, and optimize for the collected data. Over the coming months, it is uncertain whether Google will gradually discontinue *consent-less* events for EU visitors.
 
 <AccordionGroup>
     <Accordion title="Option 1: installing a CMP">
         You can start tracking user consent by installing a cookie banner.
-        You can find a list of Google certified CMPs in the Google documentation [here](https://support.google.com/admanager/answer/13554116?sjid=7015691553786205462-EU#google-cmps&zippy=%2Cgoogle-certified-cmps).
+        You can find a list of Google-certified CMPs in the Google documentation [here](https://support.google.com/admanager/answer/13554116?sjid=7015691553786205462-EU#google-cmps&zippy=%2Cgoogle-certified-cmps).
         To get started, you can have a look at the CMPs discussed in the section [below](/guides/google-consent-v2/#i-already-send-consent-data-to-google).
         
         If you already have a cookie banner installed, please refer to the section [below](/guides/google-consent-v2/#i-already-send-consent-data-to-google) to make sure it is configured correctly for Google Consent V2.
     </Accordion>
     <Accordion title="Option 2: implementing your own CMP">
         You can also implement and configure your own cookie banner.
-        The Converge connections will support any implementation, whether through a CMP platform, or through your own implementation.
+        The Converge connections will support any implementation, whether through a CMP platform or your own implementation.
         Please refer to [Google's documentation for implementing consent mode](https://developers.google.com/tag-platform/security/guides/consent?consentmode=advanced).
     </Accordion>
     <Accordion title="Option 3: default to granting consent">
-        If you have no CMP set up right now, Google defaults to process all data. If you want to ensure backwards compatibility with this behavior, you should explicitly pass this on to Google.
+        If you have no CMP set up right now, Google defaults to process all data. If you want to ensure backward compatibility with this behavior, you should explicitly pass this on to Google.
         You can accomplish this by pasting the following snippet onto your website `head`.
 
         ```html 
@@ -144,7 +144,7 @@ You can run the following checks on your GA4 (`G-XXXXXX`) and Google Ads tags (`
 
 <AccordionGroup>
     <Accordion title="A Consent event is fired">
-        In the Summary pane, look for the `Consent` events. These events indicate that consent state is communicated to the Google tags.
+        In the Summary pane, look for the `Consent` events. These events indicate that the consent state is communicated to the Google tags.
     </Accordion>
     <Accordion title="A default Consent is set">
         On the first `Consent` event of the page, the parameters in the 'On-page default' column in the Event Consent State table should show either Denied or Granted for all parameters.
@@ -161,7 +161,7 @@ You can run the following checks on your GA4 (`G-XXXXXX`) and Google Ads tags (`
 ### Impact of consent mode on my data
 
 Implementing consent mode inevitably limits your data collection and reporting accuracy.
-No data is collected for users for which consent was denied, whether by default or through a explicit deny.
+No data is collected for users for which consent was denied, whether by default or through an explicit deny-action.
 
 #### Google Analytics 4
 In GA4, no data is reported for visitors who denied the `analytics_storage` consent.
@@ -171,11 +171,11 @@ The modeling can be enabled/disabled under your property settings > Data display
 You can read more about this [here](https://support.google.com/analytics/answer/11161109?hl=en).
 
 #### Google Ads
-The same holds for Google Ads. Google cannot directly attribute conversions when consent was denied.
-Again, Google applies conversion modelling to try to compensate for the signal loss.
-The conversions reported in Google Ads include these [modelled conversions](https://support.google.com/google-ads/answer/10548233?hl=en-GB).
+The same holds for Google Ads. Google cannot directly attribute conversions when consent is denied.
+Again, Google applies conversion modeling to try to compensate for the signal loss.
+The conversions reported in Google Ads include these [modeled conversions](https://support.google.com/google-ads/answer/10548233?hl=en-GB).
 
-Moreover, due to the Google consent V2 change, when the `ad_personalization` parameter was not granted, they cannot use the conversion for dynamic remarketing.
+Moreover, due to the Google consent V2 change, when the `ad_personalization` parameter was not granted, they could not use the conversion for dynamic remarketing.
 
 ---
-*Disclaimer: This guide provides general information. It is not intended as legal advice, and readers should consult with qualified council for advice regarding their specific circumstances. Converge disclaims any liability for actions taken based on the information provided in this post.*
+*Disclaimer: This guide provides general information. It is not intended as legal advice, and readers should consult with qualified counsel for advice regarding their specific circumstances. Converge disclaims any liability for actions taken based on the information provided in this post.*

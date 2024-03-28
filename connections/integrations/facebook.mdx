@@ -24,9 +24,9 @@ Connection Type: <IconText text="Client-side" name="browser" iconType="duotone" 
 
 3. In the Facebook Pixel menu, choose the **Settings** subtab.
 
-4. From this subtab, you can find your **Pixel ID**, copy it -- you will need it in a later step.
+4. From this subtab, you can find your **Pixel ID**, and copy it -- you will need it in a later step.
 
-5. Scroll down in the Settings subtab until you find **Generate access token**, click on it. Copy this token as well.
+5. Scroll down in the Settings subtab until you find **Generate access token**, and click on it. Copy this token as well.
 
 6. In your Converge dashboard, under Connections, click <IconText name="circle-plus" text="Create New Connection" iconLocation="before" iconType="regular"/ >.
 
@@ -46,7 +46,7 @@ Connection Type: <IconText text="Client-side" name="browser" iconType="duotone" 
 
 This integration supports the following Converge connection functionality.
 
-| Converge Feature        |      Supported       |
+| Converge Feature        |       Supported       |
 | :---------------------- | :-------------------: |
 | Custom Events           | <Icon name="check" /> |
 | Filters                 | <Icon name="check" /> |
@@ -74,7 +74,7 @@ This integration supports the following Converge connection functionality.
 
 Converge automatically maps the following events from the [Converge Event Spec](/sources/converge-spec) to the Meta spec.
 
-| Converge Event Name                                                                               | Meta Event Name                   |
+| Converge Event Name                                                                               | Meta Event Name                         |
 | ------------------------------------------------------------------------------------------------- | --------------------------------------- |
 | [$page_load](/sources/converge-spec#page-load)                                                    | `PageView`                              |
 | [Viewed Product](/sources/converge-spec#viewed-product)                                           | `ViewContent`                           |
@@ -89,7 +89,7 @@ Converge automatically maps the following events from the [Converge Event Spec](
 
 This integration also auto-tracks some additional events that are not part of the Meta Base Spec but are so heavily requested that we automatically forward them.
 
-| Converge Event Name     &nbsp;    &nbsp;   &nbsp;   &nbsp;   &nbsp;   &nbsp;   &nbsp;    &nbsp;   &nbsp;   &nbsp;   &nbsp;   &nbsp;   &nbsp;   &nbsp; | Meta Event Name    &nbsp;   &nbsp;   &nbsp;   &nbsp;   &nbsp;   &nbsp;   &nbsp;   &nbsp;   &nbsp;   &nbsp;   &nbsp;   &nbsp;   &nbsp;   &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; |
-| ----------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| [Placed Order](/sources/converge-spec#placed-order)  (New Customers Only)                                                                                                | `NewCustomerPurchase`                                                                                                                                                                                                |
-|                                                                                                                                                       |                                                                                                                                                                                                                      |
+| Converge Event Name                                                       | Meta Event Name       |
+| ------------------------------------------------------------------------- | --------------------- |
+| [Placed Order](/sources/converge-spec#placed-order)  (New Customers Only) | `NewCustomerPurchase` |
+|                                                                           |                       |

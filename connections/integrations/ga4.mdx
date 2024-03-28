@@ -29,7 +29,7 @@ Connection Type: <IconText text="Client-side" name="browser" iconType="duotone" 
 
 4. Click on **Measurement Protocol API secrets** on the same page.
 
-   <Info> If you do not see the Measurement Protocol API secrets option, this this means that you do not have `Edit` permissions for this GA4 Property.  </Info>
+   <Info> If you do not see the Measurement Protocol API secrets option, this means that you do not have `Edit` permissions for this GA4 Property.  </Info>
    
 
 5. Click on **Create** to generate a new secret, and give it the name Converge. After creating, copy the **Secret value**.
@@ -56,7 +56,7 @@ How Converge forwards events to Google Analytics 4.
 Options include:
 - **Client-side**: loads the `gtag` and sends every Converge event client-side.
 - **Server-side**: loads the `gtag` and sends every Converge event (except for `$page_load`) server-side through the Measurement Protocol. 
-- **Server-side GTM (Recommended)**: loads the `gtag` in a server-side GTM container, sends server-side conversions through the Measurement Protocol. 
+- **Server-side GTM (Recommended)**: loads the `gtag` in a server-side GTM container, and sends server-side conversions through the Measurement Protocol. 
 
 #### Custom Events
 
@@ -67,7 +67,7 @@ When the (recommended) sGTM mode is selected, there are two additional configura
    Configure where the custom event is sent from.
    By default, custom events are triggered from the browser.
    In some cases, you may want to trigger the event from the server instead.
-   This is useful for events which are exclusively sent server-side to Converge.
+   This is useful for events that are exclusively sent server-side to Converge.
 - **Event** or **Conversion**.
    Choose whether the custom event should be marked as a conversion in GA4.
 
@@ -92,7 +92,7 @@ Converge allows you to map properties that were tracked on a source from Converg
  <Step title="Set up a custom definition in GA4">
    5. Navigate to your Google Analytics Property and click on <IconText name="gear" text="Admin" /> > <br/> <IconText name="shapes" text="Custom definitions" iconType="regular"/>
    6. Click on **Create custom dimension**.
-   7. Fill in your desired **Dimension name** (this is how your dimension/property will show up in GA4), choose **Event** as your Scope. Optionally add a description and choose the mapped property that you set up in step 4 to fill in **Event parameter**.
+   7. Fill in your desired **Dimension name** (this is how your dimension/property will show up in GA4), and choose **Event** as your Scope. Optionally add a description and choose the mapped property that you set up in step 4 to fill in **Event parameter**.
 
        <Frame>
        ![custom event property map](/images/connections/ga4/custom-event-props-1.png)
