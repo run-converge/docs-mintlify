@@ -59,6 +59,7 @@
                 "sources/website-integrations/shopify",
                 "sources/website-integrations/woocommerce",
                 "sources/website-integrations/magento",
+                "sources/website-integrations/bigcommerce",
                 "sources/website-integrations/funnelish"
               ]
             },
@@ -69,6 +70,7 @@
                 "sources/server-integrations/shopify",
                 "sources/server-integrations/woocommerce",
                 "sources/server-integrations/magento",
+                "sources/server-integrations/bigcommerce",
                 "sources/server-integrations/recharge"
               ]
             }
