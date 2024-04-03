@@ -1,0 +1,63 @@
+---
+title: "BigCommerce"
+description: "Connect your BigCommerce store backend to Converge"
+---
+
+import {IconText} from '/snippets/icons.mdx';
+import { OutboundLink } from "/snippets/links.mdx"
+
+
+<Note> This is a webhook-based source, meaning that it does not sync historical data. </Note>
+
+## Installation Instructions
+
+<AccordionGroup>
+    <Accordion title="Retrieve your Store-Level API Token" icon="key">
+    <Steps>
+       <Step title="Navigate to your Store-level API Tokens">
+        1. Go to <OutboundLink linkText="Settings › Store-level API Tokens" linkTarget="http://login.bigcommerce.com/deep-links/settings/api-accounts" />  and click <IconText text="Create API account" name="plus" />.
+    </Step>
+    <Step title="Configure your API Token">
+        2. Select **V2/V3 API token** as your **Token type**.
+        3. Enter `Converge` in the **Name**-field 
+        4. Keep note of the API path, you will need it later.
+        5. Under **OAuth Scopes**, grant Converge **read-only** access to all available scopes.
+        6. Click **Save**. You will be prompted to download a `.txt`-file containing credentials you will need to set up your Converge source.
+    </Step>
+
+</Steps>
+   </Accordion >
+
+    <Accordion title="Connect Converge BigCommerce Server integration" icon="plug" >
+
+  <Steps>
+    <Step title="Create a new Server-side source in Converge">
+      1. In Converge, click on **Create a new source**
+      2. Pick _Server-side_ from the modal
+      3. Name your source: e.g. `{Storename} Store Backend`
+      4. Choose the **BigCommerce** app from the dropdown menu.
+    </Step>
+    <Step title="Connect the Source to BigCommerce">
+        5. Enter the hash parameter from the API path retrieved in Step 4 above.
+            <Info> If your API path is `https://api.bigcommerce.com/stores/xxxxxx/`, the hash is `xxxxxx`. </Info>
+        6. Paste Access Token from the `.txt`-file in Step 6 above in the **Access Token** field.
+        7. Unless you have a good reason not to, you should leave **Storefronts** and **Start Date** blank. Click on **Create Source**.
+            <Info> You might have multiple storefronts of which only one is relevant for Converge. In that case, you can pass the specific storefront name under **Storefronts** and Converge will only sync orders belonging to that Storefront.</Info>
+    </Step>
+    </Steps>
+    </Accordion> 
+
+   </AccordionGroup>
+
+---
+
+## Event Spec
+
+This integration auto-tracks the following events on the server with all properties available according to the [Converge Event Spec](/sources/converge-spec).
+
+| Event Name                                          | Event Description                |
+| --------------------------------------------------- | -------------------------------- |
+| [Placed Order](/sources/converge-spec#placed-order) | When a customer places an order. |
+
+
+
