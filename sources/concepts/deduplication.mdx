@@ -1,0 +1,36 @@
+---
+title: "Deduplication"
+description: "Introduction to Deduplication"
+---
+
+Converge supports deduplication natively. You can deduplicate events with an optional `eventID` parameter. This is especially important for events that are used as conversions.
+Converge will deduplicate events with the same `eventID` at ingestion time.
+
+<Accordion title="Code Examples" icon="code">
+ <CodeGroup>
+
+```javascript Converge Pixel - Javascript
+cvg({
+  method: "forward",
+  eventName: "Placed Order",
+  properties: {}, // your event properties
+  eventID: "X01",
+});
+```
+
+```python Converge Webhook - Python
+resp = requests.post(
+    "{YOUR_POSTBACK_ENDPOINT}",
+    json=
+        {
+        "event_name": "Placed Order",
+        "properties": {},
+        "profile_properties": {},
+        "event_id" : "XO1", # Note the different spelling of event_id
+    }
+)
+```
+
+
+</CodeGroup>
+</Accordion>

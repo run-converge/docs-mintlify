@@ -1,0 +1,22 @@
+---
+title: "Overview"
+description: "Introduction to the Converge Source concepts"
+---
+
+import { OutboundLink } from '/snippets/links.mdx';
+
+## An introductory example
+
+Imagine an ecommerce store that has the following minimal customer journey:
+
+1. **PageView**: User visits the storefront
+2. **Added To Cart**: User adds an item to cart
+3. **Placed Order**: User places an order
+
+For the optimal setup, they will want to track `PageView` and `Added To Cart` on the browser, but `Placed Order` events on <Tooltip tip="Important to track 100% of conversions"> the server</Tooltip>.
+
+### Challenges with server-side tracking 
+There are three main challenges this store will need to deal with, all of which are important concepts in Converge.
+-  <OutboundLink linkText="Profile properties" linkTarget="https://learn.runconverge.com/sources/concepts/profile-properties"/>: to include browser-side information into the server-side order-event.
+- <OutboundLink linkText="Deduplication" linkTarget="https://learn.runconverge.com/sources/concepts/deduplication"/>: to make sure that the same order does not get processed twice.
+- <OutboundLink linkText="Aliases" linkTarget="https://learn.runconverge.com/sources/concepts/aliases"/>: to recognize which browser-side events and which server-side events come from the same user.
