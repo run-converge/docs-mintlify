@@ -39,7 +39,15 @@
     {
       "group": "Sources",
       "pages": [
-        "sources/source-concepts",
+        {
+          "group" : "Concepts",
+          "pages" : [
+            "sources/concepts/overview",
+            "sources/concepts/profile-properties",
+            "sources/concepts/deduplication",
+            "sources/concepts/aliases"
+          ]
+        },
         "sources/converge-spec",
         {
           "group": "Extending the Spec",
