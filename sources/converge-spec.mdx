@@ -753,12 +753,17 @@ Order ID.
 </Accordion>
 
 <Accordion title="Code Example" icon="code">
+   
+    <Note>
+      If you track conversions both server-side and client-side, you should make sure you use the `"forward"` method for the client-side event.
+      See the client-side code example.
+    </Note>
 
     <CodeGroup>
 
 ```javascript JavaScript - Client-side
 cvg({
-  method: "forward",
+  method: "forward", 
   eventName: "Placed Order",
   eventID: "order-1", // used for deduplicating, should be unique
   properties: {
