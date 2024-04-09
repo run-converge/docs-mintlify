@@ -154,10 +154,14 @@
   },
   "anchors": [
     {
+      "name": "Book a demo",
+      "url": "https://calendly.com/converge-technologies/talk-to-us",
+      "icon": "calendar"
+    },
+    {
       "name": "Community",
       "url": "https://join.slack.com/t/convergecommunity/shared_invite/zt-1xugmvapc-o8mNvCE1wuKRAu8wCA~EwQ",
-      "icon": "slack",
-      "iconType": "solid"
+      "icon": "slack"
     }
   ],
   "redirects": [
