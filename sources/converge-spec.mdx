@@ -2,6 +2,8 @@
 title: "Event Spec"
 ---
 
+import { OutboundLink } from '/snippets/links.mdx';
+
 #### Why the Converge Spec?
 
 Most CDPs are not very strict about _which_ events you track, _where_ you track them (client or server) and with _which properties_.
@@ -12,9 +14,9 @@ This usually leads to problems with destinations downstream as each destination 
 Converge, therefore works with a strict Converge Event Spec.
 Because we have a semantic understanding of what you are tracking, we can:
 
-1. Automatically map your source events to destinations in an optimal way through our [Connections]().
-2. Surface your meaningful analytics through our [Attribution]() product.
-3. Monitor and flag when you are wrongly tracking events or properties negatively affecting your destinations or analytics through [Source Monitoring]().
+1. Automatically map your source events to destinations in an optimal way through our <OutboundLink linkText="Connections" linkTarget="https://learn.runconverge.com/connections/" />
+2. Surface your meaningful analytics through our <OutboundLink linkText="Attribution" linkTarget="https://learn.runconverge.com/attribution/" /> product.
+3. Monitor and flag when you are wrongly tracking events or properties negatively affecting your destinations or analytics through <OutboundLink linkText="Source Monitoring" linkTarget="https://learn.runconverge.com/sources/monitoring" />.
 
 Of course, you can still extend the Converge Spec with your own events, properties, etc.
 
