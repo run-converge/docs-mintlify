@@ -19,7 +19,6 @@ You can track custom events through code either on the client-side or on the ser
 - <OutboundLink linkText="Client-side custom events with Converge JS" linkTarget="https://learn.runconverge.com/sources/website-integrations/converge-pixel#manually-instrumenting-events" /> or <Tooltip tip="Client-side sources are generally wrappers around the Converge JS pixel"> other client-side sources </Tooltip>.
 - <OutboundLink linkText="Server-side custom events with Server Webhook" linkTarget="https://learn.runconverge.com/sources/server-integrations/webhook" />
 
-
 ---
 
 ## Track custom events no-code
@@ -31,7 +30,7 @@ Converge allows you to track arbitrary events with your client-side sources base
 Converge allows you to configure custom events for client-side sources.
 
 <Accordion icon="location-dot" title="How to set up custom events for your Source">
-1. Navigate to the [Sources Tab](https://app.runconverge.com/-/sources) in your Converge dashboard
+1. Navigate to the <OutboundLink linkText="Sources" linkTarget="https://app.runconverge.com/-/sources"/> page in your Converge dashboard
 2. Click on the client-side Source for which you want to configure a custom event.
 3. Click on the **Custom events** tab.
 4. Click on **Add custom event** to start configuring a new custom event.
@@ -42,7 +41,6 @@ Converge allows you to configure custom events for client-side sources.
 9. Select the **Condition variable**, **Condition operation** and **Condition value**.
 10. Repeat the above for every custom event, trigger and condition as needed.
 13. Click on **Save** to persist the custom events.
-    
 </Accordion>
 
 ### Definitions
@@ -57,11 +55,11 @@ Triggers are used to define which user actions will fire the events. When a trig
 
 For example, you may want to fire a `Subscribed to Newsletter` event when a particular link is clicked. A **All Links Click** trigger may be used to fire the event.
 
-<Info>
+<Note>
 A custom event can have one or more triggers configured. If multiple triggers are present, the custom event will be triggered when **ANY** of the triggers is fired.
 
 For example, you may want to fire the same `Subscribed to Newsletter` when another link is pressed. A possible implementation would be to have two separate triggers (one for each link). As soon as any of the links are pressed, the event will be fired. There is no need for the user to perform both actions.
-</Info>
+</Note>
 
 All the supported triggers are listed in [Trigger types](#trigger-types).
 
@@ -71,11 +69,11 @@ Conditions are used to limit the effect of individual triggers. When an event co
 
 For example, you may want to fire a `Subscribed to Newsletter` event when a link containing the text `Subscribe` is clicked. If the `All Elements Click` trigger is used without any conditions, the event will be fired as soon as any link is clicked. A condition may be added to limit the trigger to only fire if the clicked text contains the text `Subscribe` for example.
 
-<Info>
+<Note>
 A trigger can have zero or more conditions configured. If no conditions are present, the trigger will fire for any events. If multiple conditions are present, the trigger will only fire when **ALL** conditions are met.
 
 For example, you may want to fire a `Subscribed to Newsletter` event when a link containing the text `Subscribed` on the homepage of your website is clicked. A possible implementation would be to have an `All Elements Click` trigger containing two conditions. One for the `Click Text` and another for the `Page URL`.
-</Info>
+</Note>
 
 A condition consists of three parts:
 
@@ -85,23 +83,25 @@ A condition consists of three parts:
 
 - **Condition value**: the value to be compared against the variable.
 
+---
+
 ## Trigger types
 
 ### All Elements Click
 
 Tracks clicks on any element (e.g. links, images, buttons, etc) in the page.
 
-<Info>
+<Warning>
 If no conditions are applied to this trigger, it will fire every time a user clicks anything. Make sure to limit the scope of this trigger by being as specific as possible with its conditions, for example by applying filters on `Page URL`, `Click Element`, etc.
-</Info>
+</Warning>
 
 ### All Links Click
 
 Tracks clicks only on HTML links `<a>` and its descendants. 
 
-<Info>
+<Warning>
 If no conditions are applied to this trigger, it will fire every time a user clicks any link. Make sure to limit the scope of this trigger by being as specific as possible with its conditions, for example by applying filters on `Page URL`, `Click Element`, etc.
-</Info>
+</Warning>
 
 ### Page View
 
@@ -129,6 +129,8 @@ The video trigger can be configured to capture one or multiple events:
 
 - **Ended**: triggers when the video has ended
 
+---
+
 ## Condition variables
 
 ### Click conditions
@@ -155,6 +157,8 @@ The video trigger can be configured to capture one or multiple events:
 - **Video Current** Time: the current time (in seconds) of the video when the event occurred.
 - **Video Percent**: the percentage (as an integer between 0 and 100) of the video when the event occurred.
 - **Video Status**: the video status (`playing`, `paused`, `ended` or `seeking`) of the video when the event occurred.
+
+---
 
 ## Condition operators
 

@@ -52,11 +52,9 @@ resp = requests.post(
 
 ## Aliases for re-identification
 
+### Default cookie behavior
 
-
-### Default cookie behaviour
-
-Many browsers wipe all third-party cookies and all cookies set browser-side through JavaScript. 
+Many browsers wipe all third-party cookies and all cookies that are set browser-side through JavaScript. 
 For example, **Safari will wipe all of those cookies after 7 days**. 
 
 This significantly impacts the accuracy of multi-touch attribution.
@@ -91,7 +89,7 @@ flowchart LR
 ```
 
 
-### Leveraging server-side first party cookies within Converge
+### Leveraging server-side first-party cookies within Converge
 
 By using a server-side first-party cookie as an **alias**, Converge can:
 1. **Reliably re-identify your customers for multi-touch attribution**. This is especially important for brands where the buying cycle is longer than the cookie lifetime of 7 days.
@@ -99,12 +97,12 @@ By using a server-side first-party cookie as an **alias**, Converge can:
 
 ---
 
-## Setting up a server-side first party cookie
+## Setting up a server-side first-party cookie
 
-If you are using one the Converge prebuilt integrations (e.g. for Shopify) then you are likely already using a server-side first-party cookie.
+If you are using one of the Converge prebuilt integrations (e.g. for Shopify) then you are likely already using a server-side first-party cookie.
 Check out your specific integration documentation to verify.
 
-If you are integrating Converge custom on your website, then you will need to implement this directly yourself.
+If you are integrating [Converge JS](/sources/website-integrations/converge-pixel) on your website, then you will need to implement this directly yourself.
 
 ### Installation Instructions
 

@@ -1,0 +1,169 @@
+---
+title: "Custom HTML"
+description: "Setting up a Custom HTML connection"
+---
+import { Icon, IconText } from '/snippets/icons.mdx';
+import {OutboundLink} from '/snippets/links.mdx'
+
+## Overview
+
+Connection Type: <IconText text="Client-side" name="browser" iconType="duotone" iconLocation="after"/>  
+For cases where the native connections supported by Converge are not enough for your requirements, the Custom HTML connection allows you to deploy arbitrary HTML code to your website.
+
+Any HTML content (HTML, scripts, styles) can be injected into your website either during [initialization](#setup-script) or in response to an [event](#event-scripts). Your custom HTML can also reference event variables allowing you to implement dynamic behavior based on those properties.
+
+<Warning>
+Notice that any script added through the Custom HTML connection has full access to the website. In addition, scripts may affect performance and potentially break your website.
+
+As such, make sure to only add content that you trust and to always verify your changes.
+</Warning>
+
+---
+
+## Installation Instructions
+
+<Accordion icon="location-dot" title="How to set up a custom HTML connection">
+1. Navigate to the <OutboundLink linkText="Connections" linkTarget="https://app.runconverge.com/-/connections"/> page in your Converge dashboard
+2. Click on <IconText name="circle-plus" text="Create New Connection" iconLocation="before" iconType="regular"/ >.
+3. Fill in the **Connection name**.
+4. In **Select app**, select the **Custom HTML** option.
+5. In **Setup script**, fill in the setup script (if any).
+6. In **Event scripts**, click **Add script**
+7. In **Select trigger**, select the desired event.
+8. Fill in the script.
+9. Click on **Create Connection** to persist the connection.
+</Accordion>
+
+---
+
+## Definitions
+
+### HTML Content
+
+Any arbitrary HTML can be used, including text, images, styles, and Javascript. The HTML content is dynamically injected into your website by the [Converge pixel](/sources/website-integrations/converge-pixel). The content can be injected into your website either during [initialization](#setup-script) or in response to an [event](#event-scripts). Regardless of the timing, the content will always be added as the last element of the `<body>` tag of your page.
+
+<Info>
+The HTML content follows the same structure as a normal HTML file. As such, always make sure to wrap Javascript code with the `<script>` tag. Otherwise, the content will be rendered as normal text content rather than executed.
+</Info>
+
+### Setup script
+
+Defines a custom HTML that is injected into your website upon initialization. As soon as the [Converge pixel](/sources/website-integrations/converge-pixel) is initialized, this content will be injected into your website.
+
+It can be used to add any custom HTML content or execute a script that doesn't depend on any action from the user. For example, to install a pixel/snippet that is not provided natively by Converge or to make any necessary preparation for the handling of events by an [Event script](#event-scripts).
+
+#### Examples
+
+<Accordion icon="clipboard" title="Install PostHog">
+```Markup Custom HTML
+<script>
+    !function(t,e){var o,n,p,r;e.__SV||(window.posthog=e,e._i=[],e.init=function(i,s,a){function g(t,e){var o=e.split(".");2==o.length&&(t=t[o[0]],e=o[1]),t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}}(p=t.createElement("script")).type="text/javascript",p.async=!0,p.src=s.api_host+"/static/array.js",(r=t.getElementsByTagName("script")[0]).parentNode.insertBefore(p,r);var u=e;for(void 0!==a?u=e[a]=[]:a="posthog",u.people=u.people||[],u.toString=function(t){var e="posthog";return"posthog"!==a&&(e+="."+a),t||(e+=" (stub)"),e},u.people.toString=function(){return u.toString(1)+".people (stub)"},o="capture identify alias people.set people.set_once set_config register register_once unregister opt_out_capturing has_opted_out_capturing opt_in_capturing reset isFeatureEnabled onFeatureFlags getFeatureFlag getFeatureFlagPayload reloadFeatureFlags group updateEarlyAccessFeatureEnrollment getEarlyAccessFeatures getActiveMatchingSurveys getSurveys onSessionId".split(" "),n=0;n<o.length;n++)g(u,o[n]);e._i.push([i,s,a])},e.__SV=1)}(document,window.posthog||[]);
+    posthog.init('<ph_project_api_key>', {api_host: "<ph_instance_address>"})
+</script>
+```
+</Accordion>
+
+<Accordion icon="clipboard" title="Install Hotjar">
+```Markup Custom HTML
+<script>
+    (function(h,o,t,j,a,r){
+        h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
+        h._hjSettings={hjid:<hjid>,hjsv:<hjsv>};
+        a=o.getElementsByTagName('head')[0];
+        r=o.createElement('script');r.async=1;
+        r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
+        a.appendChild(r);
+    })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
+</script>
+```
+</Accordion>
+
+### Event scripts
+
+Defines a custom HTML that is injected into your website when a given event occurs. Event scripts are always linked to exactly one **Event** type. The custom HTML will be injected into your website whenever (potentially multiple times) the configured event occurs.
+
+It can be used to add any custom HTML content or execute a script as soon as an event has occurred. For example, to send an event to a pixel/tag that is not provided natively by Converge.
+
+Event scripts can also reference event [variables](#variables).
+
+<Note> 
+Note that the Custom HTML connection can only be triggered by events that are implemented client-side. If your event is solely tracked server-side, it will not be compatible with the Custom HTML connection. 
+</Note>
+#### Examples
+
+<Accordion icon="clipboard" title="Viewed Product">
+```Markup Custom HTML
+<script>
+console.log('Viewed Product', {
+    product: {
+        productId: {{ product_id }},
+        productName: {{ name }},
+        productPrice: {{ price }}
+    },
+})
+</script>
+```
+</Accordion>
+
+<Accordion icon="clipboard" title="Placed Order">
+```Markup Custom HTML
+<script>
+var items = {{ items }} || []
+console.log('Placed Order', {
+    totalPrice: {{ total_price }},
+    itemsCount: items.reduce((total, item) => total + item.quantity, 0),
+    products: items.map(item => ({
+        productId: item.product_id,
+        productName: item.name,
+        productPrice: item.price
+    }))
+})
+</script>
+```
+</Accordion>
+
+### Variables
+
+When using [Event scripts](#event-scripts), it's possible to reference event properties by making use of variables. These variables are referenced by wrapping the variable name with double braces: `{{ variable_name }}`.
+
+For each occurrence of an event linked to a Custom HTML script, Converge will resolve all the referenced variables, replace the variables in the template and finally inject the resulting content.
+
+The available variables depend on the selected Event type. For the native events, the list of available properties and their types can be found in the [Event Spec](/sources/converge-spec). For custom events, all properties sent in the events are available for usage automatically.
+
+For example, for the **Place Order** event, the following variables are available (among others):
+
+| Property             | Type        | Template                 | Injected                     |
+| :------------------- | :---------- | ------------------------ | ---------------------------- |
+| **id**               | **string**  | `{{ id }}`               | `"123"`                      |
+| **total_price**      | **float**   | `{{ total_price }}`      | `123`                        |
+| **items**            | **array**   | `{{ items }}`            | `[{"product_id": ...}, ...]` |
+| **$is_new_customer** | **boolean** | `{{ $is_new_customer }}` | `true`                       |
+
+<Note>
+Notice that variables can be undefined. As such, it's important to always validate the variable value to avoid runtime errors. This can be done, for example:
+- by checking the value directly. e.g.
+
+```
+if ({{ variable_name }} != null) { ... }
+```
+
+- by providing a default value, e.g.
+
+```
+var items = {{ items }} || []
+```
+
+- or any other pattern you may prefer.
+</Note>
+
+--
+
+## Converge functionality
+
+This integration supports the following Converge connection functionality.
+
+| Converge Feature        |       Supported       |
+| :---------------------- | :-------------------: |
+| Custom Events           | <Icon name="xmark" /> |
+| Filters                 | <Icon name="xmark" /> |
+| Server-side Conversions | <Icon name="xmark" /> |

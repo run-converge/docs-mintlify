@@ -99,7 +99,8 @@
             "connections/integrations/tiktok",
             "connections/integrations/bing",
             "connections/integrations/twitter",
-            "connections/integrations/bigquery"
+            "connections/integrations/bigquery",
+            "connections/integrations/custom-html"
           ]
         },
         "connections/filters",
