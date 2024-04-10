@@ -316,7 +316,7 @@ When a user adds a product to cart
     </ParamField>
 
     <ParamField body="vendor" type="string">
-    Name of the vendor of the product that is being viewed.
+    Name of the vendor of the product  .
     </ParamField>
 
 </Accordion>
@@ -384,32 +384,32 @@ When a user starts the checkout process.
 {" "}
 
 <ParamField body="product_id" type="string" required>
-  Product ID of the item that is being viewed.
+  Product ID of the item  .
 </ParamField>
 
     <ParamField body="variant_id" type="string">
-    Variant ID of the product variant that is being viewed
+    Variant ID of the product variant  
     </ParamField>
 
     <ParamField body="sku" type="string">
-    SKU of the product and variant that is being viewed
+    SKU of the product and variant  
     </ParamField>
 
     <ParamField body="name" type="string" required>
-    Product Name of the item that is being viewed
+    Product Name of the item  
     </ParamField>
 
     <ParamField body="price" type="float" required>
-    Price of the item that is being viewed
+    Price of the item  
     </ParamField>
 
     <ParamField body="currency" type="string" required>
-    Currency of the product that is being viewed, as per [ISO
+    Currency of the product  , as per [ISO
     4217](https://en.wikipedia.org/wiki/ISO_4217)
     </ParamField>
 
     <ParamField body="vendor" type="string">
-    Name of the vendor of the product that is being viewed.
+    Name of the vendor of the product  .
     </ParamField>
 
         <ParamField body="quantity" type="int" required>
@@ -494,32 +494,32 @@ When a user adds their payment info.
 {" "}
 
 <ParamField body="product_id" type="string" required>
-  Product ID of the item that is being viewed.
+  Product ID of the item  .
 </ParamField>
 
     <ParamField body="variant_id" type="string">
-    Variant ID of the product variant that is being viewed
+    Variant ID of the product variant 
     </ParamField>
 
     <ParamField body="sku" type="string">
-    SKU of the product and variant that is being viewed
+    SKU of the product and variant 
     </ParamField>
 
     <ParamField body="name" type="string" required>
-    Product Name of the item that is being viewed
+    Product Name of the item 
     </ParamField>
 
     <ParamField body="price" type="float" required>
-    Price of the item that is being viewed
+    Price of the item 
     </ParamField>
 
     <ParamField body="currency" type="string" required>
-    Currency of the product that is being viewed, as per [ISO
+    Currency of the product , as per [ISO
     4217](https://en.wikipedia.org/wiki/ISO_4217)
     </ParamField>
 
     <ParamField body="vendor" type="string">
-    Name of the vendor of the product that is being viewed.
+    Name of the vendor of the product  .
     </ParamField>
 
         <ParamField body="quantity" type="int" required>
@@ -847,7 +847,6 @@ resp = requests.post(
         "aliases": ["urn:email:john.smith@apple.com"],
     }
 )
-
 ```
 
 </CodeGroup>
@@ -856,6 +855,120 @@ resp = requests.post(
 </AccordionGroup>
 
 [//]: # "TODO: Should add a set of recommended aliases to Placed Order events"
+
+
+### Viewed Cart
+
+When a user views their cart.
+
+<AccordionGroup>
+<Info>
+This is an optional event
+</Info>
+
+<Accordion title="Where To Track" icon="map-pin">
+  This event should be tracked on the client.
+</Accordion>
+
+<Accordion title="Event Properties" icon="list">
+
+    <ParamField body="total_price" type="float" required>
+    Total value of the cart without tax or shipping.
+    </ParamField>
+
+    <ParamField body="total_tax" type="float" required>
+    Total tax of the cart.
+    </ParamField>
+
+    <ParamField body="total_shipping" type="float" required>
+    Total shipping cost of the cart.
+    </ParamField>
+
+    <ParamField body="currency" type="string" required>
+    Currency of the cart that is being checked out, as per [ISO
+    4217](https://en.wikipedia.org/wiki/ISO_4217)
+    </ParamField>
+
+    <ParamField body="items" type="list of CartItem">
+
+        <Expandable title="CartItem">
+
+{" "}
+
+<ParamField body="product_id" type="string" required>
+  Product ID of the item.
+</ParamField>
+
+    <ParamField body="variant_id" type="string">
+    Variant ID of the product variant  
+    </ParamField>
+
+    <ParamField body="sku" type="string">
+    SKU of the product and variant  
+    </ParamField>
+
+    <ParamField body="name" type="string" required>
+    Product Name of the item  
+    </ParamField>
+
+    <ParamField body="price" type="float" required>
+    Price of the item  
+    </ParamField>
+
+    <ParamField body="currency" type="string" required>
+    Currency of the product  , as per [ISO
+    4217](https://en.wikipedia.org/wiki/ISO_4217)
+    </ParamField>
+
+    <ParamField body="vendor" type="string">
+    Name of the vendor of the product  .
+    </ParamField>
+
+        <ParamField body="quantity" type="int" required>
+    Amount of times the item is present in the cart at checkout.
+    </ParamField>
+
+  </Expandable>
+
+    </ParamField>
+
+</Accordion>
+
+<Accordion title="Code Example" icon="code">
+
+    <CodeGroup>
+
+```javascript JavaScript
+cvg({
+  method: "track",
+  eventName: "Viewed Cart",
+  properties: {
+    total_price: 42,
+    total_tax: 3.5,
+    total_shipping: 2.4,
+    currency: "USD",
+    items: [
+      // Notice that this is a list of items
+      {
+        product_id: "123456",
+        variant_id: "78910",
+        sku: "MY_SKU",
+        name: "My Product",
+        variant_name: "Vanilla",
+        price: 42,
+        currency: "USD",
+        quantity: 1,
+        vendor: "My Store",
+      },
+    ],
+  },
+});
+```
+
+</CodeGroup>
+
+</Accordion>
+</AccordionGroup>
 
 ---
 
@@ -1129,7 +1242,7 @@ When a user cancels a subscription.
 
     </ParamField>
 
-       <ParamField body="$email" type="string" required>
+    <ParamField body="$email" type="string" required>
     Email Address of the subscriber.
     </ParamField>
 
