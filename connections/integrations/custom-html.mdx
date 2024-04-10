@@ -7,6 +7,7 @@ import {OutboundLink} from '/snippets/links.mdx'
 
 ## Overview
 
+Connection Type: <IconText text="Client-side" name="browser" iconType="duotone" iconLocation="after"/>  
 For cases where the native connections supported by Converge are not enough for your requirements, the Custom HTML connection allows you to deploy arbitrary HTML code to your website.
 
 Any HTML content (HTML, scripts, styles) can be injected into your website either during [initialization](#setup-script) or in response to an [event](#event-scripts). Your custom HTML can also reference event variables allowing you to implement dynamic behavior based on those properties.
@@ -17,11 +18,11 @@ Notice that any script added through the Custom HTML connection has full access 
 As such, make sure to only add content that you trust and to always verify your changes.
 </Warning>
 
-## Set up a Custom HTML connection
+## Installation Instructions
 
 <Accordion icon="location-dot" title="How to set up a custom HTML connection">
 1. Navigate to the <OutboundLink linkText="Connections" linkTarget="https://app.runconverge.com/-/connections"/> page in your Converge dashboard
-2. Click on **Create new connection**
+2. Click on <IconText name="circle-plus" text="Create New Connection" iconLocation="before" iconType="regular"/ >.
 3. Fill in the **Connection name**.
 4. In **Select app**, select the **Custom HTML** option.
 5. In **Setup script**, fill in the setup script (if any).
@@ -81,6 +82,9 @@ It can be used to add any custom HTML content or execute a script as soon as an 
 
 Event scripts can also reference event [variables](#variables).
 
+<Note> 
+Note that the Custom HTML connection can only be triggered by events that are implemented client-side. If your event is solely tracked server-side, it will not be compatible with the Custom HTML connection. 
+</Note>
 #### Examples
 
 <Accordion icon="clipboard" title="Viewed Product">
