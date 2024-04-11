@@ -7,13 +7,18 @@ import { OutboundLink } from '/snippets/links.mdx';
 import { IconText } from '/snippets/icons.mdx';
 
 This article consists of detailed guides to turn off specific tracking setups.
-Currently, we provide instructions for: 
+Currently, we provide instructions to turn off the following tracking methods on a per-destination basis: 
 
-1. [The Shopify Facebook Sales Channel](#turning-off-the-shopify-facebook-sales-channel)
+- [Facebook / Meta](#facebook-meta)
+    - [The Shopify Facebook Sales Channel](#turning-off-the-shopify-facebook-sales-channel)
+
+- [GA4](#GA4)
 
 ---
 
-## Turning off the Shopify Facebook Sales Channel 
+## Facebook / Meta 
+
+#### Turning off the Shopify Facebook Sales Channel data sharing
 
 <Accordion icon="list" title="Click to open instructions">
 
@@ -38,4 +43,30 @@ Currently, we provide instructions for:
     </Frame>
 
 6. You are done.
+</Accordion>
+
+---
+
+## GA4
+
+#### Turning off the Shopify Google Sales Channel data sharing
+
+<Accordion icon="list" title="Click to open instructions">
+
+1. Navigate to your <OutboundLink linkText="Shopify Admin Dashboard" linkTarget="https://admin.shopify.com/" />.
+
+2. Click on <IconText name="angle-right" text="Sales channels" iconLocation = "after"/> and choose **Google & YouTube** from the Installed sales channels menu.
+
+3. Click on **Settings**.
+
+    <Frame>
+        ![settings-google-0](/images/guides/turn-off-tracking/shopify-ga4-sales-channel/shopify-ga4-sales-channel-0.png)
+    </Frame>
+
+4. Click on **Disconnect** in the **Your Google Analytics property** submenu
+    <Frame>
+        ![settings-google-1](/images/guides/turn-off-tracking/shopify-ga4-sales-channel/shopify-ga4-sales-channel-1.png)
+    </Frame>
+
+5. You are done.
 </Accordion>
