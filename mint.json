@@ -140,7 +140,8 @@
       "group": "Guides",
       "pages": [
         "guides/google-consent-v2",
-        "guides/turn-off-tracking"
+        "guides/turn-off-tracking",
+        "guides/understanding-attribution"
       ]
     }
   ],
