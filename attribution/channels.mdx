@@ -11,7 +11,26 @@ import { OutboundLink } from "/snippets/links.mdx";
 
 You can access the Channels attribution page by clicking on <IconText text="Attribution" name="piggy-bank" iconType="duotone"/> and navigating to the **Channels** sub-tab. Or by navigating directly to the <OutboundLink linkText="Channels" linkTarget="https://app.runconverge.com/-/attribution/channels"/> attribution page.
 
-#### Customizing the table
+### Changing the attribution model
+
+<Note> Changing the attribution model will only change the attribution model of **UTM-based metrics**. The in-platform conversions and metrics are determined by the attribution model by the ad platform itself</Note>
+
+We allow you to change the attribution model that Converge should use to attribute its **UTM metrics** (e.g. **UTM Purchases**).
+
+<Frame>
+ ![change-attribution-model](/images/attribution/channels-1.png)
+</Frame>
+
+<br></br>
+
+<Accordion title="See all available attribution models">
+- **First Touch**: Attributes full credit for conversion to the initial touchpoint in the customer journey.
+- **First Touch Paid Only**: Credits only to the first paid interaction for the conversion; exclusive to paid channels.
+- **Last Touch**: Assigns full credit for the conversion to the final touchpoint in the customer journey.
+- **Last Touch Paid Only**: Attributes conversion solely to the last paid interaction; focuses on the final touchpoint within paid channels.
+</Accordion>
+
+### Customizing the table
 
 You can customize the table columns by clicking on the <Icon name="ellipsis" />-icon in the top-right corner and then <IconText name="pencil" text="Edit columns" iconType="solid"/>
 
