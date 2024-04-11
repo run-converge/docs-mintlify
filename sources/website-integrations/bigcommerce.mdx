@@ -31,114 +31,113 @@ The Converge Website installation for a BigCommerce store consists of:
         6. In the storefront settings, click on **Script manager** in the sidebar and then click on **Create a script**.
         7. Choose **Converge** as your script name, choose **Footer** as your Placement and **All pages** as your Location. Make sure the Script category is **Essential** and Script type is **Script**.
         8. Copy the script below
-            <Accordion title="Click to see script to copy" >
+            <Accordion title="Click to see script to copy" icon="clipboard">
             ```html 
             <script>
             !function(){"use strict";!function(e,t,c,n,s,o,r){e.cvg||(s=e.cvg=function(){s.process?s.process.apply(s,arguments):s.queue.push(arguments)},s.queue=[],(o=t.createElement(c)).async=1,o.src="https://static.runconverge.com/pixels/YOUR_PUBLIC_TOKEN.js",(r=t.getElementsByTagName(c)[0]).parentNode.insertBefore(o,r))}(window,document,"script"),cvg({method:"track",eventName:"$page_load"})}();
             </script>
 
             <script>
-                const cartId = "{{cart_id}}";
-                let aliases = [];
-                let profileProperties = {};
+                (function(){
+                    const cartId = "{{cart_id}}";
+                    let aliases = [];
+                    let profileProperties = {};
 
-                if (cartId) {
-                    aliases.push(`urn:bigcommerce:cart:${cartId}`);
-                }
-
-
-                const getConvergeCookie = (name) => {
-                    const value = `; ${document.cookie}`;
-                    const parts = value.split(`; ${name}=`);
-                    if (parts.length === 2) {
-                        return parts.pop().split(';').shift();
+                    if (cartId) {
+                        aliases.push(`urn:bigcommerce:cart:${cartId}`);
                     }
-                    return '';
-                }
 
-                const setConvergeCookie = (name, value) => {
-                    document.cookie = `${name}=${value}; path=/;`;
-                }
-                
-                const setupCheckoutEvent = (eventName) => {
-                    return fetch('/api/storefront/checkout/{{cart_id}}')
-                        .then((response) => response.json())
-                        .then((checkout) => {
-                            const cart = checkout.cart;
-                            if (cart.email) {
-                                aliases.push(`urn:email:${cart.email}`);
-                                profileProperties['$email'] = cart.email;
-                            }
-                            if (cart.customerId) {
-                                aliases.push(`urn:bigcommerce:customer:{{settings.store_hash}}:${cart.customerId}`);
-                            }
-                            const address = checkout.billingAddress
-                            profileProperties = {
-                                ...profileProperties,
-                                $first_name: address.firstName,
-                                $last_name: address.lastName,
-                                $phone_number: address.phone,
-                                $city: address.city,
-                                $state: address.stateOrProvince,
-                                $zip_code: address.postalCode,
-                                $country_code: address.countryCode,
-                            }
-                            
-                            cvg({
-                                method: 'event',
-                                event: eventName,
-                                properties: {
-                                    id: cart.id,
-                                    total_price: cart.cartAmount,
-                                    total_discount: cart.discountAmount,
-                                    total_tax: checkout.taxes.map(t => t.amount).reduce((a, b) => a + b, 0),
-                                    coupon: cart.coupons.map(c => c.code),
-                                    currency: cart.currency.code,
-                                    items: cart.lineItems.physicalItems.map(
-                                        l => ({
-                                            product_id: l.productId,
-                                            variant_id: l.variantId,
-                                            name: l.name,
-                                            variant_name: l.variantId,
-                                            sku: l.sku,
-                                            price: l.salePrice,
-                                            discount: l.discountAmount,
-                                            vendor: l.brand.name,
-                                            quantity: l.quantity,
-                                            currency: cart.currency.code
-                                        })
-                                    ),
-                                    ...profileProperties
-                                },
-                                aliases,
-                                profileProperties
-                            })
+
+                    const getCookie = (name) => {
+                        const value = `; ${document.cookie}`;
+                        const parts = value.split(`; ${name}=`);
+                        if (parts.length === 2) {
+                            return parts.pop().split(';').shift();
                         }
-                    )
-                }
+                        return '';
+                    }
 
-                cvg({method: "event", event: "$page_load", aliases, profileProperties});
+                    const setCookie = (name, value) => {
+                        document.cookie = `${name}=${value}; path=/;`;
+                    }
+                    
+                    const setupCheckoutEvent = (eventName) => {
+                        return fetch('/api/storefront/checkout/{{cart_id}}')
+                            .then((response) => response.json())
+                            .then((checkout) => {
+                                const cart = checkout.cart;
+                                if (cart.email) {
+                                    aliases.push(`urn:email:${cart.email}`);
+                                    profileProperties['$email'] = cart.email;
+                                }
+                                if (cart.customerId) {
+                                    aliases.push(`urn:bigcommerce:customer:{{settings.store_hash}}:${cart.customerId}`);
+                                }
+                                const address = checkout.billingAddress
+                                profileProperties = {
+                                    ...profileProperties,
+                                    $first_name: address.firstName,
+                                    $last_name: address.lastName,
+                                    $phone_number: address.phone,
+                                    $city: address.city,
+                                    $state: address.stateOrProvince,
+                                    $zip_code: address.postalCode,
+                                    $country_code: address.countryCode,
+                                }
+                                
+                                cvg({
+                                    method: 'event',
+                                    event: eventName,
+                                    properties: {
+                                        id: cart.id,
+                                        total_price: cart.cartAmount,
+                                        total_discount: cart.discountAmount,
+                                        total_tax: checkout.taxes.map(t => t.amount).reduce((a, b) => a + b, 0),
+                                        coupon: cart.coupons.map(c => c.code),
+                                        currency: cart.currency.code,
+                                        items: cart.lineItems.physicalItems.map(
+                                            l => ({
+                                                product_id: l.productId,
+                                                variant_id: l.variantId,
+                                                name: l.name,
+                                                variant_name: l.variantId,
+                                                sku: l.sku,
+                                                price: l.salePrice,
+                                                discount: l.discountAmount,
+                                                vendor: l.brand.name,
+                                                quantity: l.quantity,
+                                                currency: cart.currency.code
+                                            })
+                                        ),
+                                        ...profileProperties
+                                    },
+                                    aliases,
+                                    profileProperties
+                                })
+                            }
+                        )
+                    }
 
-                const pageType = "{{page_type}}";
-                if (pageType === "product") {
-                    const product = {
-                        product_id: "{{product.id}}",
-                        name: "{{product.title}}",
-                        sku: "{{product.sku}}",
-                        price: +("{{product.price.with_tax.value}}" || "{{product.price.without_tax.value}}"),
-                        currency: "{{product.price.with_tax.currency}}" || "{{product.price.without_tax.currency}}",
-                        vendor: "{{product.brand.name}}"
-                    };
-                    cvg({
-                        method: "event",
-                        event: "Viewed Product",
-                        properties: product,
-                        aliases,
-                        profileProperties
-                    });
-                    const validAddToCartSelectors = ["buy-it-now", "buy-insoles-now", "buy-insole-bundle"]
-                    for (const selector of validAddToCartSelectors) {
-                        let btn = document.getElementById(selector);
+                    cvg({method: "event", event: "$page_load", aliases, profileProperties});
+
+                    const pageType = "{{page_type}}";
+                    if (pageType === "product") {
+                        const product = {
+                            product_id: "{{product.id}}",
+                            name: "{{product.title}}",
+                            sku: "{{product.sku}}",
+                            price: +("{{product.price.with_tax.value}}" || "{{product.price.without_tax.value}}"),
+                            currency: "{{product.price.with_tax.currency}}" || "{{product.price.without_tax.currency}}",
+                            vendor: "{{product.brand.name}}"
+                        };
+                        cvg({
+                            method: "event",
+                            event: "Viewed Product",
+                            properties: product,
+                            aliases,
+                            profileProperties
+                        });
+                        const btn = document.getElementById("form-action-addToCart");
                         if (btn) {
                             btn.addEventListener('click', function (){
                                     cvg({
@@ -152,81 +151,81 @@ The Converge Website installation for a BigCommerce store consists of:
                                     });
                             });
                         }
-                    }
-                } else if (pageType === "category") {
-                    cvg({
-                        method: "event",
-                        event: "Viewed Collection",
-                        properties: {
-                            id: "{{category.id}}",
-                            name: "{{category.name}}",
-                            description: "{{category.description}}",
-                            items: [
-                                {{#each category.products}}
-                                    {
-                                        product_id: "{{this.id}}",
-                                        name: "{{this.name}}",
-                                        sku: "{{this.sku}}",
-                                        price: +("{{this.price.with_tax.value}}" || "{{this.price.without_tax.value}}"),
-                                        currency: "{{this.price.with_tax.currency}}" || "{{this.price.without_tax.currency}}",
-                                        vendor: "{{this.brand.name}}"
-                                    },
-                                {{/each}}
-                            ]
-                        },
-                        aliases,
-                        profileProperties
-                    });
+                    } else if (pageType === "category") {
+                        cvg({
+                            method: "event",
+                            event: "Viewed Collection",
+                            properties: {
+                                id: "{{category.id}}",
+                                name: "{{category.name}}",
+                                description: "{{category.description}}",
+                                items: [
+                                    {{#each category.products}}
+                                        {
+                                            product_id: "{{this.id}}",
+                                            name: "{{this.name}}",
+                                            sku: "{{this.sku}}",
+                                            price: +("{{this.price.with_tax.value}}" || "{{this.price.without_tax.value}}"),
+                                            currency: "{{this.price.with_tax.currency}}" || "{{this.price.without_tax.currency}}",
+                                            vendor: "{{this.brand.name}}"
+                                        },
+                                    {{/each}}
+                                ].slice(0, 20)
+                            },
+                            aliases,
+                            profileProperties
+                        });
 
-                } else if (pageType === 'cart') {
-                    const coupons = {{#if cart.coupons}} {{{json cart.coupons}}} {{else}} [] {{/if}};
-                    const codes = coupons.map(c => c.code);
-                    const discount = -1 * coupons.map(c => c.discount.value).reduce((a, b) => a + b, 0);
-                    cvg({
-                        method: "event",
-                        event: "Viewed Cart",
-                        properties: {
-                            total_price: +"{{cart.grand_total.value}}",
-                            total_tax: +"{{cart.taxes.cost.value}}",
-                            total_discount: discount,
-                            currency: "{{cart.grand_total.currency}}",
-                            coupon: codes,
-                            items: [
-                                {{#each cart.items}}
-                                    {
-                                        product_id: "{{this.product_id}}",
-                                        name: "{{this.name}}",
-                                        sku: "{{this.sku}}",
-                                        price: +"{{this.price.value}}",
-                                        currency: "{{this.price.currency}}",
-                                        vendor: "{{this.brand.name}}",
-                                        quantity: +"{{this.quantity}}"
-                                    },
-                                {{/each}}
-                            ]
-                        },
-                        aliases,
-                        profileProperties
-                    });
+                    } else if (pageType === 'cart') {
+                        const coupons = {{#if cart.coupons}} {{{json cart.coupons}}} {{else}} [] {{/if}};
+                        const codes = coupons.map(c => c.code);
+                        const discount = -1 * coupons.map(c => c.discount.value).reduce((a, b) => a + b, 0);
+                        cvg({
+                            method: "event",
+                            event: "Viewed Cart",
+                            properties: {
+                                total_price: +"{{cart.grand_total.value}}",
+                                total_tax: +"{{cart.taxes.cost.value}}",
+                                total_discount: discount,
+                                currency: "{{cart.grand_total.currency}}",
+                                coupon: codes,
+                                items: [
+                                    {{#each cart.items}}
+                                        {
+                                            product_id: "{{this.product_id}}",
+                                            name: "{{this.name}}",
+                                            sku: "{{this.sku}}",
+                                            price: +"{{this.price.value}}",
+                                            currency: "{{this.price.currency}}",
+                                            vendor: "{{this.brand.name}}",
+                                            quantity: +"{{this.quantity}}"
+                                        },
+                                    {{/each}}
+                                ]
+                            },
+                            aliases,
+                            profileProperties
+                        });
 
-                } else if (pageType === 'checkout') {
-                    if (getConvergeCookie('__cvg_started_checkout') !== "{{cart_id}}") {
-                        setupCheckoutEvent('Started Checkout');
-                        setConvergeCookie('__cvg_started_checkout', "{{cart_id}}");
-                    }
-                    window.addEventListener("click", function(event){ 
-                        var id = event.target.id;
-                        if (id === 'checkout-customer-continue' ) {
-                            setupCheckoutEvent('Added Contact Info');
+                    } else if (pageType === 'checkout') {
+                        if (getCookie('__cvg_started_checkout') !== "{{cart_id}}") {
+                            setupCheckoutEvent('Started Checkout');
+                            setCookie('__cvg_started_checkout', "{{cart_id}}");
                         }
-                        if (id === 'checkout-shipping-continue') {
-                            setupCheckoutEvent("Added Shipping Info")
-                        }
-                        if (id === 'checkout-payment-continue') {
-                            setupCheckoutEvent("Added Payment Info")
-                        }
-                    });
-                }
+                        window.addEventListener("click", function(event){ 
+                            var id = event.target.id;
+                            if (id === 'checkout-customer-continue' ) {
+                                setupCheckoutEvent('Added Contact Info');
+                            }
+                            if (id === 'checkout-shipping-continue') {
+                                setupCheckoutEvent("Added Shipping Info")
+                            }
+                            if (id === 'checkout-payment-continue') {
+                                setupCheckoutEvent("Added Payment Info")
+                            }
+                        });
+                    } 
+                })();  
             </script>
             ```
             </Accordion>
