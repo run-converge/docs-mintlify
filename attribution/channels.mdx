@@ -1,5 +1,5 @@
 ---
-title: Channels
+title: Channels Report
 description: "Analyze the sources of conversions on your website"
 ---
 
@@ -11,7 +11,32 @@ import { OutboundLink } from "/snippets/links.mdx";
 
 You can access the Channels attribution page by clicking on <IconText text="Attribution" name="piggy-bank" iconType="duotone"/> and navigating to the **Channels** sub-tab. Or by navigating directly to the <OutboundLink linkText="Channels" linkTarget="https://app.runconverge.com/-/attribution/channels"/> attribution page.
 
-### Changing the attribution model
+---
+
+## Introduction to conversions and attribution
+
+Converge allows you to see attributed conversions based on:
+1. **First-party UTMs**: these are conversions **attributed by Converge** based on the [attribution model](#changing-the-attribution-model-of-your-utm-conversions) you pick in Converge and your UTM-tracking parameters 
+2. **In-platform attribution**: these are conversions **attributed by the ad platform themselves**.
+
+<Frame>
+ ![attribution-0](/images/guides/attribution-guide/attribution-guide-0.png)
+</Frame>
+
+<br> </br>
+
+The screenshot above shows the purchase conversions based on **First-party UTMs** (*UTM Purchases*) and the **In-platform attribution** (*Purchases*). 
+
+There is no notion of in-platform attribution for channel sources that are not ad platforms. An Organic channel has no built-in attribution, but the Facebook Ads Manager does.
+
+If you are using the Converge Connections product, then **the same data is powering your first-party UTM attribution and your in-platform attribution**.
+However, the attributed conversions based on first-party UTMs and itself **will likely not match** as they are based on different attribution models.
+
+If you want to learn how to interpret these numbers and why they are different, then you should read our <OutboundLink linkText="guide on understanding attribution" linkTarget="https://learn.runconverge.com/guides/understanding-attribution"/>.
+
+---
+
+## Changing the attribution model of your UTM conversions
 
 <Note> Changing the attribution model will only change the attribution model of **UTM-based metrics**. The in-platform conversions and metrics are determined by the attribution model by the ad platform itself</Note>
 
@@ -30,7 +55,9 @@ We allow you to change the attribution model that Converge should use to attribu
 - **Last Touch Paid Only**: Attributes conversion solely to the last paid interaction; focuses on the final touchpoint within paid channels.
 </Accordion>
 
-### Customizing the table
+---
+
+## Customizing the table columns
 
 You can customize the table columns by clicking on the <Icon name="ellipsis" />-icon in the top-right corner and then <IconText name="pencil" text="Edit columns" iconType="solid"/>
 
@@ -56,7 +83,9 @@ You can customize the table columns by clicking on the <Icon name="ellipsis" />-
 5. Click **Save**.
 </Accordion>
 
-### LTV
+---
+
+## LTV
 
 The Channels attribution table allows you to visualize the **LTV** for each source, campaign, adset or ad. These values correspond to the *Average Revenue Per Paying User* (**ARPPU**) for each cohort.
 
