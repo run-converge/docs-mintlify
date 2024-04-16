@@ -135,6 +135,10 @@ This integration supports the following Converge connection functionality.
    2. Verify that you have no active <OutboundLink linkText="Filters" linkTarget="https://learn.runconverge.com/connections/filters"/> that are filtering out certain purchases. You can check this in the <OutboundLink linkText="Connection Logs" linkTarget="https://learn.runconverge.com/connections/monitoring#connection-logs"/>.
    3. Make sure that you configured the [connection type](#connection-type) for this connection to be sGTM or server-side. If you are only tracking client-side, then your purchases might not get tracked due to Ad blockers and tag-loading issues.
    4. Verify that you have **disabled** "Collect automatically detected user-provided data"under  <IconText name="gear" text="Admin" /> > <IconText name="database" text="Data collection" iconType="regular"/>.
+   5. If your cookiebanner informs Converge that the user has given no consent, then Converge will pass this `denied`-consent parameter to GA4 and GA4 will drop this purchase. You can verify whether this is the case by inspecting the GA4 Connection Logs for the `Placed Order`-events. If you find a `denied` consent parameter under the profile properties then it means that your cookiebanner passed a `denied` status for these purchases.
+      <Frame>
+         ![img](/images/connections/ga4/consent-denied-0.png)
+      </Frame>
 </Accordion>
 </AccordionGroup>
 
