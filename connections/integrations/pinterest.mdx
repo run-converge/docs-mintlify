@@ -1,0 +1,78 @@
+---
+title: "Pinterest Ads"
+description: "An introduction to the Pinterest Ads Destination"
+---
+
+import { Icon, IconText } from '/snippets/icons.mdx';
+import { OutboundLink } from '/snippets/links.mdx';
+
+## Overview
+Connection Type: <IconText text="Client-side" name="browser" iconType="duotone" iconLocation="after"/>  and <IconText text="Server-side" name="server" iconType="duotone" iconLocation="after"/>
+- Includes support for the <OutboundLink linkText="Pinterest API for Conversions" linkTarget="https://help.pinterest.com/en-gb/business/article/the-pinterest-api-for-conversions"/> 
+
+---
+
+## Installation Instructions
+
+<AccordionGroup >
+<Accordion icon="list" title="Installation Instructions">
+
+1. Navigate to your <OutboundLink linkText="Pinterest Ads Manager" linkTarget="https://ads.pinterest.com/"/> . If the direct link does not open your Events Manager, you can access it from the TikTok Ads Manager dashboard under **Tools** > **Events**.
+
+2. From your Ads Manager click on <IconText text="Account overview" name="bars" iconLocation="after"/> in the top left corner.
+
+3. Click on **Conversions** under the Business section.
+     <Frame>
+        ![pinterest-1](/images/connections/pinterest/pinterest-connection-0.png)
+    </Frame>
+
+4. Navigate to the **Pinterest Tag** > **Tag Manager** tab and copy your **Tag ID**, you will need it later. Create a tag if you do not have one.
+    <Frame>
+        ![pinterest-2](/images/connections/pinterest/pinterest-connection-1.png)
+    </Frame>
+
+5. Lastly, get your **Ad Account ID**, you can find it in the URL of the ad manager. It consists of 12 numbers. 
+    <Frame>
+        ![pinterest-3](/images/connections/pinterest/pinterest-connection-2.png)
+    </Frame>
+
+5. Navigate to the **API for conversions** > **Conversion access token** tab. Click on **Generate new token** and copy the token, you will need it later. 
+
+6. In your Converge dashboard, under Connections, click <IconText name="circle-plus" text="Create New Connection" iconLocation="before" iconType="regular"/ >.
+
+7. Give your connection an appropriate name (e.g. `Pinterest Connection | {Tag_ID}`) and **choose the Pinterest App**.
+
+8. Paste the Ad Account ID in the **Ad Account ID**-field, paste the Tag ID you acquired in the earlier step in the **Tag ID** field. Paste in the access token you acquired earlier in the **Access Token** field.
+
+9. Click on **Create Connection**
+</Accordion>
+<Warning> Once you have installed your Converge Connection, you should **pause or remove all existing Pinterest tracking**. Leaving these on will lead to duplicate tracking.  </Warning>
+</AccordionGroup> 
+
+---
+
+## Converge functionality
+
+This integration supports the following Converge connection functionality.
+
+| Converge Feature        |       Supported       |
+| ----------------------- | :-------------------: |
+| Custom Events           | <Icon name="check" /> |
+| Filters                 | <Icon name="check" /> |
+| Server-side Conversions | <Icon name="check" /> |
+
+
+--- 
+
+## Event Mapping
+
+Converge automatically maps the following events from the [Converge Event Spec](/sources/converge-spec) to the Pinterst Ads spec.
+
+| Converge Event Name                                                                               | Pinterest Ads Event Name                   |
+| ------------------------------------------------------------------------------------------------- | --------------------------------------- |
+| [$page_load](/sources/converge-spec#page-load)                                                    | `page`                              |
+| [Viewed Product](/sources/converge-spec#viewed-product)                                           | `page_visit`                           |
+| [Viewed Collection](/sources/converge-spec#viewed-collection)                                     | `view_category`                           |
+| [Added To Cart](/sources/converge-spec#added-to-cart)                                             | `add_to_cart`                             |
+| [Placed Order](/sources/converge-spec#placed-order)                                               | `checkout`                              |
+
