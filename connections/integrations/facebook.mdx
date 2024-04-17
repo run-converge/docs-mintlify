@@ -66,15 +66,21 @@ This integration supports the following Converge connection functionality.
   <Note> If you are not using the Shopify Web integration, you might have an old pixel installed using a different tracking method and you should turn this one off.</Note>
 </Accordion>
 
-<Accordion title='Why do I see "increase event matching quality"-warnings in my Events Manager?'>
+<Accordion title='Why do I see "increase coverage" or "update recommended"-warnings in my Events Manager?'>
+
+<Frame>
+![update-recommended](/images/connections/facebook/facebook-update-recommended.png)
+![increase-coverage](/images/connections/facebook/facebook-increase-coverage.png)
+</Frame>
+
 Meta is warning you here that not all of your events are receiving identifiable information (e.g. `email`).
 Ideally, Facebook would have an email for every Added To Cart that ever happens on your website so they can easily attribute it.
 
 ​However, many people on the website are anonymous (they have never given their email to your store and thus Converge cannot track it). If the user never gives their email or address, then we can never send that email back.
-​Converge sends as many of these parameters as there are available right now.
+**​Converge sends as many of these parameters as there are available**.
 
 The only events where you would expect very high email match rate are events where the user always has to give an email (e.g. `purchase`). 
-For an `AddToCart` or an `InitiateCheckout`, you can safely ignore this warning.
+**For all events where certain parameters are not always available** (e.g. you do not expect all `AddToCart` or an `InitiateCheckout` to have an `email`), **you can safely ignore this warning**.
 </Accordion>
 </AccordionGroup>
 
