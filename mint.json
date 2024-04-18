@@ -113,7 +113,8 @@
       "group": "Attribution",
       "pages": [
         "attribution/overview",
-        "attribution/channels"
+        "attribution/channels",
+        "attribution/metrics"
       ]
     },
     {
