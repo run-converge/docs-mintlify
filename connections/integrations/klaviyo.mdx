@@ -1,0 +1,216 @@
+---
+title: "Klaviyo"
+description: "An introduction to the Klaviyo Destination"
+---
+
+import { Icon, IconText } from '/snippets/icons.mdx';
+import { OutboundLink } from '/snippets/links.mdx';
+
+## Overview
+
+Connection Type: <IconText text="Client-side" name="browser" iconType="duotone" iconLocation="after"/>  and <IconText text="Server-side" name="server" iconType="duotone" iconLocation="after"/>
+
+---
+
+## Installation Instructions
+
+<AccordionGroup >
+<Accordion icon="list" title="Installation Instructions">
+
+1. Navigate to your <OutboundLink linkTarget="https://www.klaviyo.com/settings/account/personal" linkText="Klaviyo Admin Dashboard"/>.
+
+2. In the left-bottom corner of the dashboard, click on your Klaviyo Workspace Name and then on <IconText text="Settings" name="gear" iconLocation="before" iconType="regular"/>
+    <Frame>
+   ![klaviyo-1](/images/connections/klaviyo/klaviyo-install-0.png)
+   </Frame>
+
+3. Under the **Account**-tab, choose **API keys**.
+
+4. Copy your **Public API Key**, you will need it later.
+   &nbsp;
+
+5. Click on **Create Private API Key**, give your key a name and choose **Full Access Key** and press **Create**.
+
+6. Copy the newly created **Private API Key**, you will need it later.
+   &nbsp;
+
+7. In your Converge dashboard, under Connections, click <IconText name="circle-plus" text="Create New Connection" iconLocation="before" iconType="regular"/ > and fill in your **Public API Key** in the **Public Token** field and your **Private API Key** in the **API Key**-field. 
+   &nbsp;
+
+8. Click on the **Advanced**-tab to set up your events.
+    <Frame>
+   ![klaviyo-2](/images/connections/klaviyo/klaviyo-install-1.png)
+   </Frame>
+
+9. Choose the events for which you want to set up the Converge Connection. 
+    <Note>
+      If you are using any of Klaviyo's prebuilt integrations, then you will want to make sure to **not** send `Started Checkout` and `Placed Order`-events. Otherwise, you will want to send all events.
+    </Note>
+
+10. Click on **Create Connection**.
+   
+
+</Accordion>
+
+</AccordionGroup >
+
+---
+
+## Converge functionality
+
+This integration supports the following Converge connection functionality.
+
+| Converge Feature        |       Supported       |
+| ----------------------- | :-------------------: |
+| Custom Events           | <Icon name="check" /> |
+| Filters                 | <Icon name="xmark" /> |
+| Server-side Conversions | <Icon name="check" /> |
+
+
+---
+
+## Adding product url and image url to Converge events to power Klaviyo flows
+
+A common usecase of the Klaviyo Destination is to build Klaviyo Email Flows based on Converge Events. 
+As such, you might want to include a Product URL or Product Image URL in the Converge Event so you can leverage these in your email flows. 
+
+To that end, you will want to extend the Converge Event Spec for following events.
+Once you add the custom properties to your events, Converge will automatically forward these to the Klaviyo Destination.
+
+
+<Accordion title='Extending your Converge Event implementation for Klaviyo'>
+
+Find code examples below that illustrate where **you should add the Product URL and Product Image URL custom event properties**.
+
+<Accordion title="Viewed Product" icon="code">
+
+See the original `Viewed Product`-spec [here](/sources/converge-spec.mdx#viewed-product)
+
+<CodeGroup>
+
+```javascript JavaScript
+cvg({
+  method: "track",
+  eventName: "Viewed Product",
+  properties: {
+    product_id: "123456",
+    variant_id: "78910", 
+    sku: "MY_SKU",
+    name: "My Product",
+    variant_name: "Vanilla", 
+    price: 42,
+    currency: "USD",
+    vendor: "My Store",
+    url: "https://mystore.com/this-product" // This is new
+    image_url: "https://mystore.com/assets/product.png" // This is new
+  },
+});
+```
+
+</CodeGroup>
+
+</Accordion>
+
+<Accordion title="Added To Cart" icon="code">
+
+See the original `Added To Cart`-spec [here](/sources/converge-spec.mdx#added-to-cart)
+
+<CodeGroup>
+
+```javascript JavaScript
+cvg({
+  method: "track",
+  eventName: "Added To Cart",
+  properties: {
+    product_id: "123456",
+    variant_id: "78910",
+    sku: "MY_SKU",
+    name: "My Product",
+    variant_name: "Vanilla",
+    price: 42,
+    currency: "USD",
+    quantity: 1,
+    vendor: "My Store",
+    url: "https://mystore.com/this-product" // This is new
+    image_url: "https://mystore.com/assets/product.png" // This is new
+  },
+});
+
+```
+
+</CodeGroup>
+
+</Accordion>
+
+<Accordion title="Removed From Cart" icon="code">
+
+See the original `Removed From Cart`-spec [here](/sources/converge-spec.mdx#removed-from-cart)
+
+<CodeGroup>
+
+```javascript JavaScript
+cvg({
+  method: "track",
+  eventName: "Removed From Cart",
+  properties: {
+    product_id: "123456",
+    variant_id: "78910",
+    sku: "MY_SKU",
+    name: "My Product",
+    variant_name: "Vanilla",
+    price: 42,
+    currency: "USD",
+    quantity: 1,
+    vendor: "My Store",
+    url: "https://mystore.com/this-product" // This is new
+    image_url: "https://mystore.com/assets/product.png" // This is new
+  },
+});
+
+```
+
+</CodeGroup>
+
+</Accordion>
+
+</Accordion>
+
+
+
+
+
+
+
+
+
+--- 
+
+## FAQ
+
+<AccordionGroup>
+<Accordion title="I already have the Klaviyo integration for Shopify, should I also set up a Converge connection?">
+  If you are using any of Klaviyo's prebuilt integrations, then there is still value in setting up the Converg Klaviyo Connection to track the `Viewed Product`, `Viewed Category`, and `Added To Cart`-events or to send [Custom Events](/sources/extending-the-spec/custom-events.mdx) to Klaviyo.
+</Accordion>
+</AccordionGroup>
+
+---
+
+## Event Mapping
+
+Converge automatically maps the following events from the [Converge Event Spec](/sources/converge-spec) to the Klaviyo spec.
+
+| Converge Event Name                                                                               | Klaviyo Event Name                   |
+| ------------------------------------------------------------------------------------------------- | --------------------------------------- |
+| [$page_load](/sources/converge-spec#page-load)                                                    | `__activity__`                              |
+| [Viewed Product](/sources/converge-spec#viewed-product)                                           | `Viewed Product`                           |
+| [Viewed Collection](/sources/converge-spec#viewed-collection)                                     | `Viewed Category`                           |
+| [Added To Cart](/sources/converge-spec#added-to-cart)                                             | `Added to Cart`                             |
+| [Started Checkout](/sources/converge-spec#started-checkout)                                       | `Started Checkout`                      |
+| [Placed Order](/sources/converge-spec#placed-order)                                               | `Placed Order`                              |
+
+
+This integration also auto-tracks some additional events that are not part of the Meta Base Spec but are so heavily requested that we automatically forward them.
+
+| Converge Event Name                                                       | Klaviyo Event Name       |
+| ------------------------------------------------------------------------- | --------------------- |
+| Ordered Product                                                                     |    `Ordered Product`                   |

@@ -101,7 +101,8 @@
             "connections/integrations/pinterest",
             "connections/integrations/twitter",
             "connections/integrations/bigquery",
-            "connections/integrations/custom-html"
+            "connections/integrations/custom-html",
+            "connections/integrations/klaviyo"
           ]
         },
         "connections/filters",
