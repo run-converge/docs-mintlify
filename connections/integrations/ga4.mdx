@@ -162,6 +162,18 @@ This integration supports the following Converge connection functionality.
          ![img](/images/connections/ga4/consent-denied-0.png)
       </Frame>
 </Accordion>
+
+<Accordion title="How to configure cross-domain tracking in GA4?">
+   If your customer journey goes through multiple domains (e.g. landing pages or checkout on a different domain), it is important to configure this in GA4 to avoid broken customer journey reports.
+
+   You can configure cross-domain tracking through the following steps: 
+   1. Go to <IconText name="gear" text="Admin" /> > **Data collection and modification** > **Data streams**.
+   2. Select your data stream > **Configure tag settings** > **Configure your domains**.
+   3. You have now arrived in the Cross-domain Linking Configuration. In some cases, GA4 will already provide you with some suggestions. If not, then you can add your domains by adding a condition. When setting up a condition, make sure that you use the **Contains** match type.
+   4. Save your changes. 
+   
+</Accordion>
+
 </AccordionGroup>
 
 ---
