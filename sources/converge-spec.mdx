@@ -1117,8 +1117,50 @@ When a user starts a subscription.
 </Accordion>
 
 <Accordion title="Code Example" icon="code">
+   
+    <Note>
+      If you track conversions both server-side and client-side, you should make sure you use the `"forward"` method for the client-side event.
+      See the client-side code example.
+    </Note>
 
     <CodeGroup>
+
+```javascript JavaScript - Client-side
+cvg({
+  method: "forward", 
+  eventName: "Started Subscription",
+  eventID: "order-1", // should be the subscription id or order id of the first purchase
+  properties: {
+    id: "order-1",
+    total_price: 42,
+    total_tax: 3.5,
+    total_shipping: 2.4,
+    currency: "USD",
+    items: [
+      {
+        product_id: "123456",
+        variant_id: "654321",
+        sku: "MY_SKU",
+        name: "My Product",
+        price: 42,
+        currency: "USD",
+        quantity: 1,
+        vendor: "My Store",
+      },
+    ],
+  },
+  profileProperties: {
+    // Pass if available
+    $email: "john.smith@apple.com",
+    $phone_number: "+199999999",
+    $city: "San Francisco",
+    $country_code: "US",
+    $state: "California",
+    $zip_code: "94103",
+  },
+  aliases: ["urn:email:john.smith@apple.com"],
+});
+```
 
 ```python Python - Server-side
 resp = requests.post(
@@ -1126,8 +1168,9 @@ resp = requests.post(
     json=
         {
         "event_name": "Started Subscription",
+        "event_id": "order-1",  # should be the subscription id or order id of the first purchase
         "properties": {
-            "id": "4001920", # the subscription id or order id of first purchase
+            "id" : "order-1", # will be shown in the UI
             "total_price": 42,
             "total_tax": 3.5,
             "total_shipping": 2.4,
@@ -1167,7 +1210,6 @@ resp = requests.post(
         "aliases": ["urn:email:john.smith@apple.com"],
     }
 )
-
 ```
 
 </CodeGroup>
