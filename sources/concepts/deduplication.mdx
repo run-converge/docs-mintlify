@@ -34,3 +34,9 @@ resp = requests.post(
 
 </CodeGroup>
 </Accordion>
+
+
+### Limitations of deduplication
+
+Converge only supports deduplication within a single datasource, for now. 
+If you track the same event across multiple datasources, these will not be deduplicated. 

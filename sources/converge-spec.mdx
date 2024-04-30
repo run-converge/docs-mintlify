@@ -990,8 +990,14 @@ When a user starts a subscription.
 </Note>
 
 <Accordion title="Where To Track" icon="map-pin">
-  This event should be tracked on the server.
+  This event should be tracked on **both** the client and the server.
 </Accordion>
+
+<Accordion title="Deduplication" icon="check-double">
+  You should pass a unique `eventID` so client-side and server-side copies of
+  the same order can be deduplicated.
+</Accordion>
+
 
 <Accordion title="Event Properties" icon="list">
 
@@ -1121,7 +1127,7 @@ resp = requests.post(
         {
         "event_name": "Started Subscription",
         "properties": {
-            "id": "4001920", # the subscription id
+            "id": "4001920", # the subscription id or order id of first purchase
             "total_price": 42,
             "total_tax": 3.5,
             "total_shipping": 2.4,
