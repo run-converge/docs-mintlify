@@ -137,6 +137,10 @@ When a user views a product detail page.
     Product Name of the item that is being viewed
     </ParamField>
 
+    <ParamField body="variant_name" type="string">
+    Variant name of the product variant that is being viewed
+    </ParamField>
+
     <ParamField body="price" type="float" required>
     Unit price of the item that is being viewed
     </ParamField>
@@ -224,6 +228,10 @@ When a user views a collection detail page that includes multiple products.
     Product Name of the item that is being viewed
     </ParamField>
 
+    <ParamField body="variant_name" type="string">
+    Variant name of the product variant that is being viewed
+    </ParamField>
+
     <ParamField body="price" type="float" required>
     Unit price of the item that is being viewed
     </ParamField>
@@ -302,6 +310,10 @@ When a user adds a product to cart
 
     <ParamField body="name" type="string" required>
     Product Name of the item that is being added to cart.
+    </ParamField>
+
+    <ParamField body="variant_name" type="string">
+    Variant name of the product variant that is being added to cart.
     </ParamField>
 
     <ParamField body="price" type="float" required>
@@ -399,6 +411,10 @@ When a user starts the checkout process.
 
     <ParamField body="name" type="string" required>
     Product Name of the item  
+    </ParamField>
+
+    <ParamField body="variant_name" type="string">
+    Variant name of the product variant
     </ParamField>
 
     <ParamField body="price" type="float" required>
@@ -511,6 +527,10 @@ When a user adds their payment info.
     Product Name of the item 
     </ParamField>
 
+    <ParamField body="variant_name" type="string">
+    Variant name of the product variant
+    </ParamField>
+
     <ParamField body="price" type="float" required>
     Unit price of the item 
     </ParamField>
@@ -578,8 +598,10 @@ cvg({
     items: [
       {
         product_id: "123456",
+        variant_id: "78910",
         sku: "MY_SKU",
         name: "My Product",
+        variant_name: "Vanilla",
         price: 42,
         currency: "USD",
         quantity: 1,
@@ -780,6 +802,7 @@ cvg({
         variant_id: "654321",
         sku: "MY_SKU",
         name: "My Product",
+        variant_name: "Vanilla",
         price: 42,
         currency: "USD",
         quantity: 1,
@@ -819,6 +842,7 @@ resp = requests.post(
                     "variant_id": "654321", # important for Shopify stores
                     "sku": "MY_SKU",
                     "name": "My Product",
+                    "variant_name": "Vanilla",
                     "price": 42,
                     "currency": "USD",
                     "quantity": 1,
@@ -911,6 +935,10 @@ This is an optional event
 
     <ParamField body="name" type="string" required>
     Product Name of the item  
+    </ParamField>
+
+    <ParamField body="variant_name" type="string">
+    Variant name of the product variant
     </ParamField>
 
     <ParamField body="price" type="float" required>
@@ -1040,6 +1068,10 @@ When a user starts a subscription.
     Product Name of the item in the subscription
     </ParamField>
 
+    <ParamField body="variant_name" type="string">
+    Variant name of the item in the subscription
+    </ParamField>
+
     <ParamField body="price" type="float" required>
     Unit price of the item in the subscription
     </ParamField>
@@ -1142,6 +1174,7 @@ cvg({
         variant_id: "654321",
         sku: "MY_SKU",
         name: "My Product",
+        variant_name: "Vanilla",
         price: 42,
         currency: "USD",
         quantity: 1,
@@ -1181,6 +1214,7 @@ resp = requests.post(
                     "variant_id": "654321", # important for Shopify stores
                     "sku": "MY_SKU",
                     "name": "My Product",
+                    "variant_name": "Vanilla",
                     "price": 42,
                     "currency": "USD",
                     "quantity": 1,
@@ -1269,6 +1303,10 @@ When a user cancels a subscription.
 
     <ParamField body="name" type="string" required>
     Product Name of the item in the subscription
+    </ParamField>
+
+    <ParamField body="variant_name" type="string">
+    Variant name of the item in the subscription
     </ParamField>
 
     <ParamField body="price" type="float" required>
@@ -1369,6 +1407,7 @@ resp = requests.post(
                     "variant_id": "654321", # important for Shopify stores
                     "sku": "MY_SKU",
                     "name": "My Product",
+                    "variant_name": "Vanilla",
                     "price": 42,
                     "currency": "USD",
                     "quantity": 1,
@@ -1458,6 +1497,10 @@ When a user places a recurring subscription order.
 
     <ParamField body="name" type="string" required>
     Product Name of the item in the subscription
+    </ParamField>
+
+    <ParamField body="variant_name" type="string">
+    Variant name of item in the subscription
     </ParamField>
 
     <ParamField body="price" type="float" required>
@@ -1558,6 +1601,7 @@ resp = requests.post(
                     "variant_id": "654321", # important for Shopify stores
                     "sku": "MY_SKU",
                     "name": "My Product",
+                    "variant_name": "Vanilla",
                     "price": 42,
                     "currency": "USD",
                     "quantity": 1,
