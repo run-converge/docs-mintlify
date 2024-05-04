@@ -1,0 +1,90 @@
+---
+title: "Outbrain Ads"
+description: "An introduction to the Outbrain Ads Destination"
+---
+
+import { Icon, IconText } from '/snippets/icons.mdx';
+import { OutboundLink } from '/snippets/links.mdx';
+
+## Overview
+
+Connection Type: <IconText text="Server-side" name="server" iconType="duotone" iconLocation="after"/> 
+
+---
+
+## Installation Instructions
+
+<AccordionGroup >
+
+<Accordion icon="list" title="Installation Instructions">
+
+1. Navigate to your <OutboundLink linkTarget="https://my.outbrain.com/amplify/site/marketers/" linkText="Outbrain Ads Manager"/> and choose **Conversions** from the side-bar.
+    <Frame>
+    ![outbrain-sidebar](/images/connections/outbrain/outbrain-1.png)
+    </Frame>
+
+2. Click on **Create Conversion** in the top right corner.
+
+3. Choose **Server-to-Server Conversions** as a Data source.
+
+4. Under Conversion Type, choose your Event Category, most likely **Purchase** and give your conversion a name, e.g. `[Converge] Purchase`.
+
+5. Click on **Create Conversion**.
+
+6. In the Converge dashboard, under Connections, click <IconText name="circle-plus" text="Create New Connection" iconLocation="before" iconType="regular"/ >.
+
+7. Choose the **Outbrain** app, and under the Outbrain event names section, fill in for which Converge event you want your conversion to correspond to. For this example, the **[Converge] Purchase**-conversion corresponds to a Converge **Placed Order**.
+    <Frame>
+    ![outbrain-conversions](/images/connections/outbrain/outbrain-2.png)
+    </Frame>
+
+8. Add other conversion events in Outbrain following steps 2-7 above if you'd like and add them here as well. Then click **Create Connection**.
+
+<Warning> For this connection to work, you will need to change the URL of **all** of your campaings following steps 9-12 below. **You should add these parameters for every new campaign as well**. </Warning>
+
+9. Navigate to the Campaigns overview.
+     <Frame>
+    ![outbrain-campaign](/images/connections/outbrain/outbrain-3.png)
+    </Frame>
+
+10. Click on the <Icon name="pencil"/>-icon next to the campaign for which you want to modify the UTM parameters to open the campaign settings.
+
+11. Add the following in the **Tracking**-section
+
+```
+utm_source=outbrain&utm_medium=discovery&utm_campaign={{campaign_name}}&utm_content={{ad_title}}&utm_term={{publisher_name}}_{{section_name}}&cvg_source=outbrain&cvg_adid={{ad_id}}&cvg_cid={{campaign_id}}&outbraincid={{ob_click_id}}
+```
+
+12. Save your modification by clicking the Submit button.
+
+
+</Accordion>
+
+
+</AccordionGroup>
+
+---
+
+## Converge functionality
+
+This integration supports the following Converge connection functionality.
+
+| Converge Feature        |       Supported       |
+| ----------------------- | :-------------------: |
+| Custom Events           | <Icon name="xmark" /> |
+| Filters                 | <Icon name="check" /> |
+| Server-side Conversions | <Icon name="xmark" /> |
+
+--- 
+
+## Event Mapping
+
+Events are not automatically mapped, you need to configure the mapping of the [Converge Event Spec](/sources/converge-spec) to your Outbrain conversions manually.
+We recommend the following mapping to the Event Type:
+
+| Converge Event Name                                             | Outbrain Event Type    |
+| --------------------------------------------------------------- | --------------------- |
+| [Added To Cart](/sources/converge-spec#added-to-cart)           | `[Converge] Add To Cart`         |
+| [Started Checkout](/sources/converge-spec#started-checkout)     | `[Converge] Initiate Checkout`  |
+| [Added Payment Info](/sources/converge-spec#added-payment-info) | `[Converge] Add Payment Info` |
+| [Placed Order](/sources/converge-spec#placed-order)             | `[Converge] Purchase`          |
