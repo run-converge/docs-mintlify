@@ -77,6 +77,19 @@ This integration supports the following Converge connection functionality.
 
 --- 
 
+## FAQ
+
+<AccordionGroup>
+<Accordion title="Why do I need to change my UTMs for the Outbrain Connection and in-platform attribution to work?">
+  Outbrain's in-platform attribution works on the basis of Outbrain Click IDs. If a purchase gets sent to Outbrain without a Click ID, it will not get attributed.
+
+  Unfortunately, Outbrain does not add the Click ID automatically to the landing page URL (as opposed to other ad platforms such as Google Ads or Facebook Ads). You need to make sure manually that all links include a click id by modifying the tracking parameters for **every** ad you run. 
+</Accordion>
+
+</AccordionGroup>
+
+---
+
 ## Event Mapping
 
 Events are not automatically mapped, you need to configure the mapping of the [Converge Event Spec](/sources/converge-spec) to your Outbrain conversions manually.
