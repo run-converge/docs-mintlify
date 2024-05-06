@@ -44,6 +44,24 @@ resp = requests.post(
 )
 ```
 
+```javascript Converge Pixel - Shopify Cart Token
+cvg({
+  method: "track",
+  eventName: "Added To Cart",
+  properties: {
+    product_id: "123456",
+    variant_id: "78910",
+    sku: "MY_SKU",
+    name: "My Product",
+    variant_name: "Vanilla",
+    price: 42,
+    currency: "USD",
+    quantity: 1,
+    vendor: "My Store",
+  },
+  aliases: ["urn:shopify:cart_token:Z2NwLWV1cm9wZS13..."]
+});
+```
 
 </CodeGroup>
 </Accordion>
