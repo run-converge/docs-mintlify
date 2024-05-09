@@ -16,6 +16,13 @@ Converge allows you to filter out events based on **Event Properties** or by the
 
 Converge allows you to filter out events granularly based on their event properties according to the [Converge Event Spec](/sources/converge-spec).
 
+<Note> 
+ A Converge property filter only forwards events if a condition is **True**. As such, a connection with the following filter  only forwards `Placed Order` events if the property is not equal to `subscription_contract`.
+<Frame>
+    ![subscription filters](/images/connections/filters/filters-2.png)
+</Frame> 
+</Note>
+
 <Accordion icon="location-dot" title="How to set up an Event Property Filter">
 1. Navigate to the [Connections Tab](https://app.runconverge.com/-/connections) in your Converge dashboard
 2. Click on the Connection for which you want to filter out certain events.
