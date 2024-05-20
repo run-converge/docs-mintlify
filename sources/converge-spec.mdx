@@ -154,6 +154,14 @@ When a user views a product detail page.
     Name of the vendor of the product that is being viewed.
     </ParamField>
 
+    <ParamField body="url" type="string">
+    URL to the product page of the item that is being viewed.
+    </ParamField>
+
+    <ParamField body="image_url" type="string">
+    URL of a product image of the item that is being viewed.
+    </ParamField>
+
 </Accordion>
 
 <Accordion title="Code Example" icon="code">
@@ -245,6 +253,14 @@ When a user views a collection detail page that includes multiple products.
     Name of the vendor of the product that is being viewed.
     </ParamField>
 
+    <ParamField body="url" type="string">
+    URL to the product page of the item that is being viewed.
+    </ParamField>
+
+    <ParamField body="image_url" type="string">
+    URL of a product image of the item that is being viewed.
+    </ParamField>
+
   </Expandable>
 
     </ParamField>
@@ -330,7 +346,15 @@ When a user adds a product to cart
     </ParamField>
 
     <ParamField body="vendor" type="string">
-    Name of the vendor of the product  .
+    Name of the vendor of the product that is being added to cart.
+    </ParamField>
+
+    <ParamField body="url" type="string">
+    URL to the product page of the item that is being added to cart.
+    </ParamField>
+
+    <ParamField body="image_url" type="string">
+    URL of a product image of the product that is being added to cart.
     </ParamField>
 
 </Accordion>
@@ -430,8 +454,16 @@ When a user starts the checkout process.
     Name of the vendor of the product.
     </ParamField>
 
-        <ParamField body="quantity" type="int" required>
+    <ParamField body="quantity" type="int" required>
     Amount of times the item is present in the cart at checkout.
+    </ParamField>
+
+    <ParamField body="url" type="string">
+    URL to the product page of the item
+    </ParamField>
+
+    <ParamField body="image_url" type="string">
+    URL of a product image of the item
     </ParamField>
 
   </Expandable>
@@ -536,7 +568,7 @@ When a user adds their payment info.
     </ParamField>
 
     <ParamField body="currency" type="string" required>
-    Currency of the product , as per [ISO
+    Currency of the product, as per [ISO
     4217](https://en.wikipedia.org/wiki/ISO_4217)
     </ParamField>
 
@@ -544,8 +576,16 @@ When a user adds their payment info.
     Name of the vendor of the product.
     </ParamField>
 
-        <ParamField body="quantity" type="int" required>
+    <ParamField body="quantity" type="int" required>
     Amount of times the item is present in the cart at checkout.
+    </ParamField>
+
+    <ParamField body="url" type="string">
+    URL to the product page of the item
+    </ParamField>
+
+    <ParamField body="image_url" type="string">
+    URL of a product image of the item
     </ParamField>
 
   </Expandable>
@@ -707,8 +747,16 @@ Order ID.
     Name of the vendor of the item in the order.
     </ParamField>
 
-        <ParamField body="quantity" type="int" required>
+    <ParamField body="quantity" type="int" required>
     Amount of times the item is present in the order.
+    </ParamField>
+
+    <ParamField body="url" type="string">
+    URL to the product page of the item
+    </ParamField>
+
+    <ParamField body="image_url" type="string">
+    URL of a product image of the item
     </ParamField>
 
   </Expandable>
