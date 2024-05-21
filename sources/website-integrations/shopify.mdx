@@ -69,6 +69,12 @@ The installation process of Converge is slightly different based on whether you 
     </Step>
     <Step title="Verify that the integration is working correctly">
         9. Check that your pixel is working correctly by generating some `Added To Cart`, `Started Checkout` and `Added Payment Info` events by visiting the store and seeing that these events arrive in the Source Log.
+
+            <Note> 
+            If you do not see `Added To Cart`, `Started Checkout` and `Added Payment Info` events coming in, verify in your Custom Pixel settings whether you have set the **Permission** flag to **Not required**.
+
+            <Frame> ![img](/images/sources/shopify/shopify-privacy.png) </Frame>
+            </Note>
     </Step>
 </Steps>
    </Accordion >
@@ -167,6 +173,15 @@ The Converge JS pixel only picks up [$page_load](/sources/converge-spec#page-loa
   This is undesirable for events such as `$page_load`, where a user may browse away before the Converge pixel is loaded and before this event can be tracked.
 
   For that reason, you would want to track all events in the `theme.liquid`. However, **Shopify does not allow you to track reliably on the Checkout using this approach**.
+</Accordion>
+
+<Accordion title="Why do I have too little Checkout and Add To Cart events?">
+  You might have Privacy settings set up in Shopify that limit us from tracking the Checkout. 
+  1. Navigate to the Shopify Admin dashboard, navigate to **Settings** > **Customer Events** and find the `Converge Pixel`.
+  2. Click on it to open the settings. 
+  3. Verify in your Custom Pixel settings whether you have set the **Permission** flag to **Not required**.
+
+            <Frame> ![img](/images/sources/shopify/shopify-privacy.png) </Frame>
 </Accordion>
 </AccordionGroup>
 
