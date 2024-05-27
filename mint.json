@@ -101,6 +101,7 @@
             "connections/integrations/pinterest",
             "connections/integrations/twitter",
             "connections/integrations/outbrain",
+            "connections/integrations/taboola",
             "connections/integrations/bigquery",
             "connections/integrations/custom-html",
             "connections/integrations/klaviyo"

@@ -1,0 +1,108 @@
+---
+title: "Taboola Ads"
+description: "An introduction to the Taboola Ads Destination"
+---
+
+import { Icon, IconText } from '/snippets/icons.mdx';
+import { OutboundLink } from '/snippets/links.mdx';
+
+## Overview
+
+Connection Type: <IconText text="Server-side" name="server" iconType="duotone" iconLocation="after"/> 
+
+---
+
+## Installation Instructions
+
+<AccordionGroup >
+
+<Accordion icon="list" title="Installation Instructions">
+
+1. Navigate to your <OutboundLink linkTarget="https://ads.taboola.com/" linkText="Taboola Ads Manager"/> and choose **Tracking** from the top-bar.
+    <Frame>
+    ![taboola-sidebar](/images/connections/taboola/taboola-1.png)
+    </Frame>
+
+2. Click on **New Conversion** in the top right corner.
+
+3. Choose a name for your conversion and choose **Event** as the Conversion Type.
+    <Frame>
+    ![taboola-conversion-type](/images/connections/taboola/taboola-2.png)
+    </Frame>
+
+4. Scroll down, you can ignore the "Fixed Value"-field. Choose the Category that fits your event best, for a "Placed Order"-event this would be **Make Purchase**.
+
+5. Choose your Event Name, e.g. `converge_placed_order`.
+     <Frame>
+    ![taboola-event-name](/images/connections/taboola/taboola-3.png)
+    </Frame>
+
+6. Keep all the other fields in default settings, and click on the **Create**-button at the bottom of the page.
+
+7. Open the Converge App, and navigate to **Connections**, click on **Create new connection**.
+
+8. Choose the **Taboola** app, and under the Taboola event names section, fill in for which Converge event you want your conversion to correspond to. For this example, the **converge_placed_order**-conversion corresponds to a Converge **Placed Order**.
+    <Frame>
+    ![taboola-conversions](/images/connections/taboola/taboola-4.png)
+    </Frame>
+
+8. Add other conversion events in Tabooka following steps 2-6 above if you'd like and add them here as well. Then click **Create Connection**.
+
+<Warning> For this connection to work, you will need to change the URL of **all** of your campaings following steps 9-12 below. **You should add these parameters for every new campaign as well**. </Warning>
+
+9. Navigate to the Campaigns overview.
+
+10. Click on the <Icon name="pencil"/>-icon next to the campaign for which you want to modify the UTM parameters to open the campaign settings.
+
+11. Add the following in the **Tracking**-section
+
+```
+utm_source=taboola&utm_medium=paid&utm_campaign={campaign_name}&tblcid={click_id}&cvg_source=taboola&cvg_adid={campaign_item_id}&cvg_cid={campaign_id}
+```
+
+12. Save your modification by clicking the Submit button.
+
+
+</Accordion>
+
+
+</AccordionGroup>
+
+---
+
+## Converge functionality
+
+This integration supports the following Converge connection functionality.
+
+| Converge Feature        |       Supported       |
+| ----------------------- | :-------------------: |
+| Custom Events           | <Icon name="xmark" /> |
+| Filters                 | <Icon name="check" /> |
+| Server-side Conversions | <Icon name="xmark" /> |
+
+--- 
+
+## FAQ
+
+<AccordionGroup>
+<Accordion title="Why do I need to change my UTMs for the Taboola Connection and in-platform attribution to work?">
+  Taboola's in-platform attribution works on the basis of Taboola Click IDs. If a purchase gets sent to Taboola without a Click ID, it will not get attributed.
+
+  Unfortunately, Taboola does not add the Click ID automatically to the landing page URL (as opposed to other ad platforms such as Google Ads or Facebook Ads). You need to make sure manually that all links include a click id by modifying the tracking parameters for **every** ad you run. 
+</Accordion>
+
+</AccordionGroup>
+
+---
+
+## Event Mapping
+
+Events are not automatically mapped, you need to configure the mapping of the [Converge Event Spec](/sources/converge-spec) to your Taboola conversions manually.
+We recommend the following mapping to the Event Type:
+
+| Converge Event Name                                             | Taboola Event Type    |
+| --------------------------------------------------------------- | --------------------- |
+| [Added To Cart](/sources/converge-spec#added-to-cart)           | `[Converge] Add To Cart`         |
+| [Started Checkout](/sources/converge-spec#started-checkout)     | `[Converge] Initiate Checkout`  |
+| [Added Payment Info](/sources/converge-spec#added-payment-info) | `[Converge] Add Payment Info` |
+| [Placed Order](/sources/converge-spec#placed-order)             | `[Converge] Purchase`          |
