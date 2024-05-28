@@ -22,6 +22,31 @@ To send data from Converge to Pinterest, check out the [Pinterest Ads Connection
 5. After pressing **create** your Pinterest Ads metrics will stream into Converge.
 
 </Accordion>
+
+<Accordion icon="crosshairs" title="Set up your UTM Tracking Parameters">
+
+#### Instructions 
+
+1. Navigate to your Pinterest Business Manager.
+
+2. **Navigate to the ad** which you will set up tracking as follows: `Ads` > `Reporting`.
+
+3. In your Campaigns Reporting Table, click on the pencil Icon at the left-hand side of the your ad name.
+
+4. Scroll down to the Ads - Set Up section and modify the **Destination URL** to include the right tracking parameters as follows:
+   ```
+   ?cvg_source=pinterest&cvg_adid={adid}&cvg_cid={campaignid}&utm_source=pinterest&utm_medium=cpc&utm_campaign={campaign_name}&utm_term={adgroupname}&utm_content={adid}
+   ```
+   <Accordion title="Example">
+    If your Destination URL used to be `https://mywebsite.com`, then after adding the tracking parameters your Destination URL would look like:
+    ```
+    https://mywebsite.com?cvg_source=pinterest&cvg_adid={adid}&cvg_cid={campaignid}&utm_source=pinterest&utm_medium=cpc&utm_campaign={campaign_name}&utm_term={adgroupname}&utm_content={adid}
+    ```
+   </Accordion>
+5. Repeat steps 2-4 for **every ad you run** (including new ads that you will run in the future).
+
+
+</Accordion>
 </AccordionGroup> 
 
 ---
