@@ -1,0 +1,70 @@
+---
+title: "Snapchat"
+description: "An introduction to the Snapchat Ads Destination"
+---
+
+import { Icon, IconText } from '/snippets/icons.mdx';
+import { OutboundLink } from '/snippets/links.mdx';
+
+## Overview
+Connection Type: <IconText text="Client-side" name="browser" iconType="duotone" iconLocation="after"/>  and <IconText text="Server-side" name="server" iconType="duotone" iconLocation="after"/>
+- Includes support for the <OutboundLink linkText="Snapchat Conversions API" linkTarget="https://businesshelp.snapchat.com/s/article/conversions-api"/> 
+
+--- 
+
+## Installation Instructions
+
+<AccordionGroup >
+<Accordion icon="list" title="Installation Instructions">
+
+1. In Converge, click the Create new connection button from the Connections page. Give your connection an appropriate name and **choose the Snapchat App**.
+
+2. Navigate to your [Snapchat Ads](https://ads.snapchat.com) > Events Manager (under assets).
+
+3. From your Events Manager, **click on the Snapchat Pixel** you would like to connect or create a new one through 'New Event Source'.
+
+4. Under the name of the pixel, you can find the ID, copy it in the pixel ID field in the Converge connection configuration.
+
+5. Fetch the acccess token for the conversions API. Go to the business dashboard > Business details > Conversions API tokens. Click the 'Generate Token' button and copy the new token into the Conversions API Token field of the Converge connection configuration.
+
+6. In the Converge connection configuration, enter the main URL of your website. Be sure to include the `https://` prefix as well.
+
+7. Under the Advanced tab you can configure the content ID to identify your products and set up any custom events.
+
+8. Click on **Create Connection**
+</Accordion>
+<Warning> Once you have installed your Converge Connection, you should **pause or remove all existing Snapchat tracking**. Leaving these on will lead to duplicate tracking.  </Warning>
+</AccordionGroup> 
+
+---
+
+## Converge functionality
+
+This integration supports the following Converge connection functionality.
+
+| Converge Feature        |       Supported       |
+| :---------------------- | :-------------------: |
+| Custom Events           | <Icon name="check" /> |
+| Filters                 | <Icon name="check" /> |
+| Server-side Conversions | <Icon name="check" /> |
+
+<Warning>Snapchat does not support multiple pixels on the same website. Installing multiple snapchat connections will lead to duplicate tracking.</Warning>
+
+---
+
+## Event Mapping
+
+Converge automatically maps the following events from the [Converge Event Spec](/sources/converge-spec) to the Meta spec.
+
+| Converge Event Name                                                                               | Meta Event Name                         |
+| ------------------------------------------------------------------------------------------------- | --------------------------------------- |
+| [$page_load](/sources/converge-spec#page-load)                                                    | `PAGE_VIEW`                              |
+| [Viewed Product](/sources/converge-spec#viewed-product)                                           | `VIEW_CONTENT`                           |
+| [Viewed Collection](/sources/converge-spec#viewed-collection)                                     | `LIST_VIEW`                           |
+| [Added To Cart](/sources/converge-spec#added-to-cart)                                             | `ADD_CART`                             |
+| [Started Checkout](/sources/converge-spec#started-checkout)                                       | `START_CHECKOUT`                      |
+| [Added Payment Info](/sources/converge-spec#added-payment-info)                                   | `ADD_BILLING`                        |
+| [Placed Order](/sources/converge-spec#placed-order)                                               | `PURCHASE`                              |
+| [Started Subscription](/sources/converge-spec#started-subscription)                               | `SUBSCRIBE`                             |
+
+You can only configure up to 5 custom events for Snapchat. These events must be named `CUSTOM_EVENT_1` through `CUSTOM_EVENT_5`.
