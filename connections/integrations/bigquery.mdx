@@ -270,6 +270,62 @@ Events that typically do not have an `$email` property associated with them (e.g
    
    </Accordion>
 
+### Profile Merging
+Converge may combine multiple profiles into one if there is an overlap in aliases.
+This means that the `profile_id` field in your events table may become out of date.
+Under the 'Advanced' tab of the BigQuery connection configuration, you can configure a table to stream these profile merges to.
+You can create this table as follows:
+
+- Under your Converge dataset (`converge_data`), create a new table, e.g. `profile_merges`.
+- In the Schema section, flip the switch to **Edit as text** and paste the schema below. Click on **Create Table** after.
+   <Accordion icon="code" title="Schema" >
+   ```json JSON
+   [
+     {
+       "name": "timestamp",
+       "type": "DATETIME",
+       "mode": "REQUIRED",
+       "description": "Timestamp when the event occurred"
+     },
+     {
+      "name": "old_profile_id",
+      "type": "INTEGER",
+      "mode": "REQUIRED",
+      "description": "Old Profile ID that was merged"
+     },
+     {
+       "name": "new_profile_id",
+       "type": "INTEGER",
+       "mode": "REQUIRED",
+       "description": "New Profile ID resulting from the merge"
+     }
+   ]
+   ```
+   </Accordion>
+
+
+To use this table, it's important to note that profiles maybe merged multiple times. For example profile A and B could be mapped to C as follows:
+- `(A, C)`
+- `(B, C)`
+Later on, profile C could be merged into profile D:
+- `(C, D)`
+In this case, profiles A, B, and C, would all be mapped to D. To deal with this, we recommend creating a (materialized) view that recursively resolves these mappings. Here's an example query to achieve this:
+
+```sql SQL
+WITH RECURSIVE profile_merges AS (
+  SELECT timestamp, old_profile_id, new_profile_id, 1 depth
+  FROM `your-project-name.your-dataset-name.profile_merges`
+  UNION ALL
+  SELECT pmr.timestamp, pm.old_profile_id, pmr.new_profile_id, pm.depth + 1 depth
+  FROM profile_merges pm
+  JOIN `your-project-name.your-dataset-name.profile_merges` pmr
+  ON pm.new_profile_id = pmr.old_profile_id
+)
+SELECT old_profile_id, max_by(new_profile_id, depth) new_profile_id
+FROM profile_merges
+GROUP BY old_profile_id
+```
+
 ### Pre-processed Attribution
 
 Converge **automatically attributes all events** (e.g. `Placed Order`, `Add To Cart`, etc.) based on the most popular attribution models.
