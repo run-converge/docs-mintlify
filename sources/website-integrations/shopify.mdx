@@ -56,7 +56,7 @@ The installation process of Converge is slightly different based on whether you 
         5. In the Shopify Admin dashboard, navigate to **Settings** > **Customer Events**
         6. Click on **Add custom pixel**.
         7. Name your pixel, e.g. `Converge Pixel`
-        8. Paste the script from the webapp here, make sure to modify the `__SHOP_NAME__`string with the actual store name e.g. `convergestore`. You can find your store name in the URL of your Shopify Admin Dashboard.
+        8. Paste the script from the web app here, make sure to modify the `__SHOP_NAME__`string with the actual store name e.g. `convergestore`. You can find your store name in the URL of your Shopify Admin Dashboard.
         9. Click on **Save Pixel**
             <Frame>
               ![save pixel](/images/sources/shopify/shopify-custom-pixel-0.png)
@@ -119,7 +119,7 @@ The installation process of Converge is slightly different based on whether you 
         5. In the Shopify Admin dashboard, navigate to **Settings** > **Customer Events**
         6. Click on **Add custom pixel**.
         7. Name your pixel, e.g. `Converge Pixel`
-        8. Paste the script from the webapp here, make sure to modify the `__SHOP_NAME__`string with the actual store name e.g. `convergestore`. You can find your store name in the URL of your Shopify Admin Dashboard.
+        8. Paste the script from the web app here, make sure to modify the `__SHOP_NAME__`string with the actual store name e.g. `convergestore`. You can find your store name in the URL of your Shopify Admin Dashboard.
 Click on Save Pixel and Connect Pixel
         <Info> Shopify might throw a warning that the pixel is not subscribed to any events. You can safely ignore this warning. </Info>
 
@@ -142,7 +142,7 @@ The Converge JS pixel only picks up [$page_load](/sources/converge-spec#page-loa
 
         For more information on manually instrumenting events, read [here](/sources/website-integrations/converge-pixel#manually-instrumenting-events). 
     </Step>
-    <Step title="Add appropriate aliases to stitch the session across all sources ">
+    <Step title="Add appropriate aliases to stitch the session across all sources">
         At this point, you should be tracking the entire Converge Ecommerce Spec. 
         However, for a Headless setup, it is paramount that you set the `checkout_token` as an alias **before** redirecting the user to the Shopify Checkout to make sure that the storefront session and the checkout session can be linked to the same user.
         You can read more about aliases [here](/sources/source-concepts#aliases).

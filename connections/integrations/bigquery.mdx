@@ -220,7 +220,7 @@ Events that typically do not have an `$email` property associated with them (e.g
 
    <Accordion title="Profile Information Overview" icon="address-card"> 
        <ParamField body="profile_id" type="int" required>
-   A unique profile id 
+   A unique profile ID 
       </ParamField>
 
    <ParamField body="profile_properties" type="Profile Properties Object" required>
@@ -232,7 +232,7 @@ Events that typically do not have an `$email` property associated with them (e.g
     </ParamField>
 
     <ParamField body="cookie_id" type="string">
-    Converge cookie id.
+    Converge cookie ID.
     </ParamField>
 
     <ParamField body="$user_agent" type="string">
@@ -245,7 +245,7 @@ Events that typically do not have an `$email` property associated with them (e.g
     </ParamField>
 
     <ParamField body="$phone_number" type="string">
-    Phone Number of the subscriber including the'+'-sign and country code. For example: `"+1 (917) 123-4567"` or `"+3295123456"`.
+    Phone Number of the subscriber including the `+`-sign and country code. For example: `"+1 (917) 123-4567"` or `"+3295123456"`.
     </ParamField>
 
     <ParamField body="$city" type="string">
@@ -343,7 +343,7 @@ Converge **automatically attributes all events** (e.g. `Placed Order`, `Add To C
     <Accordion title="First Touch Attribution" icon="backward-fast">
 
     <ParamField body="session_id" type="string" required>
-   The first touch session id
+   The first touch session ID
    </ParamField>
 
   <ParamField body="session_properties" type="Session Properties Object" required>
@@ -403,7 +403,7 @@ Converge **automatically attributes all events** (e.g. `Placed Order`, `Add To C
     <Accordion title="First Paid Touch Attribution" icon="backward">
 
     <ParamField body="session_id" type="string" required>
-   The session id of the first session started through a paid acquisition channel
+   The session ID of the first session started through a paid acquisition channel
    </ParamField>
 
   <ParamField body="session_properties" type="Session Properties Object" required>
@@ -463,7 +463,7 @@ Converge **automatically attributes all events** (e.g. `Placed Order`, `Add To C
  <Accordion title="Last Paid Touch Attribution" icon="forward">
 
     <ParamField body="session_id" type="string" required>
-   The session id of the last session started through a paid acquisition channel
+   The session ID of the last session started through a paid acquisition channel
    </ParamField>
 
   <ParamField body="session_properties" type="Session Properties Object" required>
@@ -524,7 +524,7 @@ Converge **automatically attributes all events** (e.g. `Placed Order`, `Add To C
     <Accordion title="Last Touch Attribution" icon="forward-fast">
 
     <ParamField body="session_id" type="string" required>
-   The last touch session id
+   The last touch session ID
    </ParamField>
 
   <ParamField body="session_properties" type="Session Properties Object" required>
@@ -583,14 +583,14 @@ Converge **automatically attributes all events** (e.g. `Placed Order`, `Add To C
     </AccordionGroup>
 </Accordion>
 
-### Session Information for custom multi-touch attribution models
+### Session Information for custom multitouch attribution models
 
-Converge sends over all sessions with their attribution information (e.g. `utm_source`, `utm_campaign`, etc.) so you can assign custom credit to each of these touchpoints -- **allowing you to create your fully custom multi-touch attribution model**.
+Converge sends over all sessions with their attribution information (e.g. `utm_source`, `utm_campaign`, etc.) so you can assign custom credit to each of these touchpoints -- **allowing you to create your fully custom multitouch attribution model**.
 
 <Accordion title="Session Information" icon="clock"> 
 
   <ParamField body="session_id" type="string" required>
-   A unique session id
+   A unique session ID
    </ParamField>
 
   <ParamField body="session_properties" type="Session Properties Object" required>
