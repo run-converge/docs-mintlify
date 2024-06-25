@@ -17,7 +17,7 @@ Converge allows you to filter out events based on **Event Properties** or by the
 Converge allows you to filter out events granularly based on their event properties according to the [Converge Event Spec](/sources/converge-spec).
 
 <Note> 
- A Converge property filter only forwards events if a condition is **True**. As such, a connection with the following filter  only forwards `Placed Order` events if the property is not equal to `subscription_contract`.
+ A Converge property filter only forwards events if a condition is **True**. As such, a connection with the following filter only forwards `Placed Order` events if the property is not equal to `subscription_contract`.
 <Frame>
     ![subscription filters](/images/connections/filters/filters-2.png)
 </Frame> 
@@ -52,7 +52,7 @@ To achieve this, you can set up a Filter on the `Placed Order`-event on a per-co
     <Note> 
     If you are using the [Shopify Server Integration](/sources/server-integrations/shopify.mdx) in a standard setup, then the following property and property value pair defines a recurring purchase: 
 
-    `source_name` -> `subscription_contract`
+    `source_name` → `subscription_contract`
     
     </Note>
 </Step>
@@ -92,6 +92,6 @@ A typical example of source filters is when you are setting up multiple stores.
 You might want to set up different GA4 Connections for each store for example. 
 You can use Source Filters to filter out the appropriate Sources per Connection.
 
-As an example, if you have a US and CA store and you are creating a GA4 Connection for the US Store -- you will want to configure your US Sources to be the only ones streaming into this Connection.
+As an example, if you have a US and CA store, and you are creating a GA4 Connection for the US Store -- you will want to configure your US Sources to be the only ones streaming into this Connection.
 
 

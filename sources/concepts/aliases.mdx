@@ -75,7 +75,7 @@ cvg({
 Many browsers wipe all third-party cookies and all cookies that are set browser-side through JavaScript. 
 For example, **Safari will wipe all of those cookies after 7 days**. 
 
-This significantly impacts the accuracy of multi-touch attribution.
+This significantly impacts the accuracy of multitouch attribution.
 Observe in the graph below how a customer who comes to your site in an interval longer than 8 days cannot be re-identified.
 
 
@@ -110,7 +110,7 @@ flowchart LR
 ### Leveraging server-side first-party cookies within Converge
 
 By using a server-side first-party cookie as an **alias**, Converge can:
-1. **Reliably re-identify your customers for multi-touch attribution**. This is especially important for brands where the buying cycle is longer than the cookie lifetime of 7 days.
+1. **Reliably re-identify your customers for multitouch attribution**. This is especially important for brands where the buying cycle is longer than the cookie lifetime of 7 days.
 2. **Extend the lifetime of third-party cookies**: Converge stores third-party cookies that are relevant for your Connections in its <OutboundLink linkText="profile properties" linkTarget="/sources/concepts/profile-properties"/>. Converge can then retrieve these third-party cookies when it recognizes a customer after the 7-day period.
 
 ---
@@ -128,7 +128,7 @@ If you are integrating [Converge JS](/sources/website-integrations/converge-pixe
 
     <Accordion title="Set up a first-party server-side cookie" icon="server" >
     
-    We provide a minimal code example below for NodeJS, but any server web framework should be able to handle server-side cookies.
+    We provide a minimal code example below for Node.js, but any server web framework should be able to handle server-side cookies.
 
    <CodeGroup>
    
@@ -168,7 +168,7 @@ If you are integrating [Converge JS](/sources/website-integrations/converge-pixe
    <Accordion title="Pass the cookie as an alias in all of your client-side ConvergeJS calls" icon="cookie" >
     
     Modify the code where you set up the `page_load` to include the cookie you set up above as an `alias`.
-    We provide an example for NextJS, but this should be straightforwardly implemented in any framework.
+    We provide an example for Next.js, but this should be straightforwardly implemented in any framework.
     
     ```js NextJS
     import { useEffect } from "react";

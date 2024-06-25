@@ -20,34 +20,40 @@ Connection Type: <IconText text="Client-side" name="browser" iconType="duotone" 
 1. Navigate to your <OutboundLink linkTarget="https://www.klaviyo.com/settings/account/personal" linkText="Klaviyo Admin Dashboard"/>.
 
 2. In the left-bottom corner of the dashboard, click on your Klaviyo Workspace Name and then on <IconText text="Settings" name="gear" iconLocation="before" iconType="regular"/>
-    <Frame>
-   ![klaviyo-1](/images/connections/klaviyo/klaviyo-install-0.png)
-   </Frame>
+  <Frame>
+    ![klaviyo-1](/images/connections/klaviyo/klaviyo-install-0.png)
+  </Frame>
 
 3. Under the **Account**-tab, choose **API keys**.
 
 4. Copy your **Public API Key**, you will need it later.
-   &nbsp;
 
-5. Click on **Create Private API Key**, give your key a name and choose **Full Access Key** and press **Create**.
+5. Click on **Create Private API Key**
 
-6. Copy the newly created **Private API Key**, you will need it later.
-   &nbsp;
+6. Give your key a name and select **Custom Key** in **Select Access Level**
 
-7. In your Converge dashboard, under Connections, click <IconText name="circle-plus" text="Create New Connection" iconLocation="before" iconType="regular"/ > and fill in your **Public API Key** in the **Public Token** field and your **Private API Key** in the **API Key**-field. 
-   &nbsp;
+7. Select **Read/Write Access** to the **Events** scope.
+  <Frame>
+    ![klaviyo-2](/images/connections/klaviyo/klaviyo-install-1.png)
+  </Frame>
 
-8. Click on the **Advanced**-tab to set up your events.
-    <Frame>
-   ![klaviyo-2](/images/connections/klaviyo/klaviyo-install-1.png)
-   </Frame>
+8. Press **Create**
 
-9. Choose the events for which you want to set up the Converge Connection. 
+9. Copy the newly created **Private API Key**, you will need it later.
+
+10. In your Converge dashboard, under Connections, click <IconText name="circle-plus" text="Create New Connection" iconLocation="before" iconType="regular"/ > and fill in your **Public API Key** in the **Public Token** field and your **Private API Key** in the **API Key**-field. 
+
+11. Click on the **Advanced**-tab to set up your events.
+  <Frame>
+    ![klaviyo-3](/images/connections/klaviyo/klaviyo-install-2.png)
+  </Frame>
+
+12. Choose the events for which you want to set up the Converge Connection. 
     <Note>
       If you are using any of Klaviyo's prebuilt integrations, then you will want to make sure to **not** send `Started Checkout` and `Placed Order`-events. Otherwise, you will want to send all events.
     </Note>
 
-10. Click on **Create Connection**.
+13. Click on **Create Connection**.
    
 
 </Accordion>
@@ -69,9 +75,9 @@ This integration supports the following Converge connection functionality.
 
 ---
 
-## Adding product url and image url to Converge events to power Klaviyo flows
+## Adding product URL and image URL to Converge events to power Klaviyo flows
 
-A common usecase of the Klaviyo Destination is to build Klaviyo Email Flows based on Converge Events. 
+A common use case of the Klaviyo Destination is to build Klaviyo Email Flows based on Converge Events. 
 As such, you might want to include a Product URL or Product Image URL in the Converge Event so you can leverage these in your email flows. 
 
 To that end, you will want to extend the Converge Event Spec for following events.
@@ -189,7 +195,7 @@ cvg({
 
 <AccordionGroup>
 <Accordion title="I already have the Klaviyo integration for Shopify, should I also set up a Converge connection?">
-  If you are using any of Klaviyo's prebuilt integrations, then there is still value in setting up the Converg Klaviyo Connection to track the `Viewed Product`, `Viewed Category`, and `Added To Cart`-events or to send [Custom Events](/sources/extending-the-spec/custom-events.mdx) to Klaviyo.
+  If you are using any of Klaviyo's prebuilt integrations, then there is still value in setting up the Converge Klaviyo Connection to track the `Viewed Product`, `Viewed Category`, and `Added To Cart`-events or to send [Custom Events](/sources/extending-the-spec/custom-events.mdx) to Klaviyo.
 </Accordion>
 </AccordionGroup>
 

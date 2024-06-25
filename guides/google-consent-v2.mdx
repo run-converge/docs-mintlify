@@ -30,7 +30,7 @@ In short: **the cookie banner captures consent**, and Converge makes sure that c
 <Accordion title="How can I check whether I am compliant with Consent Mode v2?" icon="shield-halved" iconType="duotone">
   1. Go to your installed [Google Analytics Dashboard](https://analytics.google.com/analytics/web/) and navigate to **Admin** > **Property** >  **Data streams**
   2. Choose the datastream of a website you want to verify.
-  3. Check whether both Ads measurement consent signals, as well as Ads personalization consent signals are detected
+  3. Check whether both Ads measurement consent signals, and Ads personalization consent signals are detected
     <Frame>
     ![consentv2](/images/guides/consentv2/consentv2-0.jpeg)
     </Frame>
@@ -76,7 +76,7 @@ In its current behavior, Google will still process, attribute, and optimize for 
     <Accordion title="Option 1: installing a CMP">
         You can start tracking user consent by installing a cookie banner.
         You can find a list of Google-certified CMPs in the Google documentation [here](https://support.google.com/admanager/answer/13554116?sjid=7015691553786205462-EU#google-cmps&zippy=%2Cgoogle-certified-cmps).
-        To get started, you can have a look at the CMPs discussed in the section [below](/guides/google-consent-v2/#i-already-send-consent-data-to-google).
+        To get started, you can take a look at the CMPs discussed in the section [below](/guides/google-consent-v2/#i-already-send-consent-data-to-google).
         
         If you already have a cookie banner installed, please refer to the section [below](/guides/google-consent-v2/#i-already-send-consent-data-to-google) to make sure it is configured correctly for Google Consent V2.
     </Accordion>
@@ -115,8 +115,8 @@ Most CMP platforms offer an integration with Google consent mode. For the below 
 - [Cookie Script](https://help.cookie-script.com/en/google-analytics/google-consent-mode-implementation-instructions) Go to your banner settings > Behavior tab > Frameworks section > Enable Google Consent Mode V2.
 - [Cookie Bot](https://support.cookiebot.com/hc/en-us/articles/360016047000-Cookiebot-and-Google-Consent-Mode) The Google consent mode integration is enabled by default. You should, however, ensure that a default consent state is explicitly added to your website. Please follow the instructions in the implementation section [here](https://support.cookiebot.com/hc/en-us/articles/360016047000-Cookiebot-and-Google-Consent-Mode).
 - [OneTrust](https://my.onetrust.com/s/article/UUID-d81787f6-685c-2262-36c3-5f1f3369e2a7?language=en_US#UUID-d81787f6-685c-2262-36c3-5f1f3369e2a7_section-idm231981224490148) On the cookie consent menu, go to Geolocation Rules, select a rule group and click edit on a rule to configure. From there, enable the Google Consent mode setting.
-- [Pandectes Shopify App](https://help.pandectes.io/en/article/using-google-consent-mode-integration-1xkfv6o/) In the Shopify app, under settings > integrations, enable the Google consent mode checkbox. Please select the 'I have already installed Google Tag Manager and/or Google Analytics' option.
-- [Consentmo Shopify App](https://support.consentmo.com/en/article/google-consent-mode-v2-integration-1olxp4x/) Include the `{% render 'gcm-integration-script' %}` snippet in the `head` part of the `theme.liquid` and copy paste the [snippet provided in the help center](https://gdprstorage.b-cdn.net/faq/files/gcm-integration-script.zip) in a new `gcm-integration-script` theme file under the snippets section.
+- [Pandectes Shopify App](https://help.pandectes.io/en/article/using-google-consent-mode-integration-1xkfv6o/) In the Shopify app, under settings > integrations, enable the Google consent mode checkbox. Please select the "I have already installed Google Tag Manager and/or Google Analytics" option.
+- [Consentmo Shopify App](https://support.consentmo.com/en/article/google-consent-mode-v2-integration-1olxp4x/) Include the `{% render 'gcm-integration-script' %}` snippet in the `head` part of the `theme.liquid` and copy and paste the [snippet provided in the help center](https://gdprstorage.b-cdn.net/faq/files/gcm-integration-script.zip) in a new `gcm-integration-script` theme file under the snippets section.
 
 ##### Verifying the integration
 You can verify the installation through the [Google Tag Assistant](https://tagassistant.google.com).
@@ -153,7 +153,7 @@ You can run the following checks on your GA4 (`G-XXXXXX`) and Google Ads tags (`
         On your website, accept the cookie banner. Now go back to the debug overview and look for a new `Consent` event.
         A new `Consent` event should be present and reflect the updated consent state.
     </Accordion>
-    <Accordion title="The consent V2 parameters are specified ">
+    <Accordion title="The consent V2 parameters are specified">
         Double-check that the `ad_user_data` and `ad_personalization` parameters are set both in the default consent column and when updating consent.
     </Accordion>
 </AccordionGroup>

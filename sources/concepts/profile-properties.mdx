@@ -6,10 +6,10 @@ description: "Introduction to Profile Properties"
 It is possible to include **profile properties** in an event. These properties are characteristic of the user. These properties are **persisted across events**, whereas the event properties are only available and relevant to the event itself.
 
 Profile Properties allow you to store information on a user that you might need later. 
-For example, the Converge Pixel will [auto-track](/sources/converge-spec#page-load) a bunch of browser session information so this is available for your server-side events (e.g. the `Placed Order` event in the [example](#an-introductory-example) above).
+For example, the Converge Pixel will [auto-track](/sources/converge-spec#page-load) a bunch of browser session information, so this is available for your server-side events (e.g. the `Placed Order` event in the [example](#an-introductory-example) above).
 
 However, profile properties are also useful for storing information across events *within* a single source. 
-Imagine a user that triggers a `Subscribed to Newsletter` event with an `$email` parameter. Afterwards that same user triggers an `Added To Cart`.
+Imagine a user that triggers a `Subscribed to Newsletter` event with an `$email` parameter. Afterward that same user triggers an `Added To Cart`.
 Storing the `$email` as a profile property ensures that you have this information available at the moment of the `Added To Cart`-event without you as a developer having to pass this information again.
 
 

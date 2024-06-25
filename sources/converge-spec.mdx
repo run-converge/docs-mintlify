@@ -93,7 +93,7 @@ cvg({ method: "track", eventName: "$page_load" });
 <Accordion title="Auto-tracked Aliases" icon="passport">
 
     <ParamField body="urn:cookie:{cookie_id}" >
-    Alias based on the Converge cookie id.
+    Alias based on the Converge cookie ID.
     </ParamField>
 
 </Accordion>
@@ -217,8 +217,6 @@ When a user views a collection detail page that includes multiple products.
     <ParamField body="items" type="list of Item">
 
         <Expandable title="Item">
-
-{" "}
 
 <ParamField body="product_id" type="string" required>
   Product ID of the item that is being viewed.
@@ -419,10 +417,8 @@ When a user starts the checkout process.
 
         <Expandable title="CheckoutItem">
 
-{" "}
-
 <ParamField body="product_id" type="string" required>
-  Product ID of the item  .
+  Product ID of the item.
 </ParamField>
 
     <ParamField body="variant_id" type="string">
@@ -446,7 +442,7 @@ When a user starts the checkout process.
     </ParamField>
 
     <ParamField body="currency" type="string" required>
-    Currency of the product  , as per [ISO
+    Currency of the product, as per [ISO
     4217](https://en.wikipedia.org/wiki/ISO_4217)
     </ParamField>
 
@@ -541,10 +537,8 @@ When a user adds their payment info.
 
         <Expandable title="CheckoutItem">
 
-{" "}
-
 <ParamField body="product_id" type="string" required>
-  Product ID of the item  .
+  Product ID of the item.
 </ParamField>
 
     <ParamField body="variant_id" type="string">
@@ -601,7 +595,7 @@ When a user adds their payment info.
     </ParamField>
 
     <ParamField body="$phone_number" type="string">
-    Phone Number of the user including the'+'-sign and country code. For example: `"+1 (917) 123-4567"` or `"+3295123456"`.
+    Phone Number of the user including the `+`-sign and country code. For example: `"+1 (917) 123-4567"` or `"+3295123456"`.
     </ParamField>
 
     <ParamField body="$city" type="string">
@@ -675,7 +669,7 @@ When a user places an order.
 
 <Note>
   **Conversion event**: you should adhere to the **Where To Track** and
-  **Deduplication** guidelines.{" "}
+  **Deduplication** guidelines.
 </Note>
 
 <Accordion title="Where To Track" icon="map-pin">
@@ -715,8 +709,6 @@ Order ID.
     <ParamField body="items" type="list of CheckoutItem">
 
         <Expandable title="CheckoutItem">
-
-{" "}
 
 <ParamField body="product_id" type="string" required>
   Product ID of the item in the order.
@@ -772,7 +764,7 @@ Order ID.
     </ParamField>
 
     <ParamField body="$phone_number" type="string">
-    Phone Number of the user including the'+'-sign and country code. For example: `"+1 (917) 123-4567"` or `"+3295123456"`.
+    Phone Number of the user including the `+`-sign and country code. For example: `"+1 (917) 123-4567"` or `"+3295123456"`.
     </ParamField>
 
     <ParamField body="$city" type="string">
@@ -807,7 +799,7 @@ Order ID.
     </ParamField>
 
     <ParamField body="$phone_number" type="string">
-    Phone Number of the user including the'+'-sign and country code. For example: `"+1 (917) 123-4567"` or `"+3295123456"`.
+    Phone Number of the user including the `+`-sign and country code. For example: `"+1 (917) 123-4567"` or `"+3295123456"`.
     </ParamField>
 
     <ParamField body="$city" type="string">
@@ -971,8 +963,6 @@ This is an optional event
 
         <Expandable title="CartItem">
 
-{" "}
-
 <ParamField body="product_id" type="string" required>
   Product ID of the item.
 </ParamField>
@@ -1066,7 +1056,7 @@ When a user starts a subscription.
 
 <Note>
   **Conversion event**: you should adhere to the **Where To Track**
-  guidelines.{" "}
+  guidelines.
 </Note>
 
 <Accordion title="Where To Track" icon="map-pin">
@@ -1101,8 +1091,6 @@ When a user starts a subscription.
     <ParamField body="items" type="list of CheckoutItem">
 
         <Expandable title="CheckoutItem">
-
-{" "}
 
 <ParamField body="product_id" type="string" required>
   Product ID of the item in the subscription.
@@ -1150,7 +1138,7 @@ When a user starts a subscription.
     </ParamField>
 
     <ParamField body="$phone_number" type="string">
-    Phone Number of the subscriber including the'+'-sign and country code. For example: `"+1 (917) 123-4567"` or `"+3295123456"`.
+    Phone Number of the subscriber including the `+`-sign and country code. For example: `"+1 (917) 123-4567"` or `"+3295123456"`.
     </ParamField>
 
     <ParamField body="$city" type="string">
@@ -1179,7 +1167,7 @@ When a user starts a subscription.
     </ParamField>
 
     <ParamField body="$phone_number" type="string">
-    Phone Number of the subscriber including the'+'-sign and country code. For example: `"+1 (917) 123-4567"` or `"+3295123456"`.
+    Phone Number of the subscriber including the `+`-sign and country code. For example: `"+1 (917) 123-4567"` or `"+3295123456"`.
     </ParamField>
 
     <ParamField body="$city" type="string">
@@ -1339,8 +1327,6 @@ When a user cancels a subscription.
 
         <Expandable title="CheckoutItem">
 
-{" "}
-
 <ParamField body="product_id" type="string" required>
   Product ID of the item in the subscription.
 </ParamField>
@@ -1387,7 +1373,7 @@ When a user cancels a subscription.
     </ParamField>
 
     <ParamField body="$phone_number" type="string">
-    Phone Number of the subscriber including the'+'-sign and country code. For example: `"+1 (917) 123-4567"` or `"+3295123456"`.
+    Phone Number of the subscriber including the `+`-sign and country code. For example: `"+1 (917) 123-4567"` or `"+3295123456"`.
     </ParamField>
 
     <ParamField body="$city" type="string">
@@ -1416,7 +1402,7 @@ When a user cancels a subscription.
     </ParamField>
 
     <ParamField body="$phone_number" type="string">
-    Phone Number of the subscriber including the'+'-sign and country code. For example: `"+1 (917) 123-4567"` or `"+3295123456"`.
+    Phone Number of the subscriber including the `+`-sign and country code. For example: `"+1 (917) 123-4567"` or `"+3295123456"`.
     </ParamField>
 
     <ParamField body="$city" type="string">
@@ -1533,8 +1519,6 @@ When a user places a recurring subscription order.
 
         <Expandable title="CheckoutItem">
 
-{" "}
-
 <ParamField body="product_id" type="string" required>
   Product ID of the item in the subscription.
 </ParamField>
@@ -1581,7 +1565,7 @@ When a user places a recurring subscription order.
     </ParamField>
 
     <ParamField body="$phone_number" type="string">
-    Phone Number of the subscriber including the'+'-sign and country code. For example: `"+1 (917) 123-4567"` or `"+3295123456"`.
+    Phone Number of the subscriber including the `+`-sign and country code. For example: `"+1 (917) 123-4567"` or `"+3295123456"`.
     </ParamField>
 
     <ParamField body="$city" type="string">
@@ -1610,7 +1594,7 @@ When a user places a recurring subscription order.
     </ParamField>
 
     <ParamField body="$phone_number" type="string">
-    Phone Number of the subscriber including the'+'-sign and country code. For example: `"+1 (917) 123-4567"` or `"+3295123456"`.
+    Phone Number of the subscriber including the `+`-sign and country code. For example: `"+1 (917) 123-4567"` or `"+3295123456"`.
     </ParamField>
 
     <ParamField body="$city" type="string">
