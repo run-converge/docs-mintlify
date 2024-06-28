@@ -131,7 +131,8 @@
             "ad-platforms/integrations/google-ads",
             "ad-platforms/integrations/pinterest",
             "ad-platforms/integrations/tiktok",
-            "ad-platforms/integrations/bing"
+            "ad-platforms/integrations/bing",
+            "ad-platforms/integrations/snapchat"
           ]
         }
       ]
