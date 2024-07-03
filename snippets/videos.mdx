@@ -1,0 +1,26 @@
+export const Video = ({ src }) => {
+    const containerStyle = {
+    position: 'relative',
+    paddingBottom: '60.13363028953229%',
+    height: 0,
+  };
+
+  const iframeStyle = {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    width: '100%',
+    height: '100%',
+  };
+    return (
+    <div style={containerStyle}>
+      <iframe
+        src={src}
+        frameBorder="0"
+        allow="fullscreen; webkitallowfullscreen; mozallowfullscreen"
+        style={iframeStyle}
+        title="Loom Embed"
+      ></iframe>
+    </div>
+  );
+};
