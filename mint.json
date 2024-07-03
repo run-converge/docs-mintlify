@@ -122,6 +122,12 @@
       ]
     },
     {
+      "group": "Insights & Dashboards",
+      "pages": [
+        "insights-dashboards/insights-dashboards"
+      ]
+    },
+    {
       "group": "Ad Platforms",
       "pages": [
         {
