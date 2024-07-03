@@ -1,0 +1,159 @@
+---
+title: "Postscript"
+description: "An introduction to the Postscript Destination"
+---
+
+import { Icon, IconText } from '/snippets/icons.mdx';
+import { OutboundLink } from '/snippets/links.mdx';
+
+## Overview
+
+Connection Type: <IconText text="Server-side" name="server" iconType="duotone" iconLocation="after"/>
+
+---
+
+## Installation Instructions
+
+<AccordionGroup >
+<Accordion icon="list" title="Installation Instructions">
+
+1. Create a Postscript API key in your Postcript dashboard. Select your Shop Name, go to API, click Create Security Key Pair and confirm by selecting Yes. Add a 'Converge' label and select Show to copy the Private Key.
+2. In Converge, click **Create a new connection** under the Connections tab. Select the Postscript app and past the private API key.
+3. Give your connection a name an click on **Create Connection**.
+
+</Accordion>
+
+</AccordionGroup >
+
+---
+
+## Converge functionality
+
+This integration supports the following Converge connection functionality.
+
+| Converge Feature        |       Supported       |
+| ----------------------- | :-------------------: |
+| Custom Events           | <Icon name="check" /> |
+| Filters                 | <Icon name="xmark" /> |
+| Server-side Conversions | <Icon name="check" /> |
+
+
+---
+
+## Adding product url and image url to Converge events to power Postscript flows
+
+A common usecase of the Postscript Destination is to build Postscript SMS Flows based on Converge Events. 
+As such, you might want to include a Product URL or Product Image URL in the Converge Event so you can leverage these in your flows. 
+
+To that end, you will want to extend the Converge Event Spec for following events.
+Once you add the custom properties to your events, Converge will automatically forward these to the Postscript Destination.
+
+<Accordion title='Extending your Converge Event implementation for Postscript'>
+
+Find code examples below that illustrate where **you should add the Product URL and Product Image URL custom event properties**.
+
+<Accordion title="Viewed Product" icon="code">
+
+See the original `Viewed Product`-spec [here](/sources/converge-spec.mdx#viewed-product)
+
+<CodeGroup>
+
+```javascript JavaScript
+cvg({
+  method: "track",
+  eventName: "Viewed Product",
+  properties: {
+    product_id: "123456",
+    variant_id: "78910", 
+    sku: "MY_SKU",
+    name: "My Product",
+    variant_name: "Vanilla", 
+    price: 42,
+    currency: "USD",
+    vendor: "My Store",
+    url: "https://mystore.com/this-product" // This is new
+    image_url: "https://mystore.com/assets/product.png" // This is new
+  },
+});
+```
+
+</CodeGroup>
+
+</Accordion>
+
+<Accordion title="Added To Cart" icon="code">
+
+See the original `Added To Cart`-spec [here](/sources/converge-spec.mdx#added-to-cart)
+
+<CodeGroup>
+
+```javascript JavaScript
+cvg({
+  method: "track",
+  eventName: "Added To Cart",
+  properties: {
+    product_id: "123456",
+    variant_id: "78910",
+    sku: "MY_SKU",
+    name: "My Product",
+    variant_name: "Vanilla",
+    price: 42,
+    currency: "USD",
+    quantity: 1,
+    vendor: "My Store",
+    url: "https://mystore.com/this-product" // This is new
+    image_url: "https://mystore.com/assets/product.png" // This is new
+  },
+});
+
+```
+
+</CodeGroup>
+
+</Accordion>
+
+<Accordion title="Removed From Cart" icon="code">
+
+See the original `Removed From Cart`-spec [here](/sources/converge-spec.mdx#removed-from-cart)
+
+<CodeGroup>
+
+```javascript JavaScript
+cvg({
+  method: "track",
+  eventName: "Removed From Cart",
+  properties: {
+    product_id: "123456",
+    variant_id: "78910",
+    sku: "MY_SKU",
+    name: "My Product",
+    variant_name: "Vanilla",
+    price: 42,
+    currency: "USD",
+    quantity: 1,
+    vendor: "My Store",
+    url: "https://mystore.com/this-product" // This is new
+    image_url: "https://mystore.com/assets/product.png" // This is new
+  },
+});
+
+```
+
+</CodeGroup>
+
+</Accordion>
+
+</Accordion>
+
+## Event Mapping
+
+Converge automatically maps the following events from the [Converge Event Spec](/sources/converge-spec) to the Postscript spec.
+
+| Converge Event Name                                                                               | Postscript Event Name                   |
+| ------------------------------------------------------------------------------------------------- | --------------------------------------- |
+| [$page_load](/sources/converge-spec#page-load)                                                    | `page_view`                             |
+| [Viewed Product](/sources/converge-spec#viewed-product)                                           | `view_product`                          |
+| [Added To Cart](/sources/converge-spec#added-to-cart)                                             | `add_to_cart`                           |
+| [Started Checkout](/sources/converge-spec#started-checkout)                                       | `initiate_checkout`                     |
+| [Added Payment Info](/sources/converge-spec#added-payment-info)                                   | `add_payment_info`                      |
+| [Placed Order](/sources/converge-spec#placed-order)                                               | `purchase`                              |
