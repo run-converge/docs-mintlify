@@ -60,6 +60,13 @@ This integration supports the following Converge connection functionality.
         If your events are showing up as **skipped** in the connection logs, double check that your event properties conform the [Placed Order](/sources/converge-spec#placed-order) event spec.
         If converge cannot parse the event into an AWIN order, the event cannot be forwarded and shows as **skipped**.
     </Accordion>
+        <Accordion title='Can I send other events to AWIN?'>
+        AWIN only supports tracking orders. You can configure which events are forwarded as orders, but cannot register events besides orders.
+
+        The following customizations are possible
+        - **Customer type**: Converge by default includes whether the order comes from a new or existing customer.
+        - **Custom parameters**: you can include event properties as custom parameters on your orders.
+        </Accordion>
     <Accordion title="How do I send custom paramters to AWIN?">
         Under the **Advanced** tab in the AWIN connection, you can add custom parameters to your events. Only string or numeric parameters are supported. These are sent as a list of values.
         
