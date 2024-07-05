@@ -105,7 +105,8 @@
             "connections/integrations/taboola",
             "connections/integrations/bigquery",
             "connections/integrations/custom-html",
-            "connections/integrations/klaviyo"
+            "connections/integrations/klaviyo",
+            "connections/integrations/awin"
           ]
         },
         "connections/filters",
