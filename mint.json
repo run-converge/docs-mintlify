@@ -93,6 +93,7 @@
         {
           "group": "Integrations",
           "pages": [
+            "connections/integrations/overview",
             "connections/integrations/facebook",
             "connections/integrations/google-ads",
             "connections/integrations/ga4",
