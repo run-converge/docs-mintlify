@@ -175,13 +175,33 @@ The Converge JS pixel only picks up [$page_load](/sources/converge-spec#page-loa
   For that reason, you would want to track all events in the `theme.liquid`. However, **Shopify does not allow you to track reliably on the Checkout using this approach**.
 </Accordion>
 
-<Accordion title="Why do I have too little Checkout and Add To Cart events?">
-  You might have Privacy settings set up in Shopify that limit us from tracking the Checkout. 
+<Accordion title="Why do I have too little client-side events tracked on the Shopify Checkout">
+
+  #### 1. Verify that Custom Pixel Privacy Settings are set up correctly
+  
+  You might have Custom Pixel Privacy settings set up in Shopify that limit us from tracking the Checkout. 
+
   1. Navigate to the Shopify Admin dashboard, navigate to **Settings** > **Customer Events** and find the `Converge Pixel`.
   2. Click on it to open the settings. 
   3. Verify in your Custom Pixel settings whether you have set the **Permission** flag to **Not required**.
 
             <Frame> ![img](/images/sources/shopify/shopify-privacy.png) </Frame>
+  4. Also make sure that **Data sale** is set to **Data collected does not qualify as a data sale**.
+            <Frame> ![img](/images/sources/shopify/shopify-privacy-1.png) </Frame>
+
+
+  #### 2. Verify that a broken cookiebanner integration is not blocking the Converge Pixel
+
+  If you are using a custom cookie banner that is not properly integrated with Shopify, then Shopify might block our pixel from loading on their checkout. 
+  To verify, go through the following steps:
+
+  1. Navigate to the Shopify Admin dashboard, navigate to **Settings** > **Customer privacy** and verify whether **Regions** is set up:
+        <Frame> ![img](/images/sources/shopify/shopify-privacy-2.png) </Frame>
+  2. If **Regions** is set up, and you have a custom cookie banner, then Shopify might be blocking our pixel. Click on **Edit** and untick all countries, then press **Save**. 
+            <Frame> ![img](/images/sources/shopify/shopify-privacy-3.png) </Frame>
+  3. Verify over the coming hours that more checkout events are coming in. 
+
+
 </Accordion>
 </AccordionGroup>
 
