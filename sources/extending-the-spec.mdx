@@ -13,14 +13,14 @@ You can track custom events, event properties, profile properties, and aliases e
 
 If you are using one of our prebuilt source integrations, and you want to include custom properties (or modify existing properties) on these events; then you can do so using the `set`-method.
 
-Imagine for example that I want to send a custom property with my `Added To Cart`-event. 
-I would then call the following function  _before_ the `Added To Cart`-event is fired.
+Imagine for example that I want to send a custom property with my `Added To Cart` event. 
+I would then call the following function  _before_ the `Added To Cart` event is fired.
 
 ```js
 cvg({method: "set", eventProperties: {hello:"world"}})
 ```
 
-When my `Added To Cart`-event fires, it will now include the custom `hello -> world` property mapping.
+When my `Added To Cart` event fires, it will now include the custom `hello -> world` property mapping.
 
 You can modify profile properties in the same way, a full example of the function would be:
 

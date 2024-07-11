@@ -17,9 +17,21 @@ Connection Type: <IconText text="Server-side" name="server" iconType="duotone" i
 <AccordionGroup >
 <Accordion icon="list" title="Installation Instructions">
 
-1. Create a Postscript API key in your Postscript dashboard. Select your Shop Name, go to API, click Create Security Key Pair and confirm by selecting Yes. Add a 'Converge' label and select Show to copy the Private Key.
-2. In Converge, click **Create a new connection** under the Connections tab. Select the Postscript app and past the private API key.
-3. Give your connection a name an click on **Create Connection**.
+1. Create and copy a Postscript API key from the Postscript dashboard.
+2. In Converge, click **Create a new connection** under the **Connections** tab. Select the **Postscript** app and paste the private Postscript API key.
+3. Give your connection a name and click on **Create Connection**.
+
+</Accordion>
+
+<Accordion icon="list" title="How to create a Postscript API key">
+
+1. In your Postscript dashboard, select your Shop Name and navigate to **API**.
+2. Click on **Create Security Key Pair** and confirm by selecting **Yes**.
+3. Click in **Add a label** and use a label that helps you identify the API key (e.g. `Converge`).
+4. Under **Private Key**, click on **Show** and to copy the Private Key.
+<Frame>
+    ![postscript-1](/images/connections/postscript/postscript-1.png)
+</Frame>
 
 </Accordion>
 
@@ -40,12 +52,12 @@ This integration supports the following Converge connection functionality.
 
 ---
 
-## Adding product url and image url to Converge events to power Postscript flows
+## Adding product URL and image URL to Converge events to power Postscript flows
 
 A common use case of the Postscript Destination is to build Postscript SMS Flows based on Converge Events. 
 As such, you might want to include a Product URL or Product Image URL in the Converge Event so you can leverage these in your flows. 
 
-To that end, you will want to extend the Converge Event Spec for following events.
+To that end, you will want to extend the Converge Event Spec for the following events.
 Once you add the custom properties to your events, Converge will automatically forward these to the Postscript Destination.
 
 <Accordion title='Extending your Converge Event implementation for Postscript'>
@@ -149,11 +161,11 @@ cvg({
 
 Converge automatically maps the following events from the [Converge Event Spec](/sources/converge-spec) to the Postscript spec.
 
-| Converge Event Name                                                                               | Postscript Event Name                   |
-| ------------------------------------------------------------------------------------------------- | --------------------------------------- |
-| [$page_load](/sources/converge-spec#page-load)                                                    | `page_view`                             |
-| [Viewed Product](/sources/converge-spec#viewed-product)                                           | `view_product`                          |
-| [Added To Cart](/sources/converge-spec#added-to-cart)                                             | `add_to_cart`                           |
-| [Started Checkout](/sources/converge-spec#started-checkout)                                       | `initiate_checkout`                     |
-| [Added Payment Info](/sources/converge-spec#added-payment-info)                                   | `add_payment_info`                      |
-| [Placed Order](/sources/converge-spec#placed-order)                                               | `purchase`                              |
+| Converge Event Name                                           | Postscript Event Name          |
+| ------------------------------------------------------------- | ------------------------------ |
+| [$page_load](/sources/converge-spec#page-load)                | `Converge - page_view`         |
+| [Viewed Product](/sources/converge-spec#viewed-product)       | `Converge - viewed_product`    |
+| [Added To Cart](/sources/converge-spec#added-to-cart)         | `Converge - add_to_cart`       |
+| [Started Checkout](/sources/converge-spec#started-checkout)   | `Converge - initiate_checkout` |
+| [Viewed Collection](/sources/converge-spec#viewed-collection) | `Converge - viewed_collection` |
+| [Placed Order](/sources/converge-spec#placed-order)           | `Converge - purchase`          |

@@ -50,7 +50,7 @@ Connection Type: <IconText text="Client-side" name="browser" iconType="duotone" 
 
 12. Choose the events for which you want to set up the Converge Connection. 
     <Note>
-      If you are using any of Klaviyo's prebuilt integrations, then you will want to make sure to **not** send `Started Checkout` and `Placed Order`-events. Otherwise, you will want to send all events.
+      If you are using any of Klaviyo's prebuilt integrations, then you will want to make sure **not** to send `Started Checkout` and `Placed Order` events. Otherwise, you will want to send all events.
     </Note>
 
 13. Click on **Create Connection**.
@@ -80,7 +80,7 @@ This integration supports the following Converge connection functionality.
 A common use case of the Klaviyo Destination is to build Klaviyo Email Flows based on Converge Events. 
 As such, you might want to include a Product URL or Product Image URL in the Converge Event so you can leverage these in your email flows. 
 
-To that end, you will want to extend the Converge Event Spec for following events.
+To that end, you will want to extend the Converge Event Spec for the following events.
 Once you add the custom properties to your events, Converge will automatically forward these to the Klaviyo Destination.
 
 
@@ -195,7 +195,7 @@ cvg({
 
 <AccordionGroup>
 <Accordion title="I already have the Klaviyo integration for Shopify, should I also set up a Converge connection?">
-  If you are using any of Klaviyo's prebuilt integrations, then there is still value in setting up the Converge Klaviyo Connection to track the `Viewed Product`, `Viewed Category`, and `Added To Cart`-events or to send [Custom Events](/sources/extending-the-spec/custom-events.mdx) to Klaviyo.
+  If you are using any of Klaviyo's prebuilt integrations, then there is still value in setting up the Converge Klaviyo Connection to track the `Viewed Product`, `Viewed Category`, and `Added To Cart` events or to send [Custom Events](/sources/extending-the-spec/custom-events) to Klaviyo.
 </Accordion>
 </AccordionGroup>
 
@@ -205,18 +205,18 @@ cvg({
 
 Converge automatically maps the following events from the [Converge Event Spec](/sources/converge-spec) to the Klaviyo spec.
 
-| Converge Event Name                                                                               | Klaviyo Event Name                   |
-| ------------------------------------------------------------------------------------------------- | --------------------------------------- |
-| [$page_load](/sources/converge-spec#page-load)                                                    | `__activity__`                              |
-| [Viewed Product](/sources/converge-spec#viewed-product)                                           | `Viewed Product`                           |
-| [Viewed Collection](/sources/converge-spec#viewed-collection)                                     | `Viewed Category`                           |
-| [Added To Cart](/sources/converge-spec#added-to-cart)                                             | `Added to Cart`                             |
-| [Started Checkout](/sources/converge-spec#started-checkout)                                       | `Started Checkout`                      |
-| [Placed Order](/sources/converge-spec#placed-order)                                               | `Placed Order`                              |
+| Converge Event Name                                           | Klaviyo Event Name |
+| ------------------------------------------------------------- | ------------------ |
+| [$page_load](/sources/converge-spec#page-load)                | `__activity__`     |
+| [Viewed Product](/sources/converge-spec#viewed-product)       | `Viewed Product`   |
+| [Viewed Collection](/sources/converge-spec#viewed-collection) | `Viewed Category`  |
+| [Added To Cart](/sources/converge-spec#added-to-cart)         | `Added to Cart`    |
+| [Started Checkout](/sources/converge-spec#started-checkout)   | `Started Checkout` |
+| [Placed Order](/sources/converge-spec#placed-order)           | `Placed Order`     |
 
 
 This integration also auto-tracks some additional events that are not part of the Meta Base Spec but are so heavily requested that we automatically forward them.
 
-| Converge Event Name                                                       | Klaviyo Event Name       |
-| ------------------------------------------------------------------------- | --------------------- |
-| Ordered Product                                                                     |    `Ordered Product`                   |
+| Converge Event Name | Klaviyo Event Name |
+| ------------------- | ------------------ |
+| Ordered Product     | `Ordered Product`  |

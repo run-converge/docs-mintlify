@@ -13,7 +13,7 @@ UTM-based conversions are conversions based on UTM-tracking parameters that you 
 This hyperparameter makes sure that when a tracking pixel such as Converge on your website starts tracking a user in a session, it knows that this session came from Meta. 
 
 Because users can have multiple sessions before they purchase, the same purchase can be attributed to different channels based on the [attribution model](/attribution/channels#changing-the-attribution-model-of-your-utm-conversions) that you pick.
-In the flowchart below, based on a **first-touch**-model, the purchase should be attributed to Meta. Based on a **last-touch** model, the purchase should be attributed to Google.
+In the flowchart below, based on a **first-touch** model, the purchase should be attributed to Meta. Based on a **last-touch** model, the purchase should be attributed to Google.
 
 ```mermaid
 flowchart LR
@@ -24,7 +24,7 @@ flowchart LR
 ## What is in-platform attribution
 
 In-platform conversions are conversions as calculated by the attribution model of the ad platform itself. 
-As an example, when you mark in Meta a _"7-day click, 1-day view"_ model and look at the Facebook Ads Manager, you see all conversions that Facebook believes that came from a click on the ad in the last 7 days or a view of the ad in the last day.
+As an example, when you mark in Meta a _"7-day click, 1-day view"_ model and look at the Facebook Ads Manager, you see all conversions that Facebook believes came from a click on the ad in the last 7 days or a view of the ad in the last day.
 
 This is typically the model that the ad platform will use itself to optimize its ad targeting.
 
@@ -38,7 +38,7 @@ You can find a summary of both methods below.
 | **UTM-based method** | **Great for relative comparisons**: UTM metrics allow you to compare all channels based on the same attribution model  | **May be less accurate**: UTM-based attribution methods cannot take into account view-through conversions or cannot stitch sessions across devices |
 | **In-platform based method** | **Better accuracy**: in-platform metrics are usually more accurate because ad platforms have more data to attribute (they know which users viewed ads). | **Hard to compare across traffic sources**: Every ad platform employs different attribution models, making it infeasible to compare conversions. Some channels (e.g Organic) do not have in-platform attribution.
 
-As a general rule of thumb, a UTM-based methods is better for relative comparisons **across traffic sources** and in-platform based metrics are better to check performance **within a traffic source** (e.g comparing the number of different Meta campaigns against each other).
+As a general rule of thumb, a UTM-based methods are better for relative comparisons **across traffic sources** and in-platform-based metrics are better for checking performance **within a traffic source** (e.g. comparing the number of different Meta campaigns against each other).
 
 
 ## Known limitations of UTM-based attribution in relative comparisons 
@@ -46,7 +46,7 @@ As a general rule of thumb, a UTM-based methods is better for relative compariso
 Although the UTM-based attribution method is better for relative comparisons, it comes with some known limitations.
 
 **UTM-based attribution typically underreports top-of-funnel channels** (e.g. Meta and TikTok)
-Because UTM-based tracking does not work across device and does not have any information on view-through conversions, it tends to get worse at reporting things top-of-funnel (in sessions early in the customer funnel).
+Because UTM-based tracking does not work across devices and does not have any information on view-through conversions, it tends to get worse at reporting things top-of-funnel (in sessions early in the customer funnel).
 The longer an average customer takes to convert the more underreported these channels will be.
 
 **UTM-based attribution typically overreports conversions to search and brand traffic** 

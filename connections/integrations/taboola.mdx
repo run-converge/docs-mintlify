@@ -30,7 +30,7 @@ Connection Type: <IconText text="Server-side" name="server" iconType="duotone" i
     ![taboola-conversion-type](/images/connections/taboola/taboola-2.png)
     </Frame>
 
-4. Scroll down, you can ignore the "Fixed Value"-field. Choose the Category that fits your event best, for a "Placed Order"-event this would be **Make Purchase**.
+4. Scroll down, you can ignore the "Fixed Value"-field. Choose the Category that fits your event best, for a `Placed Order` event this would be **Make Purchase**.
 
 5. Choose your Event Name, e.g. `converge_placed_order`.
      <Frame>
@@ -41,7 +41,7 @@ Connection Type: <IconText text="Server-side" name="server" iconType="duotone" i
 
 7. Open the Converge App, and navigate to **Connections**, click on **Create new connection**.
 
-8. Choose the **Taboola** app, and under the Taboola event names section, fill in for which Converge event you want your conversion to correspond to. For this example, the **converge_placed_order**-conversion corresponds to a Converge **Placed Order**.
+8. Choose the **Taboola** app, and under the Taboola event names section, fill in which Converge event you want your conversion to correspond to. For this example, the **converge_placed_order**-conversion corresponds to a Converge **Placed Order**.
     <Frame>
     ![taboola-conversions](/images/connections/taboola/taboola-4.png)
     </Frame>
@@ -86,9 +86,9 @@ This integration supports the following Converge connection functionality.
 
 <AccordionGroup>
 <Accordion title="Why do I need to change my UTMs for the Taboola Connection and in-platform attribution to work?">
-  Taboola's in-platform attribution works on the basis of Taboola Click IDs. If a purchase gets sent to Taboola without a Click ID, it will not get attributed.
+  Taboola's in-platform attribution works based on Taboola Click IDs. If a purchase gets sent to Taboola without a Click ID, it will not get attributed.
 
-  Unfortunately, Taboola does not add the Click ID automatically to the landing page URL (as opposed to other ad platforms such as Google Ads or Facebook Ads). You need to make sure manually that all links include a click id by modifying the tracking parameters for **every** ad you run. 
+  Unfortunately, Taboola does not add the Click ID automatically to the landing page URL (as opposed to other ad platforms such as Google Ads or Facebook Ads). You need to make sure manually that all links include a click ID by modifying the tracking parameters for **every** ad you run. 
 </Accordion>
 
 </AccordionGroup>

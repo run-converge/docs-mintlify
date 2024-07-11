@@ -41,13 +41,13 @@ Converge allows you to filter out events granularly based on their event propert
 <Accordion title="Filtering out subscription orders" icon="calendar-circle-minus">
 Subscription brands typically want to filter out recurring purchases when forwarding to ad platforms.
 
-To achieve this, you can set up a Filter on the `Placed Order`-event on a per-connection basis. 
+To achieve this, you can set up a Filter on the `Placed Order` event on a per-connection basis. 
 
 <Steps>
 <Step title="Find a property and property value that defines a recurring subscription order">
- 1. Navigate to the <OutboundLink linkText="Source Log" linkTarget="/sources/monitoring#source-logs"/> and filter on the `Placed Order`-event. 
+ 1. Navigate to the <OutboundLink linkText="Source Log" linkTarget="/sources/monitoring#source-logs"/> and filter on the `Placed Order` event. 
  
- 2. Check a few `Placed Order`-events by clicking on them to see all of their properties, **find a property and property value that uniquely define a subscription purchase**.
+ 2. Check a few `Placed Order` events by clicking on them to see all of their properties, **find a property and property value that uniquely define a subscription purchase**.
 
     <Note> 
     If you are using the [Shopify Server Integration](/sources/server-integrations/shopify.mdx) in a standard setup, then the following property and property value pair defines a recurring purchase: 
@@ -57,7 +57,7 @@ To achieve this, you can set up a Filter on the `Placed Order`-event on a per-co
     </Note>
 </Step>
 <Step title="Set up your filter accordingly">
-3. Set up a filter for the `Placed Order` event as follows. Replace the property and property value by the ones you identified in Step 2.
+3. Set up a filter for the `Placed Order` event as follows. Replace the property and property value with the ones you identified in Step 2.
     <Frame>
     ![subscription filters](/images/connections/filters/filters-2.png)
     </Frame>

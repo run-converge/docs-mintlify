@@ -56,7 +56,7 @@ The installation process of Converge is slightly different based on whether you 
         5. In the Shopify Admin dashboard, navigate to **Settings** > **Customer Events**
         6. Click on **Add custom pixel**.
         7. Name your pixel, e.g. `Converge Pixel`
-        8. Paste the script from the web app here, make sure to modify the `__SHOP_NAME__`string with the actual store name e.g. `convergestore`. You can find your store name in the URL of your Shopify Admin Dashboard.
+        8. Paste the script from the web app here, and make sure to modify the `__SHOP_NAME__`string with the actual store name e.g. `convergestore`. You can find your store name in the URL of your Shopify Admin Dashboard.
         9. Click on **Save Pixel**
             <Frame>
               ![save pixel](/images/sources/shopify/shopify-custom-pixel-0.png)
@@ -101,7 +101,7 @@ The installation process of Converge is slightly different based on whether you 
         
     </Step>
     <Step title="Verify that the integration is working correctly">
-        5. Double-check that `$page_load`-events are coming in correctly in the Source Logs.
+        5. Double-check that `$page_load` events are coming in correctly in the Source Logs.
     </Step>
 </Steps>
    </Accordion >
@@ -115,11 +115,11 @@ The installation process of Converge is slightly different based on whether you 
         3. Name your pixel: e.g. `{Storename} Checkout`
     </Step>
     <Step title="Install the Converge Checkout as an extension in Shopify Customer Events">
-        4. Click on your newly created Source and from the modal pick `Shopify Custom Pixel`, copy that snippet.
+        4. Click on your newly created Source and from the modal pick `Shopify Custom Pixel`, and copy that snippet.
         5. In the Shopify Admin dashboard, navigate to **Settings** > **Customer Events**
         6. Click on **Add custom pixel**.
         7. Name your pixel, e.g. `Converge Pixel`
-        8. Paste the script from the web app here, make sure to modify the `__SHOP_NAME__`string with the actual store name e.g. `convergestore`. You can find your store name in the URL of your Shopify Admin Dashboard.
+        8. Paste the script from the web app here, and make sure to modify the `__SHOP_NAME__`string with the actual store name e.g. `convergestore`. You can find your store name in the URL of your Shopify Admin Dashboard.
 Click on Save Pixel and Connect Pixel
         <Info> Shopify might throw a warning that the pixel is not subscribed to any events. You can safely ignore this warning. </Info>
 
@@ -175,7 +175,7 @@ The Converge JS pixel only picks up [$page_load](/sources/converge-spec#page-loa
   For that reason, you would want to track all events in the `theme.liquid`. However, **Shopify does not allow you to track reliably on the Checkout using this approach**.
 </Accordion>
 
-<Accordion title="Why do I have too little client-side events tracked on the Shopify Checkout">
+<Accordion title="Why do I have too few client-side events tracked on the Shopify Checkout">
 
   #### 1. Verify that Custom Pixel Privacy Settings are set up correctly
   
@@ -197,7 +197,7 @@ The Converge JS pixel only picks up [$page_load](/sources/converge-spec#page-loa
 
   1. Navigate to the Shopify Admin dashboard, navigate to **Settings** > **Customer privacy** and verify whether **Regions** is set up:
         <Frame> ![img](/images/sources/shopify/shopify-privacy-2.png) </Frame>
-  2. If **Regions** is set up, and you have a custom cookie banner, then Shopify might be blocking our pixel. Click on **Edit** and untick all countries, then press **Save**. 
+  2. If **Regions** is set up, and you have a custom cookie banner, then Shopify might be blocking our pixel. Click on **Edit** and unselect all countries, then press **Save**. 
             <Frame> ![img](/images/sources/shopify/shopify-privacy-3.png) </Frame>
   3. Verify over the coming hours that more checkout events are coming in. 
 

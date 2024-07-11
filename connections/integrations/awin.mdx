@@ -11,7 +11,7 @@ Connection Type: <IconText text="Client-side" name="browser" iconType="duotone" 
 - Loads the <OutboundLink linkText="AWIN MasterTag" linkTarget="https://wiki.awin.com/index.php/Advertiser_Tracking_Guide#Journey_Tag_.2F_Mastertag"/> on all pages
 - Sends conversions through the <OutboundLink linkText="S2S" linkTarget="https://wiki.awin.com/index.php/Advertiser_Tracking_Guide/Conversion_Pixel_Only_Tracking#Server_To_Server_.28S2S.29"/> integration
 - Includes <OutboundLink linkText="voucher codes" linkTarget="https://wiki.awin.com/index.php/Advertiser_Tracking_Guide/Discount_.2F_Voucher_Code_Tracking"/>, if multiple voucher codes are used, the first one will be sent
-- Supports destinguishing between <OutboundLink linkText="new and existing customers" linkTarget="https://wiki.awin.com/index.php/Advertiser_Tracking_Guide/Commission_Groups#New_vs_Existing"/>
+- Supports distinguishing between <OutboundLink linkText="new and existing customers" linkTarget="https://wiki.awin.com/index.php/Advertiser_Tracking_Guide/Commission_Groups#New_vs_Existing"/>
 - Supports <OutboundLink linkText="custom tracking parameters" linkTarget="https://wiki.awin.com/index.php/Advertiser_Tracking_Guide/Custom_Tracking_Parameters"/>
 - Supports <OutboundLink linkText="product-level tracking" linkTarget="https://wiki.awin.com/index.php/Advertiser_Tracking_Guide/Product_Level_Tracking"/>
 
@@ -53,13 +53,13 @@ This integration supports the following Converge connection functionality.
 
 <AccordionGroup>
     <Accordion title='How do I exclude tax and shipping costs from the order values?'>
-        In the connection configuration, under the  advanced tab, you can configure whether you want to send **gross** or **net** order values. **Net** order values do not include tax and shipping.
+        In the connection configuration, under the advanced tab, you can configure whether you want to send **gross** or **net** order values. **Net** order values do not include tax and shipping.
     </Accordion>
     <Accordion title='Why are my events not being forwarded?'>
         Verify that you've configured the events you want to forward as **Conversion events** in the connection configuration.
         
-        If your events are showing up as **skipped** in the connection logs, double check that your event properties conform the [Placed Order](/sources/converge-spec#placed-order) event spec.
-        If converge cannot parse the event into an AWIN order, the event cannot be forwarded and shows as **skipped**.
+        If your events are showing up as **skipped** in the connection logs, double-check that your event properties conform with the [Placed Order](/sources/converge-spec#placed-order) event spec.
+        If Converge cannot parse the event into an AWIN order, the event cannot be forwarded and shows as **skipped**.
     </Accordion>
         <Accordion title='Can I send other events to AWIN?'>
         AWIN only supports tracking orders. You can configure which events are forwarded as orders, but cannot register events besides orders.
@@ -68,7 +68,7 @@ This integration supports the following Converge connection functionality.
         - **Customer type**: Converge by default includes whether the order comes from a new or existing customer.
         - **Custom parameters**: you can include event properties as custom parameters on your orders.
         </Accordion>
-    <Accordion title="How do I send custom paramters to AWIN?">
+    <Accordion title="How do I send custom parameters to AWIN?">
         Under the **Advanced** tab in the AWIN connection, you can add custom parameters to your events. Only string or numeric parameters are supported. These are sent as a list of values.
         
         For example, when specifying <code>order_type</code> and <code>language</code> custom parameters, the following lists could be sent to AWIN

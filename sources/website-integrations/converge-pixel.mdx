@@ -32,7 +32,7 @@ description: "Connect your Website to Converge"
         5. Copy the HTML snippet and include it in the header of your website, right above the closing `</head>` tag.
     </Step>
     <Step title="Verify that the integration is working correctly">
-        6. Check that your pixel is working correctly by generating some `$page_load`-events by visiting the website and seeing that these events arrive in the Source Log.
+        6. Check that your pixel is working correctly by generating some `$page_load` events by visiting the website and seeing that these events arrive in the Source Log.
     </Step>
 </Steps>
    </Accordion >
@@ -67,7 +67,7 @@ export default MyApp;
 
 ## Cross-domain tracking
 
-Converge supports cross-domain tracking out-of-the-box. To enable cross-domain tracking from `myfirstdomain.com` to `myotherdomain.com`, include the following method together with the basic Converge pixel snippet.
+Converge supports cross-domain tracking out of the box. To enable cross-domain tracking from `myfirstdomain.com` to `myotherdomain.com`, include the following method together with the basic Converge pixel snippet.
 
 <Info> Note that you do **not** need this snippet for tracking across subdomains.
 i.e. if the pixel snippet is installed on `myfirstdomain.com` and on `checkout.myfirstdomain.com`, the sessions should be stitched across both domains automatically. </Info> 

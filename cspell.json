@@ -1,7 +1,8 @@
 {
     "version": "0.2",
     "ignorePaths": [
-        "mint.json"
+        "mint.json",
+        "snippets/videos.mdx"
     ],
     "dictionaryDefinitions": [],
     "dictionaries": [],
@@ -12,6 +13,7 @@
         "adset",
         "arppu",
         "automations",
+        "awin",
         "bigcommerce",
         "bigq",
         "campaignid",
