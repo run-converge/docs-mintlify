@@ -1,0 +1,141 @@
+---
+title: "Consent"
+description: "Track visitor consent to Converge"
+---
+
+import {IconText} from '/snippets/icons.mdx'
+
+## Overview
+
+You can configure how the Converge connections should behave based on the visitor's consent preferences.
+To set this up, you need to send the consent to Converge.
+
+You still need a CMP, cookie banner provider, or your own solution to collect the preference.
+
+While this allows you to configure how connections handle consent,
+regardless of the configured consent, events will still be sent to Converge.
+
+## The consent method
+
+The `cvg` object has a `consent` method that you can use to send the visitor's consent preferences to Converge.
+It takes two arguments, we recommend always sending both.
+- `analytics`:
+    Preference for analytics tracking. Possible values are `granted`, and `denied`.
+    If not set, Converge will assume that the visitor has `denied` consent.
+- `marketing`:
+    Preference for marketing tracking. Possible values are `granted`, and `denied`.
+    If not set, Converge will assume that the visitor has `denied` consent.
+
+See the examples below.
+
+<AccordionGroup>
+    <Accordion icon="chart-simple" title="The visitor has granted consent for only analytics tracking">
+    ```javascript
+    cvg({ 
+        "method": "consent",
+        "analytics": "granted",
+    })
+    ```
+    </Accordion>
+    <Accordion icon="chart-simple" title="Equivalent to granting consent for only analytics tracking">
+    ```javascript
+    cvg({
+        "method": "consent",
+        "analytics": "granted",
+        "marketing": "denied",
+    })
+    ```
+    </Accordion>
+    <Accordion icon="envelopes-bulk" title="The visitor has granted consent for both analytics and marketing tracking">
+    ```javascript
+    cvg({
+        "method": "consent",
+        "analytics": "granted",
+        "marketing": "granted",
+    })
+    ```
+    </Accordion>
+    <Accordion icon="radiation" title="The visitor has denied consent for both analytics and marketing tracking">
+    ```javascript
+    cvg({
+        "method": "consent",
+        "analytics": "denied",
+        "marketing": "denied",
+    })
+    ```
+    </Accordion>
+</AccordionGroup>
+
+<Note>
+You need to make sure the `cvg` object is available before you call the `consent` method.
+If this is not the case, include the following snippet before calling `cvg`.
+```javascript
+window.cvg||(cvg=function(){cvg.process?cvg.process.apply(cvg,arguments):cvg.queue.push(arguments)},cvg.queue=[]);
+```
+</Note>
+
+
+## Storing consent
+
+Consent should be sent every time the user visits the page.
+Typically, you will rely on your CMP or own cookie banner implementation to retrieve the visitor's consent and send it to Converge.
+
+Converge stores the consent preferences in the visitor's browser as a back-up.
+But, to make sure that it is up-to-date, you should still specify it every time the converge snippet loads.
+
+The preferences are also stored on the Converge **profile**, under the `profile_properties`.
+This is used to filter events when forwarding server-side.
+
+<Accordion title="Inspect the consent parameters for a profile">
+The consent preferences are stored in the **profile properties**, under the `$consent` key. This object is used to filter the server-side events.
+```json profile_properties
+{
+    ...
+    "$consent": {
+        "analytics": "granted",
+        "marketing": "denied"
+    }
+}
+```
+</Accordion>
+
+## Sending consent
+
+When Converge has not received any consent preferences, we will default to `denied` consent.
+For that reason, we recommend calling the consent method before the Converge snippet.
+
+```html Configuring consent before the tracking
+<script src="https://static.runconverge.com/pixels/xxxxxx.js" async></script>
+<script>
+    window.cvg||(cvg=function(){cvg.process?cvg.process.apply(cvg,arguments):cvg.queue.push(arguments)},cvg.queue=[]);
+    cvg({ 
+        "method": "consent",
+        "analytics": "granted",
+        "marketing": "granted",
+    })
+    cvg({method:"track", eventName:"$page_load"});
+</script>
+
+```
+
+## Default consent
+
+The Converge consent can be updated while the visitor is browsing the page.
+To set a default consent, you can simply call the `consent` method with the static default preferences -- and later on update them as follows.
+
+```javascript Default to granted consent until the visitor denies marketing
+cvg({ 
+    "method": "consent",
+    "analytics": "granted",
+    "marketing": "granted",
+})
+
+// When the visitor denies marketing
+function denyMarketing() {
+    cvg({ 
+        "method": "consent",
+        "analytics": "granted",
+        "marketing": "denied",
+    })
+}
+```

@@ -1,0 +1,41 @@
+---
+title: "Consent"
+description: "Configure how connections handle consent"
+---
+
+import {IconText} from '/snippets/icons.mdx'
+
+## Overview
+
+You can configure how the Converge connections should behave based on the visitor's consent preferences.
+
+<Note>
+Check out the [Consent implementation](/sources/consent) to learn how to send consent preferences to Converge.
+</Note>
+
+## Converge connections
+There are two ways to customize how Converge connections handle consent: the **consent category** and the **consent mode**.
+
+### Consent category
+
+You can classify Converge connections into two consent categories: `analytics` and `marketing`. Consent is tracked separately for each category.
+
+The consent category can be set under the **Consent** subtab of the connection **Configuration**
+
+<Frame>
+![Consent categories](/images/sources/consent-category.png)
+</Frame>
+
+### Consent mode
+
+Connections can send events to the integrations through both the browser and server.
+You can configure the connection to treat both ways of tracking differently according to the following modes:
+
+- **Off** (default): No user consent is required for this connection. All events are sent to the connection.
+- **Browser only**: Consent is only applied to events tracked directly in the browser. Server-side events are always sent to this connection.
+- **On**: User consent is required for all events. Events are not sent to this connection if the user has denied consent. If consent was not tracked, events are still sent.
+- **Strict**: User consent is required for all events. Events are only sent to this connection if the user has given explicit consent. If consent was not tracked, events are not sent.
+
+<Frame>
+![Consent modes](/images/sources/consent-mode.png)
+</Frame>

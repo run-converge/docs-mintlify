@@ -84,7 +84,8 @@
             }
           ]
         },
-        "sources/monitoring"
+        "sources/monitoring",
+        "sources/consent" 
       ]
     },
     {
@@ -112,7 +113,8 @@
         },
         "connections/filters",
         "connections/monitoring",
-        "connections/custom-events"
+        "connections/custom-events",
+        "connections/consent"
       ]
     },
     {
