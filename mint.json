@@ -108,7 +108,8 @@
             "connections/integrations/bigquery",
             "connections/integrations/custom-html",
             "connections/integrations/klaviyo",
-            "connections/integrations/awin"
+            "connections/integrations/awin",
+            "connections/integrations/postscript"
           ]
         },
         "connections/filters",
