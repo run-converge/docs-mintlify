@@ -85,7 +85,8 @@
           ]
         },
         "sources/monitoring",
-        "sources/consent" 
+        "sources/consent",
+        "sources/proxy"
       ]
     },
     {

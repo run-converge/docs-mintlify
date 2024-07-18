@@ -1,0 +1,89 @@
+---
+title: "Set up a proxy"
+description: "Set up first-party tracking by passing Converge requests through your own domain"
+---
+
+## Overview
+
+By proxying requests to Converge through your own domain, Converge is no longer treated as a third-party script.
+This has the following advantages:
+- **First-party cookies** When Converge runs on your main domain, we automatically set a first-party cookie.
+First-party cookies are not restricted by browser privacy features like ITP. They are longer-lasting, allowing you to track longer user journeys.
+- **Bypassing ad blockers** Converge's domain is not yet blocked by ad blockers, but this future-proofs your implementation. Ensure that all browser data arrives at Converge.
+
+## Installation Instructions
+
+There are two parts to proxying requests to Converge:
+- **Hosting the script on your own domain** By proxying requests to `https://static.runconverge.com/pixels/*.js` the Converge script is loaded through your domain.
+- **Proxying the tracking requests** By proxying requests to `https://app.runconverge.com/api/tr/*` the tracking requests are sent through your domain.
+
+<Note>
+Ensure that the proxy sets the `X-Forwarded-For` header to the original IP address of the request.
+</Note>
+
+To let Converge know your proxied domain, update your Converge pixel snippet as follows:
+
+<Steps>
+    <Step>
+        Update the `src` of the Converge script to point to your domain. Replace `xxxxxx` with your Converge pixel public token.
+        ```html
+        <script src="https://yourdomain.com/cvg/static/pixels/xxxxxx.js" async></script>
+        ```
+    </Step>
+    <Step>
+        Include the `set_endpoint` call to configure your proxied endpoint.
+        ```javascript
+        cvg({method: 'set_endpoint', endpoint: 'https://yourdomain.com/cvg'})
+        ```
+        This should happen before any tracking calls.
+    </Step>
+</Steps>
+
+This would yield the following updated snippet:
+```html
+<script src="https://yourdomain.com/cvg/static/pixels/xxxxxx.js" async></script>
+<script>
+window.cvg||(cvg=function(){cvg.process?cvg.process.apply(cvg,arguments):cvg.queue.push(arguments)},cvg.queue=[]);
+cvg({method: 'set_endpoint', endpoint: 'https://yourdomain.com/cvg'})
+cvg({method:"track",eventName:"$page_load"});
+</script>
+```
+
+### Setting up a proxy through Vercel rewrites
+
+If your site is hosted on Vercel, you can use the vercel.json configuration file to easily set up a proxy to Converge.
+Replace `xxxxxx` with your Converge pixel public token.
+
+```json
+{
+  "rewrites": [
+    {
+      "source": "/cvg/xxxxxx.js",
+      "destination": "https://static.runconverge.com/pixels/xxxxxx.js"
+    },
+    {
+      "source": "/cvg/:method",
+      "has": [
+        { "type": "query", "key": "public_token", "value": "xxxxxx" }
+      ],
+      "destination": "https://app.runconverge.com/api/tr/:method"
+    }
+  ]
+}
+```
+
+Update your Converge pixel snippet to the following:
+
+```html
+<script src="/cvg/xxxxxx.js" async></script>
+<script>
+window.cvg||(cvg=function(){cvg.process?cvg.process.apply(cvg,arguments):cvg.queue.push(arguments)},cvg.queue=[]);
+cvg({method: 'set_endpoint', endpoint: '/cvg'})
+cvg({method:"track",eventName:"$page_load"});
+</script>
+```
+
+After deploying the changes, verify that
+- the `xxxxxx.js` script loads from your own domain
+- tracking requests to `/tr/*` are proxied through your domain
+- the response headers from the `/tr/track` call include the `Set-Cookie` header which sets a `__cvg_1p_uid` cookie
