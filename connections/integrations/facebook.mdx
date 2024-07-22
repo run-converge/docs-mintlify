@@ -66,10 +66,9 @@ This integration supports the following Converge connection functionality.
   <Note> If you are not using the Shopify Web integration, you might have an old pixel installed using a different tracking method, and you should turn this one off.</Note>
 </Accordion>
 
-<Accordion title='Why do I see "increase coverage" or "update recommended"-warnings in my Events Manager?'>
+<Accordion title='Why do I see "increase coverage"-warnings in my Events Manager?'>
 
 <Frame>
-![update-recommended](/images/connections/facebook/facebook-update-recommended.png)
 ![increase-coverage](/images/connections/facebook/facebook-increase-coverage.png)
 </Frame>
 
@@ -94,6 +93,26 @@ The only events where you would expect a very high email match rate are events w
   7. Click on 'Create' to save your custom conversion.
 
   You can now optimize for this custom conversion when creating ads, or report on it by adding a column in your ads manager. 
+</Accordion>
+
+<Accordion title='Why do I see "update recommended"-warnings about IPv6 addresses in the Events Manager?'>
+
+<Frame>
+![update-recommended](/images/connections/facebook/facebook-update-recommended.png)
+</Frame>
+
+ Meta asks you to send an IP Address as part of the Event Matching parameters when you send over events. 
+ There are currently two versions of IP addresses in use: IPv4, and IPv6. 
+
+ Both are still widely in use, but the IPv6 standard is newer, hence why Meta flags that it is till receiving IPv4 addresses. 
+**Converge supports IPv6 and is sending IPv6 addresses whenever they are available.** 
+ 
+ However, **there is not always an IPv6 address available -- in that case Converge sends the IPv4 address instead**. The IP address version is dependent on the customer's browser and network configuration. 
+ So if the customer's network configuration and browser only support IPv4, then Converge will need to send an IPv4 address as well.
+ 
+ Note that Meta does accept IPv4 addresses, it just wants to make sure that all advertisers support IPv6 as well. 
+ Therefore, **you can safely ignore this warning**.
+
 </Accordion>
 </AccordionGroup>
 
