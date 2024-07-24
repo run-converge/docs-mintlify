@@ -5,8 +5,6 @@ description: "Connect your WooCommerce store backend to Converge"
 
 ## Installation Instructions
 
-<AccordionGroup>
-    <Accordion title="Retrieve your WooCommerce Access Tokens" icon="key">
     <Steps>
        <Step title="Navigate to your WooCommerce REST API Settings">
         1. Navigate to your WordPress Admin Dashboard.
@@ -21,29 +19,21 @@ description: "Connect your WooCommerce store backend to Converge"
         8. Copy the **Consumer key** and **Consumer secret**, you will need them to set up the Converge Source.
     </Step>
 
-</Steps>
-   </Accordion >
-
-    <Accordion title="Connect Converge WooCommerce Server integration" icon="plug" >
-
-  <Steps>
     <Step title="Create a new Server-side source in Converge">
-      1. In Converge, click on **Create a new source**
-      2. Pick _Server-side_ from the modal
-      3. Name your source: e.g. `{Storename} Store Backend`
-      4. Choose the **WooCommerce** app from the dropdown menu.
+      9. In Converge, click on **Create a new source**
+      10. Pick _Server-side_ from the modal
+      11. Name your source: e.g. `{Storename} Store Backend`
+      12. Choose the **WooCommerce** app from the dropdown menu.
     </Step>
     <Step title="Connect the Source to WooCommerce">
-        5. Enter your Store URL in the **URL of your WooCommerce store**-field, including `https://`, e.g. `https://myshop.com`
-        6. Paste the **Consumer key** and **Consumer secret** from your previous step.
-        7. Click on **Create Source**.
+        13. Enter your Store URL in the **URL of your WooCommerce store**-field, including `https://`, e.g. `https://myshop.com`
+        14. Paste the **Consumer key** and **Consumer secret** from your previous step.
+        15. Click on **Create Source**.
     </Step>
     </Steps>
 
     <Note> You should see the Source syncing all historical order data, you should wait until it's fully synced to create connections </Note>
-    </Accordion> 
 
-   </AccordionGroup>
 
 ---
 

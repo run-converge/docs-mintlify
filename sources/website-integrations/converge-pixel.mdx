@@ -5,10 +5,6 @@ description: "Connect your Website to Converge"
 
 ## Installation Instructions
 
-<AccordionGroup>
-
-  <Accordion title="Installing the Converge JS Pixel" icon="wand-magic-sparkles" >
-
   <Steps>
     <Step title="Create a new Client Source in Converge">
       1. In Converge, click on **Create a new source**
@@ -35,14 +31,12 @@ description: "Connect your Website to Converge"
         6. Check that your pixel is working correctly by generating some `$page_load` events by visiting the website and seeing that these events arrive in the Source Log.
     </Step>
 </Steps>
-   </Accordion >
-   </AccordionGroup>
+
 
 ### Note for Single-page applications
 
 <Warning>If you are using a single-page application, you should hook the `$page_load` tracking call into your router to re-fire the event. </Warning>
 
-<Accordion icon="code" title="Single-page code example"> 
 
 ```javascript NextJS
 import { useEffect } from "react";
@@ -61,7 +55,7 @@ const MyApp = ({ Component, pageProps, router }) => {
 export default MyApp;
 ```
 
-</Accordion>
+
 
 ---
 

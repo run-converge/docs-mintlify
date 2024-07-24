@@ -18,11 +18,6 @@ The installation process of Converge is slightly different based on whether you 
 
   The Converge Website installation for a Shopify Liquid store consists of:
 
-  
-  <AccordionGroup>
-
-    <Accordion title="Installing the Shopify Storefront Integration" icon="store" >
-
   <Steps>
     <Step title="Create a new Client Source in Converge">
       1. In Converge, click on **Create a new source**
@@ -40,35 +35,30 @@ The installation process of Converge is slightly different based on whether you 
         <Info>   It's good practice to **add the snippet to other themes in development as well** and to add this snippet to your version control, so a theme switch does not kill website tracking </Info>
         9. Check that your pixel is working correctly by generating some `$page_load`, `Viewed Product` and `Viewed Collection` events by visiting the store and seeing that these events arrive in the Source Log.
     </Step>
-</Steps>
-   </Accordion >
 
-    <Accordion title="Installing the Shopify Checkout Integration" icon="credit-card" >
-
-  <Steps>
     <Step title="Create a new Client Source in Converge">
-      1. In Converge, click on **Create a new source**
-        2. Pick _Client-side_ from the modal
-        3. Name your pixel: e.g. `{Storename} Checkout`
+      10. In Converge, click on **Create a new source**
+      11. Pick _Client-side_ from the modal
+      12. Name your pixel: e.g. `{Storename} Checkout`
     </Step>
     <Step title="Install the Converge Checkout as an extension in Shopify Customer Events">
-        4. Click on your newly created Source and from the modal pick `Shopify Custom Pixel`, and copy that snippet.
-        5. In the Shopify Admin dashboard, navigate to **Settings** > **Customer Events**
-        6. Click on **Add custom pixel**.
-        7. Name your pixel, e.g. `Converge Pixel`
-        8. Paste the script from the web app here, and make sure to modify the `__SHOP_NAME__`string with the actual store name e.g. `convergestore`. You can find your store name in the URL of your Shopify Admin Dashboard.
-        9. Click on **Save Pixel**
+       13. Click on your newly created Source and from the modal pick `Shopify Custom Pixel`, and copy that snippet.
+       14. In the Shopify Admin dashboard, navigate to **Settings** > **Customer Events**
+       15. Click on **Add custom pixel**.
+       16. Name your pixel, e.g. `Converge Pixel`
+       17. Paste the script from the web app here, and make sure to modify the `__SHOP_NAME__`string with the actual store name e.g. `convergestore`. You can find your store name in the URL of your Shopify Admin Dashboard.
+       18. Click on **Save Pixel**
             <Frame>
               ![save pixel](/images/sources/shopify/shopify-custom-pixel-0.png)
             </Frame>
-        10. Click on **Connect Pixel**
+       19. Click on **Connect Pixel**
             <Frame>
               ![save pixel 1](/images/sources/shopify/shopify-custom-pixel-1.png)
             </Frame>
         <Info> Shopify might throw a warning that the pixel is not subscribed to any events. You can safely ignore this warning. </Info>
     </Step>
     <Step title="Verify that the integration is working correctly">
-        9. Check that your pixel is working correctly by generating some `Added To Cart`, `Started Checkout` and `Added Payment Info` events by visiting the store and seeing that these events arrive in the Source Log.
+       20. Check that your pixel is working correctly by generating some `Added To Cart`, `Started Checkout` and `Added Payment Info` events by visiting the store and seeing that these events arrive in the Source Log.
 
             <Note> 
             If you do not see `Added To Cart`, `Started Checkout` and `Added Payment Info` events coming in, verify in your Custom Pixel settings whether you have set the **Permission** flag to **Not required**.
@@ -77,17 +67,11 @@ The installation process of Converge is slightly different based on whether you 
             </Note>
     </Step>
 </Steps>
-   </Accordion >
-   </AccordionGroup>
     
     
   </Tab>
   <Tab title="Shopify Headless">
     The Converge Website installation for a Shopify Headless store consists of:
-
-  <AccordionGroup>
-
-  <Accordion title="Installing Converge JS on your storefront" icon="store" >
 
   <Steps>
 
@@ -103,60 +87,45 @@ The installation process of Converge is slightly different based on whether you 
     <Step title="Verify that the integration is working correctly">
         5. Double-check that `$page_load` events are coming in correctly in the Source Logs.
     </Step>
-</Steps>
-   </Accordion >
 
-    <Accordion title="Installing the Shopify Checkout Integration" icon="credit-card" >
-
-  <Steps>
     <Step title="Create a new Client Source in Converge">
-      1. In Converge, click on **Create a new source**
-        2. Pick _Client-side_ from the modal
-        3. Name your pixel: e.g. `{Storename} Checkout`
+      6. In Converge, click on **Create a new source**
+        7. Pick _Client-side_ from the modal
+        8. Name your pixel: e.g. `{Storename} Checkout`
     </Step>
     <Step title="Install the Converge Checkout as an extension in Shopify Customer Events">
-        4. Click on your newly created Source and from the modal pick `Shopify Custom Pixel`, and copy that snippet.
-        5. In the Shopify Admin dashboard, navigate to **Settings** > **Customer Events**
-        6. Click on **Add custom pixel**.
-        7. Name your pixel, e.g. `Converge Pixel`
-        8. Paste the script from the web app here, and make sure to modify the `__SHOP_NAME__`string with the actual store name e.g. `convergestore`. You can find your store name in the URL of your Shopify Admin Dashboard.
+        9. Click on your newly created Source and from the modal pick `Shopify Custom Pixel`, and copy that snippet.
+        10. In the Shopify Admin dashboard, navigate to **Settings** > **Customer Events**
+        11. Click on **Add custom pixel**.
+        12. Name your pixel, e.g. `Converge Pixel`
+        13. Paste the script from the web app here, and make sure to modify the `__SHOP_NAME__`string with the actual store name e.g. `convergestore`. You can find your store name in the URL of your Shopify Admin Dashboard.
 Click on Save Pixel and Connect Pixel
         <Info> Shopify might throw a warning that the pixel is not subscribed to any events. You can safely ignore this warning. </Info>
 
     </Step>
-    <Step title="Verify that the integration is working correctly">
-        9. Check that your pixel is working correctly by generating some `Added To Cart`, `Started Checkout` and `Added Payment Info` events by visiting the store and seeing that these events arrive in the Source Log.
+    <Step title="Verify that the checkout integration is working correctly">
+        14. Check that your pixel is working correctly by generating some `Added To Cart`, `Started Checkout` and `Added Payment Info` events by visiting the store and seeing that these events arrive in the Source Log.
     </Step>
-</Steps>
-   </Accordion >
 
-      <Accordion title="Tracking supplementary events and properties using Converge JS" icon="code" >
-
-        <Steps>
     <Step title="Track the remaining Converge Spec">
-The Converge JS pixel only picks up [$page_load](/sources/converge-spec#page-load)-events by default for a headless store.
-        You will typically have to supplement the following events using Converge JS for all Connections to work optimally.
-        - [Viewed Product](/sources/converge-spec#viewed-product)
-        - [Viewed Collection](/sources/converge-spec#viewed-collection)
-        - [Added To Cart](/sources/converge-spec#added-to-cart)
+        15. The Converge JS pixel only picks up [$page_load](/sources/converge-spec#page-load)-events by default for a headless store.
+            You will typically have to supplement the following events using Converge JS for all Connections to work optimally.
+            - [Viewed Product](/sources/converge-spec#viewed-product)
+            - [Viewed Collection](/sources/converge-spec#viewed-collection)
+            - [Added To Cart](/sources/converge-spec#added-to-cart)
 
-        For more information on manually instrumenting events, read [here](/sources/website-integrations/converge-pixel#manually-instrumenting-events). 
+            For more information on manually instrumenting events, read [here](/sources/website-integrations/converge-pixel#manually-instrumenting-events). 
     </Step>
     <Step title="Add appropriate aliases to stitch the session across all sources">
-        At this point, you should be tracking the entire Converge Ecommerce Spec. 
-        However, for a Headless setup, it is paramount that you set the `checkout_token` as an alias **before** redirecting the user to the Shopify Checkout to make sure that the storefront session and the checkout session can be linked to the same user.
-        You can read more about aliases [here](/sources/source-concepts#aliases).
+        16. At this point, you should be tracking the entire Converge Ecommerce Spec. 
+            However, for a Headless setup, it is paramount that you set the `checkout_token` as an alias **before** redirecting the user to the Shopify Checkout to make sure that the storefront session and the checkout session can be linked to the same user.
+            You can read more about aliases [here](/sources/source-concepts#aliases).
     </Step>
     <Step title="Verify that the integration is working correctly">
-        Check that your setup is working by doing an entire user journey from `$page_load` to `Placed Order` and verifying that all events are properly tracked without any [Source Warnings]().
+        17. Check that your setup is working by doing an entire user journey from `$page_load` to `Placed Order` and verifying that all events are properly tracked without any [Source Warnings]().
     </Step>
 </Steps>
         
-   </Accordion >
-
-   
-
-   </AccordionGroup>
   </Tab>
 </Tabs>
 

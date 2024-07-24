@@ -13,14 +13,6 @@ import { IconText } from '/snippets/icons.mdx';
 
 The Converge Website installation for a Funnelish storefront consists of:
 
-  
-  <AccordionGroup>
-
-    <Accordion title="Install the Funnelish Webhook Connection" icon="server" >
-
-    The Funnelish webhook connection allows Converge to stitch the Funnelish orders to the browser sessions.
-
-
   <Steps>
     <Step title="Create a new Webhook Source in Converge">
         1. In Converge, navigate to **Sources** and click on <IconText name="circle-plus" text="Create New Source" iconLocation="before" iconType="regular"/ >
@@ -68,27 +60,28 @@ The Converge Website installation for a Funnelish storefront consists of:
             <Frame>
             ![funnelish-11](/images/sources/funnelish/funnelish-11.png)
             </Frame>
+
+        <Warning> Make sure the Facebook App in Funnelish is turned off completely, as you will suffer from duplicate tracking if this is not the case. Make sure the Facebook app is turned off both on a general level, **and** on a per-funnel basis. </Warning>
         
     </Step>
-</Steps>
-   </Accordion >
-   <Warning> Make sure the Facebook App in Funnelish is turned off completely, as you will suffer from duplicate tracking if this is not the case. Make sure the Facebook app is turned off both on a general level, **and** on a per-funnel basis. </Warning>
-<Accordion title="Install the Converge Pixel on your Funnelish Funnel" icon="browser">
-    <Note> You need to do this for **every new and existing funnel you set up**. </Note>
+  
+
+    <Step title="Set up website tracking for your funnels">
+    <Note> You need to do the following steps for **every new and existing funnel you set up**. </Note>
     
-    1. Navigate to your new funnel in **Funnels** and click on the Funnel you want to install Converge tracking for. When in the funnel, click on **Funnel settings**.
+    14. Navigate to your new funnel in **Funnels** and click on the Funnel you want to install Converge tracking for. When in the funnel, click on **Funnel settings**.
         <Frame>
         ![funnelish-12](/images/sources/funnelish/funnelish-12.png)
         </Frame>
 
-    2. Navigate to **Custom codes** and click on **New tracking code**.
+    15. Navigate to **Custom codes** and click on **New tracking code**.
 
-    3. Give the new tracking code a name you can remember and turn _Lazy load_ **off**.
+    16. Give the new tracking code a name you can remember and turn _Lazy load_ **off**.
         <Frame>
         ![funnelish-13](/images/sources/funnelish/funnelish-13.png)
         </Frame>
 
-    4. Now you will want to copy-paste the script below.
+    17. Now you will want to copy-paste the script below.
 
        
 
@@ -156,29 +149,28 @@ The Converge Website installation for a Funnelish storefront consists of:
 
         
 
-        5. Navigate to your Converge dashboard and find the pixel you are using for Funnelish. Click on the pixel and copy the tracking token as per the screenshot below.
-        <Frame>
-        ![funnelish-14](/images/sources/funnelish/funnelish-14.png)
-        </Frame>
+    18. Navigate to your Converge dashboard and find the pixel you are using for Funnelish. Click on the pixel and copy the tracking token as per the screenshot below.
+    <Frame>
+    ![funnelish-14](/images/sources/funnelish/funnelish-14.png)
+    </Frame>
 
-        6. Replace the `YOUR-TRACKING-TOKEN` field in the script pasted with your personal Converge token.
-        <Frame>
-        ![funnelish-15](/images/sources/funnelish/funnelish-15.png)
-        </Frame>
+    19. Replace the `YOUR-TRACKING-TOKEN` field in the script pasted with your personal Converge token.
+    <Frame>
+    ![funnelish-15](/images/sources/funnelish/funnelish-15.png)
+    </Frame>
 
-        7. Replace the `YOUR-ADDTOCART-IDENTIFIER` and `YOUR-CHECKOUT-IDENTIFIER` values with values that uniquely identify a URL in the funnel where you want to trigger this event.
-        
-            <Info> As an example, if you want to trigger an AddToCart event on the `myfunnelishstore.com/cart` page, then you will want to replace `YOUR-ADDTOCART-IDENTIFIER` with `cart`. **These identifiers might be different values for different funnels**, so double-check when implementing a new funnel.</Info>
-
-
-        8. Click on **Create code** and on **Save changes**.
-        <Frame>
-        ![funnelish-16](/images/sources/funnelish/funnelish-17.png)
-        </Frame>
-
-   </Accordion>
-   </AccordionGroup>
+    20. Replace the `YOUR-ADDTOCART-IDENTIFIER` and `YOUR-CHECKOUT-IDENTIFIER` values with values that uniquely identify a URL in the funnel where you want to trigger this event.
     
+        <Info> As an example, if you want to trigger an AddToCart event on the `myfunnelishstore.com/cart` page, then you will want to replace `YOUR-ADDTOCART-IDENTIFIER` with `cart`. **These identifiers might be different values for different funnels**, so double-check when implementing a new funnel.</Info>
+
+
+    21. Click on **Create code** and on **Save changes**.
+    <Frame>
+    ![funnelish-16](/images/sources/funnelish/funnelish-17.png)
+    </Frame>
+</Step>
+</Steps>
+
     
 ---
 
