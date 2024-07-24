@@ -8,7 +8,7 @@ import { OutboundLink } from "/snippets/links.mdx"
 ## Installation Instructions
 
 <AccordionGroup>
-    <Accordion title="Retrieve a Shopify Access Token" icon="key">
+    <Accordion title="Connect Converge Shopify Server integration" icon="plug" >
     <Steps>
        <Step title="Create a custom Shopify app">
         1. Navigate to the Shopify Admin dashboard, and click on **Settings**
@@ -23,22 +23,15 @@ import { OutboundLink } from "/snippets/links.mdx"
     <Step title="Install the custom app to get the token"> 
     6. Click on **Save** and then **Install app**. Reveal and copy the **Admin API access token**
     </Step>
-
-</Steps>
-   </Accordion >
-
-    <Accordion title="Connect Converge Shopify Server integration" icon="plug" >
-
-  <Steps>
     <Step title="Create a new Server-side source in Converge">
-      1. In Converge, click on **Create a new source**
-        2. Pick _Server-side_ from the modal
-        3. Name your source: e.g. `{Storename} Store Backend`
+       7. In Converge, click on **Create a new source**
+        8. Pick _Server-side_ from the modal
+        9. Name your source: e.g. `{Storename} Store Backend`
     </Step>
     <Step title="Connect the Source">
-        4. Enter the store name, this is the string before `myshopify.com` in the Shopify URL. E.g. For `convergestore.myshopify.com` the store name would be `convergestore`
-        5. Paste the Shopify Access Token in the Converge web app under **Shopify API Password**. Do not fill in a starting date, just click on **Create source**
-        6. Click on **Create Source**.
+        10. Enter the store name, this is the string before `myshopify.com` in the Shopify URL. E.g. For `convergestore.myshopify.com` the store name would be `convergestore`
+        11. Paste the Shopify Access Token in the Converge web app under **Shopify API Password**. Do not fill in a starting date, just click on **Create source**
+        12. Click on **Create Source**.
     </Step>
     </Steps>
 
