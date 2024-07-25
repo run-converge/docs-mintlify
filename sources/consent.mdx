@@ -80,7 +80,7 @@ window.cvg||(cvg=function(){cvg.process?cvg.process.apply(cvg,arguments):cvg.que
 Consent should be sent every time the user visits the page.
 Typically, you will rely on your CMP or own cookie banner implementation to retrieve the visitor's consent and send it to Converge.
 
-Converge stores the consent preferences in the visitor's browser as a back-up.
+Converge stores the consent preferences in the visitor's browser as a backup.
 But, to make sure that it is up-to-date, you should still specify it every time the converge snippet loads.
 
 The preferences are also stored on the Converge **profile**, under the `profile_properties`.
@@ -121,7 +121,7 @@ For that reason, we recommend calling the consent method before the Converge sni
 ## Default consent
 
 The Converge consent can be updated while the visitor is browsing the page.
-To set a default consent, you can simply call the `consent` method with the static default preferences -- and later on update them as follows.
+To set a default consent, you can simply call the `consent` method with the static default preferences -- and later on, update them as follows.
 
 ```javascript Default to granted consent until the visitor denies marketing
 cvg({ 
