@@ -61,16 +61,45 @@ export default MyApp;
 
 ## Cross-domain tracking
 
-Converge supports cross-domain tracking out of the box. To enable cross-domain tracking from `myfirstdomain.com` to `myotherdomain.com`, include the following method together with the basic Converge pixel snippet on the `myfirstdomain.com` website. 
+Converge supports cross-domain tracking by means of the methods below. We can stich sessions across different domains and can make sure that cookie information, UTM attribution, etc. will work correctly.
 
-<Info> Note that you do **not** need this snippet for tracking across subdomains.
-i.e. if the pixel snippet is installed on `myfirstdomain.com` and on `checkout.myfirstdomain.com`, the sessions should be stitched across both domains automatically. </Info> 
+Note that you do **not** need to do anything for tracking across subdomains.
+i.e. if the pixel snippet is installed on `myfirstdomain.com` and on `checkout.myfirstdomain.com`, the sessions should be stitched across both domains automatically.
+
+If you want to stitch a session from `myfirstdomain.com` to `myotherdomain.com` then you will want to make sure to implement it as per the instructions below.
+
+
+### How does cross-domain tracking work
+
+Converge allows for cross-domain tracking by means of the `__cvg_uuid` parameter and cookie. 
+If Converge recognizes the same `__cvg_uid` identifier for pageviews on `myfirstdomain.com` and pageviews on `myotherdomain.com` then it will stitch those sessions under the same profile and session.
+
+To stitch, we need to be able to pass the cookie between different websites as the cookie is only generated if the `__cvg_uid` is not set in the URL.
+If there is a `__cvg_uid` set in the URL as a hyperparam, the cookie will be set to this value.
+
+
+```mermaid
+flowchart LR
+  id1("\`*User* visits **myfirstdomain.com** and gets assigned **__cvg_uid=1234**\`") -. "Clicks on link myotherdomain.com/?__cvg_uid=1234" .-> id2("\`*User* visits **myotherdomain.com** and the Converge reads the id from the URL\`") ~~~ id3(["\`**Session stiched**  ✓ \`"])
+  style id3 color:#02b802,stroke:none
+
+```
+
+### The `link_domain`-method
+
+The Converge Pixel exposes the `link_domain`-method to automatically add the `?__cvg_uid={CVG_ID_VALUE}` suffix to every outbound link that leads to `myotherdomain.com`.
+Include the following method together with the basic Converge pixel snippet on the `myfirstdomain.com` website to enable it on every page.
 
 ```js
 cvg({ method: "link_domain", domain: "myotherdomain.com" });
 ```
 
-<Warning> If the redirect to `myotherdomain.com` does not happen directly through a link click, but for example through JS code, the parameter won't be added. So it is important to always test whether the `__cvg_uid` parameter is present on the new URL. </Warning>
+<Warning> 
+
+If the redirect to `myotherdomain.com` does not happen directly through a link click, but for example through JS code, the parameter won't be added. So it is important to always test whether the `__cvg_uid` parameter is present on the new URL. 
+
+You will need to manually instrument adding the `?__cvg_uid` URL parameter and its corresponding cookie value for each outbound link in that case.
+</Warning>
 
 ---
 
