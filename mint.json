@@ -110,7 +110,8 @@
             "connections/integrations/custom-html",
             "connections/integrations/klaviyo",
             "connections/integrations/awin",
-            "connections/integrations/postscript"
+            "connections/integrations/postscript",
+            "connections/integrations/criteo"
           ]
         },
         "connections/filters",
