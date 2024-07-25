@@ -1,0 +1,61 @@
+---
+title: "Criteo"
+description: "An introduction to the Criteo tracking connection"
+---
+
+import { Icon, IconText } from '/snippets/icons.mdx';
+import { OutboundLink } from '/snippets/links.mdx';
+
+## Overview
+Connection Type: <IconText text="Client-side" name="browser" iconType="duotone" iconLocation="after"/>  and <IconText text="Server-side" name="server" iconType="duotone" iconLocation="after"/>
+
+--- 
+
+## Installation Instructions
+
+<AccordionGroup >
+    <Accordion icon="list" title="Installation Instructions">
+        1. Navigate to the <OutboundLink linkText="Criteo Marketing Dashboard" linkTarget="https://marketing.criteo.com"/>
+
+        2. Find your **Account Partner ID**, as per the screenshot below
+            <Frame>
+                ![criteo](/images/connections/criteo/criteo-0.png)
+            </Frame>
+
+        2. Under the Converge **Connections** tab, click **Create new connection** and select the Criteo app.
+
+        3. Fill in your **Account Partner ID**.
+
+        4. Make sure you turn off your previous tracking
+    </Accordion>
+    <Warning> Once you have installed your Converge Connection, you should **pause or remove all existing Criteo tracking**. Leaving these on will lead to duplicate tracking.  </Warning>
+
+</AccordionGroup> 
+
+---
+
+## Converge functionality
+
+This integration supports the following Converge connection functionality.
+
+| Converge Feature        |       Supported       |
+| :---------------------- | :-------------------: |
+| Custom Events           | <Icon name="xmark" /> |
+| Filters                 | <Icon name="xmark" /> |
+| Server-side Conversions | <Icon name="check" /> |
+
+---
+
+## Event Mapping
+
+Converge automatically maps the following events from the [Converge Event Spec](/sources/converge-spec) to the Criteo spec.
+
+| Converge Event Name                                                                               | Criteo Event Name                         |
+| ------------------------------------------------------------------------------------------------- | --------------------------------------- |
+| [$page_load](/sources/converge-spec#page-load)                                                    | `viewPage`                              |
+| [Viewed Product](/sources/converge-spec#viewed-product)                                           | `viewItem`                           |
+| [Viewed Collection](/sources/converge-spec#viewed-collection)                                           | `viewList`                           |
+| [Added To Cart](/sources/converge-spec#added-to-cart)                                             | `addToCart`                             |
+| [Started Checkout](/sources/converge-spec#started-checkout)                                       | `beginCheckout`                      |
+| [Added Payment Info](/sources/converge-spec#added-payment-info)                                   | `addPaymentInfo`                        |
+| [Placed Order](/sources/converge-spec#placed-order)                                               | `trackTransaction`                              |
