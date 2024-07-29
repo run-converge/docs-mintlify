@@ -190,7 +190,9 @@ Our Google Ads Connection does not support forwarding server-side conversions na
 However, you can still get a Converge server-side event in Google Ads through the **GA4 import** functionality. 
 The process consists of:
 
-1. Set up your <OutboundLink linkText="Custom Event" linkTarget="/connections/custom-events"/> in the GA4 Connection 
+1. Set up your <OutboundLink linkText="Custom Event" linkTarget="/connections/custom-events"/> in the GA4 Connection.
+   <Info> If your conversion event already exists in GA4 (e.g. when you want to import a `purchase` or `add_to_cart`-conversion), then you can skip this step. </Info>
+
 2. <Accordion title="Import your GA4 event in Google Ads as a conversion">
       <Info> The steps below demonstrate importing the `new_customer_purchase` event. But you should import the custom event you set up above. </Info>
    
