@@ -21,7 +21,11 @@ The Converge Website installation for a Funnelish storefront consists of:
             <Frame>
             ![funnelish-2](/images/sources/funnelish/funnelish-2.png)
             </Frame>
-        4. If you already have a Shopify Source and Funnelish syncs all of the orders to Shopify, then you should **not** turn on the _Track Funnelish orders as Placed Order conversions_. If you will be using Funnelish as your order backend instead, then you should turn on the switch.
+        4. If you already have a Shopify Source and Funnelish syncing all of the orders to Shopify, then you should **not** turn on the _Track Funnelish orders as Placed Order conversions_. If you will be using Funnelish as your order backend instead, then you should turn on the switch.
+            <Frame>
+            ![funnelish-18](/images/sources/funnelish/funnelish-18.png)
+            </Frame>
+            <Warning>If turned **off**, our Funnelish Webhook integration tracks a custom event called "Placed Funnelish Order" which stitches the web session to the Shopify Placed Order. It also means the actual Funnelish event will not be forwarded to any connections using Funnelish as a source. However, if you are using Funnelish as your order backend instead, then this option should be enabled.</Warning>
         5. Click on **Create Source**.
         6. Copy the link that is displayed under _Postback Endpoint_, you will need it later.
             <Frame>
