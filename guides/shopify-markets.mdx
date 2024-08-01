@@ -134,7 +134,7 @@ In the example below, we separate the `.eu` domain for the `/de` and `/es` subfo
     </Accordion>
     <Accordion title="Example customer events snippet for multiple pixels by subdomain">
         ```js
-            const loc = init.context.window.location;
+            const loc = new URL(init.data.shop.storefrontUrl);
             const domain = loc.hostname;
             const subfolder = loc.pathname.split('/')?.[1]?.toLowerCase();
 
