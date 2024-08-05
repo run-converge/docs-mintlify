@@ -162,7 +162,8 @@
         "guides/google-consent-v2",
         "guides/turn-off-tracking",
         "guides/understanding-attribution",
-        "guides/shopify-markets"
+        "guides/shopify-markets",
+        "guides/set-up-nc-purchase"
       ]
     }
   ],
