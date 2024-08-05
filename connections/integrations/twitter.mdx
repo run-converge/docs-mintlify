@@ -17,9 +17,12 @@ Connection Type: <IconText text="Client-side" name="browser" iconType="duotone" 
 
 ## Installation Instructions
 
-<AccordionGroup >
+<Note> This is a client-side-only connection, meaning that you will need to be tracking all events client-side (including `Placed Order`) for this connection to work properly. </Note>
 
-<Accordion icon="list" title="Installation Instructions">
+
+<Steps >
+
+<Step icon="list" title="1. Set up the Converge Connection">
 
 1. Navigate to your Twitter Ads account and choose **Tools > Events Manager**.
 
@@ -30,28 +33,27 @@ Connection Type: <IconText text="Client-side" name="browser" iconType="duotone" 
 3. In the Converge dashboard, under Connections, click <IconText name="circle-plus" text="Create New Connection" iconLocation="before" iconType="regular"/ > and fill in your Pixel ID.
 4. See below for instructions on how to configure your conversion events.
 
-</Accordion>
+</Step>
 
 
-<Accordion icon="circle-dollar-to-slot" title="Create your conversion events">
+<Step icon="circle-dollar-to-slot" title="2. Create your conversion events">
 
-<Note> This is a client-side-only connection, meaning that you will need to be tracking all events client-side (including `Placed Order`) for this connection to work properly. </Note>
-
-
-1. In the Twitter Ads > Tools > Events Manager, click on the **Create Event** button. 
-2. Give your event a name, e.g. 'Placed Order' when you are setting up a purchase conversion.
-3. Pick a Twitter event type, e.g. 'Purchase'. You can find a suggested mapping of Converge to Twitter Ads event types [below](#event-mapping).
-4. Configure your attribution settings and click on **Next**.
-5. Choose the 'Define event with code' setup method and click on **Next**.
-6. Click 'Save' to finish the setup.
-7. You can now find the event in the Events table in the Twitter Ads Events manager.
+5. In the Twitter Ads > Tools > Events Manager, click on the **Create Event** button. 
+6. Give your event a name, e.g. 'Placed Order' when you are setting up a purchase conversion.
+7. Pick a Twitter event type, e.g. 'Purchase'. You can find a suggested mapping of Converge to Twitter Ads event types [below](#event-mapping).
+8. Configure your attribution settings and click on **Next**.
+9. Choose the 'Define event with code' setup method and click on **Next**.
+10. Click 'Save' to finish the setup.
+11. You can now find the event in the Events table in the Twitter Ads Events manager.
    Under the event, the ID is composed as `tw-{pixelID}-{eventID}`.
    Copy the `eventID` into the 'Twitter Event IDs' section of the Converge connection configuration.
 
 <Note> Repeat the steps above for all the events you want to report on in Twitter Ads </Note>
-</Accordion>
+</Step>
+</Steps>
+
 <Warning> Once you have installed your Converge Connection, you should **pause or remove all existing Twitter Ads tracking**. Leaving these on will lead to duplicate tracking.  </Warning>
-</AccordionGroup>
+
 
 ---
 
