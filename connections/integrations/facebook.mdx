@@ -81,15 +81,7 @@ The only events where you would expect a very high email match rate are events w
 <Accordion title="How do I use the NewCustomerPurchase event?">
   Converge automatically sends the `NewCustomerPurchase` event to Facebook. To start using it for reporting and optimization, you need to create a custom conversion in Facebook Events Manager.
 
-  1. In the Events Manager, go to [Custom conversions](https://www.facebook.com/events_manager2/custom_conversions) and click on **Create Custom Conversion**.
-  2. Give your custom conversion a name, e.g. `New Customer Purchase`.
-  3. Select the pixel Converge is streaming to as the data source. The action source should be 'Website'
-  4. Select the `NewCustomerPurchase` custom event under the 'Event' section.
-  5. Click on the 'Select your own category' link and choose the 'Purchase' category.
-  6. You cannot leave the 'Rules' section empty, but you should not filter out any events. Simply add a filter that is always true, e.g. `URL doesn't contain "does_not_exist"`.
-  7. Click on 'Create' to save your custom conversion.
-
-  You can now optimize for this custom conversion when creating ads, or report on it by adding a column in your ads manager. 
+  We have a guide on setting up this custom event in the Meta Ads Manager [here](/guides/set-up-nc-purchase).
 </Accordion>
 
 <Accordion title='Why do I see "update recommended"-warnings about IPv6 addresses in the Events Manager?'>
