@@ -23,6 +23,11 @@ Connection Type: <IconText text="Client-side" name="browser" iconType="duotone" 
 
 4. From this subtab, you can find your **Pixel ID**, and copy it -- you will need it in a later step.
 
+<Warning>
+  Ensure that the **Track events automatically without code** setting is turned off in the **Event Setup** subtab.
+  This can lead to overreporting of events and incorrect conversion values.
+</Warning>
+
 5. Scroll down in the Settings subtab until you find **Generate access token**, and click on it. Copy this token as well.
 
 6. In your Converge dashboard, under Connections, click <IconText name="circle-plus" text="Create New Connection" iconLocation="before" iconType="regular"/ >.
@@ -110,6 +115,16 @@ The only events where you would expect a very high email match rate are events w
  Note that Meta does accept IPv4 addresses, it just wants to make sure that all advertisers support IPv6 as well. 
  Therefore, **you can safely ignore this warning**.
 
+</Accordion>
+<Accordion title="The Facebook Ads manager is overreporting conversions and/or the conversion value is wrong.">
+  Confirm the following steps to troubleshoot.
+  - The Facebook pixel is correctly configured. When the Facebook **Automatic Events** are enabled, Facebook tracks purchases automatically accross your website -- typically with a wrong AOV. This is a common source of overreporting. You can turn this off in the Facebook Events Manager under **Settings** > **Event setup** > **Track events automatically without code**.
+  - Converge is the only active Facebook integration. In the Converge connection logs, you can recognize this as **External** pixel events. Make sure all other Facebook tracking integrations beside Converge are turned off see [here](/guides/turn-off-tracking). 
+  - Converge tracks the correct number of `Placed Order` events. Compare the **Attribution** > **Orders** numbers with your backend.
+  - The correct dataset is linked to your Facebook ads. The dataset ID should match your Converge connection configuration.
+
+  If none of the above provide a solutio to your problem, have a closer look at the **Facebook Events Manager**.
+  Verify the Purchase event by having a look at the number of events arriving from the server and browser, and the sampled activites.
 </Accordion>
 </AccordionGroup>
 
