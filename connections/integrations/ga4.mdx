@@ -125,6 +125,40 @@ then we do support forwarding `property_1` as a custom property, but we do not s
 </Accordion>
 </AccordionGroup>
 
+#### Custom Ecommerce Properties
+
+You might want to add a custom property on the `items` array for ecommerce events as per the GA4 documentation [here](https://developers.google.com/analytics/devguides/collection/ga4/item-scoped-ecommerce).
+For example, you could include a custom `in_stock`-parameter on all of the `item`-arrays in your GA4 Ecommerce events. 
+
+The steps for setting up these custom properties are functionally similar to the steps described above in the [Custom Event Properties](#custom-event-properties)-paragraph.
+The only distinction is that you should choose an `item-scoped custom dimension` in the GA4 <IconText name="shapes" text="Custom definitions" iconType="regular"/> settings.
+
+#### Custom User Properties
+
+You might want to forward a profile property as a custom user property. 
+
+The steps for setting up these custom properties are functionally similar to the steps described above in the [Custom Event Properties](#custom-event-properties)-paragraph.
+The only distinction is that you should choose an `user-scoped custom dimension` in the GA4 <IconText name="shapes" text="Custom definitions" iconType="regular"/> settings.
+
+#### Deploy a separate data layer for Converge
+
+When enabled, Converge creates a new `dataLayer`-object, even if there is already an existing `dataLayer`-object. This makes sure that any existing implementation does not accidentally push events on the `dataLayer`-object that Converge uses to forward events to its connections.
+When you use the `sGTM`-connection type, Converge will always use a separate data layer.
+
+#### Use the gtag script hosted by Converge
+
+When enabled, Converge will load the gtag script hosted by Converge. 
+
+#### Pass consent parameters on serverside events
+
+When enabled, Converge makes sure to inject the Google Consent Parameters on server-side captured events as per the corresponding browser session.
+
+#### Set user ID
+
+Includes the customer ID as the `user_id` for GA4 events. 
+The User Id feature in GA4 has some known issues, please only turn this on if you have a good reason to do so.
+
+
 ---
 
 ## Converge functionality
