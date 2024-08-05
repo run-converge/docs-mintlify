@@ -14,28 +14,28 @@ Connection Type: <IconText text="Server-side" name="server" iconType="duotone" i
 
 ## Installation Instructions
 
-<AccordionGroup >
-<Accordion icon="list" title="Installation Instructions">
-
-1. Create and copy a Postscript API key from the Postscript dashboard.
-2. In Converge, click **Create a new connection** under the **Connections** tab. Select the **Postscript** app and paste the private Postscript API key.
-3. Give your connection a name and click on **Create Connection**.
-
-</Accordion>
-
-<Accordion icon="list" title="How to create a Postscript API key">
+<Steps>
+<Step icon="key" title="1. Create a Postscript API key">
 
 1. In your Postscript dashboard, select your Shop Name and navigate to **API**.
 2. Click on **Create Security Key Pair** and confirm by selecting **Yes**.
 3. Click in **Add a label** and use a label that helps you identify the API key (e.g. `Converge`).
 4. Under **Private Key**, click on **Show** and to copy the Private Key.
+
 <Frame>
     ![postscript-1](/images/connections/postscript/postscript-1.png)
 </Frame>
+</Step>
 
-</Accordion>
+<Step icon="list" title="2. Create the Converge Connection">
 
-</AccordionGroup >
+1. Create and copy a Postscript API key from the Postscript dashboard.
+2. In Converge, click **Create a new connection** under the **Connections** tab. Select the **Postscript** app and paste the private Postscript API key.
+3. Give your connection a name and click on **Create Connection**.
+
+</Step>
+
+</Steps>
 
 ---
 
@@ -60,9 +60,9 @@ As such, you might want to include a Product URL or Product Image URL in the Con
 To that end, you will want to extend the Converge Event Spec for the following events.
 Once you add the custom properties to your events, Converge will automatically forward these to the Postscript Destination.
 
-<Accordion title='Extending your Converge Event implementation for Postscript'>
-
 Find code examples below that illustrate where **you should add the Product URL and Product Image URL custom event properties**.
+
+<AccordionGroup>
 
 <Accordion title="Viewed Product" icon="code">
 
@@ -155,7 +155,7 @@ cvg({
 
 </Accordion>
 
-</Accordion>
+</AccordionGroup>
 
 ## Event Mapping
 

@@ -17,9 +17,12 @@ Connection Type: <IconText text="Client-side" name="browser" iconType="duotone" 
 
 ## Installation Instructions
 
-<AccordionGroup >
+   <Note> This is a client-side-only connection, meaning that you will need to be tracking all events client-side (including `Placed Order`) for this connection to work properly. </Note>
 
-<Accordion icon="list" title="Installation Instructions">
+
+<Steps >
+
+<Step icon="list" title="1. Set up the Connection">
 
 1. Navigate to your Microsoft Advertising Dashboards and choose **Tools > UET Tag**.
 
@@ -40,54 +43,55 @@ Connection Type: <IconText text="Client-side" name="browser" iconType="duotone" 
 6. In your Converge dashboard, under Connections, click <IconText name="circle-plus" text="Create New Connection" iconLocation="before" iconType="regular"/ > and fill in your Tag ID. After that click **Create Connection**.
    &nbsp;
 
-</Accordion>
+</Step>
 
-<Note> This is a client-side-only connection, meaning that you will need to be tracking all events client-side (including `Placed Order`) for this connection to work properly. </Note>
 
-<Accordion icon="circle-dollar-to-slot" title="Create your Conversion goals">
+<Step icon="circle-dollar-to-slot" title="2. Create your Conversion goals">
 
-1. Navigate to your Microsoft Advertising Dashboards and choose **Tools > Conversion goals**.
+7. Navigate to your Microsoft Advertising Dashboards and choose **Tools > Conversion goals**.
 
-2. Click on the **Create** button.
+8. Click on the **Create** button.
    &nbsp;
 
-3. Choose `Website` as your conversion goal type and press **Next**.
+9. Choose `Website` as your conversion goal type and press **Next**.
    &nbsp;
 
-4. Choose your conversion goal category and press **Next**.
+10. Choose your conversion goal category and press **Next**.
 
 <Info> For most businesses, we advise setting up at least a `Purchase` conversion goal but Converge supports any of the events in the [Bing Ads Event Mapping](#event-mapping).  </Info>
     
-5. As a Goal Type, choose **Event** and click **Next**.
+11. As a Goal Type, choose **Event** and click **Next**.
    &nbsp;
 
-6. Give your conversion goal a name, e.g. `[Converge] Purchase` and choose `Conversion action value may vary` as **Revenue**. Leave the other options unchanged and click **Next**.
+12. Give your conversion goal a name, e.g. `[Converge] Purchase` and choose `Conversion action value may vary` as **Revenue**. Leave the other options unchanged and click **Next**.
    <Frame>
    ![bing set up conversion action](/images/connections/bing-ads/bing-ads-conversion-0.png)
    </Frame>
 
-7. Choose **Turn on enhanced conversions** and tick the checkbox to enable enhanced conversions. Click on **Save and next**.
+13. Choose **Turn on enhanced conversions** and tick the checkbox to enable enhanced conversions. Click on **Save and next**.
 
-8. Choose the Tag you set up in `Installation Instructions` and click **Skip base tag setup**.
+14. Choose the Tag you set up in `Installation Instructions` and click **Skip base tag setup**.
 
-9. Ignore the enhanced conversion instructions. Just click on **Next**.
+15. Ignore the enhanced conversion instructions. Just click on **Next**.
 
-10. Choose **Manual installation** and click **Next**.
+16. Choose **Manual installation** and click **Next**.
 
-11. Fill in `purchase` in the Action Name field.
+17. Fill in `purchase` in the Action Name field.
      <Info> If you are not setting up a `purchase` event, you should check the [Bing Ads Event Mapping](#event-mapping) for the appropriate action name (e.g. `add_to_cart`)</Info>
    <Frame>
    ![bing install event tag](/images/connections/bing-ads/bing-ads-conversion-1.png)
    </Frame>
   
-12. Choose **Track event on inline action** under **When do you want to track this event?**. Ignore the code generated below and click **Save and next.**
+18. Choose **Track event on inline action** under **When do you want to track this event?**. Ignore the code generated below and click **Save and next.**
 
-13. You are done. Your conversion goal should populate with conversions from the Bing Ads Connection.
+19. You are done. Your conversion goal should populate with conversions from the Bing Ads Connection.
 
 <Note> Repeat the steps above for all the conversion goals you want to report on in Bing Ads </Note>
-</Accordion>
+</Step>
+</Steps>
+
 <Warning> Once you have installed your Converge Connection, you should **pause or remove all existing Bing Ads tracking**. Leaving these on will lead to duplicate tracking.  </Warning>
-</AccordionGroup>
+
 
 ---
 

@@ -18,10 +18,17 @@ Connection Type: <IconText text="Client-side" name="browser" iconType="duotone" 
 
 ## Installation Instructions
 
-<Note> This is a client-side connection, meaning that you will need to be tracking all events client-side (including `Placed Order` and `Started Subscription`) for this connection to work properly. </Note>
+<Note> 
 
-<AccordionGroup >
-<Accordion icon="list" title="Installation Instructions">
+This is a client-side connection, meaning that you will need to be tracking all events client-side (including `Placed Order` and `Started Subscription`) for this connection to work properly.
+
+If you want to set up a Google Ads conversion for a server-side tracked event, then you should follow the instructions to [Import server-side conversions in Google Ads through GA4](#import-server-side-conversions-in-google-ads-through-ga4)
+ </Note>
+
+
+<Steps>
+
+<Step icon="list" title="1. Set up the connection">
 
 1. Navigate to your Google Ads Dashboards and choose **Tools and settings > Conversions**.
    <Frame>
@@ -75,98 +82,99 @@ Connection Type: <IconText text="Client-side" name="browser" iconType="duotone" 
 
 10. Switch the Converge conversion to primary. Then, switch other conversions to secondary to avoid duplicate tracking. If preferred, you can keep the Converge conversion on Secondary initially until you see that conversions are coming through after 24-48 hours.
 
-11. If you only need the Purchase conversion, then you are done 🎉. If you'd like to add other conversions you can follow the steps below to add more conversions. 
+11. If you'd like to add other conversions beyond the `Purchase`-conversion you can follow the steps below to add more conversions. 
+      
+      <Accordion title="Set up additional conversions" icon="circle-plus">
 
-</Accordion>
 
-<Accordion title="Activate enhanced conversions" icon="sparkles">
+      <Info> 
+      This section is only relevant if you want conversions beyond the `Purchase`-conversion you set up under Installation Instructions. 
 
-1. Click on the Converge conversion you created to navigate to the **Conversion Settings**.
+      You can set up conversions for each of the Google Ads events in the [Event Mapping](#event-mapping)
+      </Info>
+      1. Navigate to your Google Ads Dashboards and choose **Tools and settings > Conversions**.
+         <Frame>
+         ![gads-1](/images/connections/google-ads/google-ads-connection-1.png)
+         </Frame>
 
-2. Check the box next to **Turn on enhanced conversions** and pick **Google tag or Google Tag Manager**.
+      2. Choose **New conversion action** and then choose **Website**.
+         &nbsp;
+
+      3. Fill in your URL and choose **Scan**.
+         &nbsp;
+
+         <Note> 
+            Sometimes, Google Ads might ask you whether you are sure that you want to be using Google Ads instead of Google Analytics 4.
+            In that case, you should click on **Use Google Ads only**. 
+            <Frame>
+            ![gads-warning](/images/connections/google-ads/google-ads-connection-warning-0.png)
+            </Frame>
+         
+         </Note>
+
+      4. Choose **Add a conversion manually**.
+         &nbsp;
+
+      5. Choose the specific conversion type for the conversion you'd like to add, choose different values for each of the conversions and track **Every**.
+         &nbsp;
+         <Frame>
+         ![gads-2](/images/connections/google-ads/google-ads-connection-2.png)
+         </Frame>
+
+      6. Press **Save and continue**.
+         &nbsp;
+
+      7. Click on **See event snippet**.
+         &nbsp;
+         <Frame>
+         ![gads-3](/images/connections/google-ads/google-ads-connection-3.png)
+         </Frame>
+
+      [//]: # (cspell:disable-next-line)
+      8. Copy the Conversion ID, in this example, it is `5CTkCNPJvIcZEJLZ2IYq`. 
+         &nbsp;
+         <Frame>
+         ![gads-4](/images/connections/google-ads/google-ads-connection-4.png)
+         </Frame>
+
+      9. In your Converge dashboard, under Connections, click on **Configuration** > **Basic** > **Edit Configuration**. After that add the event you want to send to Google Ads and fill in the **Conversion ID**.
+         &nbsp;
+         <Frame>
+         ![gads-5](/images/connections/google-ads/google-ads-connection-5.png)
+         </Frame>
+
+      10. Click **Save**.
+ 
+      </Accordion>
+
+</Step>
+
+<Step title="2. Activate enhanced conversions" icon="sparkles">
+
+12. Click on the Converge conversion you created to navigate to the **Conversion Settings**.
+
+13. Check the box next to **Turn on enhanced conversions** and pick **Google tag or Google Tag Manager**.
 
    <Frame>
    ![gads-5](/images/connections/google-ads/google-ads-enhanced-conversions-1.png)
    </Frame>
 
-3. From the list of tags, choose the Tag ID that you set up with Converge and click on **Next**.
+14. From the list of tags, choose the Tag ID that you set up with Converge and click on **Next**.
    <Frame>
    ![gads-5](/images/connections/google-ads/google-ads-enhanced-conversions-2.png)
    </Frame>
 
 
-4. Choose **Edit code** from the list of setup options and click on **Save**.
+15. Choose **Edit code** from the list of setup options and click on **Save**.
    <Frame>
    ![gads-5](/images/connections/google-ads/google-ads-enhanced-conversions-3.png)
    </Frame>
 
-</Accordion>
-
-<Accordion title="Set up additional conversions" icon="circle-plus">
-
-
-<Info> 
-This section is only relevant if you want conversions beyond the `Purchase`-conversion you set up under Installation Instructions. 
-
-You can set up conversions for each of the Google Ads events in the [Event Mapping](#event-mapping)
-</Info>
-1. Navigate to your Google Ads Dashboards and choose **Tools and settings > Conversions**.
-   <Frame>
-   ![gads-1](/images/connections/google-ads/google-ads-connection-1.png)
-   </Frame>
-
-2. Choose **New conversion action** and then choose **Website**.
-   &nbsp;
-
-3. Fill in your URL and choose **Scan**.
-   &nbsp;
-
-   <Note> 
-      Sometimes, Google Ads might ask you whether you are sure that you want to be using Google Ads instead of Google Analytics 4.
-      In that case, you should click on **Use Google Ads only**. 
-      <Frame>
-        ![gads-warning](/images/connections/google-ads/google-ads-connection-warning-0.png)
-      </Frame>
-   
-   </Note>
-
-4. Choose **Add a conversion manually**.
-   &nbsp;
-
-5. Choose the specific conversion type for the conversion you'd like to add, choose different values for each of the conversions and track **Every**.
-   &nbsp;
-   <Frame>
-   ![gads-2](/images/connections/google-ads/google-ads-connection-2.png)
-   </Frame>
-
-6. Press **Save and continue**.
-   &nbsp;
-
-7. Click on **See event snippet**.
-   &nbsp;
-   <Frame>
-   ![gads-3](/images/connections/google-ads/google-ads-connection-3.png)
-   </Frame>
-
-[//]: # (cspell:disable-next-line)
-8. Copy the Conversion ID, in this example, it is `5CTkCNPJvIcZEJLZ2IYq`. 
-   &nbsp;
-   <Frame>
-   ![gads-4](/images/connections/google-ads/google-ads-connection-4.png)
-   </Frame>
-
-9. In your Converge dashboard, under Connections, click on **Configuration** > **Basic** > **Edit Configuration**. After that add the event you want to send to Google Ads and fill in the **Conversion ID**.
-   &nbsp;
-   <Frame>
-   ![gads-5](/images/connections/google-ads/google-ads-connection-5.png)
-   </Frame>
-
-10. Click **Save**.
- 
-</Accordion>
+</Step>
+</Steps>
 
 <Warning> Once you have installed your Converge Connection, you should **pause or remove all existing Google Ads tracking**. Leaving these on will lead to duplicate tracking.  </Warning>
-</AccordionGroup>
+
 
 ---
 
@@ -183,17 +191,23 @@ This integration supports the following Converge connection functionality.
 
 ---
 
-## Import server-side conversions through Google Ads
+## Import server-side conversions in Google Ads through GA4
 
 Our Google Ads Connection does not support forwarding server-side conversions natively. 
 
 However, you can still get a Converge server-side event in Google Ads through the **GA4 import** functionality. 
-The process consists of:
 
-1. Set up your <OutboundLink linkText="Custom Event" linkTarget="/connections/custom-events"/> in the GA4 Connection.
-   <Info> If your conversion event already exists in GA4 (e.g. when you want to import a `purchase` or `add_to_cart`-conversion), then you can skip this step. </Info>
 
-2. <Accordion title="Import your GA4 event in Google Ads as a conversion">
+<Steps>
+
+<Step title="Make sure your conversion arrives in GA4">
+   If your conversion event already exists in GA4 (e.g. when you want to import a `purchase` or `add_to_cart`-conversion), then you can move straight onto step two.
+
+   If you are looking to set up a custom event as a conversion in Google (e.g. a `new_customer_purchase`-event), you should first make sure that your event is configured as a <OutboundLink linkText="Custom Event" linkTarget="/connections/custom-events"/> in the GA4 Connection.
+
+</Step>
+
+<Step title="Import your GA4 event in Google Ads as a conversion">
       <Info> The steps below demonstrate importing the `new_customer_purchase` event. But you should import the event/conversion that is applicable for your usecase. </Info>
    
       1. Navigate to your GA4 dashboard and click on the settings icon in the bottom left corner.
@@ -225,8 +239,8 @@ The process consists of:
 
       10. Change the conversion goal to _Purchase_ and hit **Save** and **Done**.
          <Frame> ![ga-9](/images/connections/google-ads/google-nc-purchase-9.png) </Frame>
-
-   </Accordion>
+</Step>
+</Steps>
 
 
 
