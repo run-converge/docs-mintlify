@@ -47,21 +47,39 @@ If you added them to the same workspace, this can look like this:
 
 ### Single Shopify store serving multiple markets
 
+<Warning>
+    This is an intricate setup. Please consult with your development or data team before proceeding.
+</Warning>
+
 In this case, it's a bit harder to separate your stores.
 You should still create separate pixels and datasources for each market, and decide whether to add these to the same workspace or different workspaces.
 Follow the regular Shopify setup guide [here](/sources/server-integrations/shopify) for each market, for the same Shopify store, but take into account the following modifications.
 
 #### Server integration
-Each Shopify market has a different set of shipping countries.
-When creating the server integration, you should use the **Include only specified shipping countries** option to include only the orders for each market.
 
-<Warning>
-    You need to use the ISO-standard 2-letter country codes to filter the orders. For example, `US`, `GB`, `DE`, etc.
-</Warning>
+Converge separates your markets by the **shipping country**.
+Each Shopify market has a different set of shipping countries.
+When creating the server integration, tick the **Filter Shopify markets** option.
+Select the markets for which you're setting up this source.
 
 <Frame>
-![shopify-markets-gb](/images/guides/shopify-markets-gb.png)
+![shopify-markets-gb](/images/guides/shopify-markets-server.png)
 </Frame>
+
+
+<Note>
+    Your source will **filter the orders based on the shipping countries that are part of the market when creating the source**.
+    Please take care to update your setup accordingly when your markets configuration changes.
+    Converge will display the following message in the sources configuration when it detects that the filtered countries are not up to date with the current Shopify markets configuration:
+
+    <Frame>
+        ![outdated](/images/guides/outdated.png)
+    </Frame>
+</Note>
+
+<Warning>
+    The `Received Refund` event will no longer be tracked when the source is configured with the **Filter Shopify markets** option.
+</Warning>
 
 #### Browser integration
 Because you have a single Shopify store, you have only a storefront and theme. So you need to install multiple pixels in the same `theme.liquid` file.
@@ -69,35 +87,76 @@ Because you have a single Shopify store, you have only a storefront and theme. S
 You need to decide whether to split the pixels by domain, locale, or any other criteria.
 Please advise with the team that built your website and set up the different markets. They can help you decide the best way to split the pixels.
 
-```html Example snippet for multiple pixels by subdomain
-<!-- Start Converge Code -->
-<script>
-    window['__cvg_shopify_info'] = {
-        product: {{ product | json }},
-    variant: {{ product.selected_or_first_available_variant | json }},
-    currency: {{ shop.currency | json }},
-    collection: {...{{ collection | json }}, products: {{ collection.products | json }}},
-    search: {{ search.terms | json }},
-  };
-</script>
-<script>
-    window.cvg||(cvg=function(){cvg.process?cvg.process.apply(cvg,arguments):cvg.queue.push(arguments)},cvg.queue=[]);
-  cvg({method:"track",eventName:"$page_load"});
-</script>
+In the example below, we separate the `.eu` domain for the `/de` and `/es` subfolders from the others.
 
-<!-- THIS WILL ONLY WORK IF YOU YOUR MARKETS WERE SEPARATED BY SUBDOMAIN -->
-{% assign subdomain = request.host | split: '.' | first %}
-{% if subdomain == 'uk' %}
-    <script src="https://static.runconverge.com/pixels/111111.js" async></script>
-{% elsif subdomain == 'us' %}
-    <script src="https://static.runconverge.com/pixels/222222.js" async></script>
-{% else %}
-    <script>
-        console.error('Unknown subdomain: ' + subdomain);
-    </script>
-{% endif %}
-<!-- End Converge Code -->
-```
+<AccordionGroup>
+    <Accordion title="Example Liquid snippet for multiple pixels by subdomain">
+        ```html
+        <!-- Start Converge Code -->
+        <script>
+        window['__cvg_shopify_info'] = {
+            product: {{ product | json }},
+            variant: {{ product.selected_or_first_available_variant | json }},
+            currency: {{ shop.currency | json }},
+            collection: {...{{ collection | json }}, products: {{ collection.products | json }}},
+            search: {{ search.terms | json }},
+        };
+        </script>
+        <script>      
+        !(function (window, document) {
+            const domain = document.location.hostname;
+            const subfolder = document.location.pathname.split('/')?.[1]?.toLowerCase();
+            
+            // Your custom logic to decide the pixel public token for each market
+            let cvgToken;
+            if (
+                domain == "mydomain.eu" &&
+                ["de", "es"].includes(subfolder)
+            ) {
+                cvgToken = "xxxxxx";
+            } else {
+                cvgToken = "yyyyyy";
+            }
+            if (window['cvg']) return
+            const one = window['cvg'] = function () {
+                one.process ? one.process.apply(one, arguments) : one.queue.push(arguments)
+            }
+            one.queue = []
+            const two = document.createElement('script')
+            two.async = 1
+            two.src = `https://static.runconverge.com/pixels/${cvgToken}.js`
+            const three = document.getElementsByTagName('script')[0]
+            three.parentNode.insertBefore(two, three)
+        })(window, document)
+        </script>
+        <!-- End Converge Code -->
+        ```
+    </Accordion>
+    <Accordion title="Example customer events snippet for multiple pixels by subdomain">
+        ```js
+            const loc = new URL(init.data.shop.storefrontUrl);
+            const domain = loc.hostname;
+            const subfolder = loc.pathname.split('/')?.[1]?.toLowerCase();
+
+            // Your custom logic to decide the pixel public token for each market
+            let cvgToken;
+            if (
+            domain == "mydomain.eu" &&
+            ["de", "es"].includes(subfolder)
+            ) {
+            cvgToken = "xxxxxx";
+            } else {
+            cvgToken = "yyyyyy";
+            }
+
+    !function(){
+        "use strict";
+        window.Shopify={shop:"<<TO FILL IN>>.myshopify.com"},
+        function(e,t,o,c,n,s,i){e.cvg||(e.shopify={analytics:analytics,browser:browser,init:init},n=e.cvg=function(){n.process?n.process.apply(n,arguments):n.queue.push(arguments)},n.queue=[],(s=t.createElement(o)).async=1,s.src=`https://static.runconverge.com/pixels/${cvgToken}.js`,(i=t.getElementsByTagName(o)[0]).parentNode.insertBefore(s,i))}(window,document,"script"),/\/checkouts/.test(init.context.document.location.href)&&cvg({method:"track",eventName:"$page_load"})
+    }();
+    ```
+    </Accordion>
+</AccordionGroup>
 
 
 ## Connections setup
