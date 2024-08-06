@@ -79,7 +79,8 @@
                 "sources/server-integrations/woocommerce",
                 "sources/server-integrations/magento",
                 "sources/server-integrations/bigcommerce",
-                "sources/server-integrations/recharge"
+                "sources/server-integrations/recharge",
+                "sources/server-integrations/skio"
               ]
             }
           ]

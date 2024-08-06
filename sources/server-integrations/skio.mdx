@@ -1,0 +1,41 @@
+---
+title: "Skio"
+description: "Connect your Skio subscription events to Converge"
+---
+
+## Installation Instructions
+
+
+  <Steps>
+      <Step title="Navigate to the Skio Admin Dashboard">
+       1. Navigate to your Skio Admin Dashboard.
+      </Step>
+  <Step title="Create your token">
+      2. Click on **Account** > **API**
+      3. Give your token a name: e.g. `Converge`
+      4. Click on **Genearte API Key** and copy the key, you will need it later.
+  </Step>
+  <Step title="Create a new Server-side source in Converge">
+      5. In Converge, click on **Create a new source**
+      6. Pick _Server-side_ from the modal
+      7. Name your source: e.g. `{Storename} Subscriptions`
+  </Step>
+  <Step title="Connect the Source">
+      8. Enter the Skio API Token.
+      9. Fill in your Store Name.
+      10. Click on **Create Source**.
+
+  </Step>
+  </Steps>
+
+
+
+---
+
+## Event Spec
+
+This integration auto-tracks the following events on the server with all properties available according to the [Converge Event Spec](/sources/converge-spec).
+
+| Event Name                                                              | Event Description                           |
+| ----------------------------------------------------------------------- | ------------------------------------------- |
+| [Started Subscription](/sources/converge-spec#started-subscription)     | When a customer starts a subscription.      |
