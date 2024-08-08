@@ -408,6 +408,14 @@ When a user starts the checkout process.
     Total shipping cost of the cart at checkout.
     </ParamField>
 
+    <ParamField body="total_discount" type="float">
+    Total discount of the cart at checkout.
+    </ParamField>
+
+    <ParamField body="coupon" type="string | list of string">
+    The coupon or list of coupons used at checkout
+    </ParamField>
+
     <ParamField body="currency" type="string" required>
     Currency of the cart that is being checked out, as per [ISO
     4217](https://en.wikipedia.org/wiki/ISO_4217)
@@ -481,6 +489,7 @@ cvg({
     total_tax: 3.5,
     total_shipping: 2.4,
     currency: "USD",
+    coupon: 'COUPON123',
     items: [
       // Notice that this is a list of items
       {
@@ -526,6 +535,14 @@ When a user adds their payment info.
 
     <ParamField body="total_shipping" type="float" required>
     Total shipping cost of the cart at checkout.
+    </ParamField>
+
+    <ParamField body="total_discount" type="float">
+    Total discount of the cart at checkout.
+    </ParamField>
+
+    <ParamField body="coupon" type="string | list of string">
+    The coupon or list of coupons used at checkout
     </ParamField>
 
     <ParamField body="currency" type="string" required>
@@ -595,7 +612,7 @@ When a user adds their payment info.
     </ParamField>
 
     <ParamField body="$phone_number" type="string">
-    Phone Number of the user including the `+`-sign and country code. For example: `"+1 (917) 123-4567"` or `"+3295123456"`.
+    Phone Number of the user including the `+` sign and country code. For example: `"+1 (917) 123-4567"` or `"+3295123456"`.
     </ParamField>
 
     <ParamField body="$city" type="string">
@@ -626,9 +643,10 @@ cvg({
   eventName: "Added Payment Info",
   properties: {
     total_price: 42,
-    total_tax: 3.5,--
+    total_tax: 3.5,
     total_shipping: 2.4,
     currency: "USD",
+    coupon: 'COUPON123',
     items: [
       {
         product_id: "123456",
@@ -699,6 +717,14 @@ Order ID.
 
     <ParamField body="total_shipping" type="float" required>
     Total shipping cost of the order.
+    </ParamField>
+
+    <ParamField body="total_discount" type="float">
+    Total discount on the order.
+    </ParamField>
+
+    <ParamField body="coupon" type="string | list of string">
+    The coupon or list of coupons used in the order.
     </ParamField>
 
     <ParamField body="currency" type="string" required>
@@ -840,6 +866,7 @@ cvg({
     total_tax: 3.5,
     total_shipping: 2.4,
     currency: "USD",
+    coupon: 'COUPON123',
     items: [
       {
         product_id: "123456",
@@ -954,6 +981,14 @@ This is an optional event
     Total shipping cost of the cart.
     </ParamField>
 
+    <ParamField body="total_discount" type="float">
+    Total discount of the cart.
+    </ParamField>
+
+    <ParamField body="coupon" type="string | list of string">
+    The coupon or list of coupons used in the cart.
+    </ParamField>
+
     <ParamField body="currency" type="string" required>
     Currency of the cart that is being checked out, as per [ISO
     4217](https://en.wikipedia.org/wiki/ISO_4217)
@@ -1019,6 +1054,7 @@ cvg({
     total_tax: 3.5,
     total_shipping: 2.4,
     currency: "USD",
+    coupon: 'COUPON123',
     items: [
       // Notice that this is a list of items
       {
@@ -1081,6 +1117,14 @@ When a user starts a subscription.
 
     <ParamField body="total_shipping" type="float" >
     Total shipping cost of the subscription.
+    </ParamField>
+
+    <ParamField body="total_discount" type="float">
+    Total discount on the subscription.
+    </ParamField>
+
+    <ParamField body="coupon" type="string | list of string">
+    The coupon or list of coupons used in the subscription.
     </ParamField>
 
     <ParamField body="currency" type="string" required>
@@ -1208,6 +1252,7 @@ cvg({
     total_tax: 3.5,
     total_shipping: 2.4,
     currency: "USD",
+    coupon: 'COUPON123',
     items: [
       {
         product_id: "123456",
@@ -1316,6 +1361,14 @@ When a user cancels a subscription.
 
     <ParamField body="total_shipping" type="float" >
     Total shipping cost of the subscription.
+    </ParamField>
+
+    <ParamField body="total_discount" type="float">
+    Total discount on the subscription.
+    </ParamField>
+
+    <ParamField body="coupon" type="string | list of string">
+    The coupon or list of coupons used in the subscription.
     </ParamField>
 
     <ParamField body="currency" type="string" required>
@@ -1508,6 +1561,14 @@ When a user places a recurring subscription order.
 
     <ParamField body="total_shipping" type="float" >
     Total shipping cost of the subscription.
+    </ParamField>
+
+    <ParamField body="total_discount" type="float">
+    Total discount on the subscription.
+    </ParamField>
+
+    <ParamField body="coupon" type="string | list of string">
+    The coupon or list of coupons used in the subscription.
     </ParamField>
 
     <ParamField body="currency" type="string" required>
