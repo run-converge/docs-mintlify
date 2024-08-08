@@ -5,7 +5,7 @@ description: "How to navigate a Shopify store active in multiple countries"
 
 
 Converge supports any internationalization setup you may have on your Shopify store.
-Whether you have multiple stores, or a single store serving multiple markets. Whether you have the same analytics and marketing setup for all countries, or different setups for each country.
+Whether you have multiple stores, or a single store serving multiple markets. Whether you have the same analytics and marketing setup for all countries or different setups for each country.
 You can set up the exact tracking and marketing setup to scale across borders.
 
 To navigate the guide below, you need to understand the following:
@@ -14,8 +14,8 @@ To navigate the guide below, you need to understand the following:
 - Do you have different ad accounts, analytics properties, etc. for each market?
 
 ## Workspaces
-Within Converge, you can decide to set everything up within a **single workspace**, or create separate workspaces for each market.
-Separate workspaces allow you to keep the revenue, spend, CPA, etc. data separate. In a single workspace, all data is aggregated accross your markets.
+Within Converge, you can decide to set everything up within a **single workspace** or create separate workspaces for each market.
+Separate workspaces allow you to keep the revenue, spending, CPA, etc. data separate. In a single workspace, all data is aggregated across your markets.
 
 <Note>
 To set up new workspaces for new markets, please contact Converge support.
@@ -28,13 +28,13 @@ If you are not treating your markets as separate entities, you can follow the re
 </Note>
 
 You need to create different **pixels** and **datasources** for each market.
-If you decided on using a single workspace, you can create all of these within the same workspace.
+If you decided to use a single workspace, you can create all of these within the same workspace.
 Otherwise, create a new **pixel** and **datasource** within each workspace, corresponding to its market.
 
-### Multiple shopify stores serving different markets
+### Multiple Shopify stores serving different markets
 
 This is the most common setup and easiest to configure.
-You have set up entirely different Shopify stores for different markets, for example `my-store-us.myshopify.com` and `my-store-uk.myshopify.com`.
+You have set up entirely different Shopify stores for different markets, for example, `my-store-us.myshopify.com` and `my-store-uk.myshopify.com`.
 
 You can follow the regular Shopify setup guide [here](/sources/server-integrations/shopify).
 Repeat the installation for each store and create a new pixel and datasource each time.
@@ -69,8 +69,8 @@ Select the markets for which you're setting up this source.
 
 <Note>
     Your source will **filter the orders based on the shipping countries that are part of the market when creating the source**.
-    Please take care to update your setup accordingly when your markets configuration changes.
-    Converge will display the following message in the sources configuration when it detects that the filtered countries are not up to date with the current Shopify markets configuration:
+    Please take care to update your setup accordingly when your market configuration changes.
+    Converge will display the following message in the Sources configuration when it detects that the filtered countries are not up to date with the current Shopify markets configuration:
 
     <Frame>
         ![outdated](/images/guides/outdated.png)
@@ -164,7 +164,7 @@ In the example below, we separate the `.eu` domain for the `/de` and `/es` subfo
 ### Multiple workspaces    
 
 If you have broken out your markets into separate workspaces, you can create connections as usual within each workspace.
-In case a single ad account is served by multiple markets, you should recreate the connnection in each workspace.
+In case a single ad account is served by multiple markets, you should recreate the connection in each workspace.
 
 ### Single workspace
 
@@ -175,7 +175,7 @@ If an ad account is served by a single market, you can use the [connection sourc
     Select both the **server and browser** source you created for this market.
 </Note>
 
-See the below example to only send data for a UK store to the UK facebook pixel.
+See the below example to only send data for a UK store to the UK Facebook pixel.
 
 <Frame>
 ![facebook-uk-pixel](/images/guides/facebook-uk-pixel.png)

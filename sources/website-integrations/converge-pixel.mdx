@@ -75,12 +75,12 @@ Converge allows for cross-domain tracking through the `__cvg_uuid` parameter and
 If Converge recognizes the same `__cvg_uid` identifier for pageviews on `myfirstdomain.com` and pageviews on `myotherdomain.com` then it will stitch those sessions under the same profile and session.
 
 To stitch, we need to be able to pass the cookie between different websites as the cookie is only generated if the `__cvg_uid` is not set in the URL.
-If there is a `__cvg_uid` set in the URL as a hyperparam, the cookie will be set to this value.
+If there is a `__cvg_uid` set in the URL as a parameter, the cookie will be set to this value.
 
 
 ```mermaid
 flowchart LR
-  id1("\`*User* visits **myfirstdomain.com** and gets assigned **__cvg_uid=1234**\`") -. "Clicks on link myotherdomain.com/?__cvg_uid=1234" .-> id2("\`*User* visits **myotherdomain.com** and the Converge reads the id from the URL\`") ~~~ id3(["\`**Session stiched**  ✓ \`"])
+  id1("\`*User* visits **myfirstdomain.com** and gets assigned **__cvg_uid=1234**\`") -. "Clicks on link myotherdomain.com/?__cvg_uid=1234" .-> id2("\`*User* visits **myotherdomain.com** and the Converge reads the id from the URL\`") ~~~ id3(["\`**Session stitched**  ✓ \`"])
   style id3 color:#02b802,stroke:none
 
 ```

@@ -125,7 +125,7 @@ then we do support forwarding `property_1` as a custom property, but we do not s
 #### Custom Ecommerce Properties
 
 You might want to add a custom property on the `items` array for ecommerce events as per the GA4 documentation [here](https://developers.google.com/analytics/devguides/collection/ga4/item-scoped-ecommerce).
-For example, you could include a custom `in_stock`-parameter on all of the `item`-arrays in your GA4 Ecommerce events. 
+For example, you could include a custom `in_stock` parameter on all of the `item` arrays in your GA4 Ecommerce events. 
 
 The steps for setting up these custom properties are functionally similar to the steps described above in the [Custom Event Properties](#custom-event-properties)-paragraph.
 The only distinction is that you should choose an `item-scoped custom dimension` in the GA4 <IconText name="shapes" text="Custom definitions" iconType="regular"/> settings.
@@ -135,7 +135,7 @@ The only distinction is that you should choose an `item-scoped custom dimension`
 You might want to forward a profile property as a custom user property. 
 
 The steps for setting up these custom properties are functionally similar to the steps described above in the [Custom Event Properties](#custom-event-properties)-paragraph.
-The only distinction is that you should choose an `user-scoped custom dimension` in the GA4 <IconText name="shapes" text="Custom definitions" iconType="regular"/> settings.
+The only distinction is that you should choose a `user-scoped custom dimension` in the GA4 <IconText name="shapes" text="Custom definitions" iconType="regular"/> settings.
 
 #### Deploy a separate data layer for Converge
 
@@ -146,14 +146,14 @@ When you use the `sGTM`-connection type, Converge will always use a separate dat
 
 When enabled, Converge will load the gtag script hosted by Converge. 
 
-#### Pass consent parameters on serverside events
+#### Pass consent parameters on server-side events
 
 When enabled, Converge makes sure to inject the Google Consent Parameters on server-side captured events as per the corresponding browser session.
 
 #### Set user ID
 
 Includes the customer ID as the `user_id` for GA4 events. 
-The User Id feature in GA4 has some known issues, please only turn this on if you have a good reason to do so.
+The User ID feature in GA4 has some known issues, please only turn this on if you have a good reason to do so.
 
 
 ---
@@ -206,9 +206,9 @@ This integration supports the following Converge connection functionality.
 </Accordion>
 
 <Accordion title='Why do I see redundant "Viewed Product" and "Added Product"-events arriving in my GA4 property?'>
-  This is most likely a legacy Universal Analytics property / pixel that is streaming events into your new GA4 property. 
+  This is most likely a legacy Universal Analytics property/pixel that is streaming events into your new GA4 property. 
 
-  1. Navigate into your old Universal Analytics Property (usually you can do this by clicking on your GA4 property and then chooseing the property whose property ID starts with `UA-`)
+  1. Navigate into your old Universal Analytics Property (usually you can do this by clicking on your GA4 property and then choosing the property whose property ID starts with `UA-`)
       <Frame>
          ![ua-1](/images/connections/ga4/ua-events.png)
       </Frame>
