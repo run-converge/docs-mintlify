@@ -36,6 +36,32 @@ Connection Type: <IconText text="Client-side" name="browser" iconType="duotone" 
 
 ---
 
+## Exclude VAT and shipping from commission payments
+
+Some companies send the order value with tax and shipping costs included back to AWIN in their conversion tracking setup. 
+
+However, AWIN calculates commission (usually somewhere between 10% - 15%) on the order value that is passed back. 
+When you send order value with tax and shipping included back to AWIN, you will effectively pay commission on those. 
+
+Therefore, many companies prefer to pay AWIN commission based on their **net revenue**. 
+
+### An example
+
+As an example, take a product that has a price of 100 USD. 
+Now, the total price that the customer will pay will look something like `price + tax + shipping`, for example: `$100 + $15 + $5 = $120`. 
+
+Now, imagine that you are paying AWIN 15% commission. 
+- In the case that you send back the **gross order value** with VAT and shipping, then you will pay AWIN `15% * $120` or **$18**.
+- However, in the case that you would send back the **net order value**, then you will pay AWIN `15% * 100` or **$15**
+
+
+### Setting up Net Order Value in your AWIN configuration
+
+
+In the connection configuration, under the advanced tab, you can configure whether you want to send **gross** or **net** order values. 
+
+---
+
 ## Converge functionality
 
 This integration supports the following Converge connection functionality.
@@ -51,9 +77,6 @@ This integration supports the following Converge connection functionality.
 ## FAQ
 
 <AccordionGroup>
-    <Accordion title='How do I exclude tax and shipping costs from the order values?'>
-        In the connection configuration, under the advanced tab, you can configure whether you want to send **gross** or **net** order values. **Net** order values do not include tax and shipping.
-    </Accordion>
     <Accordion title='Why are my events not being forwarded?'>
         Verify that you've configured the events you want to forward as **Conversion events** in the connection configuration.
         
