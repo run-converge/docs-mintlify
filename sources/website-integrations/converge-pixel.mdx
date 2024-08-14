@@ -71,7 +71,7 @@ If you want to stitch a session from `myfirstdomain.com` to `myotherdomain.com` 
 
 ### How does cross-domain tracking work
 
-Converge allows for cross-domain tracking through the `__cvg_uuid` parameter and cookie. 
+Converge allows for cross-domain tracking through the `__cvg_uid` parameter and cookie. 
 If Converge recognizes the same `__cvg_uid` identifier for pageviews on `myfirstdomain.com` and pageviews on `myotherdomain.com` then it will stitch those sessions under the same profile and session.
 
 To stitch, we need to be able to pass the cookie between different websites as the cookie is only generated if the `__cvg_uid` is not set in the URL.
