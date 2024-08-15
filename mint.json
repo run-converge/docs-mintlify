@@ -141,12 +141,15 @@
         {
           "group": "Integrations",
           "pages": [
+            "ad-platforms/integrations/overview",
             "ad-platforms/integrations/facebook",
             "ad-platforms/integrations/google-ads",
             "ad-platforms/integrations/pinterest",
             "ad-platforms/integrations/tiktok",
             "ad-platforms/integrations/bing",
-            "ad-platforms/integrations/snapchat"
+            "ad-platforms/integrations/snapchat",
+            "ad-platforms/integrations/taboola",
+            "ad-platforms/integrations/outbrain"
           ]
         }
       ]
