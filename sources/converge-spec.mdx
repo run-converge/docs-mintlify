@@ -390,6 +390,9 @@ When a user starts the checkout process.
 
 <AccordionGroup>
 
+<Note> This event typically is used for stitching website sessions to server-side orders, make sure to add approppriate [aliases](/sources/concepts/aliases)</Note>
+
+
 <Accordion title="Where To Track" icon="map-pin">
   This event should be tracked on the client.
 </Accordion>
@@ -505,6 +508,7 @@ cvg({
       },
     ],
   },
+  aliases: ["urn:cart_token:xyz123"]
 });
 ```
 
@@ -518,6 +522,8 @@ cvg({
 When a user adds their payment info.
 
 <AccordionGroup>
+
+<Note> This event typically is used for stitching website sessions to server-side orders, make sure to add approppriate [aliases](/sources/concepts/aliases)</Note>
 
 <Accordion title="Where To Track" icon="map-pin">
   This event should be tracked on the client.
@@ -670,6 +676,8 @@ cvg({
     $state: "California",
     $zip_code: "94103",
   },
+  
+  // important, this will be used for stitching backend orders to website sessions
   aliases: ["urn:email:john.smith@apple.com"],
 });
 ```
@@ -941,6 +949,7 @@ resp = requests.post(
             "$state": "California",
             "$zip_code": "94103",
         },
+        # important, this will be used for stitching backend orders to website sessions
         "aliases": ["urn:email:john.smith@apple.com"],
     }
 )
@@ -1276,6 +1285,7 @@ cvg({
     $state: "California",
     $zip_code: "94103",
   },
+  // important, this will be used for stitching backend orders to website sessions
   aliases: ["urn:email:john.smith@apple.com"],
 });
 ```
@@ -1325,7 +1335,8 @@ resp = requests.post(
             "$country_code": "US",
             "$state": "California",
             "$zip_code": "94103",
-        },
+        },   
+        #important, this will be used for stitching backend orders to website sessions
         "aliases": ["urn:email:john.smith@apple.com"],
     }
 )
