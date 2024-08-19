@@ -67,15 +67,32 @@ This integration supports the following Converge connection functionality.
 
 ---
 
-## Why use Converge for Klaviyo instead of relying solely on the Klaviyo Pixel?
+## Using Converge to increase abandoned cart revenue on Klaviyo
 
-You may already be using Klaviyo’s native pixel to forward events from the browser. While this can be effective, our integration offers several key advantages that can help optimize your marketing strategy and drive better results:
+You may already be using Klaviyo's abandoned cart flows based on the `Added To Cart`-events and `Started Checkout`-events tracked by the Klaviyo pixel on the browser. 
 
-1. Converge captures and identifies more users compared to the Klaviyo pixel alone. This is especially important for features like abandoned cart email flows, where identifying the maximum number of users can directly improve conversions, and as such revenue.
+However, Klaviyo's browser identification is based on a third-party cookie meaning that most customers will not be successfully identified after 7 days (see our section on <OutboundLink linkText="Cookie Behaviour" linkTarget="/sources/concepts/aliases#default-cookie-behavior"/> ).
 
-2. Managing multiple platforms can be complex and time-consuming. By integrating Klaviyo through Converge, you can streamline this process. Our integration provides a centralized location for event tracking, customer re-identification, and real-time monitoring.
+```mermaid
+flowchart LR
 
-3. Event forwarding through Converge ensures that the data sent to Klaviyo conforms to platform specifications. This reduces the risk of tracking errors or data mismatches that could occur if events are set up manually. Accurate and consistent data is crucial for creating effective email flows, segmentation, and automation in Klaviyo.
+  id4("\`*User* visits website with Klaviyo cookie and **Subscribes to Newsletter**\`") -. 8 days later (Klaviyo cookie is lost).-> id5("\`*User* visits website without cookie and **Adds to cart**\`") ~~~ id6(["\`**Abandoned Cart Email** ✖\`"])
+  style id6 color:#d40027,stroke:none
+
+```
+
+When Converge is set up with a first-party cookie, it can reliably re-identify customers past that 7-day mark (see: [Setting up a server-side first-party cookie](/sources/concepts/aliases#setting-up-a-server-side-first-party-cookie)).
+Customers using our pre-built [Shopify](/sources/website-integrations/shopify) or [Magento](/sources/website-integrations/magento) integrations already have a first-party cookie as part of their Converge setup.
+
+```mermaid
+flowchart LR
+
+  id4("\`*User* visits website with first-party cookie and **Subscribes to Newsletter**\`") -. 8 days later (Converge cookie stays).-> id5("\`*User* visits website with cookie and **Adds to cart**\`") ~~~ id6(["\`**Abandoned Cart Email** ✓\`"])
+  style id6 color:#d40027,stroke:none
+
+```
+
+For most customers, we expect an abandoned cart revenue uplift of 20-50%.
 
 ## Adding product URL and image URL to Converge events to power Klaviyo flows
 
