@@ -48,7 +48,7 @@ const MyApp = ({ Component, pageProps, router }) => {
     router.events.on("routeChangeComplete", handleRouteChange);
     return () => {
       router.events.off("routeChangeComplete", handleRouteChange);
-    };
+    };`
   }, []);
   return <Component {...pageProps} />;
 };
@@ -71,36 +71,60 @@ If you want to stitch a session from `myfirstdomain.com` to `myotherdomain.com` 
 
 ### How does cross-domain tracking work
 
-Converge allows for cross-domain tracking through the `__cvg_uid` parameter and cookie. 
-If Converge recognizes the same `__cvg_uid` identifier for pageviews on `myfirstdomain.com` and pageviews on `myotherdomain.com` then it will stitch those sessions under the same profile and session.
+Converge allows for cross-domain tracking through the `__cvg_uid` and `__cvg_sid` parameters and cookies. 
+If Converge recognizes the same `__cvg_uid` and `__cvg_sid` identifiers for pageviews on `myfirstdomain.com` and pageviews on `myotherdomain.com` then it will stitch those sessions under the same profile and session.
 
-To stitch, we need to be able to pass the cookie between different websites as the cookie is only generated if the `__cvg_uid` is not set in the URL.
+To stitch, we need to be able to pass the cookie between different websites as the cookie is only generated if the `__cvg_uid` and `__cvg_sid` are not set in the URL.
 If there is a `__cvg_uid` set in the URL as a parameter, the cookie will be set to this value.
 
-
+<Frame>
 ```mermaid
-flowchart LR
-  id1("\`*User* visits **myfirstdomain.com** and gets assigned **__cvg_uid=1234**\`") -. "Clicks on link myotherdomain.com/?__cvg_uid=1234" .-> id2("\`*User* visits **myotherdomain.com** and the Converge reads the id from the URL\`") ~~~ id3(["\`**Session stitched**  ✓ \`"])
+flowchart TB
+  id1("\`*User* visits **myfirstdomain.com** and gets assigned **__cvg_uid=1234** and **__cvg_sid=ABCD**\`") -. "Clicks on link myotherdomain.com/?__cvg_uid=1234&__cvg_sid=ABCD" .-> id2("\`*User* visits **myotherdomain.com** and the Converge reads the id from the URL\`") ~~~ id3(["\`**Session stitched**  ✓ \`"])
   style id3 color:#02b802,stroke:none
-
 ```
+</Frame>
 
-### The `link_domain`-method
+### The `link_domain` method
 
-The Converge Pixel exposes the `link_domain`-method to automatically add the `?__cvg_uid={CVG_ID_VALUE}` suffix to every outbound link that leads to `myotherdomain.com`.
+The Converge Pixel exposes the `link_domain` method to automatically add the `?__cvg_uid={CVG_ID_VALUE}&__cvg_sid={CVG_SID_VALUE}` suffix to every outbound link that leads to `myotherdomain.com`.
 Include the following method together with the basic Converge pixel snippet on the `myfirstdomain.com` website to enable it on every page.
 
 ```js
 cvg({ method: "link_domain", domain: "myotherdomain.com" });
 ```
 
+<Note>
+Always validate that both `__cvg_uid` and `__cvg_sid` are present after navigating to another domain. If those are missing, Converge has no way of stitching the events correctly. This will potentially lead to sessions being attributed as organic referrals from your other domain.
+</Note>
+
 <Warning> 
+If the redirect to `myotherdomain.com` does not happen directly through a link click, but for example, through JS code, the parameter won't be added automatically. 
 
-If the redirect to `myotherdomain.com` does not happen directly through a link click, but for example, through JS code, the parameter won't be added. So it is important to always test whether the `__cvg_uid` parameter is present on the new URL. 
-
-You will need to manually instrument the link by adding the `?__cvg_uid` URL parameter and its corresponding cookie value for each outbound link in that case.
+You should follow [Manually setting up cross-domain tracking](#manually-setting-up-cross-domain-tracking), to manually instrument the links.
 </Warning>
 
+### Manually setting up cross-domain tracking
+
+If the `link_domain` cannot be used in your case, you will need to manually instrument the links by adding the `__cvg_uid` and `__cvg_sid` URL parameters and their corresponding cookie values for each outbound link in that case.
+
+The procedure for this will vary depending on your specific requirements. But in general, it consists of fetching the necessary cookie values and appending them to the URL before redirecting.
+
+For example, assuming you are navigating to another domain using a click event on a button, one possible approach is the following:
+
+```js
+document.getElementById('some-button').addEventListener('click', () => {
+    // use your preferred way of reading cookie values
+    let uid = getCookie('__cvg_uid')
+    let sid = getCookie('__cvg_sid')
+
+    window.location.href = `https://myotherdomain.com?__cvg_uid=${uid}&__cvg_sid=${sid}`
+})
+```
+
+<Note>
+Always validate that both `__cvg_uid` and `__cvg_sid` are present after navigating to another domain. If those are missing, Converge has no way of stitching the events correctly. This will potentially lead to sessions being attributed as organic referrals from your other domain.
+</Note>
 ---
 
 ## Manually instrumenting events
