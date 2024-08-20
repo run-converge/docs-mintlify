@@ -1745,3 +1745,89 @@ resp = requests.post(
 
 </Accordion>
 </AccordionGroup>
+
+
+---
+
+## Useful Additional Events
+
+Most ad platforms rely on the `email`-parameter being available on customer events. 
+For that reason, you will want to capture events that pick up this parameter.
+
+### Logged In
+
+When a user logs in.
+
+<AccordionGroup>
+
+<Note> This event typically is used for stitching website sessions to server-side orders, make sure to add appropriate [aliases](/sources/concepts/aliases)</Note>
+
+<Accordion title="Where To Track" icon="map-pin">
+  This event should be tracked on the client.
+</Accordion>
+
+<Accordion title="Event Properties" icon="list">
+
+    <ParamField body="$email" type="string" >
+    Email of the signed up user.
+    </ParamField>
+
+</Accordion>
+
+<Accordion title="Profile Properties" icon="address-card">
+
+    <ParamField body="$email" type="string" required>
+    Email Address of the user.
+    </ParamField>
+
+    <ParamField body="$phone_number" type="string">
+    Phone Number of the user including the `+` sign and country code. For example: `"+1 (917) 123-4567"` or `"+3295123456"`.
+    </ParamField>
+
+    <ParamField body="$city" type="string">
+    City of the user's address.
+    </ParamField>
+
+    <ParamField body="$country_code" type="string">
+    Country code of the user's address according to [ISO 3166](https://en.wikipedia.org/wiki/List_of_ISO_3166_country_codes).
+    </ParamField>
+
+     <ParamField body="$state" type="string">
+    State of the user's address.
+    </ParamField>
+
+    <ParamField body="$zip_code" type="string">
+    Zip code of the user's address.
+    </ParamField>
+
+</Accordion>
+
+<Accordion title="Code Example" icon="code">
+
+    <CodeGroup>
+
+```javascript JavaScript
+cvg({
+  method: "track",
+  eventName: "Logged In",
+  properties: {
+    $email: "john.smith@apple.com",
+  },
+  profileProperties: {
+    $email: "john.smith@apple.com",
+    $phone_number: "+199999999",
+    $city: "San Francisco",
+    $country_code: "US",
+    $state: "California",
+    $zip_code: "94103",
+  },
+  
+  // important, this will be used for stitching backend orders to website sessions
+  aliases: ["urn:email:john.smith@apple.com"],
+});
+```
+
+</CodeGroup>
+
+</Accordion>
+</AccordionGroup>
