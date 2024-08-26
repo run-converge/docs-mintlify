@@ -313,17 +313,40 @@ In this case, profiles A, B, and C, would all be mapped to D. To deal with this,
 
 ```sql SQL
 WITH RECURSIVE profile_merges AS (
-  SELECT timestamp, old_profile_id, new_profile_id, 1 depth
-  FROM `your-project-name.your-dataset-name.profile_merges`
+  SELECT 
+    timestamp, 
+    old_profile_id, 
+    new_profile_id, 
+    ARRAY[old_profile_id] AS visited_profiles,
+    1 AS depth,
+    FALSE AS is_circular_reference
+  FROM 
+    `your-project-name.your-dataset-name.profile_merges`
   UNION ALL
-  SELECT pmr.timestamp, pm.old_profile_id, pmr.new_profile_id, pm.depth + 1 depth
-  FROM profile_merges pm
-  JOIN `your-project-name.your-dataset-name.profile_merges` pmr
-  ON pm.new_profile_id = pmr.old_profile_id
+  SELECT 
+    pmr.timestamp, 
+    pm.old_profile_id,
+    pmr.new_profile_id, 
+    ARRAY_CONCAT(pm.visited_profiles, [pmr.new_profile_id]) AS visited_profiles,
+    pm.depth + 1 AS depth,
+    IF(pmr.new_profile_id IN UNNEST(pm.visited_profiles), TRUE, pm.is_circular_reference) AS is_circular_reference
+  FROM 
+    profile_merges pm
+  JOIN 
+    `your-project-name.your-dataset-name.profile_merges` pmr
+  ON 
+    pm.new_profile_id = pmr.old_profile_id
+  WHERE
+    pmr.timestamp > pm.timestamp
+    AND NOT pm.is_circular_reference
 )
-SELECT old_profile_id, max_by(new_profile_id, depth) new_profile_id
-FROM profile_merges
-GROUP BY old_profile_id
+SELECT 
+  old_profile_id, 
+  MAX_BY(new_profile_id, depth) AS new_profile_id
+FROM 
+  profile_merges
+GROUP BY 
+  old_profile_id;
 ```
 
 ### Pre-processed Attribution
