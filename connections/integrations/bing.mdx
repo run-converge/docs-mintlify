@@ -18,6 +18,7 @@ Connection Type: <IconText text="Client-side" name="browser" iconType="duotone" 
 ## Installation Instructions
 
    <Note> This is a client-side-only connection, meaning that you will need to be tracking all events client-side (including `Placed Order`) for this connection to work properly. </Note>
+   <Warning>Set up consent mode to track conversion in the EEA. See [below](#consent-mode).</Warning>
 
 
 <Steps >
@@ -92,6 +93,17 @@ Connection Type: <IconText text="Client-side" name="browser" iconType="duotone" 
 
 <Warning> Once you have installed your Converge Connection, you should **pause or remove all existing Bing Ads tracking**. Leaving these on will lead to duplicate tracking.  </Warning>
 
+
+---
+
+## Consent mode
+
+Bing Ads requires implementing [consent mode](https://help.ads.microsoft.com/#apex/ads/en/60119/1).
+In EEA, conversions may be ignored if consent is not explicitly granted.
+
+You should configure consent mode through your cookie banner, or instrument it manually according to the [documentation](https://help.ads.microsoft.com/#apex/ads/en/60119/1).
+
+The Converge connection will automatically pick up on the configured consent configuration.
 
 ---
 
