@@ -96,14 +96,14 @@ You can use the Webhook source to manually instrument these events.
 
 The webhook body has the following parameters: 
 
-| Parameter | Type     | Description                       |
-| :-------- | :------- | :-------------------------------- |
-| `event_name`      | `string` | **Required**. The name of the event |
-| `event_id` | `string` | **Required**. The ID of the event, used for [deduplication](/sources/source-concepts#deduplication) |
-| `properties` | `object` | **Required**. The event properties you want to pass, covering the [Converge Spec](/sources/server-integrations/webhook#event-spec) and possibly your own custom properties. |
-| `profile_properties` | `object` | **Required**. The [profile properties](/sources/source-concepts#profile-properties) |
-| `aliases` | `array[string]` | **Required**. Any [aliases](/sources/source-concepts#aliases). Must contain at least one alias, with a maximum of 10 aliases allowed. |
-| `timestamp` | `datetime` | **Optional**. The date and time when the event occurred. If not provided, the current time will be used. The timestamp can be expressed as a string in ISO 8601 format (e.g. `"2024-09-02T12:34:56+00:00"`) or a UTC timestamp (e.g. `1725312229`).  The string representation must specify a timezone.
+| Parameter | Type     |   | Description                       |
+| :-------- | :------- | :----  | :-------------------------------- |
+| `event_name`      | `string` | *Required* | The name of the event |
+| `event_id` | `string` | *Required* | The ID of the event, used for [deduplication](/sources/source-concepts#deduplication) |
+| `properties` | `object` | *Required* |The event properties you want to pass, covering the [Converge Spec](/sources/server-integrations/webhook#event-spec) and possibly your own custom properties. |
+| `profile_properties` | `object` | *Required* | The [profile properties](/sources/source-concepts#profile-properties) |
+| `aliases` | `array[string]` | *Required* | Any [aliases](/sources/source-concepts#aliases). Must contain at least one alias, with a maximum of 10 aliases allowed. |
+| `timestamp` | `datetime` | *Optional* | The date and time when the event occurred. If not provided, the current time will be used. The timestamp can be expressed as a string in ISO 8601 format (e.g. `"2024-09-02T12:34:56+00:00"`) or a UTC timestamp (e.g. `1725312229`).  The string representation must specify a timezone.
 
 
 ---
