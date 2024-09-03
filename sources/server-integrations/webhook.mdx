@@ -103,7 +103,7 @@ The webhook body has the following parameters:
 | `properties` | `object` | **Required**. The event properties you want to pass, covering the [Converge Spec](/sources/server-integrations/webhook#event-spec) and possibly your own custom properties. |
 | `profile_properties` | `object` | **Required**. The [profile properties](/sources/source-concepts#profile-properties) |
 | `aliases` | `array[string]` | **Required**. Any [aliases](/sources/source-concepts#aliases) |
-| `timestamp` | `timestamp` | **Optional**. The date and time when the event occurred, expressed as a UTC timestamp in ISO 8601 format (e.g., 2024-09-02T12:34:56Z). If not provided, the current UTC time will be used by default. This timestamp should be a string representing the date and time in UTC to ensure consistency across different systems.|
+| `timestamp` | `datetime` | **Optional**. The date and time when the event occurred. If not provided, the current time will be used. The timestamp can be expressed as a string in ISO 8601 format (e.g. `"2024-09-02T12:34:56+00:00"`) or a UTC timestamp (e.g. `1725312229`).  The string representation must specify a timezone.
 
 
 ---
