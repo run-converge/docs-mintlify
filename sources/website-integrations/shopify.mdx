@@ -3,6 +3,8 @@ title: "Shopify Web"
 description: "Install the Shopify Website Pixel"
 ---
 
+import { OutboundLink } from "/snippets/links.mdx";
+
 The Shopify Website Integration consists of two integrations covering the full tracking spec.
 1. The Shopify Storefront Integration
 2. The Shopify Checkout Integration
@@ -130,6 +132,12 @@ The installation process of Converge is slightly different based on whether you 
 
 <Note>
   If you have multiple Shopify stores active in **different countries**, please check our guide on Shopify Internationalization [here](/guides/shopify-markets).
+</Note>
+
+<Note>
+The integration relies on Shopify Standard Events (see <OutboundLink linkText="Shopify Standard Events" linkTarget="https://shopify.dev/docs/api/web-pixels-api/standard-events"/> for reference).
+
+If you are using custom code to handle, for example, cart, checkout, or payment, it's possible that the standard Shopify events will not be triggered or will have missing data. In those cases, you may need to implement the affected tracking events manually. See [Manually instrumenting events](http://localhost:4000/sources/website-integrations/converge-pixel#manually-instrumenting-events) for reference. 
 </Note>
 
 ---
