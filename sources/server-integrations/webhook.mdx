@@ -13,17 +13,23 @@ description: "Connect your Server-side data to Converge"
         4. Click on **Create Source**.
     </Step>
     <Step title="Send a dummy event">
-        4. Click on your newly created Source and copy the webhook endpoint.
-       
-        5. Verify that your Webhook Source is working by sending a dummy [Placed Order](/sources/converge-spec#placed-order) event request. 
+        4. Click on your newly created Source. You will see a Webhook Endpoint URL and Webhook Token under the source configuration tab.
+        ![webhook_config](/images/sources/webhooks/webhook-1.png)
+        <Note>
+            The Webhook Token has been added recently to improve error messaging for easier issue diagnosis. Existing integrations that do not use a Webhook Token remain unaffected.
+        </Note>
+        5. The Webhook Endpoint is the URL where you'll send the events to.
+        6. Ensure the Webhook Token is included as a header using the header key `X-Webhook-Token`.
+        5. Verify that your Webhook Source is working by sending a dummy [Placed Order](/sources/converge-spec#placed-order) event request. Ensure the request meets the following parameters outlined in [Manually instrumenting events](/sources/server-integrations/webhook#manually-instrumenting-events)
          <Accordion icon="code" title="Code example"> 
-         <Note> You should fill in your own webhook endpoint from the Converge UI in the code example below</Note>
+         <Note> You should include the webhook token from the Converge UI in the code example below</Note>
    <CodeGroup>
    
    ```cURL cURL
   curl -X POST \
-  "{YOUR_POSTBACK_ENDPOINT}" \
+  "https://app.runconverge.com/api/webhooks" \
   -H "Content-Type: application/json" \
+  -H "X-Webhook-Token: {YOUR_WEBHOOK_TOKEN}" \
   -d '{
     "event_name": "Placed Order",
     "event_id": "order-1",
@@ -86,15 +92,19 @@ description: "Connect your Server-side data to Converge"
 If the pre-built server integrations do not cover the applicable conversions from the [Converge Event Spec](/sources/converge-spec); or if you want to add custom events from your website then you will need to manually instrument these using the Converge Pixel.
 You can use the Webhook source to manually instrument these events.
 
-<Info> As a general rule, you should always **aim to pass as many `properties`, `profileProperties` and `aliases` as possible** </Info>
+<Info> As a general rule, you should always **aim to pass as many `properties`, `profile_properties` and `aliases` as possible** </Info>
 
 The webhook body has the following parameters: 
 
-- `event_name`: The name of the event
-- `event_id`: The ID of the event, used for [deduplication](/sources/source-concepts#deduplication)
-- `properties`: The event properties you want to pass, covering the Converge Spec and possibly your own custom properties.
-- `profile_properties`: The [profile properties](/sources/source-concepts#profile-properties)
-- `aliases`: Any [aliases](/sources/source-concepts#aliases)
+| Parameter | Type     |   | Description                       |
+| :-------- | :------- | :----  | :-------------------------------- |
+| `event_name`      | `string` | *Required* | The name of the event |
+| `event_id` | `string` | *Required* | The ID of the event, used for [deduplication](/sources/source-concepts#deduplication) |
+| `properties` | `object` | *Required* |The event properties you want to pass, covering the [Converge Spec](/sources/server-integrations/webhook#event-spec) and possibly your own custom properties. |
+| `profile_properties` | `object` | *Required* | The [profile properties](/sources/source-concepts#profile-properties) |
+| `aliases` | `array[string]` | *Required* | Any [aliases](/sources/source-concepts#aliases). Must contain at least one alias, with a maximum of 10 aliases allowed. |
+| `timestamp` | `datetime` | *Optional* | The date and time when the event occurred. If not provided, the current time will be used. The timestamp can be expressed as a string in ISO 8601 format (e.g. `"2024-09-02T12:34:56+00:00"`) or a UTC timestamp (e.g. `1725312229`).  The string representation must specify a timezone.
+
 
 ---
 
