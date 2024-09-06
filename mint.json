@@ -1,6 +1,7 @@
 {
   "$schema": "https://mintlify.com/schema.json",
   "name": "Converge Documentation",
+  "theme" : "quill",
   "logo": {
     "dark": "/logo/logo.svg",
     "light": "/logo/logo.svg",
@@ -12,6 +13,14 @@
     "light": "#81D7F7",
     "dark": "#7C3AED"
   },
+  "modeToggle": {
+    "default": "light"
+  },
+  "layout": "sidenav",
+  "sidebar": {
+    "items": "border"
+  },
+  "rounded" : "default",
   "topbarLinks": [
     {
       "name": "Documentation",
