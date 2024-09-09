@@ -1,0 +1,70 @@
+---
+title: "Reddit"
+description: "An introduction to the Reddit Ads Destination"
+---
+
+import { Icon, IconText } from '/snippets/icons.mdx';
+import { OutboundLink } from '/snippets/links.mdx';
+
+## Overview
+Connection Type: <IconText text="Client-side" name="browser" iconType="duotone" iconLocation="after"/>  and <IconText text="Server-side" name="server" iconType="duotone" iconLocation="after"/>
+- Includes support for the <OutboundLink linkText="Reddit Conversions API" linkTarget="https://business.reddithelp.com/helpcenter/s/article/Conversions-API"/> 
+
+--- 
+
+## Installation Instructions
+
+1. In Converge, click the **Create new connection** button from the **Connections** page. Give your connection an appropriate name and **choose the Reddit App**.
+
+2. Click on the **Sign in with Reddit**-button.
+
+3. Click on **Allow**.
+    <Frame> 
+     ![](/images/connections/reddit/reddit-ads-0.png)
+    </Frame>
+
+4. Select your Reddit Ads Account. 
+
+5. Click on **Create Connection**. 
+
+6. Done.
+
+
+<Warning> Once you have installed your Converge Connection, you should **pause or remove all existing Reddit tracking**. Leaving these on will lead to duplicate tracking.  </Warning>
+
+
+---
+
+## Converge functionality
+
+This integration supports the following Converge connection functionality.
+
+| Converge Feature        |       Supported       |
+| :---------------------- | :-------------------: |
+| Custom Events           | <Icon name="check" /> |
+| Filters                 | <Icon name="check" /> |
+| Server-side Conversions | <Icon name="check" /> |
+
+
+---
+
+## Event Mapping
+
+Converge automatically maps the following events from the [Converge Event Spec](/sources/converge-spec) to the Reddit spec.
+
+| Converge Event Name                                                                               | Reddit Event Name                         |
+| ------------------------------------------------------------------------------------------------- | --------------------------------------- |
+| [$page_load](/sources/converge-spec#page-load)                                                    | `PageVisit`                              |
+| [Viewed Product](/sources/converge-spec#viewed-product)                                           | `ViewContent`                           |
+| [Added To Cart](/sources/converge-spec#added-to-cart)                                             | `AddToCart`                             |
+| [Started Checkout](/sources/converge-spec#started-checkout)                                       | `InitiateCheckout`                      |
+| [Added Payment Info](/sources/converge-spec#added-payment-info)                                   | `AddPaymentInfo`                        |
+| [Placed Order](/sources/converge-spec#placed-order)                                               | `Purchase`                              |
+
+
+This integration also auto-tracks some additional events that are not part of the Meta Base Spec but are so heavily requested that we automatically forward them.
+
+| Converge Event Name                                                       | Meta Event Name       |
+| ------------------------------------------------------------------------- | --------------------- |
+| [Placed Order](/sources/converge-spec#placed-order)  (New Customers Only) | `NewCustomerPurchase` |
+|                                                                           |                       |

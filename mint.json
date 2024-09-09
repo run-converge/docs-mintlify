@@ -121,7 +121,8 @@
             "connections/integrations/klaviyo",
             "connections/integrations/awin",
             "connections/integrations/postscript",
-            "connections/integrations/criteo"
+            "connections/integrations/criteo",
+            "connections/integrations/reddit"
           ]
         },
         "connections/filters",
