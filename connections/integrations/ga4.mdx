@@ -150,12 +150,6 @@ When enabled, Converge will load the gtag script hosted by Converge.
 
 When enabled, Converge makes sure to inject the Google Consent Parameters on server-side captured events as per the corresponding browser session.
 
-#### Set user ID
-
-Includes the customer ID as the `user_id` for GA4 events. 
-The User ID feature in GA4 has some known issues, please only turn this on if you have a good reason to do so.
-
-
 ---
 
 ## Converge functionality
@@ -220,6 +214,23 @@ This integration supports the following Converge connection functionality.
 
   3. Make sure that your Google Analytics 4 property is **not connected**.
 
+</Accordion>
+
+
+<Accordion title='Does Converge support the GA4 user ID feature?'>
+  Converge does not integrate with the GA4 user ID.
+  This is a conscious decision because it leads to downstream data accuracy issues.
+  
+  Capturing the GA4 user ID limits the number of anonymous sessions captured for a customer to one.
+  Therefor it does not make sense to capture this in a marketing attribution context where as much anonymous activity as possible should be captured.
+
+  For example, when an entirely new visitor visits your website, the following activity could be captured:
+  - They land on your website after clicking on a Facebook ad.
+  - Later in the day, they do Google search for your product.
+  - They place a purchase, and the user ID is captured.
+
+  In the above case, only the Google session would be attributed to the user ID, and the Facebook session remains anonymous.
+  When the user ID option is not used, all sessions are captured and attributed to the correct source.
 </Accordion>
 
 </AccordionGroup>
