@@ -134,6 +134,7 @@
     {
       "group": "Attribution",
       "pages": [
+        "attribution/utm-parameters",
         "attribution/overview",
         "attribution/channels",
         "attribution/metrics"
