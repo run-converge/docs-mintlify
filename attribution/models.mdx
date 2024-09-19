@@ -1,0 +1,137 @@
+---
+title: Attribution Models
+description: "Learn how different attribution models in Converge work"
+---
+
+import {Icon} from '/snippets/icons.mdx';
+
+
+## Overview Table
+
+The overview table below gives a overview how different models would attribute a conversion journey with four different touchpoints.
+
+| Attribution Model | First Touch | Middle Touch 1 | Middle Touch 2 | Last Touch | Only Paid Channels | 
+| ---  | --- | --- | --- | --- | --- | 
+|  [First Touch](#first-touch) | 100% | 0% | 0% | 0% | <Icon name="xmark"/> | 
+|  [First Touch Paid Only](#first-touch-paid-only) | 100% | 0% | 0% | 0% | <Icon name="check"/> | 
+|  [Last Touch](#last-touch)| 0% | 0% | 0% | 100% | <Icon name="xmark"/> | 
+|  [Last Touch Paid Only](#last-touch-paid-only) | 0% | 0% | 0% | 100% | <Icon name="check"/> | 
+|  [Linear](#linear) | 25% | 25% | 25% | 25% | <Icon name="xmark"/> | 
+|  [Participation](#participation) | 100% | 100% | 100% |  100% |<Icon name="xmark"/> | 
+|  [J-Shaped](#j-shaped)| 10% | 10% | 20% | 60% | <Icon name="xmark"/> | 
+|  [Inverse J-Shaped](#inverse-j-shaped) | 60% | 20% | 10% | 10% | <Icon name="xmark"/> | 
+|  [U-Shaped](#u-shaped) | 40% | 10% | 10% | 40% | <Icon name="xmark"/> | 
+|  [Time Decay](#time-decay)* | - | - | - | - | <Icon name="xmark"/> | 
+
+
+\* The Time Decay model takes into account the time between each touchpoint, which is not present in the simplified table above. 
+You can read more about the Time Decay model [here](#time-decay)
+
+
+## Attribution Models
+
+### First Touch
+
+**Description**: All credit for the conversion is given to the first touchpoint Converge observed in this customer journey.
+This touchpoint can be either a **paid** channel (e.g. Facebook-) or a **non-paid** channel (e.g. Organic Search)
+
+**Usecase**: Helpful to check how channels relatively contribute more in acquiring **prospective customers**.
+
+| First Touch  | Middle Touch 1 | Middle Touch 2 | Last Touch | 
+| --- | --- | --- | --- |
+| 100% | 0% | 0% | 0% |
+
+### First Touch Paid Only
+
+<Note> If no paid touchpoint can be found, then the conversion will be attributed to *No web touchpoint*. </Note>
+
+**Description**: All credit for the conversion is given to the first **paid** touchpoint Converge observed in this customer journey.
+
+**Usecase**: Helpful to check how paid channels are contributing to acquiring **prospective customers**.
+
+| First Touch  | Middle Touch 1 | Middle Touch 2 | Last Touch | 
+| --- | --- | --- | --- |
+| 100% | 0% | 0% | 0% |
+
+### Last Touch
+
+**Description**: All credit for the conversion is given to the last touchpoint Converge observed in this customer journey.
+This touchpoint can be either a **paid** channel (e.g. Facebook-) or a **non-paid** channel (e.g. Organic Search)
+
+**Usecase**: Helpful to check how channels relatively contribute to **converting prospects into customers**.
+
+| First Touch  | Middle Touch 1 | Middle Touch 2 | Last Touch | 
+| --- | --- | --- | --- |
+| 0% | 0% | 0% | 100% |
+
+### Last Touch Paid Only
+
+<Note> If no paid touchpoint can be found, then the conversion will be attributed to *No web touchpoint*. </Note>
+
+**Description**: All credit for the conversion is given to the last **paid** touchpoint Converge observed in this customer journey.
+
+**Usecase**: Helpful to check how channels relatively contribute to **converting prospects into customers**.
+
+| First Touch  | Middle Touch 1 | Middle Touch 2 | Last Touch | 
+| --- | --- | --- | --- |
+| 0% | 0% | 0% | 100% |
+
+### Linear
+
+**Description**: The conversion will be evenly attributed to all touchpoints in this customer journey. For example with 2 touchpoints each would receive 50% credit and with 3 touchpoints each would receive 33.3%.
+
+**Usecase**: Helpful to check how channels relatively contribute to the complete customer journey to conversion.
+
+| First Touch  | Middle Touch 1 | Middle Touch 2 | Last Touch | 
+| --- | --- | --- | --- |
+| 25% | 25% | 25% | 25% |
+
+### Participation
+
+<Note> It is normal for a participation model to show more attributed conversions than there are actual conversions because it will attribute the same conversion to multiple channels</Note>
+
+<Warning> It is possible for a single conversion to be attributed twice to the same channel if the customer has multiple touchpoints from different ads or campaigns within that channel</Warning>
+
+**Description**: The conversion will be **fully attributed to all touchpoints** in this customer journey. For example with 2 touchpoints each would receive 100% credit and with 3 touchpoints each would receive 100%
+
+**Usecase**: Helpful to understand how many customer journey touchpoints an ad or campaign has driven in aggreggate.
+
+| First Touch  | Middle Touch 1 | Middle Touch 2 | Last Touch | 
+| --- | --- | --- | --- |
+| 100% | 100% | 100% | 100% |
+
+### J-Shaped
+
+**Description**: The conversion will be attributed across all touchpoints in this customer journey but will bias more towards the Last Touch.  With 2 touchpoints the first 20% is equally added to the last and middle touch points (30%, 70%). With 4 touch points the first 2 touchpoints would share the 20% (10%, 10%, 20%, 60%).
+
+**Usecase**: Helpful to use as your main model if you prefer a Last Touch model in general but still want other touchpoints to contribute to the final evaluation.
+
+| First Touch  | Middle Touch 1 | Middle Touch 2 | Last Touch | 
+| --- | --- | --- | --- |
+| 10% | 10% | 20% | 60% |
+
+### Inverse J-Shaped
+
+**Description**: The conversion will be attributed across all touchpoints in this customer journey but will bias more towards the First Touch.  With 2 touchpoints the last 20% is equally added to the first and middle touch points (70%, 30%). With 4 touch points the last 2 touchpoints would share the 20% (60%, 20%, 10%, 10%).
+
+**Usecase**: Helpful to use as your main model if you prefer a First Touch model in general but still want other touchpoints to contribute to the final evaluation.
+
+| First Touch  | Middle Touch 1 | Middle Touch 2 | Last Touch | 
+| --- | --- | --- | --- |
+| 60% | 20% | 10% | 10% |
+
+### U-Shaped
+
+**Description**: The conversion will be attributed across all touchpoints in this customer journey but will bias more towards the First Touch and the Last Touch.  With 2 touchpoints the middle 20% is equally added to the first and last touch points (50%, 50%). With 4 touch points the last 2 touchpoints would share the 20% (40%, 10%, 10%, 40%).
+
+**Usecase**: Helpful to check how channels relatively contribute to the complete customer journey to conversion if you believe that the First and Last Touch are more important than other touches in the customer journey.
+
+| First Touch  | Middle Touch 1 | Middle Touch 2 | Last Touch | 
+| --- | --- | --- | --- |
+| 40% | 10% | 10% | 40% |
+
+### Time Decay
+
+**Description**: The conversion will be attributed across all touchpoints in this customer journey but the closer the touchpoint is to conversion, the more weight it will receive. A touchpoint that is 7 days away from conversion gets half as much weight as a touchpoint on the same day as conversion.
+
+**Usecase**: Helpful to check how channels relatively contribute to the complete customer journey if you believe that channels are relatively less important if they are further away from the conversion.

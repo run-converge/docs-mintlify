@@ -135,6 +135,7 @@
       "group": "Attribution",
       "pages": [
         "attribution/utm-parameters",
+        "attribution/models",
         "attribution/overview",
         "attribution/channels",
         "attribution/metrics"
