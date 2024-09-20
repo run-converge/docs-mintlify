@@ -39,3 +39,8 @@ You can also preview changes using PRs, which generates a preview link of the do
 ```
 npx cspell .
 ```
+
+### Linting Markdown Tables
+
+1. Install the VSCode Plugin [here](https://marketplace.visualstudio.com/items?itemName=TakumiI.markdowntable)
+2. Navigate to the Markdown Table, place your cursor in it and press `Tab`.
