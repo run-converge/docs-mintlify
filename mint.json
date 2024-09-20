@@ -106,23 +106,49 @@
           "group": "Integrations",
           "pages": [
             "connections/integrations/overview",
-            "connections/integrations/facebook",
-            "connections/integrations/google-ads",
-            "connections/integrations/ga4",
-            "connections/integrations/tiktok",
-            "connections/integrations/snapchat",
-            "connections/integrations/bing",
-            "connections/integrations/pinterest",
-            "connections/integrations/twitter",
-            "connections/integrations/outbrain",
-            "connections/integrations/taboola",
-            "connections/integrations/bigquery",
-            "connections/integrations/custom-html",
-            "connections/integrations/klaviyo",
-            "connections/integrations/awin",
-            "connections/integrations/postscript",
-            "connections/integrations/criteo",
-            "connections/integrations/reddit"
+            {
+              "group": "Ad Platforms",
+              "pages": [
+                "connections/integrations/facebook",
+                "connections/integrations/google-ads",
+                "connections/integrations/tiktok",
+                "connections/integrations/snapchat",
+                "connections/integrations/bing",
+                "connections/integrations/pinterest",
+                "connections/integrations/twitter",
+                "connections/integrations/outbrain",
+                "connections/integrations/taboola",
+                "connections/integrations/criteo",
+                "connections/integrations/awin",
+                "connections/integrations/reddit"
+              ]
+            },
+            {
+              "group": "Analytics",
+              "pages": [
+                "connections/integrations/ga4"
+              ]
+            },
+            {
+              "group": "Email & SMS",
+              "pages": [
+                "connections/integrations/klaviyo",
+                "connections/integrations/postscript"
+              ]
+            },
+            {
+              "group": "Data Warehouses",
+              "pages": [
+                "connections/integrations/bigquery"
+              ]
+            },
+            {
+              "group": "A/B Testing",
+              "pages": [
+                "connections/integrations/convert"
+              ]
+            },         
+            "connections/integrations/custom-html"
           ]
         },
         "connections/filters",

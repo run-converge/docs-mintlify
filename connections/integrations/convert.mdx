@@ -1,0 +1,64 @@
+---
+title: "Convert"
+description: "An introduction to the Convert Destination"
+---
+
+import { Icon, IconText } from '/snippets/icons.mdx';
+import { OutboundLink } from '/snippets/links.mdx';
+
+## Overview
+
+Connection Type: <IconText text="Server-side" name="server" iconType="duotone" iconLocation="after"/>
+
+<Note> This Converge Connection only supports <OutboundLink linkText="Revenue Goals" linkTarget="https://support.convert.com/hc/en-us/articles/204495499-add-revenue-tracking-to-your-site"/> in Convert.</Note>
+
+---
+
+## Installation Instructions
+
+<Steps>
+<Step icon="bullseye" title="1. Create a new revenue goal">
+
+1. In your Convert dashboard, go to **Goals**  and select **New Goal**.
+2. Click on **Revenue goal**.
+    <Frame> ![revenue-goal-picker](/images/connections/convert/revenue-goal.png) </Frame>
+3. Give your goal a name, e.g. `[Converge] Revenue` and choose **Manual Revenue Tracking**. You can leave Goal Description blank.
+4. Click on **Save Goal**.
+5. Copy the Revenue **Goal ID**, you will need it later.
+    <Frame> ![revenue-goal-picker](/images/connections/convert/goal-id.png) </Frame>
+6. Also write down your **Account Id**, you can find it in the top right corner of the Convert Dashboard.
+    <Frame> ![account-id](/images/connections/convert/account-id.png) </Frame>
+7. Lastly, navigate to **Configuration** > **General Settings** and copy your **Project ID**.
+</Step>
+
+<Step icon="list" title="2. Create the Converge Connection">
+8. In Converge, click **Create a new connection** under the **Connections** tab. Select the **Convert** app.
+9. Fill in the **Account ID**, **Project ID** and **Revenue Goal ID** you retrieved from the previous steps.
+10. Click on **Create Connection**.
+
+</Step>
+
+</Steps>
+
+---
+
+## Converge functionality
+
+This integration supports the following Converge connection functionality.
+
+| Converge Feature        |       Supported       |
+| ----------------------- | :-------------------: |
+| Custom Events           | <Icon name="xmark" /> |
+| Filters                 | <Icon name="xmark" /> |
+| Server-side Conversions | <Icon name="xmark" /> |
+
+
+## Event Mapping
+
+Converge automatically maps the following events from the [Converge Event Spec](/sources/converge-spec) to the Postscript spec.
+
+<Note> This connection does not forward events like a regular </Note>
+
+| Converge Event Name                                           | Convert           |
+| ------------------------------------------------------------- | ------------------------------ |
+| [Placed Order](/sources/converge-spec#placed-order)           | `Revenue`        |
