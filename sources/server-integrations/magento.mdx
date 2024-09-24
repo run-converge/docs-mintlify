@@ -1,7 +1,9 @@
 ---
-title: "Magento v2"
-description: "Connect your Magento v2 store backend to Converge"
+title: "Magento 2"
+description: "Connect your Magento 2 store backend to Converge"
 ---
+
+import { OutboundLink } from '/snippets/links.mdx';
 
 ## Installation Instructions
 
@@ -51,6 +53,47 @@ description: "Connect your Magento v2 store backend to Converge"
     </Steps>
 
     <Note> You should see the Source syncing all historical order data, you should wait until it's fully synced to create connections </Note>
+
+## Configuration
+
+### Storefront domain
+
+If your storefront is hosted on a different domain than your API, please provide the domain in the **Storefront domain**.
+This domain should match the domain on which the Magento Storefront Module was installed.
+For example, `www.example.com`.
+
+<Note>
+    Pay attention to provide the full domain here. Depending on your setup, it might be necessary to include `www.`, or not.
+    You can inspect the full domain in the browser's address bar when you visit your storefront. Click on the address bar to see the full URL.
+</Note>
+
+### Filter by store view name
+
+You can scope your Magento integration to only include orders from a specific store view.
+This may be useful if you have multiple store views in your Magento installation and want to separate them out in Converge.
+
+
+### Only track orders once they reach a status
+
+You can customize where in the order lifecycle Converge starts tracking orders.
+This can be useful if you want to exclude unconfirmed orders or only track orders that have been paid for.
+
+The default order status lifecycle is documented by Magento <OutboundLink linkText="here" linkTarget="https://experienceleague.adobe.com/en/docs/commerce-admin/stores-sales/order-management/orders/order-status"/>.
+
+<Accordion title="Default lifecycle example">
+    For the default order lifecycle, you could specify `processing` to only track orders that have been paid for.
+    
+    The order reaches the `processing` status after the payment has been confirmed, before it is shipped.
+</Accordion>
+
+<Note>
+    Converge will track the order whenever it reaches any of the specified status. The order may still go through multiple transitions after this point.
+</Note>
+
+<Warning>
+    Depending on your Magento installation, the order lifecycle may have been customized.
+    Make sure to consult on any changes with your Magento developer.
+</Warning>
  
 ---
 
