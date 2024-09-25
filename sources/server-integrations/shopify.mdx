@@ -62,6 +62,21 @@ You can turn this option on in the configuration of the integration:
 
 ---
 
+## Filtering out certain orders at ingestion
+
+You might want to make sure certain order types never make it into Converge (e.g. test orders). 
+
+The Converge Shopify source allows you to configure order exclusions based on their channel or applied tag. 
+E.g. You can filter out all `pos` orders or filter out all orders with an `Exclude`-tag. 
+
+To configure, navigate to <OutboundLink linkText="Sources" linkUrl="https://app.runconverge.com/-/sources" /> and click on your Shopify source. 
+Then, under configuration mark the exact criteria by which you want to exclude orders from arriving in Converge.
+
+<Frame> ![source-filters](/images/sources/shopify/filter-out-channels-tags.png) </Frame>
+
+
+--- 
+
 ## Event Spec
 
 This integration auto-tracks the following events on the server with all properties available according to the [Converge Event Spec](/sources/converge-spec).
