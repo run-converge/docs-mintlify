@@ -5,46 +5,44 @@ description: "Introduction to Aliases"
 
 import {OutboundLink} from '/snippets/links.mdx';
 
-## Introduction to aliases
+## Introduction to Aliases
 
-### Server-side tracking and stitching problems
+### Server-side tracking and stitching challenges
 
-One of the main challenges with server-side tracking comes from being able to **stitch server-side conversions to their corresponding browser sessions**.
+A common challenge with server-side tracking is the ability to **link server-side conversions with their corresponding browser sessions**.
 
-If server-side conversions cannot be linked to a browser sessions then that leads to downstream problems:
-- **Conversions will not have browser-side information** (e.g. cookies, IP addresses) leading to lower ad performance and matching rates for [Connections](/connections/integrations/overview).
-- **Conversions will not be able to be attributed**.
+If conversions cannot be tied to browser sessions, it results in several downstream issues:
+- **Missing browser-side data** (e.g., cookies, IP addresses), leading to reduced ad performance and lower matching rates for [Connections](/connections/integrations/overview).
+- **Inability to attribute conversions** properly.
 
 ```mermaid
 flowchart LR
-  id1("\`*Browser* \n Viewed Page\`") --> id2("\`*Browser* \n Started Checkout\`") -..- id3("\`*Server* \n Placed Order\`") ~~~ id4(["\`**Unstitched**  ⚠️ \`"])
+  id1("\`*Browser* \n Viewed Page\`") --> id2("\`*Browser* \n Started Checkout\`") -..- id3("\`*Server* \n Placed Order\`") ~~~ id4(["\`**Unstitched** ⚠️ \`"])
   style id4 fill:#ffecec,stroke:none
-
 ```
 
-Converge uses **aliases** to be able to solve for this problem.
+Converge resolves this issue through the use of **aliases**.
 
 ### What are aliases?
 
-Simply put, **an alias is a unique identifier for this profile across datasources**. 
-To solve the stitching problem above, we could pass a `checkout_token` alias both on the browser-side **Started Checkout**-event, as well as on the server-side **Placed Order**-event allowing Converge to recognise that these events are part of the same profile and session.
+An **alias** is a unique identifier for a profile across different data sources. 
+
+To address the stitching issue, you can pass a `checkout_token` alias in both the browser-side **Started Checkout** event and the server-side **Placed Order** event. This enables Converge to recognize that both events belong to the same profile and session.
 
 ```mermaid
 flowchart LR
-  id1("\`*Browser* \n Viewed Page\`") --> id2("\`*Browser* \n Started Checkout \n **alias=checkout_token_xyz**\`") --> id3("\`*Server* \n Placed Order \n **alias=checkout_token_xyz**\`") ~~~ id4(["\`**Stitched**   ✓ \`"])
+  id1("\`*Browser* \n Viewed Page\`") --> id2("\`*Browser* \n Started Checkout \n **alias=checkout_token_xyz**\`") --> id3("\`*Server* \n Placed Order \n **alias=checkout_token_xyz**\`") ~~~ id4(["\`**Stitched** ✓ \`"])
   style id4 fill:#ecffec,stroke:none
-
 ```
 
-Aliases are typically used to stitch server-side conversions to website sessions, but you can also use aliases to merge profiles across multiple website domains, browsers or devices. 
+Aliases are primarily used to link server-side conversions with browser sessions, but they can also merge profiles across different websites, browsers, or devices.
 
-Converge uses the customer's browser session cookie as the default alias in [Converge JS](/sources/website-integrations/converge-pixel.mdx). 
-Furthermore, Converge has a set of default aliases for its default source integrations.
+In [Converge JS](/sources/website-integrations/converge-pixel), the customer's browser session cookie is used as the default alias. Additionally, Converge provides a set of default aliases for its integrations.
 
-Some aliases that are typically useful to add:
-- `cart_token`
-- `checkout_token`: this is absolutely necessary if your checkout lives on a different domain than your storefront token.
-- `customer_id`
+Commonly useful aliases include:
+- **Cart Token** (e.g. `urn:cart_token:123xyz`): can be used to stitch a checkout on a different domain with the storefront session; or to stitch a server-side purchase to a website session.
+- **Checkout Token** (e.g. `urn:checkout_token:456abc`): can be used to stitch a checkout on a different domain with the storefront session; or to stitch a server-side purchase to a website session.
+- **Email** (e.g. `urn:email:john.smith@apple.com`): can be used to stitch a server-side order to a checkout session
 
 <Accordion title="Code Examples" icon="code">
  <CodeGroup>
@@ -93,6 +91,7 @@ cvg({
 
 </CodeGroup>
 </Accordion>
+
 
 ---
 
