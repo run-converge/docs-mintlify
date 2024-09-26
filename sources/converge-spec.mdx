@@ -694,8 +694,8 @@ When a user places an order.
 <AccordionGroup>
 
 <Note>
-  **Conversion event**: you should adhere to the **Where To Track** and
-  **Deduplication** guidelines.
+  **Conversion event**: you should adhere to the **Where To Track**, 
+  **Deduplication** and **Session Stitching** guidelines.
 </Note>
 
 <Accordion title="Where To Track" icon="map-pin">
@@ -705,6 +705,19 @@ When a user places an order.
 <Accordion title="Deduplication" icon="check-double">
   You should pass a unique `eventID` so client-side and server-side copies of
   the same order can be deduplicated.
+</Accordion>
+
+<Accordion title="Session Stitching" icon="code-merge">
+   You should make sure that the conversion can be stitched to the corresponding website session by including the right set of **aliases** on this event and corresponding web events.
+  
+  Commone **aliases** are:
+  - Email: `urn:email:john.smith@apple.com`
+  - Checkout Token: `urn:checkout_token:xyz_123`
+  - Customer ID: `urn:customer_id:123456`
+
+  Which alias you use depends on your exact setup and which identifiers are available both on the browser and the server in a user journey.
+
+  Learn more about session stitching and aliases [here](/sources/concepts/aliases#server-side-tracking-and-stitching-problems).
 </Accordion>
 
 <Accordion title="Event Properties" icon="list">
@@ -1105,8 +1118,7 @@ When a user starts a subscription.
 <AccordionGroup>
 
 <Note>
-  **Conversion event**: you should adhere to the **Where To Track**
-  guidelines.
+  **Conversion event**: you should adhere to the **Where To Track**, **Deduplication** and **Session Stitching** guidelines.
 </Note>
 
 <Accordion title="Where To Track" icon="map-pin">
@@ -1118,6 +1130,18 @@ When a user starts a subscription.
   the same order can be deduplicated.
 </Accordion>
 
+<Accordion title="Session Stitching" icon="code-merge">
+  You should make sure that the conversion can be stitched to the corresponding website session by including the right set of **aliases** on this event and corresponding web events.
+  
+  Commone **aliases** are:
+  - Email: `urn:email:john.smith@apple.com`
+  - Checkout Token: `urn:checkout_token:xyz_123`
+  - Customer ID: `urn:customer_id:123456`
+
+  Which alias you use depends on your exact setup and which identifiers are available both on the browser and the server in a user journey.
+
+  Learn more about session stitching and aliases [here](/sources/concepts/aliases#server-side-tracking-and-stitching-problems).
+</Accordion>
 
 <Accordion title="Event Properties" icon="list">
 

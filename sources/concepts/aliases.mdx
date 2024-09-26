@@ -5,15 +5,43 @@ description: "Introduction to Aliases"
 
 import {OutboundLink} from '/snippets/links.mdx';
 
-Converge excels at matching events across browser sessions and your server-side data. This is all possible through aliases. 
-Your customer is linked to multiple aliases, i.e. **multiple identifiers for the same customer**. 
+## Introduction to aliases
 
-Converge uses the customer's browser session cookie as the default alias.
-When you add something as an alias, you are telling Converge that this alias is a unique identifier for this profile **across datasources**. 
+### Server-side tracking and stitching problems
 
-As an example, Converge can merge a profile of browser events (e.g. Pageviews) with a profile with backend events (e.g. Started Subscription) if they have the same `email`.
+One of the main challenges with server-side tracking comes from being able to **stitch server-side conversions to their corresponding browser sessions**.
 
-Other aliases that are useful:
+If server-side conversions cannot be linked to a browser sessions then that leads to downstream problems:
+- **Conversions will not have browser-side information** (e.g. cookies, IP addresses) leading to lower ad performance and matching rates for [Connections](/connections/integrations/overview).
+- **Conversions will not be able to be attributed**.
+
+```mermaid
+flowchart LR
+  id1("\`*Browser* \n Viewed Page\`") --> id2("\`*Browser* \n Started Checkout\`") -..- id3("\`*Server* \n Placed Order\`") ~~~ id4(["\`**Unstitched**  ⚠️ \`"])
+  style id4 fill:#ffecec,stroke:none
+
+```
+
+Converge uses **aliases** to be able to solve for this problem.
+
+### What are aliases?
+
+Simply put, **an alias is a unique identifier for this profile across datasources**. 
+To solve the stitching problem above, we could pass a `checkout_token` alias both on the browser-side **Started Checkout**-event, as well as on the server-side **Placed Order**-event allowing Converge to recognise that these events are part of the same profile and session.
+
+```mermaid
+flowchart LR
+  id1("\`*Browser* \n Viewed Page\`") --> id2("\`*Browser* \n Started Checkout \n **alias=checkout_token_xyz**\`") --> id3("\`*Server* \n Placed Order \n **alias=checkout_token_xyz**\`") ~~~ id4(["\`**Stitched**   ✓ \`"])
+  style id4 fill:#ecffec,stroke:none
+
+```
+
+Aliases are typically used to stitch server-side conversions to website sessions, but you can also use aliases to merge profiles across multiple website domains, browsers or devices. 
+
+Converge uses the customer's browser session cookie as the default alias in [Converge JS](/sources/website-integrations/converge-pixel.mdx). 
+Furthermore, Converge has a set of default aliases for its default source integrations.
+
+Some aliases that are typically useful to add:
 - `cart_token`
 - `checkout_token`: this is absolutely necessary if your checkout lives on a different domain than your storefront token.
 - `customer_id`
