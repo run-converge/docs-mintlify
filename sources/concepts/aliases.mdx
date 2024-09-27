@@ -18,7 +18,7 @@ If conversions cannot be tied to browser sessions, it results in several downstr
 ```mermaid
 flowchart LR
   id1("\`*Browser* \n Viewed Page\`") --> id2("\`*Browser* \n Started Checkout\`") -..- id3("\`*Server* \n Placed Order\`") ~~~ id4(["\`**Unstitched** ⚠️ \`"])
-  style id4 fill:#ffecec,stroke:none
+  style id4 stroke:none
 ```
 
 Converge resolves this issue through the use of **aliases**.
@@ -32,7 +32,7 @@ To address the stitching issue, you can pass a `checkout_token` alias in both th
 ```mermaid
 flowchart LR
   id1("\`*Browser* \n Viewed Page\`") --> id2("\`*Browser* \n Started Checkout \n **alias=checkout_token_xyz**\`") --> id3("\`*Server* \n Placed Order \n **alias=checkout_token_xyz**\`") ~~~ id4(["\`**Stitched** ✓ \`"])
-  style id4 fill:#ecffec,stroke:none
+  style id4 stroke:none
 ```
 
 Aliases are primarily used to link server-side conversions with browser sessions, but they can also merge profiles across different websites, browsers, or devices.
@@ -118,11 +118,11 @@ Observe in the graph below how a customer who comes to your site in an interval 
 ```mermaid
 flowchart LR
   id1("\`*User* visits website with cookie **X**\`") -. 5 days later .-> id2("\`*User* visits website with cookie **X**\`") ~~~ id3(["\`**Re-identified**  ✓ \`"])
-  style id3 color:#02b802,stroke:none
+  style id3 stroke:none
 
 
   id4("\`*User* visits website with cookie **X**\`") -. 8 days later (cookie is lost).-> id5("\`*User* visits website with cookie **Y**\`") ~~~ id6(["\`**Not re-identified** ✖ \`"])
-  style id6 color:#d40027,stroke:none
+  style id6 stroke:none
 
 ```
 
