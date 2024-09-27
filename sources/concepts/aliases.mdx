@@ -92,6 +92,15 @@ cvg({
 </CodeGroup>
 </Accordion>
 
+### Aliases vs Profile Properties
+
+Note that [aliases](/sources/concepts/aliases) and [profile properties](/sources/concepts/profile-properties) are two different things.
+
+Profile properties persist across events but are **not necessarily unique** across profiles. 
+
+As an example, `$first_name` is a clear profile property (it persists across events) yet it does not uniquely define this profile so it would not be a correct alias.
+
+
 
 ---
 
