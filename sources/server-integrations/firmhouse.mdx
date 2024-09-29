@@ -1,0 +1,66 @@
+---
+title: "Firmhouse"
+description: "Connect your Firmhouse subscription events to Converge"
+---
+
+import {OutboundLink} from '/snippets/links.mdx';
+
+## Installation Instructions
+
+Firmhouse is primarily used as a subscription backend and checkout that is run in parallel with an ecommerce platform such as Shopify, but some merchants choose to run Firmhouse standalone without a shopping backend.
+Your Converge configuration will depend on your specific Firmhouse setup.
+
+  <Steps>
+      <Step title="Navigate to the Firmhouse Admin Dashboard">
+       1. Navigate to your <OutboundLink linkText="Firmhouse Dashboard" linkTarget="https://portal.firmhouse.com/sign_in" />
+      </Step>
+  <Step title="Create your API token">
+      2. Click on **Integrations** in the sidepanel
+        <Frame> ![integrations](/images/sources/firmhouse/integrations-section.png) </Frame>
+      3. Click on **Generate new token**, choose **No expiration** and choose **Write** as your Access Type, click on **Create project access token**.
+      4. Copy the token you just created, you will need it later.
+  </Step>
+  <Step title="Create a new Server-side source in Converge">
+      5. In Converge, click on **Create a new source**
+      6. Pick _Server-side_ from the modal
+      7. Name your source: e.g. `{Storename} Subscriptions`
+  </Step>
+  <Step title="Connect and configure the Source">
+      8. Choose **Firmhouse** as the app you want to connect.
+      9. Enter the Firmhouse access token you created in step 4.
+      10. Review the options and pick how the subscription value of the `Started Subscription`-event in Converge should be calculated. If you are unsure, ask your contact at Firmhouse for a recommendation.
+        <Frame> ![subscription value](/images/sources/firmhouse/subscription-value.png) </Frame>
+      
+      11. The next step depends on whether you are running Firmhouse side-by-side Shopify, or standalone.
+      
+            <Tabs> 
+                <Tab title="Shopify and Firmhouse"> 
+                    Choose **Shopify** as your **Product and variant ID** and make sure **Track Firmhouse invoices as Placed Order events** is turned **off**.
+
+                    <Frame> ![](/images/sources/firmhouse/shopify-parallel.png)</Frame>
+                </Tab> 
+                <Tab title="Only Firmhouse">
+                    Choose **Firmhouse** as your **Product and variant ID** and make sure **Track Firmhouse invoices as Placed Order events** is turned **on**.
+
+                    <Frame> ![](/images/sources/firmhouse/firmhouse-only.png)</Frame>
+                </Tab>
+            </Tabs>
+      12. You can ignore shipment date and leave Start Date blank and click on **Create Source**.
+
+  </Step>
+  </Steps>
+
+
+
+---
+
+## Event Spec
+
+This integration auto-tracks the following events on the server with all properties available according to the [Converge Event Spec](/sources/converge-spec).
+
+| Event Name                                                          | Event Description                      |
+| ------------------------------------------------------------------- | -------------------------------------- |
+| [Started Subscription](/sources/converge-spec#started-subscription) | When a customer starts a subscription. |
+| [Placed Order](/sources/converge-spec#started-subscription)*        | When a customer places and order.      |
+
+*Only when configured in the Source configuration.
