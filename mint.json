@@ -77,7 +77,8 @@
                 "sources/website-integrations/woocommerce",
                 "sources/website-integrations/magento",
                 "sources/website-integrations/bigcommerce",
-                "sources/website-integrations/funnelish"
+                "sources/website-integrations/funnelish",
+                "sources/website-integrations/firmhouse"
               ]
             },
             {
