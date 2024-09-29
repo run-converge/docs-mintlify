@@ -1,0 +1,235 @@
+---
+title: "Firmhouse"
+description: "Install the Converge Pixel on your Firmhouse Checkout"
+---
+
+Converge supports tracking Checkout events on the Firmhouse Checkout.
+
+---
+
+import { IconText } from '/snippets/icons.mdx';
+import {OutboundLink} from '/snippets/links.mdx';
+
+## Installation Instructions
+
+The Converge Website installation for a Firmhouse Checkout consists of:
+
+  <Steps>
+    <Step title="Create a new Client Source in Converge">
+      1. In Converge, click on **Create a new source**
+      2. Pick _Client-side_ from the modal
+      3. Name your pixel: e.g. `{Storename} Firmhouse Checkout`
+      4. Click on your newly created source and copy your public token per the screenshot below:
+         <Frame>
+            ![funnelish-14](/images/sources/funnelish/funnelish-14.png)
+         </Frame>
+    </Step>
+
+    <Step title="Create your Storefront token">
+      5. Navigate to your <OutboundLink linkText="Firmhouse Dashboard" linkTarget="https://portal.firmhouse.com/sign_in" />
+      6. Click on **Integrations** in the sidepanel
+        <Frame> ![integrations](/images/sources/firmhouse/integrations-section.png) </Frame>
+      7. Click on **Generate new token**, choose **No expiration** and choose **Storefront** as your Access Type, click on **Create project access token**.
+      8. Copy the token you just created, you will need it later.
+    </Step>
+
+    <Step title="Set up website tracking for your Firmhouse checkout">
+
+        9. Click on **Checkout** > **Preferences**.
+
+        7. Copy the following script in the **Body**, paste it above other scripts that might be already there.
+            <Accordion title="Click to see tracking script" icon="code"> 
+                 <Note> You will need to do a few modifications to the script as described in the following steps</Note>
+                ```html
+                    <script src="https://static.runconverge.com/pixels/{YOUR-PUBLIC-TOKEN}" async></script>
+                    <script>
+                    window.cvg||(cvg=function(){cvg.process?cvg.process.apply(cvg,arguments):cvg.queue.push(arguments)},cvg.queue=[]);
+                    cvg({method:"track",eventName:"$page_load"});
+                    </script>
+
+                    <script>
+                        /**************************************************************************
+                        * Firmhouse Converge Pixel configuration
+                        * storefrontToken: In the firmhouse portal, go to Settings > Integrations > Generate new token > Access type: Storefront
+                        * currency: The currency of your store
+                        *************************************************************************/
+                        const storefrontToken = '{YOUR-STOREFRONT-TOKEN}';
+                        const currency = 'EUR';
+
+
+                        /******************************** Globals ********************************/
+                        const aliases = [];
+                        let profileProperties = {};
+                        /* --------------------------------------------------------------------- */
+
+
+                        /******************************** Helpers ********************************/
+                        const getCookie = (name) => {
+                            const value = `; ${document.cookie}`;
+                            const parts = value.split(`; ${name}=`);
+                            if (parts.length === 2) {
+                                return parts.pop().split(';').shift();
+                            }
+                            return '';
+                        }
+
+                        const setCookie = (name, value) => {
+                            document.cookie = `${name}=${value}; path=/;`;
+                        }
+
+                        const collectProfileProperties = () => {
+                            const $email = document.querySelector('[name="subscription[email]"]')?.value;
+                            
+                            const phoneCountry = document.querySelector('#country-listbox li.active')?.getAttribute('data-dial-code');
+                            const phone = document.querySelector('[name="subscription[phone_number]"]')?.value;
+                            
+                            const $phone_number = phoneCountry && phone ? `+${phoneCountry} ${phone}` : undefined;
+                            const $first_name = document.querySelector('[name="subscription[name]"]')?.value;
+                            const $last_name = document.querySelector('[name="subscription[last_name]"]')?.value;
+                            const $zip_code = document.querySelector('[name="subscription[zipcode]"]')?.value;
+                            const $city = document.querySelector('[name="subscription[city]"]')?.value;
+
+                            const $country_code = document.querySelector('[name="subscription[country]"] option:checked')?.value;
+
+                            profileProperties = {
+                                ...profileProperties,
+                                $email,
+                                $phone_number,
+                                $first_name,
+                                $last_name,
+                                $zip_code,
+                                $city,
+                                $country_code,
+                            };
+                        }
+
+                        const getCart = () => fetch(
+                            'https://portal.firmhouse.com/graphql',
+                            {
+                                method: 'POST',
+                                headers: {
+                                    'Content-Type': 'application/json',
+                                    'Accept': 'application/json',
+                                    'X-Subscription-Token': cartToken,
+                                    'X-Project-Access-Token': storefrontToken
+                                },
+                                body: JSON.stringify({
+                                    query: `
+                                        {
+                                            currentCart {
+                                                token
+
+                                                orderedProducts {
+                                                    quantity
+                                                    product {
+                                                        title
+                                                        priceCents
+                                                        shopifyProductId
+                                                        shopifyVariantId
+                                                        sku
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    `,
+                                }),
+                            }
+                        )
+                        .then((response) => response.json())
+                        .then((body) => body.data.currentCart)
+                        .then((cart) => ({
+                            id: cart.token,
+                            currency,
+                            total_price: cart.orderedProducts.reduce((acc, l) => acc + l.product.priceCents * l.quantity, 0) / 100,
+                            items: cart.orderedProducts.map((l) => ({
+                                product_id: l.product.shopifyProductId.split('/').pop(),
+                                variant_id: l.product.shopifyVariantId.split('/').pop(),
+                                sku: l.product.sku,
+                                name: l.product.title,
+                                variant_name: l.product.shopifyVariantId.split('/').pop(),
+                                price: l.product.priceCents / 100,
+                                quantity: l.quantity,
+                                currency
+                            }))
+                        }));
+
+
+                        const setupStartedCheckout = (cartPromise, cartToken) => {
+                            if (getCookie('__cvg_started_checkout') !== cartToken) {
+                                cartPromise.then((cart) => {
+                                    cvg({method: 'event', event: 'Started Checkout', properties: cart, aliases, profileProperties});
+                                });
+                                setCookie('__cvg_started_checkout', cartToken);
+                            }
+                        }
+
+                        const setupAddedPaymentInfo = (cartPromise, cartToken) => {
+                            const subscriptionSubmit = document.querySelector('[data-role="subscription-submit"]');
+                            if (subscriptionSubmit) {
+
+                                subscriptionSubmit.addEventListener('click', () => {
+                                    collectProfileProperties();
+                                    aliases.push(`urn:email:${profileProperties["$email"]}`);
+                                    cartPromise.then((cart) => {
+                                        cvg({method: 'event', event: 'Added Payment Info', properties: cart, aliases, profileProperties});
+                                    });
+                                });
+                            }
+                        }
+                        /* --------------------------------------------------------------------- */
+
+
+                        /******************************** Setup **********************************/
+                        // Get the cart_token from URL or localStorage
+                        const cartToken = (
+                            new URLSearchParams(window.location.search).get('cart_token')
+                            || localStorage.getItem('Firmhouse.cartToken')
+                            || getCookie('__cvg_cart_token')
+                        );
+                        
+                        // Ensure that no 'dummy' subscription tokens are used for identification (e.g. 'new')
+                        if (cartToken && cartToken.length >= 10) {
+                            aliases.push(`urn:firmhouse:token:${cartToken}`);
+                            setCookie('__cvg_cart_token', cartToken);
+                        } else {
+                            const path = window.location.pathname;
+                            const matches = path.match(/\/subscriptions\/([a-zA-Z0-9]+)/);
+                            const subscriptionToken = matches && matches[1];
+                            if (subscriptionToken && subscriptionToken.length >= 10) {
+                                aliases.push(`urn:firmhouse:token:${subscriptionToken}`);
+                            }
+                        }
+                        /* --------------------------------------------------------------------- */
+
+                        
+                        /******************************** Events **********************************/
+                        cvg({method: 'event', event: '$page_load', aliases, profileProperties});
+
+                        if (cartToken) {
+                            const cartPromise = getCart();
+                            setupStartedCheckout(cartPromise, cartToken);
+                            setupAddedPaymentInfo(cartPromise, cartToken);
+                        }
+                        /* --------------------------------------------------------------------- */
+                </script>
+                ```
+            </Accordion>
+        8. Replace the `{YOUR-PUBLIC-TOKEN}` with the public token you retrieved in step 4.
+
+        9. Replace the `{YOUR-STOREFRONT-TOKEN}` with the API token you retrieved in step 7.
+
+        10. Click on **Update project** 
+    </Step>
+</Steps>
+   
+---
+
+## Event Spec
+
+This integration auto-tracks the following events on the browser with all properties available according to the [Converge Event Spec](/sources/converge-spec).
+
+| Event Name                                                      | Event Description                               |
+| --------------------------------------------------------------- | ----------------------------------------------- |
+| [PageView](/sources/converge-spec#page-view)                    | When a customer views a page.                   |
+| [Started Checkout](/sources/converge-spec#started-checkout)     | When a customer initiates the checkout process. |
+| [Added Payment Info](/sources/converge-spec#added-payment-info) | When a customer adds their payment info.        |

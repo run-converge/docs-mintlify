@@ -77,7 +77,8 @@
                 "sources/website-integrations/woocommerce",
                 "sources/website-integrations/magento",
                 "sources/website-integrations/bigcommerce",
-                "sources/website-integrations/funnelish"
+                "sources/website-integrations/funnelish",
+                "sources/website-integrations/firmhouse"
               ]
             },
             {
@@ -89,7 +90,8 @@
                 "sources/server-integrations/magento",
                 "sources/server-integrations/bigcommerce",
                 "sources/server-integrations/recharge",
-                "sources/server-integrations/skio"
+                "sources/server-integrations/skio",
+                "sources/server-integrations/firmhouse"
               ]
             }
           ]
