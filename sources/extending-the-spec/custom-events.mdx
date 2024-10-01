@@ -103,6 +103,14 @@ Tracks clicking only on HTML links `<a>` and its descendants.
 If no conditions are applied to this trigger, it will fire every time a user clicks any link. Make sure to limit the scope of this trigger by being as specific as possible with its conditions, for example by applying filters on `Page URL`, `Click Element`, etc.
 </Warning>
 
+### Form Submission
+
+Tracks the submission of HTML `<form>` elements in the page.
+
+<Warning>
+If no conditions are applied to this trigger, it will fire every time a user submits any form. Make sure to limit the scope of this trigger by being as specific as possible with its conditions, for example by applying filters on `Page URL`, `Form Element`, etc.
+</Warning>
+
 ### Page View
 
 Tracks page view. It's triggered immediately upon page load.
@@ -141,6 +149,15 @@ The video trigger can be configured to capture one or multiple events:
 - **Click Target**: the target attribute of the clicked link.
 - **Click URL**: the HREF attribute of the clicked link.
 - **Click Text**: the text content of the clicked element.
+
+### Form conditions
+- **Form Element**: a reference to the DOM `<form>` element that was submitted.
+- **Form Action**: the action URL of the submitted form.  
+- **Form Classes**: the classes attribute of the submitted form as a string.
+- **Form ID**: the ID attribute of the submitted form.
+- **Form Method**: the method attribute of the submitted form.
+- **Form Target**: the target attribute of the submitted form.
+- **Form Text**: the text content of the submitted form.
 
 ### Pages conditions
 
