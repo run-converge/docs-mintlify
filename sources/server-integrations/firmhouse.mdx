@@ -67,18 +67,11 @@ This integration auto-tracks the following events on the server with all propert
 
 ### Sales Channels
 
-Events received by Converge from Shopify are automatically mapped to Converge’s [sales channels types](/sources/concepts/sales-channels) whenever possible. 
-Shopify's various sales channels, such as the web, shop app, and marketplace integrations, are translated into Converge’s standardized sales channels types based on the context and source of each event. 
-
-For example, events originating from Shopify checkout are mapped to the web sales channel, while those from POS systems or third-party marketplaces (like Amazon) are categorized as pos and marketplace, respectively.
-
 More on sales channels can be found [here](/sources/concepts/sales-channels).
 
-<Note> Due to the extensive nature of Shopify’s sales channels and tight integration with third party apps, it may be difficult to get an accurate sales channels mapping. As such Converge fall back to "web" if a mapping cannot be found. </Note>
+An example of how Converge map Firmhouse events:
 
-An example of how Converge map Shopify sales channels:
-
-| Firmhouse             | Converge                     | Description                                                                                                                     |
+| Firmhouse             | Converge Mapping                    | Description                                                                                                                     |
 | --------------------- | ---------------------------- | ------------------------------------------------------------------------------------------------------------------------------- |
 | Started Subscription  | web                          |  New subscription triggered                                                                                                                               |
 | Placed Order          | web or subscription_contract | Recurring placed order events are mapped to "subscription_contract" while first time and one time purchases are mapped to "web" |
