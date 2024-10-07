@@ -44,3 +44,29 @@ This integration auto-tracks the following events on the server with all propert
 | Event Name                                          | Event Description                |
 | --------------------------------------------------- | -------------------------------- |
 | [Placed Order](/sources/converge-spec#placed-order) | When a customer places an order. |
+
+### Sales Channels
+
+Events received by Converge from a Woocommerce integration are automatically mapped to Converge’s [sales channels types](/sources/concepts/sales-channels) whenever possible. 
+
+More on sales channels can be found [here](/sources/concepts/sales-channels).
+
+<Note> Converge fall back to "web" if a mapping cannot be found. This is typically the case with third party integrations with Woocommerce. </Note>
+
+An example of how Converge map Woocommerce sales channels:
+
+| Woocommerce  | Converge              | Description                                                                        |
+| ------------ | --------------------- | ---------------------------------------------------------------------------------- |
+| checkout     | web                   | Browser                                                                            |
+| subscription | subscription_contract | Subscription events                                                                |
+| admin        | offline               | Manual orders                                                                      |
+| rest-api     | -                     | Depends on third party integration, defaults to "web" if no valid mapping is found |
+
+
+#### Third party integrations
+
+For third-party integrations, Converge provides support for a metadata field that can be used to specify the sales channel type directly. 
+This is particularly useful for custom implementations or when working with external systems that use the WooCommerce API to create or update orders.
+
+Converge reads the metadata field called `sales_channel_type` to determine the appropriate sales channel type for the event. This metadata can be set in WooCommerce orders to override the default channel mapping. 
+If this field is present and has a valid sales channel type value, Converge uses it to categorize the sales channel.

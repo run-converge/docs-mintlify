@@ -44,3 +44,19 @@ This integration auto-tracks the following events on the server with all propert
 | [Cancelled Subscription](/sources/converge-spec#cancelled-subscription) | When a customer cancels their subscription. |
 
 [//]: # "TODO: The RecurringSubscriptionPayment event and Skipped Subscription should be included"
+
+### Sales Channels
+
+More on sales channels can be found [here](/sources/concepts/sales-channels).
+
+The following events are mapped to the following sales channel types:
+
+| Recharge                            | Mapping               | Description                                                     |
+| ----------------------------------- | --------------------- | --------------------------------------------------------------- |
+| Started Subscription                | web                   | Browser-based interactions and actions     |
+| Placed Recurring Subscription Order | subscription_contract | Automated events related to subscription renewals or contracts. |
+| Cancelled Subscription              | subscription_contract |                                                                 |
+| Activated Subscription              | subscription_contract |                                                                 |
+| Paused Subscription                 | subscription_contract |                                                                 |
+| Skipped Subscription                | subscription_contract |                                                                 |
+| Unskipped Subscription              | subscription_contract |                                                                 |
