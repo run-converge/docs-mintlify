@@ -72,6 +72,10 @@ cvg({ method: "track", eventName: "$page_load" });
     Viewport size of the pageview.
     </ParamField>
 
+    <ParamField body="$sales_channel_type" type="string">
+    The sales channel where the event occurred. For client-side events tracked through the Converge Pixel, this will **always by default be "web"**. More on supported sales channels can be found [here](/sources/concepts/sales-channels).
+    </ParamField>
+
 </Accordion>
 
 <Accordion title="Auto-tracked Profile Properties" icon="address-card">
@@ -801,7 +805,6 @@ Order ID.
     <ParamField body="image_url" type="string">
     URL of a product image of the item
     </ParamField>
-
   </Expandable>
 
     </ParamField>
@@ -834,6 +837,9 @@ Order ID.
      Whether this is a new customer order.
     </ParamField>
 
+    <ParamField body="$sales_channel_type" type="string">
+    The sales channel of the event. If no sales channel type is provided then Converge fallback to "web". More on supported sales channels values can be found [here](/sources/concepts/sales-channels). The sales channel type provided entirely depends on the context of the event, integration, and where the event originates from. Browser Placed Order events should always be "web".
+    </ParamField>
 </Accordion>
 
 <Accordion title="Profile Properties" icon="address-card">
@@ -955,6 +961,7 @@ resp = requests.post(
             "$state": "California",
             "$zip_code": "94103",
             "$is_new_customer": False, # important
+            "$sales_channel_type": "web",  # important, see supported sales channels
         },
         "profile_properties": {
             # Pass as many as possible
@@ -1239,6 +1246,10 @@ When a user starts a subscription.
     Zip code of the subscriber's address.
     </ParamField>
 
+
+    <ParamField body="$sales_channel_type" type="string">
+    The sales channel where the event occurred. For client-side events tracked through the Converge Pixel, this will **always by default be "web"**. More on supported sales channels can be found [here](/sources/concepts/sales-channels).
+    </ParamField>
 </Accordion>
 
 <Accordion title="Profile Properties" icon="address-card">
@@ -1353,6 +1364,7 @@ resp = requests.post(
             "$country_code": "US",
             "$state": "California",
             "$zip_code": "94103",
+            "$sales_channel_type": "web",
         },
         "profile_properties": {
             # Pass as many as possible
@@ -1485,6 +1497,9 @@ When a user cancels a subscription.
     Zip code of the subscriber's address.
     </ParamField>
 
+    <ParamField body="$sales_channel_type" type="string">
+    The sales channel where the event occurred. Due to this event typically being server side, the sales channel type should be **"offline"**. More on supported sales channels can be found [here](/sources/concepts/sales-channels).
+    </ParamField>
 </Accordion>
 
 <Accordion title="Profile Properties" icon="address-card">
@@ -1553,6 +1568,7 @@ resp = requests.post(
             "$country_code": "US",
             "$state": "California",
             "$zip_code": "94103",
+            "$sales_channel_type": "offline",
         },
         "profile_properties": {
             # Pass as many as possible
@@ -1685,6 +1701,10 @@ When a user places a recurring subscription order.
     Zip code of the subscriber's address.
     </ParamField>
 
+    <ParamField body="$sales_channel_type" type="string">
+    The sales channel where the event occurred. Due to this event typically being server side, the sales channel type should be **"subscription_contract"**. More on supported sales channels can be found [here](/sources/concepts/sales-channels).
+    </ParamField>
+
 </Accordion>
 
 <Accordion title="Profile Properties" icon="address-card">
@@ -1753,6 +1773,7 @@ resp = requests.post(
             "$country_code": "US",
             "$state": "California",
             "$zip_code": "94103",
+            "$sales_channel_type": "subscription_contract",
         },
         "profile_properties": {
             # Pass as many as possible

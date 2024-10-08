@@ -88,6 +88,33 @@ This integration auto-tracks the following events on the server with all propert
 
 This integration also auto-tracks some additional events that are not part of the Converge Event Spec.
 
-| Event Name          | Event Description                                                | 
-| ------------------- | ---------------------------------------------------------------- | 
-| Received Refund     | When a customer refunds an order.                                | 
+| Event Name      | Event Description                 |
+| --------------- | --------------------------------- |
+| Received Refund | When a customer refunds an order. |
+
+### Sales Channels
+
+Events received by Converge from Shopify are automatically mapped to Converge’s [sales channels types](/sources/concepts/sales-channels) whenever possible. 
+Shopify's various sales channels, such as the web, shop app, and marketplace integrations, are translated into Converge’s standardized sales channels types based on the context and source of each event. 
+
+For example, events originating from Shopify checkout are mapped to the web sales channel, while those from POS systems or third-party marketplaces (like Amazon) are categorized as pos and marketplace, respectively.
+
+More on sales channels can be found [here](/sources/concepts/sales-channels).
+
+<Note> Due to the extensive nature of Shopify’s sales channels and tight integration with third party apps, it may be difficult to get an accurate sales channels mapping. As such Converge fall back to "web" if a mapping cannot be found. </Note>
+
+An example of how Converge map Shopify sales channels:
+
+| Shopify               | Converge              | Description                                                      |
+| --------------------- | --------------------- | ---------------------------------------------------------------- |
+| web                   | web                   | Shopify checkout                                                 |
+| subscription_contract | subscription_contract | Recurring placed order events, and third party subscription apps |
+| shopify_draft_order   | offline               | Manual orders                                                    |
+| pos                   | pos                   | Point of sales orders                                            |
+| 12875497473           | web                   | Shopify headless                                                 |
+| Edit Order            | offline               | Orders that are manually edited                                  |
+| 3890849               | marketplace           | Shopify Shop App                                                 |
+| 2329312               | facebook_shop         | Meta/Facebook Checkout                                           |
+| 4383523               | tiktok_shop           | Tiktok Checkout integration                                      |
+| 3009811               | pinterest_shop        | Pinterest Checkout                                               |
+| amazon                | marketplace           | Amazon integration                                               |
