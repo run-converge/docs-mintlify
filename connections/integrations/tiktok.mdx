@@ -70,3 +70,11 @@ Converge automatically maps the following events from the [Converge Event Spec](
 | [Started Subscription](/sources/converge-spec#started-subscription)                               | `Subscribe`                             |
 | [Placed Recurring Subscription Order](/sources/converge-spec#placed-recurring-subscription-order) | `RecurringSubscriptionPaymentSucceeded` |
 | [Cancelled Subscription](/sources/converge-spec#cancelled-subscription)                           | `CancelSubscription`                    |
+
+
+This integration also auto-tracks some additional events that are not part of the Meta Base Spec but are so heavily requested that we automatically forward them.
+
+| Converge Event Name                                                       | Meta Event Name       |
+| ------------------------------------------------------------------------- | --------------------- |
+| [Placed Order](/sources/converge-spec#placed-order)  (New Customers Only) | `NewCustomerPurchase` |
+|                                                                           |                       |
