@@ -109,7 +109,7 @@
           "pages": [
             "connections/integrations/overview",
             {
-              "group": "Marketing Sources",
+              "group": "Marketing",
               "pages": [
                 "connections/integrations/facebook",
                 "connections/integrations/google-ads",
