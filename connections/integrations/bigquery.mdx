@@ -94,54 +94,6 @@ Connection Type:  <IconText text="Server-side" name="server" iconType="duotone" 
        "type": "JSON",
        "mode": "NULLABLE",
        "description": "Properties of the session this event belongs to"
-     },
-     {
-       "name": "first_touch_session_id",
-       "type": "STRING",
-       "mode": "NULLABLE",
-       "description": "Session Id of the first touch as per a first touch attribution model"
-     },
-     {
-       "name": "first_touch_properties",
-       "type": "JSON",
-       "mode": "NULLABLE",
-       "description": "Properties of the first touch as per a first touch attribution model"
-     },
-     {
-       "name": "last_touch_session_id",
-       "type": "STRING",
-       "mode": "NULLABLE",
-       "description": "Session Id of the last touch as per a last touch attribution model"
-     },
-     {
-       "name": "last_touch_properties",
-       "type": "JSON",
-       "mode": "NULLABLE",
-       "description": "Properties of the last touch as per a last touch attribution model"
-     },
-     {
-       "name": "first_touch_paid_session_id",
-       "type": "STRING",
-       "mode": "NULLABLE",
-       "description": "Session Id of the first paid touch as per a first paid touch attribution model"
-     },
-     {
-       "name": "first_touch_paid_properties",
-       "type": "JSON",
-       "mode": "NULLABLE",
-       "description": "Properties of the first paid touch as per a first paid touch attribution model"
-     },
-     {
-       "name": "last_touch_paid_session_id",
-       "type": "STRING",
-       "mode": "NULLABLE",
-       "description": "Session Id of the last paid touch as per a last paid touch attribution model"
-     },
-     {
-       "name": "last_touch_paid_properties",
-       "type": "JSON",
-       "mode": "NULLABLE",
-       "description": "Properties of the last paid touch as per a last paid touch attribution model"
      }
    ]
    ```
@@ -210,7 +162,7 @@ Great, now you have a table for your Converge Events, follow the guide below to 
 
 ## Multi-touch attribution support 
 
-Converge preprocesses all events and enriches them with all available **profile**, **session** and **attribution** information to make your attribution data warehouse queries as simple as possible.
+Converge preprocesses all events and enriches them with all available **profile** and **session** information to make your attribution data warehouse queries as simple as possible.
 
 ### Profile Information
 
@@ -349,326 +301,180 @@ GROUP BY
   old_profile_id;
 ```
 
-### Pre-processed Attribution
 
-Converge **automatically attributes all events** (e.g. `Placed Order`, `Add To Cart`, etc.) based on the most popular attribution models.
-
-- **First Touch**: Attributes full credit for conversion to the initial touchpoint in the customer journey.
-- **First Touch Paid Only**: Credits only to the first paid interaction for the conversion; exclusive to paid channels.
-- **Last Touch**: Assigns full credit for the conversion to the final touchpoint in the customer journey.
-- **Last Touch Paid Only**: Attributes conversion solely to the last paid interaction; focuses on the final touchpoint within paid channels.
-
-
- <Accordion title="Pre-processed Attribution Overview" icon="fingerprint"> 
-
-   <AccordionGroup>
-
-    <Accordion title="First Touch Attribution" icon="backward-fast">
-
-    <ParamField body="session_id" type="string" required>
-   The first touch session ID
-   </ParamField>
-
-  <ParamField body="session_properties" type="Session Properties Object" required>
-  Properties related to the first session of the forwarded event.
-
-   <Expandable title="properties">
-
-  <ParamField body="channel" type="string">
-    The channel through which the session occurred (e.g., "facebook").
-  </ParamField>
-
-  <ParamField body="is_paid" type="boolean">
-    A boolean indicating whether the session is paid or not (e.g., true).
-  </ParamField>
-
-  <ParamField body="is_direct" type="boolean" >
-    A boolean indicating whether the session is direct or not (e.g., false).
-  </ParamField>
-
-  <ParamField body="landing_url" type="string">
-    The landing URL of the session.
-  </ParamField>
-
-  <ParamField body="referrer" type="string">
-    Referrer information for the session.
-  </ParamField>
-
-  <ParamField body="utm_source" type="string">
-    UTM source information for the session.
-  </ParamField>
-
-  <ParamField body="utm_medium" type="string">
-    UTM medium information for the session.
-  </ParamField>
-
-  <ParamField body="utm_campaign" type="string">
-    UTM campaign information for the session.
-  </ParamField>
-
-  <ParamField body="utm_content" type="string">
-    UTM content information for the session.
-  </ParamField>
-
-  <ParamField body="utm_term" type="string">
-    UTM term information for the session.
-  </ParamField>
-
-  <ParamField body="first_timestamp" type="string" required>
-    The timestamp of the first interaction in ISO 8601 format.
-  </ParamField>
-
-   </Expandable>
-
-</ParamField>
- </Accordion>
-
-    <Accordion title="First Paid Touch Attribution" icon="backward">
-
-    <ParamField body="session_id" type="string" required>
-   The session ID of the first session started through a paid acquisition channel
-   </ParamField>
-
-  <ParamField body="session_properties" type="Session Properties Object" required>
-  Properties related to the first paid session of the forwarded event.
-
-   <Expandable title="properties">
-
-  <ParamField body="channel" type="string">
-    The channel through which the session occurred (e.g., "facebook").
-  </ParamField>
-
-  <ParamField body="is_paid" type="boolean">
-    A boolean indicating whether the session is paid or not (e.g., true).
-  </ParamField>
-
-  <ParamField body="is_direct" type="boolean" >
-    A boolean indicating whether the session is direct or not (e.g., false).
-  </ParamField>
-
-  <ParamField body="landing_url" type="string">
-    The landing URL of the session.
-  </ParamField>
-
-  <ParamField body="referrer" type="string">
-    Referrer information for the session.
-  </ParamField>
-
-  <ParamField body="utm_source" type="string">
-    UTM source information for the session.
-  </ParamField>
-
-  <ParamField body="utm_medium" type="string">
-    UTM medium information for the session.
-  </ParamField>
-
-  <ParamField body="utm_campaign" type="string">
-    UTM campaign information for the session.
-  </ParamField>
-
-  <ParamField body="utm_content" type="string">
-    UTM content information for the session.
-  </ParamField>
-
-  <ParamField body="utm_term" type="string">
-    UTM term information for the session.
-  </ParamField>
-
-  <ParamField body="first_timestamp" type="string" required>
-    The timestamp of the first interaction in ISO 8601 format.
-  </ParamField>
-
-   </Expandable>
-
-</ParamField>
- </Accordion>
-
- <Accordion title="Last Paid Touch Attribution" icon="forward">
-
-    <ParamField body="session_id" type="string" required>
-   The session ID of the last session started through a paid acquisition channel
-   </ParamField>
-
-  <ParamField body="session_properties" type="Session Properties Object" required>
-  Properties related to the last paid session of the forwarded event.
-
-   <Expandable title="properties">
-
-  <ParamField body="channel" type="string">
-    The channel through which the session occurred (e.g., "facebook").
-  </ParamField>
-
-  <ParamField body="is_paid" type="boolean">
-    A boolean indicating whether the session is paid or not (e.g., true).
-  </ParamField>
-
-  <ParamField body="is_direct" type="boolean" >
-    A boolean indicating whether the session is direct or not (e.g., false).
-  </ParamField>
-
-  <ParamField body="landing_url" type="string">
-    The landing URL of the session.
-  </ParamField>
-
-  <ParamField body="referrer" type="string">
-    Referrer information for the session.
-  </ParamField>
-
-  <ParamField body="utm_source" type="string">
-    UTM source information for the session.
-  </ParamField>
-
-  <ParamField body="utm_medium" type="string">
-    UTM medium information for the session.
-  </ParamField>
-
-  <ParamField body="utm_campaign" type="string">
-    UTM campaign information for the session.
-  </ParamField>
-
-  <ParamField body="utm_content" type="string">
-    UTM content information for the session.
-  </ParamField>
-
-  <ParamField body="utm_term" type="string">
-    UTM term information for the session.
-  </ParamField>
-
-  <ParamField body="first_timestamp" type="string" required>
-    The timestamp of the first interaction in ISO 8601 format.
-  </ParamField>
-
-   </Expandable>
-
-</ParamField>
-
- </Accordion>
-
-    <Accordion title="Last Touch Attribution" icon="forward-fast">
-
-    <ParamField body="session_id" type="string" required>
-   The last touch session ID
-   </ParamField>
-
-  <ParamField body="session_properties" type="Session Properties Object" required>
-  Properties related to the last session of the forwarded event.
-
-   <Expandable title="properties">
-
-  <ParamField body="channel" type="string">
-    The channel through which the session occurred (e.g., "facebook").
-  </ParamField>
-
-  <ParamField body="is_paid" type="boolean">
-    A boolean indicating whether the session is paid or not (e.g., true).
-  </ParamField>
-
-  <ParamField body="is_direct" type="boolean" >
-    A boolean indicating whether the session is direct or not (e.g., false).
-  </ParamField>
-
-  <ParamField body="landing_url" type="string">
-    The landing URL of the session.
-  </ParamField>
-
-  <ParamField body="referrer" type="string">
-    Referrer information for the session.
-  </ParamField>
-
-  <ParamField body="utm_source" type="string">
-    UTM source information for the session.
-  </ParamField>
-
-  <ParamField body="utm_medium" type="string">
-    UTM medium information for the session.
-  </ParamField>
-
-  <ParamField body="utm_campaign" type="string">
-    UTM campaign information for the session.
-  </ParamField>
-
-  <ParamField body="utm_content" type="string">
-    UTM content information for the session.
-  </ParamField>
-
-  <ParamField body="utm_term" type="string">
-    UTM term information for the session.
-  </ParamField>
-
-  <ParamField body="first_timestamp" type="string" required>
-    The timestamp of the first interaction in ISO 8601 format.
-  </ParamField>
-
-   </Expandable>
-
-</ParamField>
- </Accordion>
-    </AccordionGroup>
+### Querying attribution data
+
+<Warning>
+  The attributed `first_touch_properties` etc. columns are deprecated and are no longer being filled, see [here](#deprecation-of-pre-processed-attribution-columns).
+</Warning>
+
+The events table contains all the data you need to build custom attribution models.
+You can easily construct the customer's touchpoints through the `session_id` and `session_properties` columns.
+
+A multi-touch model can be broken down into the following steps:
+1. Selecting conversion events
+2. Selecting touchpoints
+3. Joining touchpoints with conversion events according to the attribution window
+4. Applying the attribution model
+5. Aggregating conversion metrics by touchpoint
+
+This model can be adapted to 100% flexibly build attribution insights.
+The examples below show how to build basic first-touch and last-touch models and count the number of orders in BigQuery.
+
+
+<Accordion title="First Touch" icon="backward">
+  For example, the following query represents a 28-day first-touch model.
+
+  ```sql
+    WITH _events AS (SELECT * FROM `your-project-name.your-dataset-name.your-table-name`),
+    _1_conversions AS (
+      SELECT
+          id,
+          profile_id,
+          timestamp
+      FROM _events
+      WHERE
+          timestamp > CURRENT_DATETIME() - INTERVAL 7 day
+          AND event_name = 'Placed Order'
+    ), 
+    _2_touchpoints AS (
+      SELECT
+          profile_id,
+          session_id,
+          MIN_BY(session_properties, timestamp) AS session_properties,
+          MIN(timestamp) AS timestamp
+      FROM _events
+      WHERE
+          timestamp > CURRENT_DATETIME() - INTERVAL 7 day - INTERVAL 7 day
+          AND event_name = '$page_load'
+      GROUP BY profile_id, session_id
+    ),
+    _3_conversions_touchpoints AS (
+      SELECT
+        c.id AS id,
+        t.timestamp AS touchpoint_timestamp,
+        t.session_properties AS touchpoint_properties
+      FROM _1_conversions AS c
+      LEFT JOIN _2_touchpoints AS t
+      ON c.profile_id = t.profile_id
+          AND t.timestamp BETWEEN c.timestamp - INTERVAL 28 day AND c.timestamp
+    ),
+    _4_attributed_conversions AS (
+      SELECT
+          id,
+          MIN_BY(touchpoint_properties, touchpoint_timestamp) AS touchpoint_properties,
+          MIN(touchpoint_timestamp) AS touchpoint_timestamp
+      FROM _3_conversions_touchpoints
+      GROUP BY id
+    )
+    SELECT
+        JSON_VALUE(touchpoint_properties, '$.utm_source') AS first_touch_utm_source,
+        JSON_VALUE(touchpoint_properties, '$.utm_medium') AS first_touch_utm_medium,
+        COUNT(*) AS conversions
+    FROM _4_attributed_conversions
+    GROUP BY first_touch_utm_source, first_touch_utm_medium
+  ```
 </Accordion>
 
-### Session Information for custom multitouch attribution models
+<Accordion title="Last Touch" icon="forward">
+  For example, the following query represents a 7-day last-touch model.
 
-Converge sends over all sessions with their attribution information (e.g. `utm_source`, `utm_campaign`, etc.) so you can assign custom credit to each of these touchpoints -- **allowing you to create your fully custom multitouch attribution model**.
-
-<Accordion title="Session Information" icon="clock"> 
-
-  <ParamField body="session_id" type="string" required>
-   A unique session ID
-   </ParamField>
-
-  <ParamField body="session_properties" type="Session Properties Object" required>
-  Properties related to the session of the forwarded event.
-
-   <Expandable title="properties">
-
-  <ParamField body="channel" type="string">
-    The channel through which the session occurred (e.g., "facebook").
-  </ParamField>
-
-  <ParamField body="is_paid" type="boolean">
-    A boolean indicating whether the session is paid or not (e.g., true).
-  </ParamField>
-
-  <ParamField body="is_direct" type="boolean" >
-    A boolean indicating whether the session is direct or not (e.g., false).
-  </ParamField>
-
-  <ParamField body="landing_url" type="string">
-    The landing URL of the session.
-  </ParamField>
-
-  <ParamField body="referrer" type="string">
-    Referrer information for the session.
-  </ParamField>
-
-  <ParamField body="utm_source" type="string">
-    UTM source information for the session.
-  </ParamField>
-
-  <ParamField body="utm_medium" type="string">
-    UTM medium information for the session.
-  </ParamField>
-
-  <ParamField body="utm_campaign" type="string">
-    UTM campaign information for the session.
-  </ParamField>
-
-  <ParamField body="utm_content" type="string">
-    UTM content information for the session.
-  </ParamField>
-
-  <ParamField body="utm_term" type="string">
-    UTM term information for the session.
-  </ParamField>
-
-  <ParamField body="first_timestamp" type="string" required>
-    The timestamp of the first interaction in ISO 8601 format.
-  </ParamField>
-
-   </Expandable>
-
-</ParamField>
+  ```sql
+    WITH _events AS (SELECT * FROM `your-project-name.your-dataset-name.your-table-name`),
+    _1_conversions AS (
+      SELECT
+          id,
+          profile_id,
+          timestamp
+      FROM _events
+      WHERE
+          timestamp > CURRENT_DATETIME() - INTERVAL 7 day
+          AND event_name = 'Placed Order'
+    ), 
+    _2_touchpoints AS (
+      SELECT
+          profile_id,
+          session_id,
+          MIN_BY(session_properties, timestamp) AS session_properties,
+          MIN(timestamp) AS timestamp
+      FROM _events
+      WHERE
+          timestamp > CURRENT_DATETIME() - INTERVAL 7 day - INTERVAL 7 day
+          AND event_name = '$page_load'
+      GROUP BY profile_id, session_id
+    ),
+    _3_conversions_touchpoints AS (
+      SELECT
+        c.id AS id,
+        t.timestamp AS touchpoint_timestamp,
+        t.session_properties AS touchpoint_properties
+      FROM _1_conversions AS c
+      LEFT JOIN _2_touchpoints AS t
+      ON c.profile_id = t.profile_id
+          AND t.timestamp BETWEEN c.timestamp - INTERVAL 28 day AND c.timestamp
+      ),
+    _4_attributed_conversions AS (
+      SELECT
+          id,
+          MAX_BY(touchpoint_properties, touchpoint_timestamp) AS touchpoint_properties,
+          MAX(touchpoint_timestamp) AS touchpoint_timestamp
+      FROM _3_conversions_touchpoints
+      GROUP BY id
+    )
+    SELECT
+        JSON_VALUE(touchpoint_properties, '$.utm_source') AS last_touch_utm_source,
+        JSON_VALUE(touchpoint_properties, '$.utm_medium') AS last_touch_utm_medium,
+        COUNT(*) AS conversions
+    FROM _4_attributed_conversions
+    GROUP BY last_touch_utm_source, last_touch_utm_medium
+  ```
 </Accordion>
+
+The session columns have the following structure:
+
+<ParamField body="session_id" type="string" required>
+  Session ID of the event
+</ParamField>
+
+<ParamField body="session_properties" type="Session Properties Object" required>
+  Properties containing information about the session of the forwarded event
+
+  <Expandable title="properties">
+    <ParamField body="landing_url" type="string">
+      The landing URL of the session.
+    </ParamField>
+    <ParamField body="referrer" type="string">
+      Referrer information for the session.
+    </ParamField>
+    <ParamField body="utm_source" type="string">
+      UTM source information for the session.
+    </ParamField>
+    <ParamField body="utm_medium" type="string">
+      UTM medium information for the session.
+    </ParamField>
+    <ParamField body="utm_campaign" type="string">
+      UTM campaign information for the session.
+    </ParamField>
+    <ParamField body="utm_content" type="string">
+      UTM content information for the session.
+    </ParamField>
+    <ParamField body="utm_term" type="string">
+      UTM term information for the session.
+    </ParamField>
+  </Expandable>
+</ParamField>
+
+
+#### Deprecation of pre-processed attribution columns
+Converge previously supported the following columns:
+- `first_touch_properties` and `first_touch_session_id`
+- `last_touch_properties` and `last_touch_session_id`
+- `first_touch_paid_properties` and `first_touch_paid_session_id`
+- `last_touch_paid_properties` and `last_touch_paid_session_id`
+
+These columns are deprecated and are no longer being filled.
+The recommended way to build multi-touch attribution models is to use the `session_id` and `session_properties` columns in the Converge data.
+These allow full flexibility in building custom attribution models while maintaining correctness.
 
 ---
 
