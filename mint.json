@@ -237,10 +237,6 @@
     {
       "source": "/sources/custom-events",
       "destination": "/sources/extending-the-spec/custom-events"
-    },
-    {
-      "source": "/ad-platforms/:path*",
-      "destination": "/marketing-sources/:path*"
     }
   ]
 }
