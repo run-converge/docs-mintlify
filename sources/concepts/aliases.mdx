@@ -93,7 +93,7 @@ The exact aliases you choose depend on your specific customer journey, commonly 
 - **Cart Token** (e.g. `urn:cart_token:123xyz`): can be used to stitch a checkout on a different domain with the storefront session; or to stitch a server-side purchase to a website session.
 - **Checkout Token** (e.g. `urn:checkout_token:456abc`): can be used to stitch a checkout on a different domain with the storefront session; or to stitch a server-side purchase to a website session.
 - **Email** (e.g. `urn:email:john.smith@apple.com`): can be used to stitch a server-side order to a checkout session
-
+- **User ID** (e.g. `urn:user_id:123456`): can be used to stitch server-side order to a website session
 
 There are two main guidelines for choosing aliases:
 1. **Aim for redundancy**: Client-side events have no guarantee of being tracked, meaning that if the stitching of your customer journey depends on a single browser event and this browser event is missed, your server-side conversion will not be stitched correctly.
