@@ -35,14 +35,9 @@ flowchart LR
   style id4 stroke:none
 ```
 
-Aliases are primarily used to link server-side conversions with browser sessions, but they can also merge profiles across different websites, browsers, or devices.
+Aliases are primarily used to **link server-side conversions with browser sessions**, but they can also merge profiles across different websites, browsers, or devices.
 
 In [Converge JS](/sources/website-integrations/converge-pixel), the customer's browser session cookie is used as the default alias. Additionally, Converge provides a set of default aliases for its integrations.
-
-Commonly useful aliases include:
-- **Cart Token** (e.g. `urn:cart_token:123xyz`): can be used to stitch a checkout on a different domain with the storefront session; or to stitch a server-side purchase to a website session.
-- **Checkout Token** (e.g. `urn:checkout_token:456abc`): can be used to stitch a checkout on a different domain with the storefront session; or to stitch a server-side purchase to a website session.
-- **Email** (e.g. `urn:email:john.smith@apple.com`): can be used to stitch a server-side order to a checkout session
 
 <Accordion title="Code Examples" icon="code">
  <CodeGroup>
@@ -92,6 +87,40 @@ cvg({
 </CodeGroup>
 </Accordion>
 
+### What aliases should I pass?
+
+The exact aliases you choose depend on your specific customer journey, commonly used aliases are:
+- **Cart Token** (e.g. `urn:cart_token:123xyz`): can be used to stitch a checkout on a different domain with the storefront session; or to stitch a server-side purchase to a website session.
+- **Checkout Token** (e.g. `urn:checkout_token:456abc`): can be used to stitch a checkout on a different domain with the storefront session; or to stitch a server-side purchase to a website session.
+- **Email** (e.g. `urn:email:john.smith@apple.com`): can be used to stitch a server-side order to a checkout session
+- **User ID** (e.g. `urn:user_id:123456`): can be used to stitch server-side order to a website session
+
+There are two main guidelines for choosing aliases:
+1. **Aim for redundancy**: Client-side events have no guarantee of being tracked, meaning that if the stitching of your customer journey depends on a single browser event and this browser event is missed, your server-side conversion will not be stitched correctly.
+2. **As early in the customer journey as possible**: If your stitching alias is too late in the journey, then you run the risk that the server-side `Placed Order`-event is received in Converge, before the client-side event with the stitching alias has been received. As such a `cart_token` you can pick up early in the journey is a much more reliable alias than an `email` property you receive very late in the journey.
+
+
+#### Example 
+
+If you have a customer journey that looks like this: 
+
+```mermaid
+flowchart LR
+  id1("\`*Browser* \n Viewed Page\`") --> id2("\`*Browser* \n Added To Cart \`") --> id3("\`*Browser* \n Started Checkout \`") --> id4("\`*Browser* \n Added Payment Info \`") --> id5("\`*Server* \n Placed Order \`")
+```
+
+Then an optimal stitching setup would look something like:
+
+```mermaid
+flowchart LR
+  id1("\`*Browser* \n Viewed Page\`") --> id2("\`*Browser* \n Added To Cart \n **alias=cart_token_xyz** \`") --> id3("\`*Browser* \n Started Checkout \n **alias=checkout_token_123**  \`") --> id4("\`*Browser* \n Added Payment Info \n **alias=john@smith.com**  \`") --> id5("\`*Server* \n Placed Order \n **alias=cart_token_xyz** \n **alias=checkout_token_123** \n **alias=john@smith.com** \`")
+```
+
+Note that:
+
+1. There are multiple stitching identifiers on the browser events in the customer journey to stitch the server-side `Placed Order` to the corresponding website session.
+2. Stitching identifiers are available early in the customer journey, ensuring that client-side events with relevant aliases will arrive before the server-side `Placed Order` event.
+
 ### Aliases vs Profile Properties
 
 Note that [aliases](/sources/concepts/aliases) and [profile properties](/sources/concepts/profile-properties) are two different things.
@@ -99,8 +128,6 @@ Note that [aliases](/sources/concepts/aliases) and [profile properties](/sources
 Profile properties persist across events but are **not necessarily unique** across profiles. 
 
 As an example, `$first_name` is a clear profile property (it persists across events) yet it does not uniquely define this profile so it would not be a correct alias.
-
-
 
 ---
 
