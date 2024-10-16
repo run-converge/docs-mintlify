@@ -95,7 +95,7 @@ The exact aliases you choose depends on your specific customer journey, commonly
 - **Email** (e.g. `urn:email:john.smith@apple.com`): can be used to stitch a server-side order to a checkout session
 
 
-There are two main guidelines for setting up aliases:
+There are two main guidelines for choosing aliases:
 1. **Aim for redundancy**: Client-side events have no guarantee of being tracked, meaning that if the stitching of your customer journey depends on a single browser event and this browser event is missed, your server-side conversion will not be stitched correctly.
 2. **As early in the customer journey as possible**: If your stitching alias is too late in the journey, then you run the risk that the server-side `Placed Order`-event is received in Converge, before the client-side event with the stitching alias has been received. As such a `cart_token` you can pick up early in the journey is a much more reliable alias than an `email` property you receive very late in the journey.
 
