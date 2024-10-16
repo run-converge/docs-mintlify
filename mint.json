@@ -54,7 +54,8 @@
             "sources/concepts/overview",
             "sources/concepts/profile-properties",
             "sources/concepts/deduplication",
-            "sources/concepts/aliases"
+            "sources/concepts/aliases",
+            "sources/concepts/sales-channels"
           ]
         },
         "sources/converge-spec",

@@ -48,5 +48,31 @@ This integration auto-tracks the following events on the server with all propert
 | --------------------------------------------------- | -------------------------------- |
 | [Placed Order](/sources/converge-spec#placed-order) | When a customer places an order. |
 
+### Sales Channels
 
+Events received by Converge from Bigcommerce are automatically mapped to Converge’s [sales channels types](/sources/concepts/sales-channels) whenever possible. 
 
+More on sales channels can be found [here](/sources/concepts/sales-channels).
+
+<Note> Converge fall back to "web" if a mapping cannot be found. This is typically the case with third party integrations with Bigcommerce. </Note>
+
+An example of how Converge map Bigcommerce sales channels:
+
+| Bigcommerce         | Converge      | Description                                                     |
+| ------------------- | ------------- | --------------------------------------------------------------- |
+| www                 | web           | Browser                                                         |
+| iphone              | web           | iPhone web                                                      |
+| ipad                | web           | iPad web                                                        |
+| android             | web           | Android web                                                     |
+| mobile              | web           | mobile browser                                                  |
+| external            | -             | Orders API - depends on third party integration (e.g. Recharge) |
+| manual              | offline       | Manual Order                                                    |
+| checkout_api        | web           | Checkout API                                                    |
+| buybutton           | web           | Buy Button                                                      |
+| amazon              | marketplace   | Amazon integration                                              |
+| ebay                | marketplace   | Ebay integration                                                |
+| facebookcheckout    | facebook_shop | Facebook Checkout                                               |
+| facebookshop        | facebook_shop | Facebook Shop                                                   |
+| facebookmarketplace | facebook_shop | Facebook Marketplace                                            |
+| pinterest           | facebook_shop | Pinterest                                                       |
+| socialshop          | marketplace   | Social Shop                                                     |

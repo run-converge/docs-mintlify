@@ -59,7 +59,8 @@ description: "Connect your Server-side data to Converge"
         "$country_code": "US",
         "$state": "California",
         "$zip_code": "94103",
-        "$is_new_customer": false
+        "$is_new_customer": false,
+        "$sales_channel_type": "web"  # important, see supported sales channels
     },
     "profile_properties": {
         "$first_name": "John",
@@ -115,3 +116,29 @@ All events should be instrumented manually according to the Converge Event Spec.
 
 
 <Note> You should typically implement [Placed Order](/sources/converge-spec#placed-order) and [Started Subscription](/sources/converge-spec#started-subscription) events server-side. You can find a full list in the [Converge Spec here](/sources/converge-spec) </Note>
+
+### Sales Channels
+
+Due to the events being instrumented manually, particular importance is placed on sales channels because of concepts like deduplication and session stitching. 
+When choosing a sales channel type for an event, if you expect a conversion (e.g. Placed Order) to have a corresponding web journey, then you'll want to typically categorize them as "web". 
+If the event is automated, say, a recurring subscription order, then you'll want to use "subscription_contract". 
+If you're selling your products on a marketplace like Amazon for example, and you intend to forward these Placed Order events to Converge via the webhook, you'll want to categorize them as "marketplace".
+
+More on sales channels can be found [here](/sources/concepts/sales-channels).
+
+<Note> If no sales channel type is provided, Converge falls back to "web". </Note>
+
+The following supported sales channel types are:
+
+| Name                | Property Value              | Description                     |
+|---------------------|-----------------------|---------------------------------|
+| Web                 | web                   | Events occurring via browser-based interactions and actions |
+| Subscriptions       | subscription_contract | Automated events related to subscription renewals or contracts. |
+| SMS                 | sms                   | Events or interactions triggered via SMS/Text communication. |
+| Mobile App          | mobile_app            | User interactions occurring within mobile applications. |
+| POS                 | pos                   | Point of Sale transactions taking place in physical stores. |
+| Marketplace         | marketplace           | Sales and interactions through third-party marketplaces like Amazon. |
+| Offline             | offline               | Offline events such as amended orders, manual orders, or calls. |
+| Facebook Shop       | facebook_shop         | Purchases and interactions through the Facebook Shop channel. |
+| Pinterest Shop      | pinterest_shop        | Sales and activity through the Pinterest Shop channel. |
+| TikTok Shop         | tiktok_shop           | Orders and interactions made via the TikTok Shop channel. |

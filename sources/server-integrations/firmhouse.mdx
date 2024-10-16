@@ -64,3 +64,15 @@ This integration auto-tracks the following events on the server with all propert
 | [Placed Order](/sources/converge-spec#started-subscription)*        | When a customer places and order.      |
 
 *Only when configured in the Source configuration.
+
+### Sales Channels
+
+More on sales channels can be found [here](/sources/concepts/sales-channels).
+
+An example of how Converge map Firmhouse events:
+
+| Firmhouse             | Converge Mapping                    | Description                                                                                                                     |
+| --------------------- | ---------------------------- | ------------------------------------------------------------------------------------------------------------------------------- |
+| Started Subscription  | web                          |  New subscription triggered                                                                                                                               |
+| Placed Order          | web or subscription_contract | Recurring placed order events are mapped to "subscription_contract" while first time and one time purchases are mapped to "web" |
+| Placed Shipment Order | offline                      | Placed shipment orders                                                                                                          |
