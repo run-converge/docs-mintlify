@@ -188,6 +188,7 @@
             "ad-platforms/integrations/tiktok",
             "ad-platforms/integrations/bing",
             "ad-platforms/integrations/snapchat",
+            "ad-platforms/integrations/criteo",
             "ad-platforms/integrations/taboola",
             "ad-platforms/integrations/outbrain"
           ]

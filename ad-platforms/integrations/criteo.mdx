@@ -1,0 +1,28 @@
+---
+title: "Criteo Ads"
+description: "An introduction to the Criteo Marketing Source"
+---
+
+import { Icon } from '/snippets/icons.mdx';
+import { OutboundLink } from '/snippets/links.mdx';
+
+<Note> The Criteo Marketing Data Source allows you to see platform-specific metrics (e.g. Ad Spend) in Converge. 
+To send data from Converge to Criteo, check out the [Criteo Connection](/connections/integrations/criteo) instead.</Note>
+
+---
+
+## Set up your UTM Tracking Parameters
+
+
+1. Navigate to your <OutboundLink linkText="Criteo Ads Manager" linkTarget="https://marketing.criteo.com/campaigns/dashboard/ad-sets"/> 
+
+2. Navigate to **Campaigns** > **Ad sets** in the side-bar.
+   
+3. Click on the <Icon name="ellipsis-vertical"/>-icon next to the Ad Set and click on **Ads tracking**.
+
+4. Under **Apply a suffix (optional)**, copy and paste the following tracking template.
+   ```
+   ?cvg_source=criteo&cvg_cid={{criteo_campaign_id}}&cvg_adid={{adid}}
+   ```
+
+5. Scroll down and click on **Save and apply**.
