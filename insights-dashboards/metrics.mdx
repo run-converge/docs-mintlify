@@ -1,0 +1,143 @@
+---
+title: Metrics
+---
+
+import {IconText, Icon} from '/snippets/icons.mdx'
+
+
+Insights consist of one or multiple metrics. 
+Metrics are based on Events, Ad Platforms or a combination of both.
+
+<Frame>
+    ![three-metrics](/images/insights-dashboards/three-metrics.png)
+</Frame>
+
+## Types of Metrics
+
+When you click on **Add metric**, you have metrics in 4 categories.
+
+### Popular
+
+A small curated set of metrics from the other types that are often searched for
+    <Frame>
+        ![img](/images/insights-dashboards/popular-metrics.png)
+    </Frame>
+
+
+### Events
+
+Metrics based on the Events you track with the Converge [Sources](/sources/source-concepts)
+    A small curated set of metrics from the other types that are often searched for
+    <Frame>
+        ![img](/images/insights-dashboards/event-metrics.png)
+    </Frame>
+
+
+### Ad platforms
+
+Metrics based on the Marketing Sources you connected under [Marketing Sources](/ad-platforms/setting-up-ad-platform-integrations)
+    <Frame>
+        ![img](/images/insights-dashboards/ad-platform-metrics.png)
+    </Frame>
+
+### Formula
+A custom formula based on existing metrics.
+    <Frame>
+        ![img](/images/insights-dashboards/formula-metrics.png)
+    </Frame>
+
+## Aggreggations
+
+When you select Event Metrics such as **Added To Cart**, you might be looking for:
+- The total number of **Added To Cart**-events
+- The total sessions with an **Added To Cart**-event
+- The **Added To Cart**-conversion rate
+- The Cost per **Added To Cart**
+- etc. 
+
+Similarly if you select Ad Platform Metrics such as **Clicks**, you might be looking for:
+- The total number of **Clicks**
+- The **CTR**
+- The **CPM** 
+- etc.
+
+These different ways of counting the underlying event or ad platform metric are called **Aggreggations**.
+Every time you pick a metric, you will need to choose an aggregation as well. 
+
+### Available Event Aggreggations
+
+<Frame>
+    ![event aggreggations](/images/insights-dashboards/event-aggreggations.png)
+</Frame>
+
+| Aggreggation                | Description                                                                                                                                   |
+| --------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Events**                  | Total number of times an event occurred over the chosen time period                                                                           |
+| **Sessions**                | Total number of sessions with the specified event occuring at least once over the chosen time period                                          |
+| **Profiles**                | Total number of profiles who triggered the specified event at least once over the chosen time period                                          |
+| **Session conversion rate** | Total number of sessions with the specified event occuring at least once divided by total sessions over the chosen time period                |
+| **Profile conversion rate** | Total number of profiles with the specified event occuring at least once divided by total profiles with a Session over the chosen time period |
+| **CPA**                     | UTM CPA of the chosen event, without a specific Channel filter this is equal to the **Blended CPA**                                           |
+| **ROAS**                    | UTM ROAS of the chosen event, without a specific Channel filter this is equal to the **Blended ROAS**                                         |
+| **Event Properties**        | Allows you to do an aggreggation of a specific event property                                                                                 |
+
+### Available Ad Platform Aggreggations
+
+<Frame>
+    ![ad platform aggreggations](/images/insights-dashboards/ad-platform-aggreggations.png)
+</Frame>
+
+| Metric                                                         | Aggreggation | Description                                |
+| -------------------------------------------------------------- | ------------ | ------------------------------------------ |
+| <IconText name="eye" text="Impressions"/>                      | Sum          | Total number of impressions                |
+|                                                                | CPM          | Cost per impressions                       |
+| <IconText name="arrow-pointer" text="Clicks"/>                 | Sum          | Total number of clicks                     |
+|                                                                | CTR          | Click-through rate                         |
+|                                                                | CPC          | Cost per click                             |
+| <IconText name="coins" text="Spend"/>                          | Sum          | Total spend                                |
+| <IconText name="basket-shopping" text="Purchase Conversions"/> | Sum          | Total purchase conversions                 |
+|                                                                | CPA          | Cost per purchase conversion               |
+|                                                                | Revenue      | Conversion value of purchase conversions   |
+|                                                                | ROAS         | Return on ad spend of purchase conversions |
+| <IconText name="basket-shopping" text="Custom Conversions"/>   | Sum          | Total conversions                          |
+|                                                                | CPA          | Cost per conversion                        |
+|                                                                | Revenue      | Conversion value of conversions            |
+|                                                                | ROAS         | ROAS of conversions                        |
+
+## Renaming a Metric
+
+1. Click on the <Icon name="pencil"/>-icon next to the metric you want to rename.
+    <Frame>
+        ![](/images/insights-dashboards/rename-icon.png)
+    </Frame>
+2. Give your metric a new name and click on <Icon name="check"/>
+    <Frame>
+        ![](/images/insights-dashboards/rename-confirm-new-name.png)
+    </Frame>
+3. Notice that in your insight, the metric is approppriately renamed
+    <Frame>
+        ![](/images/insights-dashboards/renamed-metric-proof.png)
+    </Frame>
+
+## Hiding a Metric
+
+You might want to recombine some metrics in Formula Mode and only show a subset of the metrics that you have used in the query. 
+
+For example, say that we want to show the **New Customer %**, which is defined as `100% * New Customers / Total Orders`. 
+The query would look something like this. 
+
+<Frame>
+![new customer formula](/images/insights-dashboards/custom-formula-new-customer-percentage.png)
+</Frame>
+
+To make sure that the Insight only consists of Metric **C**, I can hide metric A & B as follows: 
+
+1. Click on the <Icon name="eye"/>-icon next to the metric you want to hide. In our example this would be metric A and B.
+    <Frame>
+        ![](/images/insights-dashboards/rename-icon.png)
+    </Frame>
+
+2. The metrics should have disappeared from the insight.
+    <Frame>
+        ![](/images/insights-dashboards/hidden-custom-formula-new-customer-percentage.png)
+    </Frame>

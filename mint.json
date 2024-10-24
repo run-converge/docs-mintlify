@@ -172,7 +172,11 @@
     {
       "group": "Insights & Dashboards",
       "pages": [
-        "insights-dashboards/insights-dashboards"
+        "insights-dashboards/overview",
+        "insights-dashboards/insights",
+        "insights-dashboards/metrics",
+        "insights-dashboards/filters",
+        "insights-dashboards/breakdowns"
       ]
     },
     {

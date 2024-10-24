@@ -1,0 +1,53 @@
+---
+title: Filters
+---
+
+import {IconText, Icon} from '/snippets/icons.mdx'
+
+Filters allow you to filter out certain values based on certain properties.
+
+Filters allow you to answer questions such as:
+- How many Added To Cart-events do I have *in Canada*
+- How many Website visits come *from mobile users*
+- How much Spend comes from *my Summer Facebook campaign*
+- How much Purchases can be *UTM-attributed to TikTok*
+
+## Applying a Filter
+
+How you apply a filter to an insight depends on whether you want the filter to filter on a **Metric**-level (applies to a single metric) or on an **Insight**-level (applies to all metrics in the insight).
+
+### Metric Filters
+
+1. Click on the <Icon name="filter"/>-icon, next to the metric you want to filter on.
+    <Frame>
+        ![filter-icon](/images/insights-dashboards/filter-icon.png)
+    </Frame>
+2. Click on <IconText name="plus" text="Add filter"/>
+3. Choose a property to filter on and a condition, e.g. **`total_price` greater than 50**
+    <Frame>
+        ![filter-icon](/images/insights-dashboards/active-metric-filter.png)
+    </Frame>
+4. Done, your metric values should be filtered based on this condition.
+
+### Insight Filters
+
+1. Click on Click on <IconText name="plus" text="Add filter group"/> in the Click on <IconText name="bars-filter" text="Add filter"/>-section of the query builder.
+    <Frame>
+        ![filter-icon](/images/insights-dashboards/insight-filter-section.png)
+    </Frame>
+2. Click on <IconText name="plus" text="Add filter"/> 
+3. Choose a property to filter on and a condition, e.g. **`total_price` greater than 50**
+    <Frame>
+        ![filter-icon](/images/insights-dashboards/insight-filter-example.png)
+    </Frame>
+4. Done, all of your metric values should be filtered based on this condition.
+    <Info>
+    As an example of a filter that applies across a few metircs, notice the insight below that shows all:
+    - `Placed Order`-events with a `total_price` greater than 50
+    - All sessions with a `Placed Order`-event for which this event has a `total_price` greater than 50
+    <Frame>
+        ![multiple metrics](/images/insights-dashboards/filters-on-multiple-metrics.png)
+    </Frame>
+    </Info>
+
+
