@@ -23,7 +23,8 @@ Converge allows you to filter out events granularly based on their event propert
 </Frame> 
 </Note>
 
-<Accordion icon="location-dot" title="How to set up an Event Property Filter">
+### How to set up an Event Property Filter
+
 1. Navigate to the [Connections Tab](https://app.runconverge.com/-/connections) in your Converge dashboard
 2. Click on the Connection for which you want to filter out certain events.
 3. Click on the **Configuration** tab and on the **Filters**-subtab to open the Filter Configuration
@@ -34,14 +35,13 @@ Converge allows you to filter out events granularly based on their event propert
     <Frame>
     ![pick filters](/images/connections/filters/filters-0.png)
     </Frame>
-</Accordion>
 
-#### Examples
 
-<Accordion title="Filtering out subscription orders" icon="calendar-circle-minus">
-Subscription brands typically want to filter out recurring purchases when forwarding to ad platforms.
+### Examples
 
-To achieve this, you can set up a Filter on the `Placed Order` event on a per-connection basis. 
+#### Filtering out subscription orders from a Connection
+
+Subscription brands typically want to filter out recurring purchases when forwarding to ad platforms. To achieve this, you can set up a Filter on the `Placed Order` event on a per-connection basis. 
 
 <Steps>
 <Step title="Find a property and property value that defines a recurring subscription order">
@@ -65,7 +65,6 @@ To achieve this, you can set up a Filter on the `Placed Order` event on a per-co
 
 </Step>
 </Steps>
-</Accordion>
 
 ---
 
@@ -74,7 +73,8 @@ To achieve this, you can set up a Filter on the `Placed Order` event on a per-co
 Converge allows you to filter out all events of a specific source with a single filter. 
 This is especially helpful when you have multiple sales channels, such as multiple storefronts.
 
-<Accordion icon="location-dot" title="How to set up a Source Filter">
+### How to set up a Source Filter
+
 1. Navigate to the [Connections Tab](https://app.runconverge.com/-/connections) in your Converge dashboard
 2. Click on the Connection for which you want to filter out certain sources.
 3. Click on the **Configuration** tab and on the **Sources**-subtab to open the Source Filter Configuration
@@ -84,14 +84,16 @@ This is especially helpful when you have multiple sales channels, such as multip
     <Frame>
     ![pick filters](/images/connections/filters/filters-1.png)
     </Frame>
-</Accordion>
 
-#### Multi-store setups
+### Multi-store or multi-website setups
 
 A typical example of source filters is when you are setting up multiple stores.
-You might want to set up different GA4 Connections for each store for example. 
+Y
+ou might want to set up different Google Ads Connections for each store for example. 
 You can use Source Filters to filter out the appropriate Sources per Connection.
 
-As an example, if you have a US and CA store, and you are creating a GA4 Connection for the US Store -- you will want to configure your US Sources to be the only ones streaming into this Connection.
+As an example, if you have a US and CA store, and you are creating a Google Ads Connection for the CA Store -- you will want to configure your Canadian Sources to be the only ones streaming into this Connection.
 
-
+<Frame>
+![CAD Example](/images/connections/filters/multi-store-example.png)
+</Frame>
